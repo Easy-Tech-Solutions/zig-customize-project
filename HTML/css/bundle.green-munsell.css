@@ -193,7 +193,7 @@ body {
  * Asterisk "*" after the field label, If the field is required.
  */
 .astk {
-  color: #f00;
+  color: #222021;
   margin-left: 4px; }
 
 /**
@@ -325,7 +325,7 @@ body {
   .slide-content-2 .slide-2-h2-a {
     color: #0e4cb3; }
   .slide-content-2 .slide-2-h2-b {
-    color: #dd1424;
+    color: #222021;
     line-height: 54px; }
   .slide-content-2 .slide-2-h2-a, .slide-content-2 .slide-2-h2-b {
     padding-left: 50px;
@@ -1370,11 +1370,11 @@ body {
   color: #363636; }
 
 .tag.new {
-  background: #FF3860;
+  background: #00537B;
   color: #fff; }
 
 .tag.hot {
-  background: #FF5722;
+  background: #ff0000;
   color: #ffffff; }
 
 .tag.tag-bottom {
@@ -2056,9 +2056,9 @@ body {
     border-color: #007bff rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) rgba(0, 0, 0, 0); }
 
 .superscript-label-hot {
-  background: #FF3860; }
+  background: #ff0000; }
   .superscript-label-hot:after {
-    border-color: #FF3860 rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) rgba(0, 0, 0, 0); }
+    border-color: #ff0000 rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) rgba(0, 0, 0, 0); }
 
 .superscript-label-discount {
   background: #ffc107; }
