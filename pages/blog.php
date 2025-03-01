@@ -11,27 +11,27 @@
     <meta name="author" content="">
     <title>ZIG CUSTOMIZED</title>
     <!-- Standard Favicon -->
-    <link href="../HTML/favicon.ico" rel="shortcut icon">
+    <link href="../assets/images/favicon/favicon.ico" rel="shortcut icon">
     <!-- Base Google Font for Web-app -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
     <!-- Google Fonts for Banners only -->
     <link href="https://fonts.googleapis.com/css?family=Raleway:400,800" rel="stylesheet">
     <!-- Bootstrap 4 -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
     <!-- Font Awesome 5 -->
-    <link rel="stylesheet" href="css/fontawesome.min.css">
+    <link rel="stylesheet" href="../assets/css/fontawesome.min.css">
     <!-- Ion-Icons 4 -->
-    <link rel="stylesheet" href="css/ionicons.min.css">
+    <link rel="stylesheet" href="../assets/css/ionicons.min.css">
     <!-- Animate CSS -->
-    <link rel="stylesheet" href="css/animate.min.css">
+    <link rel="stylesheet" href="../assets/css/animate.min.css">
     <!-- Owl-Carousel -->
-    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="../assets/css/owl.carousel.min.css">
     <!-- Jquery-Ui-Range-Slider -->
-    <link rel="stylesheet" href="css/jquery-ui-range-slider.min.css">
+    <link rel="stylesheet" href="../assets/css/jquery-ui-range-slider.min.css">
     <!-- Utility -->
-    <link rel="stylesheet" href="css/utility.css">
+    <link rel="stylesheet" href="../assets/css/utility.css">
     <!-- Main -->
-    <link rel="stylesheet" href="css/bundle.css">
+    <link rel="stylesheet" href="../assets/css/bundle.css">
 </head>
 
 <body>
@@ -39,796 +39,7 @@
 <!-- app -->
 <div id="app">
     <!-- Header -->
-    <header>
-        <!-- Top-Header -->
-        <div class="full-layer-outer-header">
-            <div class="container clearfix">
-                <nav>
-                    <ul class="primary-nav g-nav">
-                        <li>
-                            <a href="tel:+111444989">
-                                <i class="fas fa-phone u-c-brand u-s-m-r-9"></i>
-                                Telephone:+23177-6909-591/880-522-295</a>
-                        </li>
-                        <li>
-                            <a href="mailto:contact@domain.com">
-                                <i class="fas fa-envelope u-c-brand u-s-m-r-9"></i>
-                                E-mail: info@zigcustomized.com
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-                <nav>
-                    <ul class="secondary-nav g-nav">
-                        <li>
-                            <a>My Account
-                                <i class="fas fa-chevron-down u-s-m-l-9"></i>
-                            </a>
-                            <ul class="g-dropdown" style="width:200px">
-                                <li>
-                                    <a href="cart.html">
-                                        <i class="fas fa-cog u-s-m-r-9"></i>
-                                        My Cart</a>
-                                </li>
-                                <!-- <li>
-                                    <a href="wishlist.html">
-                                        <i class="far fa-heart u-s-m-r-9"></i>
-                                        My Wishlist</a>
-                                </li> -->
-                                <li>
-                                    <a href="checkout.html">
-                                        <i class="far fa-check-circle u-s-m-r-9"></i>
-                                        Checkout</a>
-                                </li>
-                                <li>
-                                    <a href="account.html">
-                                        <i class="fas fa-sign-in-alt u-s-m-r-9"></i>
-                                        Login / Signup</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a>USD
-                                <i class="fas fa-chevron-down u-s-m-l-9"></i>
-                            </a>
-                            <ul class="g-dropdown" style="width:90px">
-                                <li>
-                                    <a href="#" class="u-c-brand">($) USD</a>
-                                </li>
-                                <li>
-                                    <a href="#">($) LRD</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a>ENG
-                                <i class="fas fa-chevron-down u-s-m-l-9"></i>
-                            </a>
-                            <ul class="g-dropdown" style="width:70px">
-                                <li>
-                                    <a href="#" class="u-c-brand">ENG</a>
-                                </li>
-                                <li>
-                                    <a href="#">ARB</a>
-                                </li>
-                            </ul>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-        <!-- Top-Header /- -->
-        <!-- Mid-Header -->
-        <div class="full-layer-mid-header">
-            <div class="container">
-                <div class="row clearfix align-items-center">
-                    <div class="col-lg-3 col-md-9 col-sm-6">
-                        <div class="brand-logo text-lg-center">
-                            <a href="home.html">
-                                <img src="images/main-logo/ZIG.png" alt="Groover Brand Logo" class="app-brand-logo">
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 u-d-none-lg">
-                        <form class="form-searchbox">
-                            <label class="sr-only" for="search-landscape">Search</label>
-                            <input id="search-landscape" type="text" class="text-field" placeholder="Search everything">
-                            <div class="select-box-position">
-                                <div class="select-box-wrapper select-hide">
-                                    <label class="sr-only" for="select-category">Choose category for search</label>
-                                    <select class="select-box" id="select-category">
-                                        <option selected="selected" value="">
-                                            All
-                                        </option>
-                                        <option value="">Shirts</option>
-                                        <option value="">Pants
-                                        </option>
-                                        <option value="">Caps
-                                        </option>
-                                        <option value="">Jerseys
-                                        </option>
-                                        <option value="">Bags
-                                        </option>
-                                        <option value="">Accessories
-                                        </option>
-                                        <option value="">Services
-                                        </option>
-                                        <!-- <option value="">Furniture Home & Office
-                                        </option> -->
-                                    </select>
-                                </div>
-                            </div>
-                            <button id="btn-search" type="submit" class="button button-primary fas fa-search"></button>
-                        </form>
-                    </div>
-                    <div class="col-lg-3 col-md-3 col-sm-6">
-                        <nav>
-                            <ul class="mid-nav g-nav">
-                                <li class="u-d-none-lg">
-                                    <a href="home.html">
-                                        <i class="ion ion-md-home u-c-brand"></i>
-                                    </a>
-                                </li>
-                                <li class="u-d-none-lg">
-                                    <a href="wishlist.html">
-                                        <i class="far fa-heart"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a id="mini-cart-trigger">
-                                        <i class="ion ion-md-basket"></i>
-                                        <span class="item-counter">4</span>
-                                        <span class="item-price">$220.00</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </nav>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Mid-Header /- -->
-        <!-- Responsive-Buttons -->
-        <div class="fixed-responsive-container">
-            <div class="fixed-responsive-wrapper">
-                <button type="button" class="button fas fa-search" id="responsive-search"></button>
-            </div>
-            <div class="fixed-responsive-wrapper">
-                <a href="wishlist.html">
-                    <i class="far fa-heart"></i>
-                    <span class="fixed-item-counter">4</span>
-                </a>
-            </div>
-        </div>
-        <!-- Responsive-Buttons /- -->
-        <!-- Mini Cart -->
-        <div class="mini-cart-wrapper">
-            <div class="mini-cart">
-                <div class="mini-cart-header">
-                    YOUR CART
-                    <button type="button" class="button ion ion-md-close" id="mini-cart-close"></button>
-                </div>
-                <ul class="mini-cart-list">
-                    <li class="clearfix">
-                        <a href="single-product.html">
-                            <img src="images/product/product@1x.jpg" alt="Product">
-                            <span class="mini-item-name">Casual Hoodie Full Cotton</span>
-                            <span class="mini-item-price">$55.00</span>
-                            <span class="mini-item-quantity"> x 1 </span>
-                        </a>
-                    </li>
-                    <li class="clearfix">
-                        <a href="single-product.html">
-                            <img src="images/product/product@1x.jpg" alt="Product">
-                            <span class="mini-item-name">Black Rock Dress with High Jewelery Necklace</span>
-                            <span class="mini-item-price">$55.00</span>
-                            <span class="mini-item-quantity"> x 1 </span>
-                        </a>
-                    </li>
-                    <li class="clearfix">
-                        <a href="single-product.html">
-                            <img src="images/product/product@1x.jpg" alt="Product">
-                            <span class="mini-item-name">Xiaomi Note 2 Black Color</span>
-                            <span class="mini-item-price">$55.00</span>
-                            <span class="mini-item-quantity"> x 1 </span>
-                        </a>
-                    </li>
-                    <li class="clearfix">
-                        <a href="single-product.html">
-                            <img src="images/product/product@1x.jpg" alt="Product">
-                            <span class="mini-item-name">Dell Inspiron 15</span>
-                            <span class="mini-item-price">$55.00</span>
-                            <span class="mini-item-quantity"> x 1 </span>
-                        </a>
-                    </li>
-                </ul>
-                <div class="mini-shop-total clearfix">
-                    <span class="mini-total-heading float-left">Total:</span>
-                    <span class="mini-total-price float-right">$220.00</span>
-                </div>
-                <div class="mini-action-anchors">
-                    <a href="cart.html" class="cart-anchor">View Cart</a>
-                    <a href="checkout.html" class="checkout-anchor">Checkout</a>
-                </div>
-            </div>
-        </div>
-        <!-- Mini Cart /- -->
-        <!-- Bottom-Header -->
-        <div class="full-layer-bottom-header">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-lg-3">
-                        <div class="v-menu">
-                            <span class="v-title">
-                                <i class="ion ion-md-menu"></i>
-                                All Categories
-                                <i class="fas fa-angle-down"></i>
-                            </span>
-                            <nav>
-                                <div class="v-wrapper">
-                                    <ul class="v-list animated fadeIn">
-                                        <li class="js-backdrop">
-                                            <a href="shop-v1-root-category.html">
-                                                <!-- <i class="ion ion-md-shirt"></i> -->
-                                                T-SHIRTS
-                                                <!-- <i class="ion ion-ios-arrow-forward"></i> -->
-                                            </a>
-                                            <button class="v-button ion ion-md-add"></button>
-                                            <!-- <div class="v-drop-right" style="width: 700px;">
-                                                <div class="row">
-                                                    <div class="col-lg-4">
-                                                        <ul class="v-level-2">
-                                                            <li>
-                                                                <a href="shop-v2-sub-category.html">Tops</a>
-                                                                <ul>
-                                                                    <li>
-                                                                        <a href="shop-v3-sub-sub-category.html">T-Shirts</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="shop-v3-sub-sub-category.html">Hoodies</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="shop-v3-sub-sub-category.html">Suits</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="shop-v4-filter-as-category.html">Black Bean T-Shirt
-                                                                        </a>
-                                                                    </li>
-                                                                </ul>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="col-lg-4">
-                                                        <ul class="v-level-2">
-                                                            <li>
-                                                                <a href="shop-v2-sub-category.html">Outwear</a>
-                                                                <ul>
-                                                                    <li>
-                                                                        <a href="shop-v3-sub-sub-category.html">Jackets</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="shop-v3-sub-sub-category.html">Trench</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="shop-v3-sub-sub-category.html">Parkas</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="shop-v3-sub-sub-category.html">Sweaters</a>
-                                                                    </li>
-                                                                </ul>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="col-lg-4">
-                                                        <ul class="v-level-2">
-                                                            <li>
-                                                                <a href="shop-v1-root-category.html">Accessories</a>
-                                                                <ul>
-                                                                    <li>
-                                                                        <a href="shop-v3-sub-sub-category.html">Watches</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="shop-v3-sub-sub-category.html">Ties</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="shop-v3-sub-sub-category.html">Scarves</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="shop-v3-sub-sub-category.html">Belts</a>
-                                                                    </li>
-                                                                </ul>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-lg-4">
-                                                        <ul class="v-level-2">
-                                                            <li>
-                                                                <a href="shop-v2-sub-category.html">Bottoms</a>
-                                                                <ul>
-                                                                    <li>
-                                                                        <a href="shop-v3-sub-sub-category.html">Casual Pants
-                                                                        </a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="shop-v3-sub-sub-category.html">Shoes</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="shop-v3-sub-sub-category.html">Jeans</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="shop-v3-sub-sub-category.html">Shorts</a>
-                                                                    </li>
-                                                                </ul>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="col-lg-4">
-                                                        <ul class="v-level-2">
-                                                            <li>
-                                                                <a href="shop-v2-sub-category.html">Underwear</a>
-                                                                <ul>
-                                                                    <li>
-                                                                        <a href="shop-v3-sub-sub-category.html">Boxers</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="shop-v3-sub-sub-category.html">Briefs</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="shop-v3-sub-sub-category.html">Robes</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="shop-v3-sub-sub-category.html">Socks</a>
-                                                                    </li>
-                                                                </ul>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="col-lg-4">
-                                                        <ul class="v-level-2">
-                                                            <li>
-                                                                <a href="shop-v2-sub-category.html">Sunglasses</a>
-                                                                <ul>
-                                                                    <li>
-                                                                        <a href="shop-v3-sub-sub-category.html">Pilot</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="shop-v3-sub-sub-category.html">Wayfarer</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="shop-v3-sub-sub-category.html">Square</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="shop-v3-sub-sub-category.html">Round</a>
-                                                                    </li>
-                                                                </ul>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div> -->
-                                        </li>
-                                        <li class="js-backdrop">
-                                            <a href="shop-v1-root-category.html">
-                                                <!-- <i class="fi fi-ss-hat-beach"></i> -->
-                                                PANTS
-                                                <!-- <i class="ion ion-ios-arrow-forward"></i> -->
-                                            </a>
-                                            <button class="v-button ion ion-md-add"></button>
-                                            <!-- <div class="v-drop-right" style="width: 700px;">
-                                                <div class="row">
-                                                    <div class="col-lg-4">
-                                                        <ul class="v-level-2">
-                                                            <li>
-                                                                <a href="shop-v2-sub-category.html">Tops</a>
-                                                                <ul>
-                                                                    <li>
-                                                                        <a href="shop-v3-sub-sub-category.html">Dresses</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="shop-v3-sub-sub-category.html">Blouses & Shirts
-                                                                        </a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="shop-v3-sub-sub-category.html">T-shirts</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="shop-v3-sub-sub-category.html">Sweater</a>
-                                                                    </li>
-                                                                </ul>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="col-lg-4">
-                                                        <ul class="v-level-2">
-                                                            <li>
-                                                                <a href="shop-v2-sub-category.html">Intimates</a>
-                                                                <ul>
-                                                                    <li>
-                                                                        <a href="shop-v3-sub-sub-category.html">Bras</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="shop-v3-sub-sub-category.html">Brief Sets
-                                                                        </a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="shop-v3-sub-sub-category.html">Bustiers & Corsets
-                                                                        </a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="shop-v3-sub-sub-category.html">Panties</a>
-                                                                    </li>
-                                                                </ul>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="col-lg-4">
-                                                        <ul class="v-level-2">
-                                                            <li>
-                                                                <a href="shop-v2-sub-category.html">Wedding & Events
-                                                                </a>
-                                                                <ul>
-                                                                    <li>
-                                                                        <a href="shop-v3-sub-sub-category.html">Wedding Dresses
-                                                                        </a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="shop-v2-sub-category.html">Evening Dresses
-                                                                        </a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="shop-v3-sub-sub-category.html">Prom Dresses
-                                                                        </a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="shop-v3-sub-sub-category.html">Flower Dresses
-                                                                        </a>
-                                                                    </li>
-                                                                </ul>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-lg-4">
-                                                        <ul class="v-level-2">
-                                                            <li>
-                                                                <a href="shop-v2-sub-category.html">Bottoms</a>
-                                                                <ul>
-                                                                    <li>
-                                                                        <a href="shop-v3-sub-sub-category.html">Skirts</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="shop-v3-sub-sub-category.html">Shoes</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="shop-v3-sub-sub-category.html">Leggings</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="shop-v3-sub-sub-category.html">Jeans</a>
-                                                                    </li>
-                                                                </ul>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="col-lg-4">
-                                                        <ul class="v-level-2">
-                                                            <li>
-                                                                <a href="shop-v2-sub-category.html">Outwear & Jackets
-                                                                </a>
-                                                                <ul>
-                                                                    <li>
-                                                                        <a href="shop-v3-sub-sub-category.html">Blazers</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="shop-v3-sub-sub-category.html">Basics Jackets
-                                                                        </a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="shop-v3-sub-sub-category.html">Trench</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="shop-v3-sub-sub-category.html">Leather & Suede
-                                                                        </a>
-                                                                    </li>
-                                                                </ul>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="col-lg-4">
-                                                        <ul class="v-level-2">
-                                                            <li>
-                                                                <a href="shop-v2-sub-category.html">Accessories</a>
-                                                                <ul>
-                                                                    <li>
-                                                                        <a href="shop-v3-sub-sub-category.html">Sunglasses</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="shop-v3-sub-sub-category.html">Headwear</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="shop-v3-sub-sub-category.html">Baseball Caps
-                                                                        </a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="shop-v3-sub-sub-category.html">Belts</a>
-                                                                    </li>
-                                                                </ul>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div> -->
-                                        </li>
-                                        <li class="js-backdrop">
-                                            <a href="shop-v1-root-category.html">
-                                                <!-- <i class="ion ion-ios-shirt"></i> -->
-                                                CAPS
-                                                <!-- <i class="ion ion-ios-arrow-forward"></i> -->
-                                            </a>
-                                            <button class="v-button ion ion-md-add"></button>
-                                            <div class="v-drop" style="width: 700px;">
-                                                <!-- <div class="row">
-                                                     <div class="col-lg-4">
-                                                        <ul class="v-level-2">
-                                                            <li>
-                                                                <a href="shop-v2-sub-category.html">RC Toys & Hobbies
-                                                                </a>
-                                                                <ul>
-                                                                    <li>
-                                                                        <a href="shop-v3-sub-sub-category.html">RC Helicopter
-                                                                        </a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="shop-v3-sub-sub-category.html">RC Lego Robots
-                                                                        </a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="shop-v3-sub-sub-category.html">RC Drone
-                                                                        </a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="shop-v3-sub-sub-category.html">RC Car
-                                                                        </a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="shop-v3-sub-sub-category.html">RC Boat
-                                                                        </a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="shop-v3-sub-sub-category.html">RC Robot
-                                                                        </a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="shop-v3-sub-sub-category.html">Multi Rotor Parts
-                                                                        </a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="shop-v3-sub-sub-category.html">FPV System
-                                                                        </a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="shop-v3-sub-sub-category.html">Radios & Receiver
-                                                                        </a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="shop-v3-sub-sub-category.html">Battery & Charger
-                                                                        </a>
-                                                                    </li>
-                                                                </ul>
-                                                            </li>
-                                                        </ul>
-                                                    </div> 
-                                                    <div class="col-lg-4">
-                                                        <ul class="v-level-2">
-                                                            <li>
-                                                                <a href="shop-v2-sub-category.html">Solar Energy
-                                                                </a>
-                                                                <ul>
-                                                                    <li>
-                                                                        <a href="shop-v3-sub-sub-category.html">Solar Powered Toy
-                                                                        </a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="shop-v3-sub-sub-category.html">Solar Powered System
-                                                                        </a>
-                                                                    </li>
-                                                                    <li class="view-more-flag">
-                                                                        <a href="store-directory.html">View More
-                                                                        </a>
-                                                                    </li>
-                                                                </ul>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div> -->
-                                                <!-- Remember layer image should be place on empty space and its not overlap your list items because user could not read your list items. -->
-                                                <!-- <div class="v-image" style="bottom: 0;right: -25px">
-                                                    <a href="#" class="d-block">
-                                                        <img src="images/banners/mega-3.png" class="img-fluid" alt="Product">
-                                                    </a>
-                                                </div> -->
-                                            </div>
-                                        </li>
-                                        <li class="v-none" style="display: none">
-                                            <a href="shop-v1-root-category.html">
-                                                <!-- <i class="ion ion-md-phone-portrait"></i> -->
-                                                JERSEYS
-                                            </a>
-                                        </li>
-                                        <li class="v-none" style="display: none">
-                                            <a href="shop-v1-root-category.html">
-                                                <!-- <i class="ion ion-md-tv"></i> -->
-                                                BAGS
-                                            </a>
-                                        </li>
-                                        <!-- <li>
-                                            <a href="shop-v1-root-category.html">
-                                                <i class="ion ion-ios-book"></i>
-                                                ACCESSORIES
-                                            </a>
-                                        </li> -->
-                                        <!-- <li>
-                                            <a href="shop-v1-root-category.html">
-                                                <i class="ion ion-md-heart"></i>
-                                                Beauty & Health
-                                            </a>
-                                        </li> -->
-                                        <li class="v-none" style="display: none">
-                                            <a href="shop-v1-root-category.html">
-                                                <!-- <i class="ion ion-md-easel"></i> -->
-                                                ACCESSORIES
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a class="v-more">
-                                                <i class="ion ion-md-add"></i>
-                                                <span>View More</span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </nav>
-                        </div>
-                    </div>
-                    <div class="col-lg-9">
-                        <ul class="bottom-nav g-nav u-d-none-lg">
-                            <li>
-                                <a href="custom-deal-page.html">New Arrivals
-                                    <span class="superscript-label-new">NEW</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="custom-deal-page.html">Exclusive Deals
-                                    <span class="superscript-label-hot">HOT</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="custom-deal-page.html">Flash Deals
-                                </a>
-                            </li>
-                            <li class="mega-position">
-                                <a>Pages
-                                    <i class="fas fa-chevron-down u-s-m-l-9"></i>
-                                </a>
-                                <div class="mega-menu mega-3-colm">
-                                    <ul>
-                                        <li class="menu-title">Home</li>
-                                        <li>
-                                            <a href="home.html" class="u-c-brand">Home</a>
-                                        </li>
-                                        <li>
-                                            <a href="about.html">About</a>
-                                        </li>
-                                        <li>
-                                            <a href="contact.html">Contact</a>
-                                        </li>
-                                        <li>
-                                            <a href="faq.html">FAQ</a>
-                                        </li>
-                                        <!-- <li>
-                                            <a href="store-directory.html">Store Directory</a>
-                                        </li> -->
-                                        <li>
-                                            <a href="terms-and-conditions.html">Terms & Conditions</a>
-                                        </li>
-                                        <!-- <li>
-                                            <a href="404.html">404</a>
-                                        </li> -->
-                                        <!-- <li class="menu-title">Single Product Page</li> -->
-                                        <!-- <li>
-                                            <a href="single-product.html">Single Product Fullwidth</a>
-                                        </li> -->
-                                        <li class="menu-title">Blog</li>
-                                        <li>
-                                            <a href="blog.html">Zig Updates </a>
-                                        </li>
-                                        <!-- <li>
-                                            <a href="blog-detail.html">Blog Details</a>
-                                        </li> -->
-                                    </ul>
-                                    <ul>
-                                        <li class="menu-title">Shop</li>
-                                        <li>
-                                            <a href="shop-v2-sub-category.html">Shop</a>
-                                        </li>
-                                        <li>
-                                            <a href="cart.html">Cart</a>
-                                        </li>
-                                        <li>
-                                            <a href="checkout.html">Checkout</a>
-                                        </li>
-                                        <li>
-                                            <a href="account.html">My Account</a>
-                                        </li>
-                                        <li>
-                                            <a href="wishlist.html">Wishlist</a>
-                                        </li>
-                                        <li>
-                                            <a href="track-order.html">Track your Order</a>
-                                        </li>
-                                        <!-- <li class="menu-title">Cart Variations</li> -->
-                                        <!-- <li>
-                                            <a href="cart-empty.html">Cart Ver 1 Empty</a>
-                                        </li> -->
-                                        <!-- <li>
-                                            <a href="cart.html">Cart</a>
-                                        </li> -->
-                                        <li class="menu-title">Wishlist</li>
-                                        <!-- <li>
-                                            <a href="wishlist-empty.html">Wishlist Ver 1 Empty</a>
-                                        </li> -->
-                                        <li>
-                                            <a href="wishlist.html">Wishlist</a>
-                                        </li>
-                                    </ul>
-                                    <ul>
-                                        <!-- <li class="menu-title">Shop Variations</li>
-                                        <li> -->
-                                            <!-- <a href="shop-v1-root-category.html">Shop Ver 1 Root Category</a>
-                                        </li>
-                                        <li>
-                                            <a href="shop-v2-sub-category.html">Shop Ver 2 Sub Category</a>
-                                        </li>
-                                        <li>
-                                            <a href="shop-v3-sub-sub-category.html">Shop Ver 3 Sub Sub Category</a>
-                                        </li>
-                                        <li>
-                                            <a href="shop-v4-filter-as-category.html">Shop Ver 4 Filter as Category</a>
-                                        </li>
-                                        <li>
-                                            <a href="shop-v5-product-not-found.html">Shop Ver 5 Product Not Found</a>
-                                        </li>
-                                        <li>
-                                            <a href="shop-v6-search-results.html">Shop Ver 6 Search Results</a>
-                                        </li> -->
-                                        <li class="menu-title">Account</li>
-                                        <li>
-                                            <a href="lost-password.html">Lost Your Password ?</a>
-                                        </li>
-                                        <!-- <li class="menu-title">Checkout Variation</li>
-                                        <li>
-                                            <a href="confirmation.html">Checkout Confirmation</a>
-                                        </li> -->
-                                        <li class="menu-title">Custom Deals</li>
-                                        <li>
-                                            <a href="custom-deal-page.html">Custom Deal Page</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li>
-                                <a href="custom-deal-page.html">Super Sale
-                                    <span class="superscript-label-discount">-15%</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Bottom-Header /- -->
-    </header>
+    <?php include("../include/header.php"); ?>
     <!-- Header /- -->
     <!-- Page Introduction Wrapper -->
     <div class="page-style-a">
@@ -838,10 +49,10 @@
                 <ul class="bread-crumb">
                     <li class="has-separator">
                         <i class="ion ion-md-home"></i>
-                        <a href="home.html">Home</a>
+                        <a href="./home.php">Home</a>
                     </li>
                     <li class="is-marked">
-                        <a href="blog.html">Blog</a>
+                        <a href="./blog.php">Blog</a>
                     </li>
                 </ul>
             </div>
@@ -856,18 +67,18 @@
                     <!-- Blog-Posts -->
                     <div class="blog-post u-s-m-b-80">
                         <div class="blog-post-wrapper u-s-m-b-26">
-                            <a class="blog-post-anchor" href="blog-detail.html">
-                                <img class="img-fluid" src="images/blog/blog-01.jpg" alt="Blog post 1">
+                            <a class="blog-post-anchor" href="./blog-detail.php">
+                                <img class="img-fluid" src="../assets/images/blog/blog-01.jpg" alt="Blog post 1">
                             </a>
                         </div>
                         <h1 class="blog-post-heading u-s-m-b-13">
-                            <a href="blog-detail.html">Your Life is an extraordinary Adventure</a>
+                            <a href="./blog-detail.php">Your Life is an extraordinary Adventure</a>
                         </h1>
                         <div class="blog-post-info u-s-m-b-13">
                             <span class="blog-post-preposition">By</span>
-                            <a class="blog-post-author-name" href="blog-detail.html">Admin</a>
+                            <a class="blog-post-author-name" href="./blog-detail.php">Admin</a>
                             <span class="blog-post-info-separator">/</span>
-                            <a class="blog-post-comment" href="blog-detail.html">Comments (6)</a>
+                            <a class="blog-post-comment" href="./blog-detail.php">Comments (6)</a>
                             <span class="blog-post-info-separator">/</span>
                             <span class="blog-post-published-date">
                                 <span>14</span>/
@@ -878,22 +89,22 @@
                         <p class="blog-post-paragraph u-s-m-b-16">
                             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab aliquam aliquid, architecto corporis enim eum exercitationem fugit harum iste laudantium maxime nam non ratione reiciendis repellendus repudiandae soluta, velit veritatis. Lorem ipsum dolor sit amet, consectetur adipisicing elit. At autem beatae, consequuntur dolores inventore laboriosam maiores necessitatibus neque odit quisquam ratione rerum sequi unde veniam veritatis, voluptatem, voluptatibus. Amet, dicta?
                         </p>
-                        <a href="blog-detail.html" class="blog-post-read-more">Read More</a>
+                        <a href="./blog-detail.php" class="blog-post-read-more">Read More</a>
                     </div>
                     <div class="blog-post u-s-m-b-80">
                         <div class="blog-post-wrapper u-s-m-b-26">
-                            <a class="blog-post-anchor" href="blog-detail.html">
-                                <img class="img-fluid" src="images/blog/blog-01.jpg" alt="Blog post 2">
+                            <a class="blog-post-anchor" href="./blog-detail.php">
+                                <img class="img-fluid" src="../assets/images/blog/blog-01.jpg" alt="Blog post 2">
                             </a>
                         </div>
                         <h1 class="blog-post-heading u-s-m-b-13">
-                            <a href="blog-detail.html">Be More Confident in 30 Seconds</a>
+                            <a href="./blog-detail.php">Be More Confident in 30 Seconds</a>
                         </h1>
                         <div class="blog-post-info u-s-m-b-13">
                             <span class="blog-post-preposition">By</span>
-                            <a class="blog-post-author-name" href="blog-detail.html">Admin</a>
+                            <a class="blog-post-author-name" href="./blog-detail.php">Admin</a>
                             <span class="blog-post-info-separator">/</span>
-                            <a class="blog-post-comment" href="blog-detail.html">Comments (4)</a>
+                            <a class="blog-post-comment" href="./blog-detail.php">Comments (4)</a>
                             <span class="blog-post-info-separator">/</span>
                             <span class="blog-post-published-date">
                                 <span>14</span>/
@@ -904,22 +115,22 @@
                         <p class="blog-post-paragraph u-s-m-b-16">
                             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab aliquam aliquid, architecto corporis enim eum exercitationem fugit harum iste laudantium maxime nam non ratione reiciendis repellendus repudiandae soluta, velit veritatis. Lorem ipsum dolor sit amet, consectetur adipisicing elit. At autem beatae, consequuntur dolores inventore laboriosam maiores necessitatibus neque odit quisquam ratione rerum sequi unde veniam veritatis, voluptatem, voluptatibus. Amet, dicta?
                         </p>
-                        <a href="blog-detail.html" class="blog-post-read-more">Read More</a>
+                        <a href="./blog-detail.php" class="blog-post-read-more">Read More</a>
                     </div>
                     <div class="blog-post u-s-m-b-80">
                         <div class="blog-post-wrapper u-s-m-b-26">
-                            <a class="blog-post-anchor" href="blog-detail.html">
-                                <img class="img-fluid" src="images/blog/blog-01.jpg" alt="Blog post 3">
+                            <a class="blog-post-anchor" href="./blog-detail.php">
+                                <img class="img-fluid" src="../assets/images/blog/blog-01.jpg" alt="Blog post 3">
                             </a>
                         </div>
                         <h1 class="blog-post-heading u-s-m-b-13">
-                            <a href="blog-detail.html">Bury A Body With Me</a>
+                            <a href="./blog-detail.php">Bury A Body With Me</a>
                         </h1>
                         <div class="blog-post-info u-s-m-b-13">
                             <span class="blog-post-preposition">By</span>
-                            <a class="blog-post-author-name" href="blog-detail.html">Admin</a>
+                            <a class="blog-post-author-name" href="./blog-detail.php">Admin</a>
                             <span class="blog-post-info-separator">/</span>
-                            <a class="blog-post-comment" href="blog-detail.html">Comments (2)</a>
+                            <a class="blog-post-comment" href="./blog-detail.php">Comments (2)</a>
                             <span class="blog-post-info-separator">/</span>
                             <span class="blog-post-published-date">
                                 <span>14</span>/
@@ -930,22 +141,22 @@
                         <p class="blog-post-paragraph u-s-m-b-16">
                             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab aliquam aliquid, architecto corporis enim eum exercitationem fugit harum iste laudantium maxime nam non ratione reiciendis repellendus repudiandae soluta, velit veritatis. Lorem ipsum dolor sit amet, consectetur adipisicing elit. At autem beatae, consequuntur dolores inventore laboriosam maiores necessitatibus neque odit quisquam ratione rerum sequi unde veniam veritatis, voluptatem, voluptatibus. Amet, dicta?
                         </p>
-                        <a href="blog-detail.html" class="blog-post-read-more">Read More</a>
+                        <a href="./blog-detail.php" class="blog-post-read-more">Read More</a>
                     </div>
                     <div class="blog-post u-s-m-b-80">
                         <div class="blog-post-wrapper u-s-m-b-26">
-                            <a class="blog-post-anchor" href="blog-detail.html">
-                                <img class="img-fluid" src="images/blog/blog-01.jpg" alt="Blog post 4">
+                            <a class="blog-post-anchor" href="./blog-detail.php">
+                                <img class="img-fluid" src="../assets/images/blog/blog-01.jpg" alt="Blog post 4">
                             </a>
                         </div>
                         <h1 class="blog-post-heading u-s-m-b-13">
-                            <a href="blog-detail.html">Everything Must Die</a>
+                            <a href="./blog-detail.php">Everything Must Die</a>
                         </h1>
                         <div class="blog-post-info u-s-m-b-13">
                             <span class="blog-post-preposition">By</span>
-                            <a class="blog-post-author-name" href="blog-detail.html">John Doe</a>
+                            <a class="blog-post-author-name" href="./blog-detail.php">John Doe</a>
                             <span class="blog-post-info-separator">/</span>
-                            <a class="blog-post-comment" href="blog-detail.html">Comments (0)</a>
+                            <a class="blog-post-comment" href="./blog-detail.php">Comments (0)</a>
                             <span class="blog-post-info-separator">/</span>
                             <span class="blog-post-published-date">
                                 <span>14</span>/
@@ -956,32 +167,32 @@
                         <p class="blog-post-paragraph u-s-m-b-16">
                             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab aliquam aliquid, architecto corporis enim eum exercitationem fugit harum iste laudantium maxime nam non ratione reiciendis repellendus repudiandae soluta, velit veritatis. Lorem ipsum dolor sit amet, consectetur adipisicing elit. At autem beatae, consequuntur dolores inventore laboriosam maiores necessitatibus neque odit quisquam ratione rerum sequi unde veniam veritatis, voluptatem, voluptatibus. Amet, dicta?
                         </p>
-                        <a href="blog-detail.html" class="blog-post-read-more">Read More</a>
+                        <a href="./blog-detail.php" class="blog-post-read-more">Read More</a>
                     </div>
                     <!-- Blog-Posts /- -->
                     <!-- Blog-Posts-Pagination -->
                     <div class="blog-pagination u-s-m-b-80">
                         <ul class="blog-pg-list">
                             <li>
-                                <a href="blog.html" class="bl-pg-link d-none">Back</a>
+                                <a href="./blog.php" class="bl-pg-link d-none">Back</a>
                             </li>
                             <li>
-                                <a href="blog.html" class="bl-pg-link bl-pg-link-hover-a bl-pg-link-is-active">1</a>
+                                <a href="./blog.php" class="bl-pg-link bl-pg-link-hover-a bl-pg-link-is-active">1</a>
                             </li>
                             <li>
-                                <a href="blog.html" class="bl-pg-link bl-pg-link-hover-a">2</a>
+                                <a href="./blog.php" class="bl-pg-link bl-pg-link-hover-a">2</a>
                             </li>
                             <li>
-                                <a href="blog.html" class="bl-pg-link bl-pg-link-hover-a">3</a>
+                                <a href="./blog.php" class="bl-pg-link bl-pg-link-hover-a">3</a>
                             </li>
                             <li>
-                                <a href="blog.html" class="bl-pg-link bl-pg-link-hover-gap">......</a>
+                                <a href="./blog.php" class="bl-pg-link bl-pg-link-hover-gap">......</a>
                             </li>
                             <li>
-                                <a href="blog.html" class="bl-pg-link bl-pg-link-hover-a">4</a>
+                                <a href="./blog.php" class="bl-pg-link bl-pg-link-hover-a">4</a>
                             </li>
                             <li>
-                                <a href="blog.html" class="bl-pg-link bl-pg-link-hover-b">Previous</a>
+                                <a href="./blog.php" class="bl-pg-link bl-pg-link-hover-b">Previous</a>
                             </li>
                         </ul>
                     </div>
@@ -1003,19 +214,19 @@
                         <h3 class="bl-sidebar-title-h3 u-s-m-b-20">Categories</h3>
                         <ul class="bl-sidebar-list">
                             <li>
-                                <a href="blog.html">Corporate</a>
+                                <a href="./blog.php">Corporate</a>
                             </li>
                             <li>
-                                <a href="blog.html">Creative</a>
+                                <a href="./blog.php">Creative</a>
                             </li>
                             <li>
-                                <a href="blog.html">Design</a>
+                                <a href="./blog.php">Design</a>
                             </li>
                             <li>
-                                <a href="blog.html">News</a>
+                                <a href="./blog.php">News</a>
                             </li>
                             <li>
-                                <a href="blog.html">Photography</a>
+                                <a href="./blog.php">Photography</a>
                             </li>
                         </ul>
                     </div>
@@ -1025,19 +236,19 @@
                         <h3 class="bl-sidebar-title-h3 u-s-m-b-20">Archives</h3>
                         <ul class="bl-sidebar-list">
                             <li>
-                                <a href="blog.html">March 2017 (1)</a>
+                                <a href="./blog.php">March 2017 (1)</a>
                             </li>
                             <li>
-                                <a href="blog.html">December 2017 (3)</a>
+                                <a href="./blog.php">December 2017 (3)</a>
                             </li>
                             <li>
-                                <a href="blog.html">November 2017 (4)</a>
+                                <a href="./blog.php">November 2017 (4)</a>
                             </li>
                             <li>
-                                <a href="blog.html">September 2017 (1)</a>
+                                <a href="./blog.php">September 2017 (1)</a>
                             </li>
                             <li>
-                                <a href="blog.html">August 2014 (1)</a>
+                                <a href="./blog.php">August 2014 (1)</a>
                             </li>
                         </ul>
                     </div>
@@ -1047,12 +258,12 @@
                         <h3 class="bl-sidebar-title-h3 u-s-m-b-20">Recent Post</h3>
                         <div class="recent-post u-s-m-b-18">
                             <div class="recent-post-image">
-                                <a class="" href="blog-detail.html">
-                                    <img src="images/blog/blog-recent.jpg" alt="recent post 1">
+                                <a class="" href="./blog-detail.php">
+                                    <img src="../assets/images/blog/blog-recent.jpg" alt="recent post 1">
                                 </a>
                             </div>
                             <div class="recent-post-info">
-                                <a class="" href="blog-detail.html">Your Life is an extraordinary Adventure</a>
+                                <a class="" href="./blog-detail.php">Your Life is an extraordinary Adventure</a>
                                 <span class="recent-post-date">
                                     <span>16</span>/
                                     <span>10</span>/
@@ -1062,12 +273,12 @@
                         </div>
                         <div class="recent-post u-s-m-b-18">
                             <div class="recent-post-image">
-                                <a class="" href="blog-detail.html">
-                                    <img src="images/blog/blog-recent.jpg" alt="recent post 2">
+                                <a class="" href="./blog-detail.php">
+                                    <img src="../assets/images/blog/blog-recent.jpg" alt="recent post 2">
                                 </a>
                             </div>
                             <div class="recent-post-info">
-                                <a class="" href="blog-detail.html">Be More Confident in 30 Seconds</a>
+                                <a class="" href="./blog-detail.php">Be More Confident in 30 Seconds</a>
                                 <span class="recent-post-date">
                                     <span>16</span>/
                                     <span>10</span>/
@@ -1077,12 +288,12 @@
                         </div>
                         <div class="recent-post u-s-m-b-18">
                             <div class="recent-post-image">
-                                <a class="" href="blog-detail.html">
-                                    <img src="images/blog/blog-recent.jpg" alt="recent post 3">
+                                <a class="" href="./blog-detail.php">
+                                    <img src="../assets/images/blog/blog-recent.jpg" alt="recent post 3">
                                 </a>
                             </div>
                             <div class="recent-post-info">
-                                <a class="" href="blog-detail.html">Bury A Body With Me</a>
+                                <a class="" href="./blog-detail.php">Bury A Body With Me</a>
                                 <span class="recent-post-date">
                                     <span>16</span>/
                                     <span>10</span>/
@@ -1092,12 +303,12 @@
                         </div>
                         <div class="recent-post u-s-m-b-18">
                             <div class="recent-post-image">
-                                <a class="" href="blog-detail.html">
-                                    <img src="images/blog/blog-recent.jpg" alt="recent post 4">
+                                <a class="" href="./blog-detail.php">
+                                    <img src="../assets/images/blog/blog-recent.jpg" alt="recent post 4">
                                 </a>
                             </div>
                             <div class="recent-post-info">
-                                <a class="" href="blog-detail.html">Everything Must Die</a>
+                                <a class="" href="./blog-detail.php">Everything Must Die</a>
                                 <span class="recent-post-date">
                                     <span>16</span>/
                                     <span>10</span>/
@@ -1107,12 +318,12 @@
                         </div>
                         <div class="recent-post u-s-m-b-18">
                             <div class="recent-post-image">
-                                <a class="" href="blog-detail.html">
-                                    <img src="images/blog/blog-recent.jpg" alt="recent post 5">
+                                <a class="" href="./blog-detail.php">
+                                    <img src="../assets/images/blog/blog-recent.jpg" alt="recent post 5">
                                 </a>
                             </div>
                             <div class="recent-post-info">
-                                <a class="" href="blog-detail.html">See A World in Grain Of Sand</a>
+                                <a class="" href="./blog-detail.php">See A World in Grain Of Sand</a>
                                 <span class="recent-post-date">
                                     <span>16</span>/
                                     <span>10</span>/
@@ -1125,13 +336,13 @@
                     <!-- Blog-Sidebar-Tag -->
                     <div class="bl-sidebar u-s-m-b-50">
                         <h3 class="bl-sidebar-title-h3 u-s-m-b-20">Tags</h3>
-                        <a href="blog.html" class="bl-tag u-s-m-b-8">Life</a>
-                        <a href="blog.html" class="bl-tag u-s-m-b-8">Creative</a>
-                        <a href="blog.html" class="bl-tag u-s-m-b-8">Ui/Ux</a>
-                        <a href="blog.html" class="bl-tag u-s-m-b-8">Design</a>
-                        <a href="blog.html" class="bl-tag u-s-m-b-8">Branding</a>
-                        <a href="blog.html" class="bl-tag u-s-m-b-8">World</a>
-                        <a href="blog.html" class="bl-tag u-s-m-b-8">Print</a>
+                        <a href="./blog.php" class="bl-tag u-s-m-b-8">Life</a>
+                        <a href="./blog.php" class="bl-tag u-s-m-b-8">Creative</a>
+                        <a href="./blog.php" class="bl-tag u-s-m-b-8">Ui/Ux</a>
+                        <a href="./blog.php" class="bl-tag u-s-m-b-8">Design</a>
+                        <a href="./blog.php" class="bl-tag u-s-m-b-8">Branding</a>
+                        <a href="./blog.php" class="bl-tag u-s-m-b-8">World</a>
+                        <a href="./blog.php" class="bl-tag u-s-m-b-8">Print</a>
                     </div>
                     <!-- Blog-Sidebar-Tag /- -->
                 </div>
@@ -1139,153 +350,11 @@
         </div>
     </div>
     <!-- Blog-Page /- -->
+
     <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <!-- Outer-Footer -->
-            <div class="outer-footer-wrapper u-s-p-y-80">
-                <h6>
-                    For special offers and other discount information
-                </h6>
-                <h1>
-                    Subscribe to our Newsletter
-                </h1>
-                <p>
-                    Subscribe to the mailing list to receive updates on promotions, new arrivals, discount and coupons.
-                </p>
-                <form class="newsletter-form">
-                    <label class="sr-only" for="newsletter-field">Enter your Email</label>
-                    <input type="text" id="newsletter-field" placeholder="Your Email Address">
-                    <button type="submit" class="button">SUBMIT</button>
-                </form>
-            </div>
-            <!-- Outer-Footer /- -->
-            <!-- Mid-Footer -->
-            <div class="mid-footer-wrapper u-s-p-b-80">
-                <div class="row">
-                    <div class="col-lg-3 col-md-3 col-sm-12">
-                        <div class="footer-list">
-                            <h6>CUSTOMER SERVICE</h6>
-                            <ul>
-                                <li>
-                                    <a href="faq.html">FAQs</a>
-                                </li>
-                                <li>
-                                    <a href="track-order.html">Track Order</a>
-                                </li>
-                                <li>
-                                    <a href="terms-and-conditions.html">Terms & Conditions</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-3 col-sm-12">
-                        <div class="footer-list">
-                            <h6>COMPANY</h6>
-                            <ul>
-                                <li>
-                                    <a href="home.html">Home</a>
-                                </li>
-                                <li>
-                                    <a href="about.html">About</a>
-                                </li>
-                                <li>
-                                    <a href="contact.html">Contact</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-3 col-sm-12">
-                        <div class="footer-list">
-                            <h6>INFORMATION</h6>
-                            <ul>
-                                <li>
-                                    <a href="store-directory.html">Categories Directory</a>
-                                </li>
-                                <li>
-                                    <a href="wishlist.html">My Wishlist</a>
-                                </li>
-                                <li>
-                                    <a href="cart.html">My Cart</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-3 col-sm-12">
-                        <div class="footer-list">
-                            <h6>Address</h6>
-                            <ul>
-                                <li>
-                                    <i class="fas fa-location-arrow u-s-m-r-9"></i>
-                                    <span>Gurley Street, Monrovia, Liberia</span>
-                                </li>
-                                <li>
-                                    <a href="tel:+231555711018">
-                                        <i class="fas fa-phone u-s-m-r-9"></i>
-                                        <span>+231555711018 / +231772878894</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="mailto:ziggroupofcompanies231@gmail.com">
-                                        <i class="fas fa-envelope u-s-m-r-9"></i>
-                                        <span>
-                                            Ziggroupofcompanies231@gmail.com</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Mid-Footer /- -->
-            <!-- Bottom-Footer -->
-            <div class="bottom-footer-wrapper">
-                <div class="social-media-wrapper">
-                    <ul class="social-media-list">
-                        <li>
-                            <a href="https://www.facebook.com/share/1F255sv7xp/?mibextid=wwXIfr">
-                                <i class="fab fa-facebook-f"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://www.facebook.com/share/1F255sv7xp/?mibextid=wwXIfr">
-                                <i class="fab fa-instagram"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://www.tiktok.com/@zig_customized?_t=ZM-8th9TmJk7l7&_r=1">
-                                <i class="fab fa-tiktok"></i>
-                            </a>
-                        </li>
-                        <!-- <li>
-                            <a href="#">
-                                <i class="fas fa-rss"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="fab fa-pinterest"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="fab fa-linkedin-in"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="fab fa-youtube"></i>
-                            </a>
-                        </li> -->
-                    </ul>
-                </div>
-                    <p class="copyright-text" >Copyright &copy; and &reg; <script>document.write(new Date().getFullYear());</script></span> Under<a href="home.html">ZIG CUSTOMIZED</a></p>
-                    <p class="copyright-text">Designed by <a href="https://www.easytechsolutionz.com/">Easy.Tech Solutions</a></p>
-            </div>
-        </div>
-        <!-- Bottom-Footer /- -->
-    </footer>
+    <?php include("../include/footer.php"); ?>
     <!-- Footer /- -->
+     
     <!-- Dummy Selectbox -->
     <div class="select-dummy-wrapper">
         <select id="compute-select">
@@ -1351,32 +420,32 @@ ga('send', 'pageview')
 </script>
 <script src="https://www.google-analytics.com/analytics.js" async defer></script>
 <!-- Modernizr-JS -->
-<script type="text/javascript" src="js/vendor/modernizr-custom.min.js"></script>
+<script type="text/javascript" src="../assets/js/vendor/modernizr-custom.min.js"></script>
 <!-- NProgress -->
-<script type="text/javascript" src="js/nprogress.min.js"></script>
+<script type="text/javascript" src="../assets/js/nprogress.min.js"></script>
 <!-- jQuery -->
-<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="../assets/js/jquery.min.js"></script>
 <!-- Bootstrap JS -->
-<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../assets/js/bootstrap.min.js"></script>
 <!-- Popper -->
-<script type="text/javascript" src="js/popper.min.js"></script>
+<script type="text/javascript" src="../assets/js/popper.min.js"></script>
 <!-- ScrollUp -->
-<script type="text/javascript" src="js/jquery.scrollUp.min.js"></script>
+<script type="text/javascript" src="../assets/js/jquery.scrollUp.min.js"></script>
 <!-- Elevate Zoom -->
-<script type="text/javascript" src="js/jquery.elevatezoom.min.js"></script>
+<script type="text/javascript" src="../assets/js/jquery.elevatezoom.min.js"></script>
 <!-- jquery-ui-range-slider -->
-<script type="text/javascript" src="js/jquery-ui.range-slider.min.js"></script>
+<script type="text/javascript" src="../assets/js/jquery-ui.range-slider.min.js"></script>
 <!-- jQuery Slim-Scroll -->
-<script type="text/javascript" src="js/jquery.slimscroll.min.js"></script>
+<script type="text/javascript" src="../assets/js/jquery.slimscroll.min.js"></script>
 <!-- jQuery Resize-Select -->
-<script type="text/javascript" src="js/jquery.resize-select.min.js"></script>
+<script type="text/javascript" src="../assets/js/jquery.resize-select.min.js"></script>
 <!-- jQuery Custom Mega Menu -->
-<script type="text/javascript" src="js/jquery.custom-megamenu.min.js"></script>
+<script type="text/javascript" src="../assets/js/jquery.custom-megamenu.min.js"></script>
 <!-- jQuery Countdown -->
-<script type="text/javascript" src="js/jquery.custom-countdown.min.js"></script>
+<script type="text/javascript" src="../assets/js/jquery.custom-countdown.min.js"></script>
 <!-- Owl Carousel -->
-<script type="text/javascript" src="js/owl.carousel.min.js"></script>
+<script type="text/javascript" src="../assets/js/owl.carousel.min.js"></script>
 <!-- Main -->
-<script type="text/javascript" src="js/app.js"></script>
+<script type="text/javascript" src="../assets/js/app.js"></script>
 </body>
 </html>
