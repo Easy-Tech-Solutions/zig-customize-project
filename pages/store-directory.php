@@ -11,27 +11,27 @@
     <meta name="author" content="">
     <title>ZIG CUSTOMIZED</title>
     <!-- Standard Favicon -->
-    <link href="../HTML/favicon.ico" rel="shortcut icon">
+    <link href="../assets/images/favicon/favicon.ico" rel="shortcut icon">
     <!-- Base Google Font for Web-app -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
     <!-- Google Fonts for Banners only -->
     <link href="https://fonts.googleapis.com/css?family=Raleway:400,800" rel="stylesheet">
     <!-- Bootstrap 4 -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
     <!-- Font Awesome 5 -->
-    <link rel="stylesheet" href="css/fontawesome.min.css">
+    <link rel="stylesheet" href="../assets/css/fontawesome.min.css">
     <!-- Ion-Icons 4 -->
-    <link rel="stylesheet" href="css/ionicons.min.css">
+    <link rel="stylesheet" href="../assets/css/ionicons.min.css">
     <!-- Animate CSS -->
-    <link rel="stylesheet" href="css/animate.min.css">
+    <link rel="stylesheet" href="../assets/css/animate.min.css">
     <!-- Owl-Carousel -->
-    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="../assets/css/owl.carousel.min.css">
     <!-- Jquery-Ui-Range-Slider -->
-    <link rel="stylesheet" href="css/jquery-ui-range-slider.min.css">
+    <link rel="stylesheet" href="../assets/css/jquery-ui-range-slider.min.css">
     <!-- Utility -->
-    <link rel="stylesheet" href="css/utility.css">
+    <link rel="stylesheet" href="../assets/css/utility.css">
     <!-- Main -->
-    <link rel="stylesheet" href="css/bundle.css">
+    <link rel="stylesheet" href="../assets/css/bundle.css">
 </head>
 
 <body>
@@ -39,796 +39,7 @@
 <!-- app -->
 <div id="app">
     <!-- Header -->
-    <header>
-        <!-- Top-Header -->
-        <div class="full-layer-outer-header">
-            <div class="container clearfix">
-                <nav>
-                    <ul class="primary-nav g-nav">
-                        <li>
-                            <a href="tel:+111444989">
-                                <i class="fas fa-phone u-c-brand u-s-m-r-9"></i>
-                                Telephone:+23177-6909-591/880-522-295</a>
-                        </li>
-                        <li>
-                            <a href="mailto:contact@domain.com">
-                                <i class="fas fa-envelope u-c-brand u-s-m-r-9"></i>
-                                E-mail: info@zigcustomized.com
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-                <nav>
-                    <ul class="secondary-nav g-nav">
-                        <li>
-                            <a>My Account
-                                <i class="fas fa-chevron-down u-s-m-l-9"></i>
-                            </a>
-                            <ul class="g-dropdown" style="width:200px">
-                                <li>
-                                    <a href="cart.html">
-                                        <i class="fas fa-cog u-s-m-r-9"></i>
-                                        My Cart</a>
-                                </li>
-                                <!-- <li>
-                                    <a href="wishlist.html">
-                                        <i class="far fa-heart u-s-m-r-9"></i>
-                                        My Wishlist</a>
-                                </li> -->
-                                <li>
-                                    <a href="checkout.html">
-                                        <i class="far fa-check-circle u-s-m-r-9"></i>
-                                        Checkout</a>
-                                </li>
-                                <li>
-                                    <a href="account.html">
-                                        <i class="fas fa-sign-in-alt u-s-m-r-9"></i>
-                                        Login / Signup</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a>USD
-                                <i class="fas fa-chevron-down u-s-m-l-9"></i>
-                            </a>
-                            <ul class="g-dropdown" style="width:90px">
-                                <li>
-                                    <a href="#" class="u-c-brand">($) USD</a>
-                                </li>
-                                <li>
-                                    <a href="#">($) LRD</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a>ENG
-                                <i class="fas fa-chevron-down u-s-m-l-9"></i>
-                            </a>
-                            <ul class="g-dropdown" style="width:70px">
-                                <li>
-                                    <a href="#" class="u-c-brand">ENG</a>
-                                </li>
-                                <li>
-                                    <a href="#">ARB</a>
-                                </li>
-                            </ul>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-        <!-- Top-Header /- -->
-        <!-- Mid-Header -->
-        <div class="full-layer-mid-header">
-            <div class="container">
-                <div class="row clearfix align-items-center">
-                    <div class="col-lg-3 col-md-9 col-sm-6">
-                        <div class="brand-logo text-lg-center">
-                            <a href="home.html">
-                                <img src="images/main-logo/ZIG.png" alt="Groover Brand Logo" class="app-brand-logo">
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 u-d-none-lg">
-                        <form class="form-searchbox">
-                            <label class="sr-only" for="search-landscape">Search</label>
-                            <input id="search-landscape" type="text" class="text-field" placeholder="Search everything">
-                            <div class="select-box-position">
-                                <div class="select-box-wrapper select-hide">
-                                    <label class="sr-only" for="select-category">Choose category for search</label>
-                                    <select class="select-box" id="select-category">
-                                        <option selected="selected" value="">
-                                            All
-                                        </option>
-                                        <option value="">Shirts</option>
-                                        <option value="">Pants
-                                        </option>
-                                        <option value="">Caps
-                                        </option>
-                                        <option value="">Jerseys
-                                        </option>
-                                        <option value="">Bags
-                                        </option>
-                                        <option value="">Accessories
-                                        </option>
-                                        <option value="">Services
-                                        </option>
-                                        <!-- <option value="">Furniture Home & Office
-                                        </option> -->
-                                    </select>
-                                </div>
-                            </div>
-                            <button id="btn-search" type="submit" class="button button-primary fas fa-search"></button>
-                        </form>
-                    </div>
-                    <div class="col-lg-3 col-md-3 col-sm-6">
-                        <nav>
-                            <ul class="mid-nav g-nav">
-                                <li class="u-d-none-lg">
-                                    <a href="home.html">
-                                        <i class="ion ion-md-home u-c-brand"></i>
-                                    </a>
-                                </li>
-                                <li class="u-d-none-lg">
-                                    <a href="wishlist.html">
-                                        <i class="far fa-heart"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a id="mini-cart-trigger">
-                                        <i class="ion ion-md-basket"></i>
-                                        <span class="item-counter">4</span>
-                                        <span class="item-price">$220.00</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </nav>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Mid-Header /- -->
-        <!-- Responsive-Buttons -->
-        <div class="fixed-responsive-container">
-            <div class="fixed-responsive-wrapper">
-                <button type="button" class="button fas fa-search" id="responsive-search"></button>
-            </div>
-            <div class="fixed-responsive-wrapper">
-                <a href="wishlist.html">
-                    <i class="far fa-heart"></i>
-                    <span class="fixed-item-counter">4</span>
-                </a>
-            </div>
-        </div>
-        <!-- Responsive-Buttons /- -->
-        <!-- Mini Cart -->
-        <div class="mini-cart-wrapper">
-            <div class="mini-cart">
-                <div class="mini-cart-header">
-                    YOUR CART
-                    <button type="button" class="button ion ion-md-close" id="mini-cart-close"></button>
-                </div>
-                <ul class="mini-cart-list">
-                    <li class="clearfix">
-                        <a href="single-product.html">
-                            <img src="images/product/product@1x.jpg" alt="Product">
-                            <span class="mini-item-name">Casual Hoodie Full Cotton</span>
-                            <span class="mini-item-price">$55.00</span>
-                            <span class="mini-item-quantity"> x 1 </span>
-                        </a>
-                    </li>
-                    <li class="clearfix">
-                        <a href="single-product.html">
-                            <img src="images/product/product@1x.jpg" alt="Product">
-                            <span class="mini-item-name">Black Rock Dress with High Jewelery Necklace</span>
-                            <span class="mini-item-price">$55.00</span>
-                            <span class="mini-item-quantity"> x 1 </span>
-                        </a>
-                    </li>
-                    <li class="clearfix">
-                        <a href="single-product.html">
-                            <img src="images/product/product@1x.jpg" alt="Product">
-                            <span class="mini-item-name">Xiaomi Note 2 Black Color</span>
-                            <span class="mini-item-price">$55.00</span>
-                            <span class="mini-item-quantity"> x 1 </span>
-                        </a>
-                    </li>
-                    <li class="clearfix">
-                        <a href="single-product.html">
-                            <img src="images/product/product@1x.jpg" alt="Product">
-                            <span class="mini-item-name">Dell Inspiron 15</span>
-                            <span class="mini-item-price">$55.00</span>
-                            <span class="mini-item-quantity"> x 1 </span>
-                        </a>
-                    </li>
-                </ul>
-                <div class="mini-shop-total clearfix">
-                    <span class="mini-total-heading float-left">Total:</span>
-                    <span class="mini-total-price float-right">$220.00</span>
-                </div>
-                <div class="mini-action-anchors">
-                    <a href="cart.html" class="cart-anchor">View Cart</a>
-                    <a href="checkout.html" class="checkout-anchor">Checkout</a>
-                </div>
-            </div>
-        </div>
-        <!-- Mini Cart /- -->
-        <!-- Bottom-Header -->
-        <div class="full-layer-bottom-header">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-lg-3">
-                        <div class="v-menu">
-                            <span class="v-title">
-                                <i class="ion ion-md-menu"></i>
-                                All Categories
-                                <i class="fas fa-angle-down"></i>
-                            </span>
-                            <nav>
-                                <div class="v-wrapper">
-                                    <ul class="v-list animated fadeIn">
-                                        <li class="js-backdrop">
-                                            <a href="shop-v1-root-category.html">
-                                                <!-- <i class="ion ion-md-shirt"></i> -->
-                                                T-SHIRTS
-                                                <!-- <i class="ion ion-ios-arrow-forward"></i> -->
-                                            </a>
-                                            <button class="v-button ion ion-md-add"></button>
-                                            <!-- <div class="v-drop-right" style="width: 700px;">
-                                                <div class="row">
-                                                    <div class="col-lg-4">
-                                                        <ul class="v-level-2">
-                                                            <li>
-                                                                <a href="shop-v2-sub-category.html">Tops</a>
-                                                                <ul>
-                                                                    <li>
-                                                                        <a href="shop-v3-sub-sub-category.html">T-Shirts</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="shop-v3-sub-sub-category.html">Hoodies</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="shop-v3-sub-sub-category.html">Suits</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="shop-v4-filter-as-category.html">Black Bean T-Shirt
-                                                                        </a>
-                                                                    </li>
-                                                                </ul>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="col-lg-4">
-                                                        <ul class="v-level-2">
-                                                            <li>
-                                                                <a href="shop-v2-sub-category.html">Outwear</a>
-                                                                <ul>
-                                                                    <li>
-                                                                        <a href="shop-v3-sub-sub-category.html">Jackets</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="shop-v3-sub-sub-category.html">Trench</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="shop-v3-sub-sub-category.html">Parkas</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="shop-v3-sub-sub-category.html">Sweaters</a>
-                                                                    </li>
-                                                                </ul>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="col-lg-4">
-                                                        <ul class="v-level-2">
-                                                            <li>
-                                                                <a href="shop-v1-root-category.html">Accessories</a>
-                                                                <ul>
-                                                                    <li>
-                                                                        <a href="shop-v3-sub-sub-category.html">Watches</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="shop-v3-sub-sub-category.html">Ties</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="shop-v3-sub-sub-category.html">Scarves</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="shop-v3-sub-sub-category.html">Belts</a>
-                                                                    </li>
-                                                                </ul>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-lg-4">
-                                                        <ul class="v-level-2">
-                                                            <li>
-                                                                <a href="shop-v2-sub-category.html">Bottoms</a>
-                                                                <ul>
-                                                                    <li>
-                                                                        <a href="shop-v3-sub-sub-category.html">Casual Pants
-                                                                        </a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="shop-v3-sub-sub-category.html">Shoes</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="shop-v3-sub-sub-category.html">Jeans</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="shop-v3-sub-sub-category.html">Shorts</a>
-                                                                    </li>
-                                                                </ul>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="col-lg-4">
-                                                        <ul class="v-level-2">
-                                                            <li>
-                                                                <a href="shop-v2-sub-category.html">Underwear</a>
-                                                                <ul>
-                                                                    <li>
-                                                                        <a href="shop-v3-sub-sub-category.html">Boxers</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="shop-v3-sub-sub-category.html">Briefs</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="shop-v3-sub-sub-category.html">Robes</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="shop-v3-sub-sub-category.html">Socks</a>
-                                                                    </li>
-                                                                </ul>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="col-lg-4">
-                                                        <ul class="v-level-2">
-                                                            <li>
-                                                                <a href="shop-v2-sub-category.html">Sunglasses</a>
-                                                                <ul>
-                                                                    <li>
-                                                                        <a href="shop-v3-sub-sub-category.html">Pilot</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="shop-v3-sub-sub-category.html">Wayfarer</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="shop-v3-sub-sub-category.html">Square</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="shop-v3-sub-sub-category.html">Round</a>
-                                                                    </li>
-                                                                </ul>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div> -->
-                                        </li>
-                                        <li class="js-backdrop">
-                                            <a href="shop-v1-root-category.html">
-                                                <!-- <i class="fi fi-ss-hat-beach"></i> -->
-                                                PANTS
-                                                <!-- <i class="ion ion-ios-arrow-forward"></i> -->
-                                            </a>
-                                            <button class="v-button ion ion-md-add"></button>
-                                            <!-- <div class="v-drop-right" style="width: 700px;">
-                                                <div class="row">
-                                                    <div class="col-lg-4">
-                                                        <ul class="v-level-2">
-                                                            <li>
-                                                                <a href="shop-v2-sub-category.html">Tops</a>
-                                                                <ul>
-                                                                    <li>
-                                                                        <a href="shop-v3-sub-sub-category.html">Dresses</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="shop-v3-sub-sub-category.html">Blouses & Shirts
-                                                                        </a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="shop-v3-sub-sub-category.html">T-shirts</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="shop-v3-sub-sub-category.html">Sweater</a>
-                                                                    </li>
-                                                                </ul>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="col-lg-4">
-                                                        <ul class="v-level-2">
-                                                            <li>
-                                                                <a href="shop-v2-sub-category.html">Intimates</a>
-                                                                <ul>
-                                                                    <li>
-                                                                        <a href="shop-v3-sub-sub-category.html">Bras</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="shop-v3-sub-sub-category.html">Brief Sets
-                                                                        </a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="shop-v3-sub-sub-category.html">Bustiers & Corsets
-                                                                        </a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="shop-v3-sub-sub-category.html">Panties</a>
-                                                                    </li>
-                                                                </ul>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="col-lg-4">
-                                                        <ul class="v-level-2">
-                                                            <li>
-                                                                <a href="shop-v2-sub-category.html">Wedding & Events
-                                                                </a>
-                                                                <ul>
-                                                                    <li>
-                                                                        <a href="shop-v3-sub-sub-category.html">Wedding Dresses
-                                                                        </a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="shop-v2-sub-category.html">Evening Dresses
-                                                                        </a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="shop-v3-sub-sub-category.html">Prom Dresses
-                                                                        </a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="shop-v3-sub-sub-category.html">Flower Dresses
-                                                                        </a>
-                                                                    </li>
-                                                                </ul>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-lg-4">
-                                                        <ul class="v-level-2">
-                                                            <li>
-                                                                <a href="shop-v2-sub-category.html">Bottoms</a>
-                                                                <ul>
-                                                                    <li>
-                                                                        <a href="shop-v3-sub-sub-category.html">Skirts</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="shop-v3-sub-sub-category.html">Shoes</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="shop-v3-sub-sub-category.html">Leggings</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="shop-v3-sub-sub-category.html">Jeans</a>
-                                                                    </li>
-                                                                </ul>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="col-lg-4">
-                                                        <ul class="v-level-2">
-                                                            <li>
-                                                                <a href="shop-v2-sub-category.html">Outwear & Jackets
-                                                                </a>
-                                                                <ul>
-                                                                    <li>
-                                                                        <a href="shop-v3-sub-sub-category.html">Blazers</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="shop-v3-sub-sub-category.html">Basics Jackets
-                                                                        </a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="shop-v3-sub-sub-category.html">Trench</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="shop-v3-sub-sub-category.html">Leather & Suede
-                                                                        </a>
-                                                                    </li>
-                                                                </ul>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="col-lg-4">
-                                                        <ul class="v-level-2">
-                                                            <li>
-                                                                <a href="shop-v2-sub-category.html">Accessories</a>
-                                                                <ul>
-                                                                    <li>
-                                                                        <a href="shop-v3-sub-sub-category.html">Sunglasses</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="shop-v3-sub-sub-category.html">Headwear</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="shop-v3-sub-sub-category.html">Baseball Caps
-                                                                        </a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="shop-v3-sub-sub-category.html">Belts</a>
-                                                                    </li>
-                                                                </ul>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div> -->
-                                        </li>
-                                        <li class="js-backdrop">
-                                            <a href="shop-v1-root-category.html">
-                                                <!-- <i class="ion ion-ios-shirt"></i> -->
-                                                CAPS
-                                                <!-- <i class="ion ion-ios-arrow-forward"></i> -->
-                                            </a>
-                                            <button class="v-button ion ion-md-add"></button>
-                                            <div class="v-drop" style="width: 700px;">
-                                                <!-- <div class="row">
-                                                     <div class="col-lg-4">
-                                                        <ul class="v-level-2">
-                                                            <li>
-                                                                <a href="shop-v2-sub-category.html">RC Toys & Hobbies
-                                                                </a>
-                                                                <ul>
-                                                                    <li>
-                                                                        <a href="shop-v3-sub-sub-category.html">RC Helicopter
-                                                                        </a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="shop-v3-sub-sub-category.html">RC Lego Robots
-                                                                        </a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="shop-v3-sub-sub-category.html">RC Drone
-                                                                        </a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="shop-v3-sub-sub-category.html">RC Car
-                                                                        </a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="shop-v3-sub-sub-category.html">RC Boat
-                                                                        </a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="shop-v3-sub-sub-category.html">RC Robot
-                                                                        </a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="shop-v3-sub-sub-category.html">Multi Rotor Parts
-                                                                        </a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="shop-v3-sub-sub-category.html">FPV System
-                                                                        </a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="shop-v3-sub-sub-category.html">Radios & Receiver
-                                                                        </a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="shop-v3-sub-sub-category.html">Battery & Charger
-                                                                        </a>
-                                                                    </li>
-                                                                </ul>
-                                                            </li>
-                                                        </ul>
-                                                    </div> 
-                                                    <div class="col-lg-4">
-                                                        <ul class="v-level-2">
-                                                            <li>
-                                                                <a href="shop-v2-sub-category.html">Solar Energy
-                                                                </a>
-                                                                <ul>
-                                                                    <li>
-                                                                        <a href="shop-v3-sub-sub-category.html">Solar Powered Toy
-                                                                        </a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="shop-v3-sub-sub-category.html">Solar Powered System
-                                                                        </a>
-                                                                    </li>
-                                                                    <li class="view-more-flag">
-                                                                        <a href="store-directory.html">View More
-                                                                        </a>
-                                                                    </li>
-                                                                </ul>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div> -->
-                                                <!-- Remember layer image should be place on empty space and its not overlap your list items because user could not read your list items. -->
-                                                <!-- <div class="v-image" style="bottom: 0;right: -25px">
-                                                    <a href="#" class="d-block">
-                                                        <img src="images/banners/mega-3.png" class="img-fluid" alt="Product">
-                                                    </a>
-                                                </div> -->
-                                            </div>
-                                        </li>
-                                        <li class="v-none" style="display: none">
-                                            <a href="shop-v1-root-category.html">
-                                                <!-- <i class="ion ion-md-phone-portrait"></i> -->
-                                                JERSEYS
-                                            </a>
-                                        </li>
-                                        <li class="v-none" style="display: none">
-                                            <a href="shop-v1-root-category.html">
-                                                <!-- <i class="ion ion-md-tv"></i> -->
-                                                BAGS
-                                            </a>
-                                        </li>
-                                        <!-- <li>
-                                            <a href="shop-v1-root-category.html">
-                                                <i class="ion ion-ios-book"></i>
-                                                ACCESSORIES
-                                            </a>
-                                        </li> -->
-                                        <!-- <li>
-                                            <a href="shop-v1-root-category.html">
-                                                <i class="ion ion-md-heart"></i>
-                                                Beauty & Health
-                                            </a>
-                                        </li> -->
-                                        <li class="v-none" style="display: none">
-                                            <a href="shop-v1-root-category.html">
-                                                <!-- <i class="ion ion-md-easel"></i> -->
-                                                ACCESSORIES
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a class="v-more">
-                                                <i class="ion ion-md-add"></i>
-                                                <span>View More</span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </nav>
-                        </div>
-                    </div>
-                    <div class="col-lg-9">
-                        <ul class="bottom-nav g-nav u-d-none-lg">
-                            <li>
-                                <a href="custom-deal-page.html">New Arrivals
-                                    <span class="superscript-label-new">NEW</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="custom-deal-page.html">Exclusive Deals
-                                    <span class="superscript-label-hot">HOT</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="custom-deal-page.html">Flash Deals
-                                </a>
-                            </li>
-                            <li class="mega-position">
-                                <a>Pages
-                                    <i class="fas fa-chevron-down u-s-m-l-9"></i>
-                                </a>
-                                <div class="mega-menu mega-3-colm">
-                                    <ul>
-                                        <li class="menu-title">Home</li>
-                                        <li>
-                                            <a href="home.html" class="u-c-brand">Home</a>
-                                        </li>
-                                        <li>
-                                            <a href="about.html">About</a>
-                                        </li>
-                                        <li>
-                                            <a href="contact.html">Contact</a>
-                                        </li>
-                                        <li>
-                                            <a href="faq.html">FAQ</a>
-                                        </li>
-                                        <!-- <li>
-                                            <a href="store-directory.html">Store Directory</a>
-                                        </li> -->
-                                        <li>
-                                            <a href="terms-and-conditions.html">Terms & Conditions</a>
-                                        </li>
-                                        <!-- <li>
-                                            <a href="404.html">404</a>
-                                        </li> -->
-                                        <!-- <li class="menu-title">Single Product Page</li> -->
-                                        <!-- <li>
-                                            <a href="single-product.html">Single Product Fullwidth</a>
-                                        </li> -->
-                                        <li class="menu-title">Blog</li>
-                                        <li>
-                                            <a href="blog.html">Zig Updates </a>
-                                        </li>
-                                        <!-- <li>
-                                            <a href="blog-detail.html">Blog Details</a>
-                                        </li> -->
-                                    </ul>
-                                    <ul>
-                                        <li class="menu-title">Shop</li>
-                                        <li>
-                                            <a href="shop-v2-sub-category.html">Shop</a>
-                                        </li>
-                                        <li>
-                                            <a href="cart.html">Cart</a>
-                                        </li>
-                                        <li>
-                                            <a href="checkout.html">Checkout</a>
-                                        </li>
-                                        <li>
-                                            <a href="account.html">My Account</a>
-                                        </li>
-                                        <li>
-                                            <a href="wishlist.html">Wishlist</a>
-                                        </li>
-                                        <li>
-                                            <a href="track-order.html">Track your Order</a>
-                                        </li>
-                                        <!-- <li class="menu-title">Cart Variations</li> -->
-                                        <!-- <li>
-                                            <a href="cart-empty.html">Cart Ver 1 Empty</a>
-                                        </li> -->
-                                        <!-- <li>
-                                            <a href="cart.html">Cart</a>
-                                        </li> -->
-                                        <li class="menu-title">Wishlist</li>
-                                        <!-- <li>
-                                            <a href="wishlist-empty.html">Wishlist Ver 1 Empty</a>
-                                        </li> -->
-                                        <li>
-                                            <a href="wishlist.html">Wishlist</a>
-                                        </li>
-                                    </ul>
-                                    <ul>
-                                        <!-- <li class="menu-title">Shop Variations</li>
-                                        <li> -->
-                                            <!-- <a href="shop-v1-root-category.html">Shop Ver 1 Root Category</a>
-                                        </li>
-                                        <li>
-                                            <a href="shop-v2-sub-category.html">Shop Ver 2 Sub Category</a>
-                                        </li>
-                                        <li>
-                                            <a href="shop-v3-sub-sub-category.html">Shop Ver 3 Sub Sub Category</a>
-                                        </li>
-                                        <li>
-                                            <a href="shop-v4-filter-as-category.html">Shop Ver 4 Filter as Category</a>
-                                        </li>
-                                        <li>
-                                            <a href="shop-v5-product-not-found.html">Shop Ver 5 Product Not Found</a>
-                                        </li>
-                                        <li>
-                                            <a href="shop-v6-search-results.html">Shop Ver 6 Search Results</a>
-                                        </li> -->
-                                        <li class="menu-title">Account</li>
-                                        <li>
-                                            <a href="lost-password.html">Lost Your Password ?</a>
-                                        </li>
-                                        <!-- <li class="menu-title">Checkout Variation</li>
-                                        <li>
-                                            <a href="confirmation.html">Checkout Confirmation</a>
-                                        </li> -->
-                                        <li class="menu-title">Custom Deals</li>
-                                        <li>
-                                            <a href="custom-deal-page.html">Custom Deal Page</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li>
-                                <a href="custom-deal-page.html">Super Sale
-                                    <span class="superscript-label-discount">-15%</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Bottom-Header /- -->
-    </header>
+    <?php include("../include/header.php"); ?>
     <!-- Header /- -->
     <!-- Page Introduction Wrapper -->
     <div class="page-style-a">
@@ -838,10 +49,10 @@
                 <ul class="bread-crumb">
                     <li class="has-separator">
                         <i class="ion ion-md-home"></i>
-                        <a href="home.html">Home</a>
+                        <a href="../index.html">Home</a>
                     </li>
                     <li class="is-marked">
-                        <a href="store-directory.html">Directory</a>
+                        <a href="./store-directory.php">Directory</a>
                     </li>
                 </ul>
             </div>
@@ -854,63 +65,63 @@
             <!-- Men's Clothing Directory Wrapper  -->
             <div class="directory-wrapper">
                 <h2>
-                    <a href="shop-v1-root-category.html">Men's Clothing</a>
+                    <a href="./shop-v1-root-category.php">Men's Clothing</a>
                 </h2>
                 <div class="row">
                     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                         <ul class="dir-list-wrap">
                             <li>
-                                <a class="dir-list-main" href="shop-v2-sub-category.html">Tops</a>
+                                <a class="dir-list-main" href="./shop-v2-sub-category.php">Tops</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">T-Shirts</a>
+                                <a href="./shop-v3-sub-sub-category.php">T-Shirts</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Hoodies</a>
+                                <a href="./shop-v3-sub-sub-category.php">Hoodies</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Suits</a>
+                                <a href="./shop-v3-sub-sub-category.php">Suits</a>
                             </li>
                             <li>
-                                <a href="shop-v4-filter-as-category.html">Black Bean T-Shirt</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                        <ul class="dir-list-wrap">
-                            <li>
-                                <a href="shop-v2-sub-category.html" class="dir-list-main">Outwear</a>
-                            </li>
-                            <li>
-                                <a href="shop-v3-sub-sub-category.html">Jackets</a>
-                            </li>
-                            <li>
-                                <a href="shop-v3-sub-sub-category.html">Trench</a>
-                            </li>
-                            <li>
-                                <a href="shop-v3-sub-sub-category.html">Parkas</a>
-                            </li>
-                            <li>
-                                <a href="shop-v3-sub-sub-category.html">Sweaters</a>
+                                <a href="./shop-v4-filter-as-category.php">Black Bean T-Shirt</a>
                             </li>
                         </ul>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                         <ul class="dir-list-wrap">
                             <li>
-                                <a href="shop-v2-sub-category.html" class="dir-list-main">Accessories</a>
+                                <a href="./shop-v2-sub-category.php" class="dir-list-main">Outwear</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Watches</a>
+                                <a href="./shop-v3-sub-sub-category.php">Jackets</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Ties</a>
+                                <a href="./shop-v3-sub-sub-category.php">Trench</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Scarves</a>
+                                <a href="./shop-v3-sub-sub-category.php">Parkas</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Belts</a>
+                                <a href="./shop-v3-sub-sub-category.php">Sweaters</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                        <ul class="dir-list-wrap">
+                            <li>
+                                <a href="./shop-v2-sub-category.php" class="dir-list-main">Accessories</a>
+                            </li>
+                            <li>
+                                <a href="./shop-v3-sub-sub-category.php">Watches</a>
+                            </li>
+                            <li>
+                                <a href="./shop-v3-sub-sub-category.php">Ties</a>
+                            </li>
+                            <li>
+                                <a href="./shop-v3-sub-sub-category.php">Scarves</a>
+                            </li>
+                            <li>
+                                <a href="./shop-v3-sub-sub-category.php">Belts</a>
                             </li>
                         </ul>
                     </div>
@@ -919,57 +130,57 @@
                     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                         <ul class="dir-list-wrap">
                             <li>
-                                <a href="shop-v2-sub-category.html" class="dir-list-main">Bottoms</a>
+                                <a href="./shop-v2-sub-category.php" class="dir-list-main">Bottoms</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Casual Pants</a>
+                                <a href="./shop-v3-sub-sub-category.php">Casual Pants</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Shoes</a>
+                                <a href="./shop-v3-sub-sub-category.php">Shoes</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Jeans</a>
+                                <a href="./shop-v3-sub-sub-category.php">Jeans</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Shorts</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                        <ul class="dir-list-wrap">
-                            <li>
-                                <a href="shop-v2-sub-category.html" class="dir-list-main">Underwear</a>
-                            </li>
-                            <li>
-                                <a href="shop-v3-sub-sub-category.html">Boxers</a>
-                            </li>
-                            <li>
-                                <a href="shop-v3-sub-sub-category.html">Briefs</a>
-                            </li>
-                            <li>
-                                <a href="shop-v3-sub-sub-category.html">Robes</a>
-                            </li>
-                            <li>
-                                <a href="shop-v3-sub-sub-category.html">Socks</a>
+                                <a href="./shop-v3-sub-sub-category.php">Shorts</a>
                             </li>
                         </ul>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                         <ul class="dir-list-wrap">
                             <li>
-                                <a href="shop-v2-sub-category.html" class="dir-list-main">Sunglasses</a>
+                                <a href="./shop-v2-sub-category.php" class="dir-list-main">Underwear</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Pilot</a>
+                                <a href="./shop-v3-sub-sub-category.php">Boxers</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Wayfarer</a>
+                                <a href="./shop-v3-sub-sub-category.php">Briefs</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Square</a>
+                                <a href="./shop-v3-sub-sub-category.php">Robes</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Round</a>
+                                <a href="./shop-v3-sub-sub-category.php">Socks</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                        <ul class="dir-list-wrap">
+                            <li>
+                                <a href="./shop-v2-sub-category.php" class="dir-list-main">Sunglasses</a>
+                            </li>
+                            <li>
+                                <a href="./shop-v3-sub-sub-category.php">Pilot</a>
+                            </li>
+                            <li>
+                                <a href="./shop-v3-sub-sub-category.php">Wayfarer</a>
+                            </li>
+                            <li>
+                                <a href="./shop-v3-sub-sub-category.php">Square</a>
+                            </li>
+                            <li>
+                                <a href="./shop-v3-sub-sub-category.php">Round</a>
                             </li>
                         </ul>
                     </div>
@@ -979,63 +190,63 @@
             <!-- Women's Clothing Directory Wrapper  -->
             <div class="directory-wrapper">
                 <h2>
-                    <a href="shop-v1-root-category.html">Women's Clothing</a>
+                    <a href="./shop-v1-root-category.php">Women's Clothing</a>
                 </h2>
                 <div class="row">
                     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                         <ul class="dir-list-wrap">
                             <li>
-                                <a href="shop-v2-sub-category.html" class="dir-list-main">Tops</a>
+                                <a href="./shop-v2-sub-category.php" class="dir-list-main">Tops</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Dresses</a>
+                                <a href="./shop-v3-sub-sub-category.php">Dresses</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Blouses & Shirts</a>
+                                <a href="./shop-v3-sub-sub-category.php">Blouses & Shirts</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">T-shirts</a>
+                                <a href="./shop-v3-sub-sub-category.php">T-shirts</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Sweater</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                        <ul class="dir-list-wrap">
-                            <li>
-                                <a href="shop-v2-sub-category.html" class="dir-list-main">Intimates</a>
-                            </li>
-                            <li>
-                                <a href="shop-v3-sub-sub-category.html">Bras</a>
-                            </li>
-                            <li>
-                                <a href="shop-v3-sub-sub-category.html">Brief Sets</a>
-                            </li>
-                            <li>
-                                <a href="shop-v3-sub-sub-category.html">Bustiers & Corsets</a>
-                            </li>
-                            <li>
-                                <a href="shop-v3-sub-sub-category.html">Panties</a>
+                                <a href="./shop-v3-sub-sub-category.php">Sweater</a>
                             </li>
                         </ul>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                         <ul class="dir-list-wrap">
                             <li>
-                                <a href="shop-v2-sub-category.html" class="dir-list-main">Wedding & Events</a>
+                                <a href="./shop-v2-sub-category.php" class="dir-list-main">Intimates</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Wedding Dresses</a>
+                                <a href="./shop-v3-sub-sub-category.php">Bras</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Evening Dresses</a>
+                                <a href="./shop-v3-sub-sub-category.php">Brief Sets</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Prom Dresses</a>
+                                <a href="./shop-v3-sub-sub-category.php">Bustiers & Corsets</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Flower Dresses</a>
+                                <a href="./shop-v3-sub-sub-category.php">Panties</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                        <ul class="dir-list-wrap">
+                            <li>
+                                <a href="./shop-v2-sub-category.php" class="dir-list-main">Wedding & Events</a>
+                            </li>
+                            <li>
+                                <a href="./shop-v3-sub-sub-category.php">Wedding Dresses</a>
+                            </li>
+                            <li>
+                                <a href="./shop-v3-sub-sub-category.php">Evening Dresses</a>
+                            </li>
+                            <li>
+                                <a href="./shop-v3-sub-sub-category.php">Prom Dresses</a>
+                            </li>
+                            <li>
+                                <a href="./shop-v3-sub-sub-category.php">Flower Dresses</a>
                             </li>
                         </ul>
                     </div>
@@ -1044,57 +255,57 @@
                     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                         <ul class="dir-list-wrap">
                             <li>
-                                <a href="shop-v2-sub-category.html" class="dir-list-main">Bottoms</a>
+                                <a href="./shop-v2-sub-category.php" class="dir-list-main">Bottoms</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Skirts</a>
+                                <a href="./shop-v3-sub-sub-category.php">Skirts</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Shorts</a>
+                                <a href="./shop-v3-sub-sub-category.php">Shorts</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Leggings</a>
+                                <a href="./shop-v3-sub-sub-category.php">Leggings</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Jeans</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                        <ul class="dir-list-wrap">
-                            <li>
-                                <a href="shop-v2-sub-category.html" class="dir-list-main">Outwear & Jackets</a>
-                            </li>
-                            <li>
-                                <a href="shop-v3-sub-sub-category.html">Blazers</a>
-                            </li>
-                            <li>
-                                <a href="shop-v3-sub-sub-category.html">Basics Jackets</a>
-                            </li>
-                            <li>
-                                <a href="shop-v3-sub-sub-category.html">Trench</a>
-                            </li>
-                            <li>
-                                <a href="shop-v3-sub-sub-category.html">Leather & Suede</a>
+                                <a href="./shop-v3-sub-sub-category.php">Jeans</a>
                             </li>
                         </ul>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                         <ul class="dir-list-wrap">
                             <li>
-                                <a href="shop-v2-sub-category.html" class="dir-list-main">Accessories</a>
+                                <a href="./shop-v2-sub-category.php" class="dir-list-main">Outwear & Jackets</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Sunglasses</a>
+                                <a href="./shop-v3-sub-sub-category.php">Blazers</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Headwear</a>
+                                <a href="./shop-v3-sub-sub-category.php">Basics Jackets</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Baseball Caps</a>
+                                <a href="./shop-v3-sub-sub-category.php">Trench</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Belts</a>
+                                <a href="./shop-v3-sub-sub-category.php">Leather & Suede</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                        <ul class="dir-list-wrap">
+                            <li>
+                                <a href="./shop-v2-sub-category.php" class="dir-list-main">Accessories</a>
+                            </li>
+                            <li>
+                                <a href="./shop-v3-sub-sub-category.php">Sunglasses</a>
+                            </li>
+                            <li>
+                                <a href="./shop-v3-sub-sub-category.php">Headwear</a>
+                            </li>
+                            <li>
+                                <a href="./shop-v3-sub-sub-category.php">Baseball Caps</a>
+                            </li>
+                            <li>
+                                <a href="./shop-v3-sub-sub-category.php">Belts</a>
                             </li>
                         </ul>
                     </div>
@@ -1104,183 +315,183 @@
             <!-- Toys Hobbies & Robots  -->
             <div class="directory-wrapper">
                 <h2>
-                    <a href="shop-v1-root-category.html">RC Toys & Hobbies</a>
+                    <a href="./shop-v1-root-category.php">RC Toys & Hobbies</a>
                 </h2>
                 <div class="row">
                     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                         <ul class="dir-list-wrap">
                             <li>
-                                <a href="shop-v2-sub-category.html" class="dir-list-main">RC Toys & Hobbies</a>
+                                <a href="./shop-v2-sub-category.php" class="dir-list-main">RC Toys & Hobbies</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">RC Helicopter</a>
+                                <a href="./shop-v3-sub-sub-category.php">RC Helicopter</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">RC Drone</a>
+                                <a href="./shop-v3-sub-sub-category.php">RC Drone</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">RC Quadcopters</a>
+                                <a href="./shop-v3-sub-sub-category.php">RC Quadcopters</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">RC Airplane</a>
+                                <a href="./shop-v3-sub-sub-category.php">RC Airplane</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">RC Car</a>
+                                <a href="./shop-v3-sub-sub-category.php">RC Car</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">RC Boat</a>
+                                <a href="./shop-v3-sub-sub-category.php">RC Boat</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Multi Rotor Parts</a>
+                                <a href="./shop-v3-sub-sub-category.php">Multi Rotor Parts</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">FPV System</a>
+                                <a href="./shop-v3-sub-sub-category.php">FPV System</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Radios & Receiver</a>
+                                <a href="./shop-v3-sub-sub-category.php">Radios & Receiver</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Battery & Charger</a>
+                                <a href="./shop-v3-sub-sub-category.php">Battery & Charger</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Connector & Cable & Wire</a>
+                                <a href="./shop-v3-sub-sub-category.php">Connector & Cable & Wire</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Tools & Bags & Storage</a>
+                                <a href="./shop-v3-sub-sub-category.php">Tools & Bags & Storage</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">RC Helicopter Parts</a>
+                                <a href="./shop-v3-sub-sub-category.php">RC Helicopter Parts</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">RC Quadcopter Parts</a>
+                                <a href="./shop-v3-sub-sub-category.php">RC Quadcopter Parts</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">RC Airplane Parts</a>
+                                <a href="./shop-v3-sub-sub-category.php">RC Airplane Parts</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">RC Car Parts</a>
+                                <a href="./shop-v3-sub-sub-category.php">RC Car Parts</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">RC Boat Parts</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                        <ul class="dir-list-wrap">
-                            <li>
-                                <a href="shop-v2-sub-category.html" class="dir-list-main">Learning & Education</a>
-                            </li>
-                            <li>
-                                <a href="shop-v3-sub-sub-category.html">Developmental Toys</a>
-                            </li>
-                            <li>
-                                <a href="shop-v3-sub-sub-category.html">Board Game Toys</a>
-                            </li>
-                            <li>
-                                <a href="shop-v3-sub-sub-category.html">Paper Art & Drawing</a>
-                            </li>
-                            <li>
-                                <a href="shop-v3-sub-sub-category.html">Jigsaw & Puzzle Toys</a>
-                            </li>
-                            <li>
-                                <a href="shop-v3-sub-sub-category.html">Plane & Parachute Toys</a>
-                            </li>
-                            <li>
-                                <a href="shop-v3-sub-sub-category.html">Science & Discovery Toys</a>
-                            </li>
-                            <li>
-                                <a href="shop-v3-sub-sub-category.html">Pottery Clay & Tools</a>
-                            </li>
-                            <li>
-                                <a href="shop-v3-sub-sub-category.html" class="dir-list-main">Dolls & Stuffed Toys</a>
-                            </li>
-                            <li>
-                                <a href="shop-v3-sub-sub-category.html">Squishy Toys</a>
-                            </li>
-                            <li>
-                                <a href="shop-v3-sub-sub-category.html">Doll House & Miniature</a>
-                            </li>
-                            <li>
-                                <a href="shop-v3-sub-sub-category.html">Dolls & Action Figure</a>
-                            </li>
-                            <li>
-                                <a href="shop-v3-sub-sub-category.html">Stuffed & Plush Toys</a>
-                            </li>
-                            <li>
-                                <a href="shop-v3-sub-sub-category.html">Other Stuffed Toys</a>
-                            </li>
-                            <li>
-                                <a href="shop-v3-sub-sub-category.html" class="dir-list-main">Model & Building Toys</a>
-                            </li>
-                            <li>
-                                <a href="shop-v3-sub-sub-category.html">Track Toys</a>
-                            </li>
-                            <li>
-                                <a href="shop-v3-sub-sub-category.html">Blocks Toys</a>
-                            </li>
-                            <li>
-                                <a href="shop-v3-sub-sub-category.html">Model Building</a>
-                            </li>
-                            <li>
-                                <a href="shop-v3-sub-sub-category.html">Diecasts & Model Toys</a>
+                                <a href="./shop-v3-sub-sub-category.php">RC Boat Parts</a>
                             </li>
                         </ul>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                         <ul class="dir-list-wrap">
                             <li>
-                                <a href="shop-v3-sub-sub-category.html" class="dir-list-main">Musical Instruments</a>
+                                <a href="./shop-v2-sub-category.php" class="dir-list-main">Learning & Education</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Guitar</a>
+                                <a href="./shop-v3-sub-sub-category.php">Developmental Toys</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Guitar Parts</a>
+                                <a href="./shop-v3-sub-sub-category.php">Board Game Toys</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Brass & Woodwind</a>
+                                <a href="./shop-v3-sub-sub-category.php">Paper Art & Drawing</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Wind Instrument Parts</a>
+                                <a href="./shop-v3-sub-sub-category.php">Jigsaw & Puzzle Toys</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Violin</a>
+                                <a href="./shop-v3-sub-sub-category.php">Plane & Parachute Toys</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Violin Parts</a>
+                                <a href="./shop-v3-sub-sub-category.php">Science & Discovery Toys</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Ocarina</a>
+                                <a href="./shop-v3-sub-sub-category.php">Pottery Clay & Tools</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Harmonica</a>
+                                <a href="./shop-v3-sub-sub-category.php" class="dir-list-main">Dolls & Stuffed Toys</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Keyboards & Piano</a>
+                                <a href="./shop-v3-sub-sub-category.php">Squishy Toys</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Drums & Percussion</a>
+                                <a href="./shop-v3-sub-sub-category.php">Doll House & Miniature</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Pro Audio Equipment</a>
+                                <a href="./shop-v3-sub-sub-category.php">Dolls & Action Figure</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Pro Audio Equipment Parts</a>
+                                <a href="./shop-v3-sub-sub-category.php">Stuffed & Plush Toys</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Music Box</a>
+                                <a href="./shop-v3-sub-sub-category.php">Other Stuffed Toys</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Education Musical Instruments</a>
+                                <a href="./shop-v3-sub-sub-category.php" class="dir-list-main">Model & Building Toys</a>
+                            </li>
+                            <li>
+                                <a href="./shop-v3-sub-sub-category.php">Track Toys</a>
+                            </li>
+                            <li>
+                                <a href="./shop-v3-sub-sub-category.php">Blocks Toys</a>
+                            </li>
+                            <li>
+                                <a href="./shop-v3-sub-sub-category.php">Model Building</a>
+                            </li>
+                            <li>
+                                <a href="./shop-v3-sub-sub-category.php">Diecasts & Model Toys</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                        <ul class="dir-list-wrap">
+                            <li>
+                                <a href="./shop-v3-sub-sub-category.php" class="dir-list-main">Musical Instruments</a>
+                            </li>
+                            <li>
+                                <a href="./shop-v3-sub-sub-category.php">Guitar</a>
+                            </li>
+                            <li>
+                                <a href="./shop-v3-sub-sub-category.php">Guitar Parts</a>
+                            </li>
+                            <li>
+                                <a href="./shop-v3-sub-sub-category.php">Brass & Woodwind</a>
+                            </li>
+                            <li>
+                                <a href="./shop-v3-sub-sub-category.php">Wind Instrument Parts</a>
+                            </li>
+                            <li>
+                                <a href="./shop-v3-sub-sub-category.php">Violin</a>
+                            </li>
+                            <li>
+                                <a href="./shop-v3-sub-sub-category.php">Violin Parts</a>
+                            </li>
+                            <li>
+                                <a href="./shop-v3-sub-sub-category.php">Ocarina</a>
+                            </li>
+                            <li>
+                                <a href="./shop-v3-sub-sub-category.php">Harmonica</a>
+                            </li>
+                            <li>
+                                <a href="./shop-v3-sub-sub-category.php">Keyboards & Piano</a>
+                            </li>
+                            <li>
+                                <a href="./shop-v3-sub-sub-category.php">Drums & Percussion</a>
+                            </li>
+                            <li>
+                                <a href="./shop-v3-sub-sub-category.php">Pro Audio Equipment</a>
+                            </li>
+                            <li>
+                                <a href="./shop-v3-sub-sub-category.php">Pro Audio Equipment Parts</a>
+                            </li>
+                            <li>
+                                <a href="./shop-v3-sub-sub-category.php">Music Box</a>
+                            </li>
+                            <li>
+                                <a href="./shop-v3-sub-sub-category.php">Education Musical Instruments</a>
                             </li>
                             <li>
                                 <a class="dir-list-main">Solar Energy</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Solar Powered Toy</a>
+                                <a href="./shop-v3-sub-sub-category.php">Solar Powered Toy</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Solar Powered System</a>
+                                <a href="./shop-v3-sub-sub-category.php">Solar Powered System</a>
                             </li>
                         </ul>
                     </div>
@@ -1292,19 +503,19 @@
                                 <a class="dir-list-main">RC Robot</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Robot Toys</a>
+                                <a href="./shop-v3-sub-sub-category.php">Robot Toys</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Robot Arm & Tank</a>
+                                <a href="./shop-v3-sub-sub-category.php">Robot Arm & Tank</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Smart Robot Car</a>
+                                <a href="./shop-v3-sub-sub-category.php">Smart Robot Car</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Robot Parts & Tools</a>
+                                <a href="./shop-v3-sub-sub-category.php">Robot Parts & Tools</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">DIY Education Robot</a>
+                                <a href="./shop-v3-sub-sub-category.php">DIY Education Robot</a>
                             </li>
                         </ul>
                     </div>
@@ -1314,16 +525,16 @@
                                 <a class="dir-list-main">Gadget Toys</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Novelties</a>
+                                <a href="./shop-v3-sub-sub-category.php">Novelties</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Stress Relievers</a>
+                                <a href="./shop-v3-sub-sub-category.php">Stress Relievers</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Magic & Trick Props</a>
+                                <a href="./shop-v3-sub-sub-category.php">Magic & Trick Props</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Accessories for Nerf</a>
+                                <a href="./shop-v3-sub-sub-category.php">Accessories for Nerf</a>
                             </li>
                         </ul>
                     </div>
@@ -1333,19 +544,19 @@
                                 <a class="dir-list-main">Classic & Retro Toys</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Wind-up & Tin Toys</a>
+                                <a href="./shop-v3-sub-sub-category.php">Wind-up & Tin Toys</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Yoyo & Gyro Toys</a>
+                                <a href="./shop-v3-sub-sub-category.php">Yoyo & Gyro Toys</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Inflatable Toys</a>
+                                <a href="./shop-v3-sub-sub-category.php">Inflatable Toys</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Magnetic Toys</a>
+                                <a href="./shop-v3-sub-sub-category.php">Magnetic Toys</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Beach Play</a>
+                                <a href="./shop-v3-sub-sub-category.php">Beach Play</a>
                             </li>
                         </ul>
                     </div>
@@ -1365,48 +576,48 @@
                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                             <ul class="dir-list-wrap">
                                 <li>
-                                    <a href="shop-v4-filter-as-category.html">Samsung</a>
+                                    <a href="./shop-v4-filter-as-category.php">Samsung</a>
                                 </li>
                                 <li>
-                                    <a href="shop-v4-filter-as-category.html">Xiaomi</a>
+                                    <a href="./shop-v4-filter-as-category.php">Xiaomi</a>
                                 </li>
                                 <li>
-                                    <a href="shop-v4-filter-as-category.html">Huawei</a>
+                                    <a href="./shop-v4-filter-as-category.php">Huawei</a>
                                 </li>
                                 <li>
-                                    <a href="shop-v4-filter-as-category.html">Honor</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                            <ul class="dir-list-wrap">
-                                <li>
-                                    <a href="shop-v4-filter-as-category.html">Infinix</a>
-                                </li>
-                                <li>
-                                    <a href="shop-v4-filter-as-category.html">OnePlus</a>
-                                </li>
-                                <li>
-                                    <a href="shop-v4-filter-as-category.html">Lenovo</a>
-                                </li>
-                                <li>
-                                    <a href="shop-v4-filter-as-category.html">Apple</a>
+                                    <a href="./shop-v4-filter-as-category.php">Honor</a>
                                 </li>
                             </ul>
                         </div>
                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                             <ul class="dir-list-wrap">
                                 <li>
-                                    <a href="shop-v4-filter-as-category.html">Google</a>
+                                    <a href="./shop-v4-filter-as-category.php">Infinix</a>
                                 </li>
                                 <li>
-                                    <a href="shop-v4-filter-as-category.html">Moto</a>
+                                    <a href="./shop-v4-filter-as-category.php">OnePlus</a>
                                 </li>
                                 <li>
-                                    <a href="shop-v4-filter-as-category.html">Oppo</a>
+                                    <a href="./shop-v4-filter-as-category.php">Lenovo</a>
                                 </li>
                                 <li>
-                                    <a href="shop-v4-filter-as-category.html">Microsoft</a>
+                                    <a href="./shop-v4-filter-as-category.php">Apple</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                            <ul class="dir-list-wrap">
+                                <li>
+                                    <a href="./shop-v4-filter-as-category.php">Google</a>
+                                </li>
+                                <li>
+                                    <a href="./shop-v4-filter-as-category.php">Moto</a>
+                                </li>
+                                <li>
+                                    <a href="./shop-v4-filter-as-category.php">Oppo</a>
+                                </li>
+                                <li>
+                                    <a href="./shop-v4-filter-as-category.php">Microsoft</a>
                                 </li>
                             </ul>
                         </div>
@@ -1416,16 +627,16 @@
                     <div class="dir-remain-heading">Other Categories</div>
                     <ul class="dir-list-wrap">
                         <li>
-                            <a href="shop-v3-sub-sub-category.html">Tablets</a>
+                            <a href="./shop-v3-sub-sub-category.php">Tablets</a>
                         </li>
                         <li>
-                            <a href="shop-v3-sub-sub-category.html">Smart Watches</a>
+                            <a href="./shop-v3-sub-sub-category.php">Smart Watches</a>
                         </li>
                         <li>
-                            <a href="shop-v3-sub-sub-category.html">Device Accessories</a>
+                            <a href="./shop-v3-sub-sub-category.php">Device Accessories</a>
                         </li>
                         <li>
-                            <a href="shop-v3-sub-sub-category.html">Power Banks</a>
+                            <a href="./shop-v3-sub-sub-category.php">Power Banks</a>
                         </li>
                     </ul>
                 </div>
@@ -1443,19 +654,19 @@
                                 <a class="dir-list-main">Laptops</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Notebooks</a>
+                                <a href="./shop-v3-sub-sub-category.php">Notebooks</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Macbooks</a>
+                                <a href="./shop-v3-sub-sub-category.php">Macbooks</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Refurbished Laptops</a>
+                                <a href="./shop-v3-sub-sub-category.php">Refurbished Laptops</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Tablet PCs</a>
+                                <a href="./shop-v3-sub-sub-category.php">Tablet PCs</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Mini & Netbooks</a>
+                                <a href="./shop-v3-sub-sub-category.php">Mini & Netbooks</a>
                             </li>
                         </ul>
                     </div>
@@ -1465,35 +676,35 @@
                                 <a class="dir-list-main">PC & Accessories</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Batteries & Chargers</a>
+                                <a href="./shop-v3-sub-sub-category.php">Batteries & Chargers</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Internal Hard Drives</a>
+                                <a href="./shop-v3-sub-sub-category.php">Internal Hard Drives</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Adapters</a>
+                                <a href="./shop-v3-sub-sub-category.php">Adapters</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Graphic Card</a>
+                                <a href="./shop-v3-sub-sub-category.php">Graphic Card</a>
                             </li>
                         </ul>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                         <ul class="dir-list-wrap">
                             <li>
-                                <a href="shop-v2-sub-category.html" class="dir-list-main">TV's</a>
+                                <a href="./shop-v2-sub-category.php" class="dir-list-main">TV's</a>
                             </li>
                             <li>
-                                <a href="shop-v4-filter-as-category.html">20 - 29 inches</a>
+                                <a href="./shop-v4-filter-as-category.php">20 - 29 inches</a>
                             </li>
                             <li>
-                                <a href="shop-v4-filter-as-category.html">30 - 39 inches</a>
+                                <a href="./shop-v4-filter-as-category.php">30 - 39 inches</a>
                             </li>
                             <li>
-                                <a href="shop-v4-filter-as-category.html">40 - 49 inches</a>
+                                <a href="./shop-v4-filter-as-category.php">40 - 49 inches</a>
                             </li>
                             <li>
-                                <a href="shop-v4-filter-as-category.html">50 inches and more</a>
+                                <a href="./shop-v4-filter-as-category.php">50 inches and more</a>
                             </li>
                         </ul>
                     </div>
@@ -1505,16 +716,16 @@
                                 <a class="dir-list-main">Camera & Camcorders</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">DSLR & Hybrid Cameras</a>
+                                <a href="./shop-v3-sub-sub-category.php">DSLR & Hybrid Cameras</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Compact Cameras</a>
+                                <a href="./shop-v3-sub-sub-category.php">Compact Cameras</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Security & Surveillance</a>
+                                <a href="./shop-v3-sub-sub-category.php">Security & Surveillance</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Bundle Offers</a>
+                                <a href="./shop-v3-sub-sub-category.php">Bundle Offers</a>
                             </li>
                         </ul>
                     </div>
@@ -1524,19 +735,19 @@
                                 <a class="dir-list-main">Audio & Amplifiers</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">MP3 Players</a>
+                                <a href="./shop-v3-sub-sub-category.php">MP3 Players</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Headphones & Headsets</a>
+                                <a href="./shop-v3-sub-sub-category.php">Headphones & Headsets</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Portable Speakers</a>
+                                <a href="./shop-v3-sub-sub-category.php">Portable Speakers</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Home Theater</a>
+                                <a href="./shop-v3-sub-sub-category.php">Home Theater</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Hi-Fi & Stereo</a>
+                                <a href="./shop-v3-sub-sub-category.php">Hi-Fi & Stereo</a>
                             </li>
                         </ul>
                     </div>
@@ -1552,37 +763,37 @@
                     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                         <ul class="dir-list-wrap">
                             <li>
-                                <a href="shop-v1-root-category.html" class="dir-list-main">Fiction & Literature</a>
+                                <a href="./shop-v1-root-category.php" class="dir-list-main">Fiction & Literature</a>
                             </li>
                             <li>
-                                <a href="shop-v1-root-category.html">Fiction</a>
+                                <a href="./shop-v1-root-category.php">Fiction</a>
                             </li>
                             <li>
-                                <a href="shop-v1-root-category.html">Graphic Novels & Comics</a>
+                                <a href="./shop-v1-root-category.php">Graphic Novels & Comics</a>
                             </li>
                             <li>
-                                <a href="shop-v1-root-category.html">Literature</a>
+                                <a href="./shop-v1-root-category.php">Literature</a>
                             </li>
                             <li>
-                                <a href="shop-v1-root-category.html">Manga</a>
+                                <a href="./shop-v1-root-category.php">Manga</a>
                             </li>
                             <li>
-                                <a href="shop-v1-root-category.html">Mystery & Crime</a>
+                                <a href="./shop-v1-root-category.php">Mystery & Crime</a>
                             </li>
                             <li>
-                                <a href="shop-v1-root-category.html">Poetry</a>
+                                <a href="./shop-v1-root-category.php">Poetry</a>
                             </li>
                             <li>
-                                <a href="shop-v1-root-category.html">Romance</a>
+                                <a href="./shop-v1-root-category.php">Romance</a>
                             </li>
                             <li>
-                                <a href="shop-v1-root-category.html">Science Fiction & Fantasy</a>
+                                <a href="./shop-v1-root-category.php">Science Fiction & Fantasy</a>
                             </li>
                             <li>
-                                <a href="shop-v1-root-category.html">Thrillers</a>
+                                <a href="./shop-v1-root-category.php">Thrillers</a>
                             </li>
                             <li>
-                                <a href="shop-v1-root-category.html">Westerns</a>
+                                <a href="./shop-v1-root-category.php">Westerns</a>
                             </li>
                         </ul>
                     </div>
@@ -1592,22 +803,22 @@
                                 <a class="dir-list-main">Kids & Teens</a>
                             </li>
                             <li>
-                                <a href="shop-v4-filter-as-category.html">Ages 0-2</a>
+                                <a href="./shop-v4-filter-as-category.php">Ages 0-2</a>
                             </li>
                             <li>
-                                <a href="shop-v4-filter-as-category.html">Ages 3-5</a>
+                                <a href="./shop-v4-filter-as-category.php">Ages 3-5</a>
                             </li>
                             <li>
-                                <a href="shop-v4-filter-as-category.html">Ages 6-8</a>
+                                <a href="./shop-v4-filter-as-category.php">Ages 6-8</a>
                             </li>
                             <li>
-                                <a href="shop-v4-filter-as-category.html">Ages 9-12</a>
+                                <a href="./shop-v4-filter-as-category.php">Ages 9-12</a>
                             </li>
                             <li>
-                                <a href="shop-v4-filter-as-category.html">Teens</a>
+                                <a href="./shop-v4-filter-as-category.php">Teens</a>
                             </li>
                             <li>
-                                <a href="shop-v4-filter-as-category.html">All Kids' Books</a>
+                                <a href="./shop-v4-filter-as-category.php">All Kids' Books</a>
                             </li>
                         </ul>
                     </div>
@@ -1617,22 +828,22 @@
                                 <a class="dir-list-main">Nonfiction</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Activity & Game Books</a>
+                                <a href="./shop-v3-sub-sub-category.php">Activity & Game Books</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Antiques & Collectibles</a>
+                                <a href="./shop-v3-sub-sub-category.php">Antiques & Collectibles</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Art, Architecture & Photography</a>
+                                <a href="./shop-v3-sub-sub-category.php">Art, Architecture & Photography</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Bibles & Christianity</a>
+                                <a href="./shop-v3-sub-sub-category.php">Bibles & Christianity</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Biography</a>
+                                <a href="./shop-v3-sub-sub-category.php">Biography</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Business Books</a>
+                                <a href="./shop-v3-sub-sub-category.php">Business Books</a>
                             </li>
                         </ul>
                     </div>
@@ -1644,59 +855,28 @@
                                 <a class="dir-list-main">Nonfiction</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Computers</a>
+                                <a href="./shop-v3-sub-sub-category.php">Computers</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Cookbooks, Food & Wine</a>
+                                <a href="./shop-v3-sub-sub-category.php">Cookbooks, Food & Wine</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Crafts & Hobbies</a>
+                                <a href="./shop-v3-sub-sub-category.php">Crafts & Hobbies</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Current Affairs & Politics</a>
+                                <a href="./shop-v3-sub-sub-category.php">Current Affairs & Politics</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Diet, Health & Fitness</a>
+                                <a href="./shop-v3-sub-sub-category.php">Diet, Health & Fitness</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Education</a>
+                                <a href="./shop-v3-sub-sub-category.php">Education</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Engineering</a>
+                                <a href="./shop-v3-sub-sub-category.php">Engineering</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Foreign Languages</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                        <ul class="dir-list-wrap">
-                            <li>
-                                <a class="dir-list-main">Nonfiction</a>
-                            </li>
-                            <li>
-                                <a href="shop-v3-sub-sub-category.html">History</a>
-                            </li>
-                            <li>
-                                <a href="shop-v3-sub-sub-category.html">Home & Garden</a>
-                            </li>
-                            <li>
-                                <a href="shop-v3-sub-sub-category.html">Humor</a>
-                            </li>
-                            <li>
-                                <a href="shop-v3-sub-sub-category.html">Law</a>
-                            </li>
-                            <li>
-                                <a href="shop-v3-sub-sub-category.html">Medicine & Nursing Books</a>
-                            </li>
-                            <li>
-                                <a href="shop-v3-sub-sub-category.html">Music, Film & Performing Arts</a>
-                            </li>
-                            <li>
-                                <a href="shop-v3-sub-sub-category.html">Nature</a>
-                            </li>
-                            <li>
-                                <a href="shop-v3-sub-sub-category.html">New Age & Alternative Beliefs</a>
+                                <a href="./shop-v3-sub-sub-category.php">Foreign Languages</a>
                             </li>
                         </ul>
                     </div>
@@ -1706,28 +886,59 @@
                                 <a class="dir-list-main">Nonfiction</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Parenting & Family</a>
+                                <a href="./shop-v3-sub-sub-category.php">History</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Pets</a>
+                                <a href="./shop-v3-sub-sub-category.php">Home & Garden</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Philosophy</a>
+                                <a href="./shop-v3-sub-sub-category.php">Humor</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Psychology</a>
+                                <a href="./shop-v3-sub-sub-category.php">Law</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Reference</a>
+                                <a href="./shop-v3-sub-sub-category.php">Medicine & Nursing Books</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Religion</a>
+                                <a href="./shop-v3-sub-sub-category.php">Music, Film & Performing Arts</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Role-Playing & Fantasy Games</a>
+                                <a href="./shop-v3-sub-sub-category.php">Nature</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Science & Technology</a>
+                                <a href="./shop-v3-sub-sub-category.php">New Age & Alternative Beliefs</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                        <ul class="dir-list-wrap">
+                            <li>
+                                <a class="dir-list-main">Nonfiction</a>
+                            </li>
+                            <li>
+                                <a href="./shop-v3-sub-sub-category.php">Parenting & Family</a>
+                            </li>
+                            <li>
+                                <a href="./shop-v3-sub-sub-category.php">Pets</a>
+                            </li>
+                            <li>
+                                <a href="./shop-v3-sub-sub-category.php">Philosophy</a>
+                            </li>
+                            <li>
+                                <a href="./shop-v3-sub-sub-category.php">Psychology</a>
+                            </li>
+                            <li>
+                                <a href="./shop-v3-sub-sub-category.php">Reference</a>
+                            </li>
+                            <li>
+                                <a href="./shop-v3-sub-sub-category.php">Religion</a>
+                            </li>
+                            <li>
+                                <a href="./shop-v3-sub-sub-category.php">Role-Playing & Fantasy Games</a>
+                            </li>
+                            <li>
+                                <a href="./shop-v3-sub-sub-category.php">Science & Technology</a>
                             </li>
                         </ul>
                     </div>
@@ -1743,57 +954,57 @@
                     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                         <ul class="dir-list-wrap">
                             <li>
-                                <a href="shop-v2-sub-category.html" class="dir-list-main">Make up</a>
+                                <a href="./shop-v2-sub-category.php" class="dir-list-main">Make up</a>
                             </li>
                             <li>
-                                <a href="shop-v2-sub-category.html">Lips</a>
+                                <a href="./shop-v2-sub-category.php">Lips</a>
                             </li>
                             <li>
-                                <a href="shop-v2-sub-category.html">Face</a>
+                                <a href="./shop-v2-sub-category.php">Face</a>
                             </li>
                             <li>
-                                <a href="shop-v2-sub-category.html">Eyes</a>
+                                <a href="./shop-v2-sub-category.php">Eyes</a>
                             </li>
                             <li>
-                                <a href="shop-v2-sub-category.html">Accessories</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                        <ul class="dir-list-wrap">
-                            <li>
-                                <a href="shop-v2-sub-category.html" class="dir-list-main">Skin Care</a>
-                            </li>
-                            <li>
-                                <a href="shop-v2-sub-category.html">Face Moisturizer, Creams & Lotions</a>
-                            </li>
-                            <li>
-                                <a href="shop-v2-sub-category.html">Face Wash & Scrubs</a>
-                            </li>
-                            <li>
-                                <a href="shop-v2-sub-category.html">Face Treatments</a>
-                            </li>
-                            <li>
-                                <a href="shop-v2-sub-category.html">Eye Treatments</a>
-                            </li>
-                            <li>
-                                <a href="shop-v2-sub-category.html">Face Masks & Packs</a>
+                                <a href="./shop-v2-sub-category.php">Accessories</a>
                             </li>
                         </ul>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                         <ul class="dir-list-wrap">
                             <li>
-                                <a href="shop-v2-sub-category.html" class="dir-list-main">Personal Care</a>
+                                <a href="./shop-v2-sub-category.php" class="dir-list-main">Skin Care</a>
                             </li>
                             <li>
-                                <a href="shop-v2-sub-category.html">Hair Removal Tools</a>
+                                <a href="./shop-v2-sub-category.php">Face Moisturizer, Creams & Lotions</a>
                             </li>
                             <li>
-                                <a href="shop-v2-sub-category.html">Massage & Relaxation</a>
+                                <a href="./shop-v2-sub-category.php">Face Wash & Scrubs</a>
                             </li>
                             <li>
-                                <a href="shop-v2-sub-category.html">Oral Care</a>
+                                <a href="./shop-v2-sub-category.php">Face Treatments</a>
+                            </li>
+                            <li>
+                                <a href="./shop-v2-sub-category.php">Eye Treatments</a>
+                            </li>
+                            <li>
+                                <a href="./shop-v2-sub-category.php">Face Masks & Packs</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                        <ul class="dir-list-wrap">
+                            <li>
+                                <a href="./shop-v2-sub-category.php" class="dir-list-main">Personal Care</a>
+                            </li>
+                            <li>
+                                <a href="./shop-v2-sub-category.php">Hair Removal Tools</a>
+                            </li>
+                            <li>
+                                <a href="./shop-v2-sub-category.php">Massage & Relaxation</a>
+                            </li>
+                            <li>
+                                <a href="./shop-v2-sub-category.php">Oral Care</a>
                             </li>
                         </ul>
                     </div>
@@ -1802,51 +1013,51 @@
                     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                         <ul class="dir-list-wrap">
                             <li>
-                                <a href="shop-v2-sub-category.html" class="dir-list-main">Hair Care</a>
+                                <a href="./shop-v2-sub-category.php" class="dir-list-main">Hair Care</a>
                             </li>
                             <li>
-                                <a href="shop-v2-sub-category.html">Hair Styling Tools</a>
+                                <a href="./shop-v2-sub-category.php">Hair Styling Tools</a>
                             </li>
                             <li>
-                                <a href="shop-v2-sub-category.html">Hair Care Treatments</a>
+                                <a href="./shop-v2-sub-category.php">Hair Care Treatments</a>
                             </li>
                             <li>
-                                <a href="shop-v2-sub-category.html">Shampoo</a>
+                                <a href="./shop-v2-sub-category.php">Shampoo</a>
                             </li>
                             <li>
-                                <a href="shop-v2-sub-category.html">Conditioner & Deep Conditioners</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                        <ul class="dir-list-wrap">
-                            <li>
-                                <a href="shop-v2-sub-category.html" class="dir-list-main">Health Care</a>
-                            </li>
-                            <li>
-                                <a href="shop-v2-sub-category.html">Medical Equipments</a>
-                            </li>
-                            <li>
-                                <a href="shop-v2-sub-category.html">Sexual Health</a>
-                            </li>
-                            <li>
-                                <a href="shop-v2-sub-category.html">OTC's Medicines</a>
-                            </li>
-                            <li>
-                                <a href="shop-v2-sub-category.html">Vitamins & Supplements</a>
+                                <a href="./shop-v2-sub-category.php">Conditioner & Deep Conditioners</a>
                             </li>
                         </ul>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                         <ul class="dir-list-wrap">
                             <li>
-                                <a href="shop-v2-sub-category.html" class="dir-list-main">Fragrances</a>
+                                <a href="./shop-v2-sub-category.php" class="dir-list-main">Health Care</a>
                             </li>
                             <li>
-                                <a href="shop-v2-sub-category.html">For Men</a>
+                                <a href="./shop-v2-sub-category.php">Medical Equipments</a>
                             </li>
                             <li>
-                                <a href="shop-v2-sub-category.html">For Women</a>
+                                <a href="./shop-v2-sub-category.php">Sexual Health</a>
+                            </li>
+                            <li>
+                                <a href="./shop-v2-sub-category.php">OTC's Medicines</a>
+                            </li>
+                            <li>
+                                <a href="./shop-v2-sub-category.php">Vitamins & Supplements</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                        <ul class="dir-list-wrap">
+                            <li>
+                                <a href="./shop-v2-sub-category.php" class="dir-list-main">Fragrances</a>
+                            </li>
+                            <li>
+                                <a href="./shop-v2-sub-category.php">For Men</a>
+                            </li>
+                            <li>
+                                <a href="./shop-v2-sub-category.php">For Women</a>
                             </li>
                         </ul>
                     </div>
@@ -1862,35 +1073,35 @@
                     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                         <ul class="dir-list-wrap">
                             <li>
-                                <a href="shop-v2-sub-category.html" class="dir-list-main">Furniture</a>
+                                <a href="./shop-v2-sub-category.php" class="dir-list-main">Furniture</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Living Room Furniture</a>
+                                <a href="./shop-v3-sub-sub-category.php">Living Room Furniture</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Office Furniture</a>
+                                <a href="./shop-v3-sub-sub-category.php">Office Furniture</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Bedroom Furniture</a>
+                                <a href="./shop-v3-sub-sub-category.php">Bedroom Furniture</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Kitchen & Dining Furniture</a>
+                                <a href="./shop-v3-sub-sub-category.php">Kitchen & Dining Furniture</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Outdoor Furniture</a>
+                                <a href="./shop-v3-sub-sub-category.php">Outdoor Furniture</a>
                             </li>
                         </ul>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                         <ul class="dir-list-wrap">
                             <li>
-                                <a href="shop-v3-sub-sub-category.html" class="dir-list-main">Bedding</a>
+                                <a href="./shop-v3-sub-sub-category.php" class="dir-list-main">Bedding</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Bed Linen</a>
+                                <a href="./shop-v3-sub-sub-category.php">Bed Linen</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Blankets & Quilt Sets</a>
+                                <a href="./shop-v3-sub-sub-category.php">Blankets & Quilt Sets</a>
                             </li>
                         </ul>
                     </div>
@@ -1900,19 +1111,19 @@
                                 <a class="dir-list-main">Home Decor</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Clocks</a>
+                                <a href="./shop-v3-sub-sub-category.php">Clocks</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Wall Art</a>
+                                <a href="./shop-v3-sub-sub-category.php">Wall Art</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Candles & Candle Holders</a>
+                                <a href="./shop-v3-sub-sub-category.php">Candles & Candle Holders</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Picture Frames</a>
+                                <a href="./shop-v3-sub-sub-category.php">Picture Frames</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Curtain, Blinds & Shades</a>
+                                <a href="./shop-v3-sub-sub-category.php">Curtain, Blinds & Shades</a>
                             </li>
                         </ul>
                     </div>
@@ -1946,32 +1157,32 @@
                                 <a class="dir-list-main">Household Supplies</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Brooms, Floor Brushes & Dustpans</a>
+                                <a href="./shop-v3-sub-sub-category.php">Brooms, Floor Brushes & Dustpans</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Mops, Refills & Mop sets</a>
+                                <a href="./shop-v3-sub-sub-category.php">Mops, Refills & Mop sets</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Sponges & Cleaning Cloths</a>
+                                <a href="./shop-v3-sub-sub-category.php">Sponges & Cleaning Cloths</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Pegs & Clothes Lines</a>
+                                <a href="./shop-v3-sub-sub-category.php">Pegs & Clothes Lines</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Housekeeping Dusters</a>
+                                <a href="./shop-v3-sub-sub-category.php">Housekeeping Dusters</a>
                             </li>
                         </ul>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                         <ul class="dir-list-wrap">
                             <li>
-                                <a href="shop-v3-sub-sub-category.html" class="dir-list-main">Bath</a>
+                                <a href="./shop-v3-sub-sub-category.php" class="dir-list-main">Bath</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Towels, Robes & Mats</a>
+                                <a href="./shop-v3-sub-sub-category.php">Towels, Robes & Mats</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Bathroom Accessories</a>
+                                <a href="./shop-v3-sub-sub-category.php">Bathroom Accessories</a>
                             </li>
                         </ul>
                     </div>
@@ -1982,151 +1193,7 @@
     </div>
     <!-- Store-Directory-Page /- -->
     <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <!-- Outer-Footer -->
-            <div class="outer-footer-wrapper u-s-p-y-80">
-                <h6>
-                    For special offers and other discount information
-                </h6>
-                <h1>
-                    Subscribe to our Newsletter
-                </h1>
-                <p>
-                    Subscribe to the mailing list to receive updates on promotions, new arrivals, discount and coupons.
-                </p>
-                <form class="newsletter-form">
-                    <label class="sr-only" for="newsletter-field">Enter your Email</label>
-                    <input type="text" id="newsletter-field" placeholder="Your Email Address">
-                    <button type="submit" class="button">SUBMIT</button>
-                </form>
-            </div>
-            <!-- Outer-Footer /- -->
-            <!-- Mid-Footer -->
-            <div class="mid-footer-wrapper u-s-p-b-80">
-                <div class="row">
-                    <div class="col-lg-3 col-md-3 col-sm-12">
-                        <div class="footer-list">
-                            <h6>CUSTOMER SERVICE</h6>
-                            <ul>
-                                <li>
-                                    <a href="faq.html">FAQs</a>
-                                </li>
-                                <li>
-                                    <a href="track-order.html">Track Order</a>
-                                </li>
-                                <li>
-                                    <a href="terms-and-conditions.html">Terms & Conditions</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-3 col-sm-12">
-                        <div class="footer-list">
-                            <h6>COMPANY</h6>
-                            <ul>
-                                <li>
-                                    <a href="home.html">Home</a>
-                                </li>
-                                <li>
-                                    <a href="about.html">About</a>
-                                </li>
-                                <li>
-                                    <a href="contact.html">Contact</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-3 col-sm-12">
-                        <div class="footer-list">
-                            <h6>INFORMATION</h6>
-                            <ul>
-                                <li>
-                                    <a href="store-directory.html">Categories Directory</a>
-                                </li>
-                                <li>
-                                    <a href="wishlist.html">My Wishlist</a>
-                                </li>
-                                <li>
-                                    <a href="cart.html">My Cart</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-3 col-sm-12">
-                        <div class="footer-list">
-                            <h6>Address</h6>
-                            <ul>
-                                <li>
-                                    <i class="fas fa-location-arrow u-s-m-r-9"></i>
-                                    <span>Gurley Street, Monrovia, Liberia</span>
-                                </li>
-                                <li>
-                                    <a href="tel:+231555711018">
-                                        <i class="fas fa-phone u-s-m-r-9"></i>
-                                        <span>+231555711018 / +231772878894</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="mailto:ziggroupofcompanies231@gmail.com">
-                                        <i class="fas fa-envelope u-s-m-r-9"></i>
-                                        <span>
-                                            Ziggroupofcompanies231@gmail.com</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Mid-Footer /- -->
-            <!-- Bottom-Footer -->
-            <div class="bottom-footer-wrapper">
-                <div class="social-media-wrapper">
-                    <ul class="social-media-list">
-                        <li>
-                            <a href="https://www.facebook.com/share/1F255sv7xp/?mibextid=wwXIfr">
-                                <i class="fab fa-facebook-f"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://www.facebook.com/share/1F255sv7xp/?mibextid=wwXIfr">
-                                <i class="fab fa-instagram"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://www.tiktok.com/@zig_customized?_t=ZM-8th9TmJk7l7&_r=1">
-                                <i class="fab fa-tiktok"></i>
-                            </a>
-                        </li>
-                        <!-- <li>
-                            <a href="#">
-                                <i class="fas fa-rss"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="fab fa-pinterest"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="fab fa-linkedin-in"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="fab fa-youtube"></i>
-                            </a>
-                        </li> -->
-                    </ul>
-                </div>
-                    <p class="copyright-text" >Copyright &copy; and &reg; <script>document.write(new Date().getFullYear());</script></span> Under<a href="home.html">ZIG CUSTOMIZED</a></p>
-                    <p class="copyright-text">Designed by <a href="https://www.easytechsolutionz.com/">Easy.Tech Solutions</a></p>
-            </div>
-        </div>
-        <!-- Bottom-Footer /- -->
-    </footer>
+    <?php include("../include/footer.php"); ?>
     <!-- Footer /- -->
     <!-- Dummy Selectbox -->
     <div class="select-dummy-wrapper">
@@ -2193,32 +1260,32 @@ ga('send', 'pageview')
 </script>
 <script src="https://www.google-analytics.com/analytics.js" async defer></script>
 <!-- Modernizr-JS -->
-<script type="text/javascript" src="js/vendor/modernizr-custom.min.js"></script>
+<script type="text/javascript" href="../assets/js/vendor/modernizr-custom.min.js"></script>
 <!-- NProgress -->
-<script type="text/javascript" src="js/nprogress.min.js"></script>
+<script type="text/javascript" href="../assets/js/nprogress.min.js"></script>
 <!-- jQuery -->
-<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" href="../assets/js/jquery.min.js"></script>
 <!-- Bootstrap JS -->
-<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" href="../assets/js/bootstrap.min.js"></script>
 <!-- Popper -->
-<script type="text/javascript" src="js/popper.min.js"></script>
+<script type="text/javascript" href="../assets/js/popper.min.js"></script>
 <!-- ScrollUp -->
-<script type="text/javascript" src="js/jquery.scrollUp.min.js"></script>
+<script type="text/javascript" href="../assets/js/jquery.scrollUp.min.js"></script>
 <!-- Elevate Zoom -->
-<script type="text/javascript" src="js/jquery.elevatezoom.min.js"></script>
+<script type="text/javascript" href="../assets/js/jquery.elevatezoom.min.js"></script>
 <!-- jquery-ui-range-slider -->
-<script type="text/javascript" src="js/jquery-ui.range-slider.min.js"></script>
+<script type="text/javascript" href="../assets/js/jquery-ui.range-slider.min.js"></script>
 <!-- jQuery Slim-Scroll -->
-<script type="text/javascript" src="js/jquery.slimscroll.min.js"></script>
+<script type="text/javascript" href="../assets/js/jquery.slimscroll.min.js"></script>
 <!-- jQuery Resize-Select -->
-<script type="text/javascript" src="js/jquery.resize-select.min.js"></script>
+<script type="text/javascript" href="../assets/js/jquery.resize-select.min.js"></script>
 <!-- jQuery Custom Mega Menu -->
-<script type="text/javascript" src="js/jquery.custom-megamenu.min.js"></script>
+<script type="text/javascript" href="../assets/js/jquery.custom-megamenu.min.js"></script>
 <!-- jQuery Countdown -->
-<script type="text/javascript" src="js/jquery.custom-countdown.min.js"></script>
+<script type="text/javascript" href="../assets/js/jquery.custom-countdown.min.js"></script>
 <!-- Owl Carousel -->
-<script type="text/javascript" src="js/owl.carousel.min.js"></script>
+<script type="text/javascript" href="../assets/js/owl.carousel.min.js"></script>
 <!-- Main -->
-<script type="text/javascript" src="js/app.js"></script>
+<script type="text/javascript" href="../assets/js/app.js"></script>
 </body>
 </html>
