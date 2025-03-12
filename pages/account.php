@@ -105,24 +105,36 @@
                     <div class="reg-wrapper">
                         <h2 class="account-h2 u-s-m-b-20">Register</h2>
                         <h6 class="account-h6 u-s-m-b-30">Registering for this site allows you to access your order status and history.</h6>
-                        <form>
+                        <form action = "../user/user_registration.php" class="form" method="post">
+                            <div class="u-s-m-b-30">
+                                <label for="fullname">Full Name
+                                    <span class="astk">*</span>
+                                </label>
+                                <input type="text" name="Fullname" id="fullname" class="text-field" placeholder="Fullname" required>
+                            </div>
                             <div class="u-s-m-b-30">
                                 <label for="user-name">Username
                                     <span class="astk">*</span>
                                 </label>
-                                <input type="text" id="user-name" class="text-field" placeholder="Username">
+                                <input type="text" name="Username" id="user-name" class="text-field" placeholder="Username" required>
                             </div>
                             <div class="u-s-m-b-30">
                                 <label for="email">Email
                                     <span class="astk">*</span>
                                 </label>
-                                <input type="text" id="email" class="text-field" placeholder="Email">
+                                <input type="text" name="Email" id="email" class="text-field" placeholder="Email" required>
+                            </div>
+                            <div class="u-s-m-b-30">
+                                <label for="phone">Phone Number
+                                    <span class="astk">*</span>
+                                </label>
+                                <input type="tel" name="Phone" id="phone" class="text-field" placeholder="Phone" required>
                             </div>
                             <div class="u-s-m-b-30">
                                 <label for="password">Password
                                     <span class="astk">*</span>
                                 </label>
-                                <input type="text" id="password" class="text-field" placeholder="Password">
+                                <input type="password" name="Password" id="password" class="text-field" placeholder="Password" required>
                             </div>
                             <div class="u-s-m-b-30">
                                 <input type="checkbox" class="check-box" id="accept">
@@ -131,7 +143,7 @@
                                 </label>
                             </div>
                             <div class="u-s-m-b-45">
-                                <button class="button button-primary w-100">Register</button>
+                                <button type="submit" name="userreg" value="userlog" class="button button-primary w-100">Register</button>
                             </div>
                         </form>
                     </div>
