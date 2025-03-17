@@ -1,5 +1,9 @@
 <header>
-        <!-- Top-Header -->
+<?php
+session_start();
+?>
+        
+<!-- Top-Header -->
         <div class="full-layer-outer-header">
             <div class="container clearfix">
                 <nav>
@@ -24,26 +28,38 @@
                                 <i class="fas fa-chevron-down u-s-m-l-9"></i>
                             </a>
                             <ul class="g-dropdown" style="width:200px">
-                                <li>
-                                    <a href="./cart.php">
-                                        <i class="fas fa-cog u-s-m-r-9"></i>
-                                        My Cart</a>
-                                </li>
-                                <!-- <li>
-                                    <a href="./wishlist.php">
-                                        <i class="far fa-heart u-s-m-r-9"></i>
-                                        My Wishlist</a>
-                                </li> -->
-                                <li>
-                                    <a href="./checkout.php">
-                                        <i class="far fa-check-circle u-s-m-r-9"></i>
-                                        Checkout</a>
-                                </li>
-                                <li>
-                                    <a href="./account.php">
-                                        <i class="fas fa-sign-in-alt u-s-m-r-9"></i>
-                                        Login / Signup</a>
-                                </li>
+
+                            <?php  if(isset($_SESSION['login_user']))
+								{ ?>
+                                    <li>
+                                        <a href="./pages/profile.php">
+                                            <i class="fas fa-user"></i>
+                                        Profile</a>
+                                    </li>
+
+                                    <li>
+                                        <a href="./pages/cart.php">
+                                            <i class="fas fa-cog u-s-m-r-9"></i>
+                                            My Cart</a>
+                                    </li>
+                                    <li>
+                                        <a href="./pages/checkout.php">
+                                            <i class="far fa-check-circle u-s-m-r-9"></i>
+                                            Checkout</a>
+                                    </li>
+
+                                    <li>
+                                        <a href="./user/logout.php">
+                                            <i class="fas fa-sign-out-alt"></i> 
+                                            Logout</a>
+                                    </li>
+
+                                    <?php } else { ?>
+                                    <li>
+                                        <a href="./pages/account.php">
+                                            <i class="fas fa-sign-in-alt u-s-m-r-9"></i>
+                                            Login / Signup</a>
+                                    </li> <?php } ?>
                             </ul>
                         </li>
                         <li>
@@ -82,7 +98,7 @@
                 <div class="row clearfix align-items-center">
                     <div class="col-lg-3 col-md-9 col-sm-6">
                         <div class="brand-logo text-lg-center">
-                            <a href="../index.html">
+                            <a href="../index.php">
                                 <img src="../assets/images/main-logo/ZIG.png" alt="Groover Brand Logo" class="app-brand-logo">
                             </a>
                         </div>
@@ -123,7 +139,7 @@
                         <nav>
                             <ul class="mid-nav g-nav">
                                 <li class="u-d-none-lg">
-                                    <a href="../index.html">
+                                    <a href="../index.php">
                                         <i class="ion ion-md-home u-c-brand"></i>
                                     </a>
                                 </li>
@@ -674,7 +690,7 @@
                                     <ul>
                                         <li class="menu-title">Home</li>
                                         <li>
-                                            <a href="../index.html" class="u-c-brand">Home</a>
+                                            <a href="../index.php" class="u-c-brand">Home</a>
                                         </li>
                                         <li>
                                             <a href="./about.php">About</a>

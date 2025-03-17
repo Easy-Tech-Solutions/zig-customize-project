@@ -68,18 +68,19 @@
                     <div class="login-wrapper">
                         <h2 class="account-h2 u-s-m-b-20">Login</h2>
                         <h6 class="account-h6 u-s-m-b-30">Welcome back! Sign in to your account.</h6>
-                        <form>
+                        <form action = "../user/user_login.php" method="post">
                             <div class="u-s-m-b-30">
                                 <label for="user-name-email">Username or Email
                                     <span class="astk">*</span>
                                 </label>
-                                <input type="text" id="user-name-email" class="text-field" placeholder="Username / Email">
+                                <input type="text" name="Username" id="user-name-email" class="text-field" placeholder="Username / Email" required>
                             </div>
                             <div class="u-s-m-b-30">
                                 <label for="login-password">Password
                                     <span class="astk">*</span>
                                 </label>
-                                <input type="text" id="login-password" class="text-field" placeholder="Password">
+                                <input type="password" name="Password" id="login-password" class="text-field" placeholder="Password" required>
+                                <input type="checkbox" id="showPassword"> Show Password<br><br>
                             </div>
                             <div class="group-inline u-s-m-b-30">
                                 <div class="group-1">
@@ -94,7 +95,7 @@
                                 </div>
                             </div>
                             <div class="m-b-45">
-                                <button class="button button-outline-secondary w-100">Login</button>
+                                <button type="submit" name="userlog" value="userlog" class="button button-outline-secondary w-100">Login</button>
                             </div>
                         </form>
                     </div>
@@ -137,13 +138,23 @@
                                 <input type="password" name="Password" id="password" class="text-field" placeholder="Password" required>
                             </div>
                             <div class="u-s-m-b-30">
-                                <input type="checkbox" class="check-box" id="accept">
+                                <label for="password">Confirm Password
+                                    <span class="astk">*</span>
+                                    <span id="password_error" style="color: red;"></span>
+                                </label>
+                                <input type="password" name="ConfirmPassword" id="confirm_password" class="text-field" placeholder="Confirm Password" required>
+                            </div>
+                            <div class="u-s-m-b-30">
+                                <span id="password_error" style="color: red;"></span>
+                            </div>
+                            <div class="u-s-m-b-30">
+                                <input type="checkbox" class="check-box" id="accept" name="accept" required>
                                 <label class="label-text no-color" for="accept">I’ve read and accept the
                                     <a href="./terms-and-conditions.php" class="u-c-brand">terms & conditions</a>
                                 </label>
                             </div>
                             <div class="u-s-m-b-45">
-                                <button type="submit" name="userreg" value="userlog" class="button button-primary w-100">Register</button>
+                                <button type="submit" name="userreg" value="userlog" class="button button-primary w-100" id="registerbtn">Register</button>
                             </div>
                         </form>
                     </div>
@@ -221,32 +232,34 @@ ga('send', 'pageview')
 </script>
 <script src="https://www.google-analytics.com/analytics.js" async defer></script>
 <!-- Modernizr-JS -->
-<script type="text/javascript" src="js/vendor/modernizr-custom.min.js"></script>
+<script type="text/javascript" src="../assets/js/vendor/modernizr-custom.min.js"></script>
 <!-- NProgress -->
-<script type="text/javascript" src="js/nprogress.min.js"></script>
+<script type="text/javascript" src="../assets/js/nprogress.min.js"></script>
 <!-- jQuery -->
-<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="../assets/js/jquery.min.js"></script>
 <!-- Bootstrap JS -->
-<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../assets/js/bootstrap.min.js"></script>
 <!-- Popper -->
-<script type="text/javascript" src="js/popper.min.js"></script>
+<script type="text/javascript" src="../assets/js/popper.min.js"></script>
 <!-- ScrollUp -->
-<script type="text/javascript" src="js/jquery.scrollUp.min.js"></script>
+<script type="text/javascript" src="../assets/js/jquery.scrollUp.min.js"></script>
 <!-- Elevate Zoom -->
-<script type="text/javascript" src="js/jquery.elevatezoom.min.js"></script>
+<script type="text/javascript" src="../assets/js/jquery.elevatezoom.min.js"></script>
 <!-- jquery-ui-range-slider -->
-<script type="text/javascript" src="js/jquery-ui.range-slider.min.js"></script>
+<script type="text/javascript" src="../assets/js/jquery-ui.range-slider.min.js"></script>
 <!-- jQuery Slim-Scroll -->
-<script type="text/javascript" src="js/jquery.slimscroll.min.js"></script>
+<script type="text/javascript" src="../assets/js/jquery.slimscroll.min.js"></script>
 <!-- jQuery Resize-Select -->
-<script type="text/javascript" src="js/jquery.resize-select.min.js"></script>
+<script type="text/javascript" src="../assets/js/jquery.resize-select.min.js"></script>
 <!-- jQuery Custom Mega Menu -->
-<script type="text/javascript" src="js/jquery.custom-megamenu.min.js"></script>
+<script type="text/javascript" src="../assets/js/jquery.custom-megamenu.min.js"></script>
 <!-- jQuery Countdown -->
-<script type="text/javascript" src="js/jquery.custom-countdown.min.js"></script>
+<script type="text/javascript" src="../assets/js/jquery.custom-countdown.min.js"></script>
 <!-- Owl Carousel -->
-<script type="text/javascript" src="js/owl.carousel.min.js"></script>
+<script type="text/javascript" src="../assets/js/owl.carousel.min.js"></script>
 <!-- Main -->
-<script type="text/javascript" src="js/app.js"></script>
+<script type="text/javascript" src="../assets/js/app.js"></script>
+<!--Registration -->
+<script type="text/javascript" src="../assets/js/registration.js"></script>
 </body>
 </html>

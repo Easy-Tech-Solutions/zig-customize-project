@@ -1,0 +1,17 @@
+{
+    "name": "dalton/zig-customize-project",
+    "autoload": {
+        "psr-4": {
+            "Dalton\\ZigCustomizeProject\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Rabidalton",
+            "email": "rabiakalimat02@gmail.com"
+        }
+    ],
+    "require": {
+        "twilio/sdk": "^8.4"
+    }
+}

@@ -1,3 +1,10 @@
+<?php
+ini_set('session.cache_limiter','public');
+session_cache_limiter(false);
+session_start();
+include("./sql_connection/config.php");
+?>
+
 <!DOCTYPE html>
 <html class="no-js" lang="en-US">
 
@@ -66,26 +73,38 @@
                                 <i class="fas fa-chevron-down u-s-m-l-9"></i>
                             </a>
                             <ul class="g-dropdown" style="width:200px">
-                                <li>
-                                    <a href="./pages/cart.php">
-                                        <i class="fas fa-cog u-s-m-r-9"></i>
-                                        My Cart</a>
-                                </li>
-                                <!-- <li>
-                                    <a href="./pages/wishlist.php">
-                                        <i class="far fa-heart u-s-m-r-9"></i>
-                                        My Wishlist</a>
-                                </li> -->
-                                <li>
-                                    <a href="./pages/checkout.php">
-                                        <i class="far fa-check-circle u-s-m-r-9"></i>
-                                        Checkout</a>
-                                </li>
-                                <li>
-                                    <a href="./pages/account.php">
-                                        <i class="fas fa-sign-in-alt u-s-m-r-9"></i>
-                                        Login / Signup</a>
-                                </li>
+
+                            <?php  if(isset($_SESSION['login_user']))
+								{ ?>
+                                    <li>
+                                        <a href="./pages/profile.php">
+                                            <i class="fas fa-user"></i>
+                                        Profile</a>
+                                    </li>
+
+                                    <li>
+                                        <a href="./pages/cart.php">
+                                            <i class="fas fa-cog u-s-m-r-9"></i>
+                                            My Cart</a>
+                                    </li>
+                                    <li>
+                                        <a href="./pages/checkout.php">
+                                            <i class="far fa-check-circle u-s-m-r-9"></i>
+                                            Checkout</a>
+                                    </li>
+
+                                    <li>
+                                        <a href="./user/logout.php">
+                                            <i class="fas fa-sign-out-alt"></i> 
+                                            Logout</a>
+                                    </li>
+
+                                    <?php } else { ?>
+                                    <li>
+                                        <a href="./pages/account.php">
+                                            <i class="fas fa-sign-in-alt u-s-m-r-9"></i>
+                                            Login / Signup</a>
+                                    </li> <?php } ?>
                             </ul>
                         </li>
                         <li>

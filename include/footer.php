@@ -42,7 +42,7 @@
                             <h6>COMPANY</h6>
                             <ul>
                                 <li>
-                                    <a href="../index.html">Home</a>
+                                    <a href="../index.php">Home</a>
                                 </li>
                                 <li>
                                     <a href="./about.php">About</a>
@@ -137,7 +137,7 @@
                         </li> -->
                     </ul>
                 </div>
-                    <p class="copyright-text" >Copyright &copy; and &reg; <script>document.write(new Date().getFullYear());</script></span> Under<a href="../index.html">ZIG CUSTOMIZED</a></p>
+                    <p class="copyright-text" >Copyright &copy; and &reg; <script>document.write(new Date().getFullYear());</script></span> Under<a href="../index.php">ZIG CUSTOMIZED</a></p>
                     <p class="copyright-text">Designed by <a href="https://www.easytechsolutionz.com/">Easy.Tech Solutions</a></p>
             </div>
         </div>
