@@ -9,9 +9,19 @@
       "default",
       {
         "ignore": [
-          "speak"
+          "speak",
+          "user-select",
+          "backdrop-filter",
+          "text-wrap: nowrap",
+          "-webkit-overflow-scrolling",
+          "-ms-touch-action",
+          "scrollbar-width",
+          "scrollbar-width: none",
+          "-ms-filter",
+          "-ms-filter"
         ]
       }
-    ]
+    ],
+    "css-prefix-order": "off"
   }
 }

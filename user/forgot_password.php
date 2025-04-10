@@ -1,4 +1,9 @@
 <?php
+
+require_once 'vendor/autoload.php'; // Autoload the Twilio SDK
+
+use Twilio\Rest\Client;
+
 if (isset($_POST['submit_password'])) {
     include('../sql_connection/config.php');
     $usernameOrEmail = mysqli_real_escape_string($conn, $_POST['username_or_email']);

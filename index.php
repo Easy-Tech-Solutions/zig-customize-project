@@ -1,8 +1,12 @@
 <?php
 ini_set('session.cache_limiter','public');
 session_cache_limiter(false);
-session_start();
+
 include("./sql_connection/config.php");
+
+// Check if user is logged in and get role
+$isLoggedIn = isset($_SESSION['user_id']);
+$userRole = $isLoggedIn ? $_SESSION['role'] : null;
 ?>
 
 <!DOCTYPE html>
@@ -51,91 +55,101 @@ include("./sql_connection/config.php");
         <!-- Top-Header -->
         <div class="full-layer-outer-header">
             <div class="container clearfix">
-                <nav>
-                    <ul class="primary-nav g-nav">
-                        <li>
-                            <a href="tel:+231555711018">
-                                <i class="fas fa-phone u-c-brand u-s-m-r-9"></i>
-                                Telephone:+231555711018 / +231772878894</a>
-                        </li>
-                        <li>
-                            <a href="mailto:ziggroupofcompanies231@gmail.com ">
-                                <i class="fas fa-envelope u-c-brand u-s-m-r-9"></i>
-                                E-mail: ziggroupofcompanies231@gmail.com 
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-                <nav>
-                    <ul class="secondary-nav g-nav">
-                        <li>
-                            <a>My Account
-                                <i class="fas fa-chevron-down u-s-m-l-9"></i>
-                            </a>
-                            <ul class="g-dropdown" style="width:200px">
+                    <nav>
+                        <ul class="primary-nav g-nav">
+                            <li>
+                                <a href="tel:+231555711018">
+                                    <i class="fas fa-phone u-c-brand u-s-m-r-9"></i>
+                                    Telephone:+231555711018 / +231772878894</a>
+                            </li>
+                            <li>
+                                <a href="mailto:ziggroupofcompanies231@gmail.com ">
+                                    <i class="fas fa-envelope u-c-brand u-s-m-r-9"></i>
+                                    E-mail: ziggroupofcompanies231@gmail.com 
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <nav>
+                        <ul class="secondary-nav g-nav">
+                            <li>
+                                <a>My Account
+                                    <i class="fas fa-chevron-down u-s-m-l-9"></i>
+                                </a>
+                                <ul class="g-dropdown" style="width:200px">
+                                    <?php if ($isLoggedIn): ?>
+                                        <!-- Show these when logged in -->
+                                        <?php if ($userRole === 'Client'): ?>
+                                        <li>
+                                            <a href="../user/dashboard/viewprofile.php">
+                                                <i class="fas fa-user"></i>
+                                                Profile</a>
+                                        </li>
 
-                            <?php  if(isset($_SESSION['login_user']))
-								{ ?>
-                                    <li>
-                                        <a href="./pages/profile.php">
-                                            <i class="fas fa-user"></i>
-                                        Profile</a>
-                                    </li>
+                                            <!-- Show these only for clients -->
+                                            <li>
+                                                <a href="./user/dashboard/cart.php">
+                                                    <i class="fas fa-cog u-s-m-r-9"></i>
+                                                    My Cart</a>
+                                            </li>
+                                            <li>
+                                                <a href="./user/dashboard/checkout.php">
+                                                    <i class="far fa-check-circle u-s-m-r-9"></i>
+                                                    Checkout</a>
+                                            </li>
+                                        <?php endif; ?>
 
+                                        <li>
+                                            <a href="./user/logout.php">
+                                                <i class="fas fa-sign-out-alt"></i> 
+                                                Logout</a>
+                                        </li>
+                                    <?php else: ?>
+                                        <!-- Show these when not logged in -->
+                                        <li>
+                                            <a href="./pages/login.php">
+                                                <i class="fas fa-sign-in-alt u-s-m-r-9"></i>
+                                                Login / Signup</a>
+                                        </li> 
+                                    <?php endif; ?>
+                                </ul>
+                            </li>
+                            <li>
+                                <a>USD
+                                    <i class="fas fa-chevron-down u-s-m-l-9"></i>
+                                </a>
+                                <ul class="g-dropdown" style="width:90px">
                                     <li>
-                                        <a href="./pages/cart.php">
-                                            <i class="fas fa-cog u-s-m-r-9"></i>
-                                            My Cart</a>
+                                        <a href="#" class="u-c-brand">($) USD</a>
                                     </li>
                                     <li>
-                                        <a href="./pages/checkout.php">
-                                            <i class="far fa-check-circle u-s-m-r-9"></i>
-                                            Checkout</a>
+                                        <a href="#">($) LRD</a>
                                     </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a>ENG
+                                    <i class="fas fa-chevron-down u-s-m-l-9"></i>
+                                </a>
+                                <ul class="g-dropdown" style="width:70px">
+                                    <li>
+                                        <a href="#" class="u-c-brand">ENG</a>
+                                    </li>
+                                </ul>
+                            </li>
 
-                                    <li>
-                                        <a href="./user/logout.php">
-                                            <i class="fas fa-sign-out-alt"></i> 
-                                            Logout</a>
-                                    </li>
-
-                                    <?php } else { ?>
-                                    <li>
-                                        <a href="./pages/account.php">
-                                            <i class="fas fa-sign-in-alt u-s-m-r-9"></i>
-                                            Login / Signup</a>
-                                    </li> <?php } ?>
-                            </ul>
-                        </li>
-                        <li>
-                            <a>USD
-                                <i class="fas fa-chevron-down u-s-m-l-9"></i>
-                            </a>
-                            <ul class="g-dropdown" style="width:90px">
+                            <?php if ($isLoggedIn && ($userRole === 'Admin' || $userRole === 'Products Admin')): ?>
+                                <!-- Show Admin Dashboard button only for admins -->
                                 <li>
-                                    <a href="#" class="u-c-brand">($) USD</a>
+                                    <a href="./admin/dashboard/dashboard.php">
+                                        <button class="btn-dark"><strong>ADMIN DASHBOARD</strong></button>
+                                    </a>
                                 </li>
-                                <li>
-                                    <a href="#">($) LRD</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a>ENG
-                                <i class="fas fa-chevron-down u-s-m-l-9"></i>
-                            </a>
-                            <ul class="g-dropdown" style="width:70px">
-                                <li>
-                                    <a href="#" class="u-c-brand">ENG</a>
-                                </li>
-                                <!-- <li>
-                                    <a href="#">ARB</a>
-                                </li> -->
-                            </ul>
-                    </ul>
-                </nav>
+                            <?php endif; ?>
+                        </ul>
+                    </nav>
+                </div>
             </div>
-        </div>
         <!-- Top-Header /- -->
         <!-- Mid-Header -->
         <div class="full-layer-mid-header">

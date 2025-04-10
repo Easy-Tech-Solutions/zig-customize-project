@@ -73,6 +73,13 @@
                             </label>
                             <input type="text" id="user-name-email" class="text-field" placeholder="Username / Email">
                         </div>
+                        <div class="group-2 text-right">
+                            <div class="page-anchor">
+                                <a href="./lost-username.php">
+                                    <i class="fas fa-circle-o-notch u-s-m-r-9"></i>Forgot Username?
+                                </a>
+                            </div>
+                        </div>
                         <div class="u-s-m-b-13">
                             <button class="button button-outline-secondary">Get Reset Link</button>
                         </div>

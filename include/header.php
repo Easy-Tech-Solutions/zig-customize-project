@@ -1,6 +1,12 @@
 <header>
 <?php
 session_start();
+// Include your database connection if needed
+include('../sql_connection/config.php');
+
+// Check if user is logged in and get role
+$isLoggedIn = isset($_SESSION['user_id']);
+$userRole = $isLoggedIn ? $_SESSION['role'] : null;
 ?>
         
 <!-- Top-Header -->
@@ -28,38 +34,41 @@ session_start();
                                 <i class="fas fa-chevron-down u-s-m-l-9"></i>
                             </a>
                             <ul class="g-dropdown" style="width:200px">
-
-                            <?php  if(isset($_SESSION['login_user']))
-								{ ?>
+                                <?php if ($isLoggedIn): ?>
+                                    <!-- Show these when logged in -->
                                     <li>
-                                        <a href="./pages/profile.php">
+                                        <a href="./viewprofile.php">
                                             <i class="fas fa-user"></i>
-                                        Profile</a>
+                                            Profile</a>
                                     </li>
 
-                                    <li>
-                                        <a href="./pages/cart.php">
-                                            <i class="fas fa-cog u-s-m-r-9"></i>
-                                            My Cart</a>
-                                    </li>
-                                    <li>
-                                        <a href="./pages/checkout.php">
-                                            <i class="far fa-check-circle u-s-m-r-9"></i>
-                                            Checkout</a>
-                                    </li>
+                                    <?php if ($userRole === 'Client'): ?>
+                                        <!-- Show these only for clients -->
+                                        <li>
+                                            <a href="./cart.php">
+                                                <i class="fas fa-cog u-s-m-r-9"></i>
+                                                My Cart</a>
+                                        </li>
+                                        <li>
+                                            <a href="./checkout.php">
+                                                <i class="far fa-check-circle u-s-m-r-9"></i>
+                                                Checkout</a>
+                                        </li>
+                                    <?php endif; ?>
 
                                     <li>
-                                        <a href="./user/logout.php">
+                                        <a href="../user/logout.php">
                                             <i class="fas fa-sign-out-alt"></i> 
                                             Logout</a>
                                     </li>
-
-                                    <?php } else { ?>
+                                <?php else: ?>
+                                    <!-- Show these when not logged in -->
                                     <li>
-                                        <a href="./pages/account.php">
+                                        <a href="../pages/login.php">
                                             <i class="fas fa-sign-in-alt u-s-m-r-9"></i>
                                             Login / Signup</a>
-                                    </li> <?php } ?>
+                                    </li> 
+                                <?php endif; ?>
                             </ul>
                         </li>
                         <li>
@@ -83,10 +92,17 @@ session_start();
                                 <li>
                                     <a href="#" class="u-c-brand">ENG</a>
                                 </li>
-                                <!-- <li>
-                                    <a href="#">ARB</a>
-                                </li> -->
                             </ul>
+                        </li>
+
+                        <?php if ($isLoggedIn && ($userRole === 'Admin' || $userRole === 'Products Admin')): ?>
+                            <!-- Show Admin Dashboard button only for admins -->
+                            <li>
+                                <a href="../admin/dashboard/dashboard.php">
+                                    <button class="btn-dark"><strong>ADMIN DASHBOARD</strong></button>
+                                </a>
+                            </li>
+                        <?php endif; ?>
                     </ul>
                 </nav>
             </div>
@@ -248,140 +264,6 @@ session_start();
                                                 <!-- <i class="ion ion-ios-arrow-forward"></i> -->
                                             </a>
                                             <button class="v-button ion ion-md-add"></button>
-                                            <!-- <div class="v-drop-right" style="width: 700px;">
-                                                <div class="row">
-                                                    <div class="col-lg-4">
-                                                        <ul class="v-level-2">
-                                                            <li>
-                                                                <a href="./shop-v2-sub-category.php">Tops</a>
-                                                                <ul>
-                                                                    <li>
-                                                                        <a href="./shop-v3-sub-sub-category.php">T-Shirts</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="./shop-v3-sub-sub-category.php">Hoodies</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="./shop-v3-sub-sub-category.php">Suits</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="./shop-v4-filter-as-category.php">Black Bean T-Shirt
-                                                                        </a>
-                                                                    </li>
-                                                                </ul>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="col-lg-4">
-                                                        <ul class="v-level-2">
-                                                            <li>
-                                                                <a href="./shop-v2-sub-category.php">Outwear</a>
-                                                                <ul>
-                                                                    <li>
-                                                                        <a href="./shop-v3-sub-sub-category.php">Jackets</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="./shop-v3-sub-sub-category.php">Trench</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="./shop-v3-sub-sub-category.php">Parkas</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="./shop-v3-sub-sub-category.php">Sweaters</a>
-                                                                    </li>
-                                                                </ul>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="col-lg-4">
-                                                        <ul class="v-level-2">
-                                                            <li>
-                                                                <a href="./shop-v1-root-category.php">Accessories</a>
-                                                                <ul>
-                                                                    <li>
-                                                                        <a href="./shop-v3-sub-sub-category.php">Watches</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="./shop-v3-sub-sub-category.php">Ties</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="./shop-v3-sub-sub-category.php">Scarves</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="./shop-v3-sub-sub-category.php">Belts</a>
-                                                                    </li>
-                                                                </ul>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-lg-4">
-                                                        <ul class="v-level-2">
-                                                            <li>
-                                                                <a href="./shop-v2-sub-category.php">Bottoms</a>
-                                                                <ul>
-                                                                    <li>
-                                                                        <a href="./shop-v3-sub-sub-category.php">Casual Pants
-                                                                        </a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="./shop-v3-sub-sub-category.php">Shoes</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="./shop-v3-sub-sub-category.php">Jeans</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="./shop-v3-sub-sub-category.php">Shorts</a>
-                                                                    </li>
-                                                                </ul>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="col-lg-4">
-                                                        <ul class="v-level-2">
-                                                            <li>
-                                                                <a href="./shop-v2-sub-category.php">Underwear</a>
-                                                                <ul>
-                                                                    <li>
-                                                                        <a href="./shop-v3-sub-sub-category.php">Boxers</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="./shop-v3-sub-sub-category.php">Briefs</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="./shop-v3-sub-sub-category.php">Robes</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="./shop-v3-sub-sub-category.php">Socks</a>
-                                                                    </li>
-                                                                </ul>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="col-lg-4">
-                                                        <ul class="v-level-2">
-                                                            <li>
-                                                                <a href="./shop-v2-sub-category.php">Sunglasses</a>
-                                                                <ul>
-                                                                    <li>
-                                                                        <a href="./shop-v3-sub-sub-category.php">Pilot</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="./shop-v3-sub-sub-category.php">Wayfarer</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="./shop-v3-sub-sub-category.php">Square</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="./shop-v3-sub-sub-category.php">Round</a>
-                                                                    </li>
-                                                                </ul>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div> -->
                                         </li>
                                         <li class="js-backdrop">
                                             <a href="./shop-v1-root-category.php">
@@ -390,150 +272,6 @@ session_start();
                                                 <!-- <i class="ion ion-ios-arrow-forward"></i> -->
                                             </a>
                                             <button class="v-button ion ion-md-add"></button>
-                                            <!-- <div class="v-drop-right" style="width: 700px;">
-                                                <div class="row">
-                                                    <div class="col-lg-4">
-                                                        <ul class="v-level-2">
-                                                            <li>
-                                                                <a href="./shop-v2-sub-category.php">Tops</a>
-                                                                <ul>
-                                                                    <li>
-                                                                        <a href="./shop-v3-sub-sub-category.php">Dresses</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="./shop-v3-sub-sub-category.php">Blouses & Shirts
-                                                                        </a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="./shop-v3-sub-sub-category.php">T-shirts</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="./shop-v3-sub-sub-category.php">Sweater</a>
-                                                                    </li>
-                                                                </ul>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="col-lg-4">
-                                                        <ul class="v-level-2">
-                                                            <li>
-                                                                <a href="./shop-v2-sub-category.php">Intimates</a>
-                                                                <ul>
-                                                                    <li>
-                                                                        <a href="./shop-v3-sub-sub-category.php">Bras</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="./shop-v3-sub-sub-category.php">Brief Sets
-                                                                        </a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="./shop-v3-sub-sub-category.php">Bustiers & Corsets
-                                                                        </a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="./shop-v3-sub-sub-category.php">Panties</a>
-                                                                    </li>
-                                                                </ul>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="col-lg-4">
-                                                        <ul class="v-level-2">
-                                                            <li>
-                                                                <a href="./shop-v2-sub-category.php">Wedding & Events
-                                                                </a>
-                                                                <ul>
-                                                                    <li>
-                                                                        <a href="./shop-v3-sub-sub-category.php">Wedding Dresses
-                                                                        </a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="./shop-v2-sub-category.php">Evening Dresses
-                                                                        </a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="./shop-v3-sub-sub-category.php">Prom Dresses
-                                                                        </a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="./shop-v3-sub-sub-category.php">Flower Dresses
-                                                                        </a>
-                                                                    </li>
-                                                                </ul>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-lg-4">
-                                                        <ul class="v-level-2">
-                                                            <li>
-                                                                <a href="./shop-v2-sub-category.php">Bottoms</a>
-                                                                <ul>
-                                                                    <li>
-                                                                        <a href="./shop-v3-sub-sub-category.php">Skirts</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="./shop-v3-sub-sub-category.php">Shoes</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="./shop-v3-sub-sub-category.php">Leggings</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="./shop-v3-sub-sub-category.php">Jeans</a>
-                                                                    </li>
-                                                                </ul>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="col-lg-4">
-                                                        <ul class="v-level-2">
-                                                            <li>
-                                                                <a href="./shop-v2-sub-category.php">Outwear & Jackets
-                                                                </a>
-                                                                <ul>
-                                                                    <li>
-                                                                        <a href="./shop-v3-sub-sub-category.php">Blazers</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="./shop-v3-sub-sub-category.php">Basics Jackets
-                                                                        </a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="./shop-v3-sub-sub-category.php">Trench</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="./shop-v3-sub-sub-category.php">Leather & Suede
-                                                                        </a>
-                                                                    </li>
-                                                                </ul>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="col-lg-4">
-                                                        <ul class="v-level-2">
-                                                            <li>
-                                                                <a href="./shop-v2-sub-category.php">Accessories</a>
-                                                                <ul>
-                                                                    <li>
-                                                                        <a href="./shop-v3-sub-sub-category.php">Sunglasses</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="./shop-v3-sub-sub-category.php">Headwear</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="./shop-v3-sub-sub-category.php">Baseball Caps
-                                                                        </a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="./shop-v3-sub-sub-category.php">Belts</a>
-                                                                    </li>
-                                                                </ul>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div> -->
                                         </li>
                                         <li class="js-backdrop">
                                             <a href="./shop-v1-root-category.php">
@@ -543,86 +281,6 @@ session_start();
                                             </a>
                                             <button class="v-button ion ion-md-add"></button>
                                             <div class="v-drop" style="width: 700px;">
-                                                <!-- <div class="row">
-                                                     <div class="col-lg-4">
-                                                        <ul class="v-level-2">
-                                                            <li>
-                                                                <a href="./shop-v2-sub-category.php">RC Toys & Hobbies
-                                                                </a>
-                                                                <ul>
-                                                                    <li>
-                                                                        <a href="./shop-v3-sub-sub-category.php">RC Helicopter
-                                                                        </a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="./shop-v3-sub-sub-category.php">RC Lego Robots
-                                                                        </a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="./shop-v3-sub-sub-category.php">RC Drone
-                                                                        </a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="./shop-v3-sub-sub-category.php">RC Car
-                                                                        </a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="./shop-v3-sub-sub-category.php">RC Boat
-                                                                        </a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="./shop-v3-sub-sub-category.php">RC Robot
-                                                                        </a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="./shop-v3-sub-sub-category.php">Multi Rotor Parts
-                                                                        </a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="./shop-v3-sub-sub-category.php">FPV System
-                                                                        </a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="./shop-v3-sub-sub-category.php">Radios & Receiver
-                                                                        </a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="./shop-v3-sub-sub-category.php">Battery & Charger
-                                                                        </a>
-                                                                    </li>
-                                                                </ul>
-                                                            </li>
-                                                        </ul>
-                                                    </div> 
-                                                    <div class="col-lg-4">
-                                                        <ul class="v-level-2">
-                                                            <li>
-                                                                <a href="./shop-v2-sub-category.php">Solar Energy
-                                                                </a>
-                                                                <ul>
-                                                                    <li>
-                                                                        <a href="./shop-v3-sub-sub-category.php">Solar Powered Toy
-                                                                        </a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="./shop-v3-sub-sub-category.php">Solar Powered System
-                                                                        </a>
-                                                                    </li>
-                                                                    <li class="view-more-flag">
-                                                                        <a href="./store-directory.php">View More
-                                                                        </a>
-                                                                    </li>
-                                                                </ul>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div> -->
-                                                <!-- Remember layer image should be place on empty space and its not overlap your list items because user could not read your list items. -->
-                                                <!-- <div class="v-image" style="bottom: 0;right: -25px">
-                                                    <a href="#" class="d-block">
-                                                        <img src="../assets/images/banners/mega-3.png" class="img-fluid" alt="Product">
-                                                    </a>
-                                                </div> -->
                                             </div>
                                         </li>
                                         <li class="v-none" style="display: none">
@@ -637,18 +295,7 @@ session_start();
                                                 ACCESSORIES
                                             </a>
                                         </li>
-                                        <!-- <li>
-                                            <a href="./shop-v1-root-category.php">
-                                                <i class="ion ion-ios-book"></i>
-                                                ACCESSORIES
-                                            </a>
-                                        </li> -->
-                                        <!-- <li>
-                                            <a href="./shop-v1-root-category.php">
-                                                <i class="ion ion-md-heart"></i>
-                                                Beauty & Health
-                                            </a>
-                                        </li> -->
+                                        
                                         <li class="v-none" style="display: none">
                                             <a href="./about.php">
                                                 <!-- <i class="ion ion-md-easel"></i> -->
@@ -707,13 +354,7 @@ session_start();
                                         <li>
                                             <a href="./terms-and-conditions.php">Terms & Conditions</a>
                                         </li>
-                                        <!-- <li>
-                                            <a href="./404.php">404</a>
-                                        </li> -->
-                                        <!-- <li class="menu-title">Single Product Page</li> -->
-                                        <!-- <li>
-                                            <a href="./single-product.php">Single Product Fullwidth</a>
-                                        </li> -->
+                                       
                                         <li class="menu-title">Blog</li>
                                         <li>
                                             <a href="./blog.php">Zig Updates </a>
@@ -742,13 +383,6 @@ session_start();
                                         <li>
                                             <a href="./track-order.php">Track your Order</a>
                                         </li>
-                                        <!-- <li class="menu-title">Cart Variations</li> -->
-                                        <!-- <li>
-                                            <a href="./cart-empty.php">Cart Ver 1 Empty</a>
-                                        </li> -->
-                                        <!-- <li>
-                                            <a href="./cart.php">Cart</a>
-                                        </li> -->
                                         <li class="menu-title">Wishlist</li>
                                         <!-- <li>
                                             <a href="./wishlist-empty.php">Wishlist Ver 1 Empty</a>
@@ -758,25 +392,7 @@ session_start();
                                         </li>
                                     </ul>
                                     <ul>
-                                        <!-- <li class="menu-title">Shop Variations</li>
-                                        <li> -->
-                                            <!-- <a href="./shop-v1-root-category.php">Shop Ver 1 Root Category</a>
-                                        </li>
-                                        <li>
-                                            <a href="./shop-v2-sub-category.php">Shop Ver 2 Sub Category</a>
-                                        </li>
-                                        <li>
-                                            <a href="./shop-v3-sub-sub-category.php">Shop Ver 3 Sub Sub Category</a>
-                                        </li>
-                                        <li>
-                                            <a href="./shop-v4-filter-as-category.php">Shop Ver 4 Filter as Category</a>
-                                        </li>
-                                        <li>
-                                            <a href="./shop-v5-product-not-found.php">Shop Ver 5 Product Not Found</a>
-                                        </li>
-                                        <li>
-                                            <a href="./shop-v6-search-results.php">Shop Ver 6 Search Results</a>
-                                        </li> -->
+                                        
                                         <li class="menu-title">Account</li>
                                         <li>
                                             <a href="./lost-password.php">Lost Your Password ?</a>
