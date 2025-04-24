@@ -184,7 +184,7 @@
                                 </div>
                                 <div class="group-2 text-right">
                                     <div class="page-anchor">
-                                        <a href="../user/signup.php">
+                                        <a href="./registration.php">
                                             <i class="fas fa-circle-o-notch u-s-m-r-9"></i>Signup</a>
                                     </div>
                                 </div>

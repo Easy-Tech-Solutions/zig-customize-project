@@ -133,10 +133,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <label for="category" class="form-label">Category</label>
                         <select class="form-select" id="category" name="category" required>
                             <option value="">Select Category</option>
-                            <option value="Men's Clothing">Men's Clothing</option>
-                            <option value="Women's Clothing">Women's Clothing</option>
-                            <option value="Kids Clothing">Kids Clothing</option>
+                            <option value="Tops">Tops</option>
+                            <option value="Hardware">Hardware</option>
+                            <option value="Bottoms">Bottoms</option>
+                            <option value="Bags">Bags</option>
                             <option value="Accessories">Accessories</option>
+
                         </select>
                     </div>
                 </div>
