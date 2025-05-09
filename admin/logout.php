@@ -2,6 +2,6 @@
 session_start();
 session_unset();
 session_destroy();
-header("Location: /ZIG-CUSTOMIZE-PROJECT/admin/admin_login.php");
+header("Location: /public_html/admin/admin_login.php");
 exit();
 ?>

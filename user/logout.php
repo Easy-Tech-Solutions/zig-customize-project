@@ -2,6 +2,6 @@
 session_start();
 session_unset();
 session_destroy();
-header("Location: /ZIG-CUSTOMIZE-PROJECT/index.php");
+header("Location: /public_html/index.php");
 exit();
 ?>

@@ -132,9 +132,9 @@
                                     
                                     // Redirect based on role
                                     if ($user['role_name'] === 'Client') {
-                                        header("Location:  /ZIG-CUSTOMIZE-PROJECT/index.php");
+                                        header("Location:  /public_html/index.php");
                                     } else {
-                                        header("Location:  /ZIG-CUSTOMIZE-PROJECT/admin/dashboard/dashboard.php");
+                                        header("Location:  /public_html/admin/dashboard/dashboard.php");
                                     }
                                     exit();
                                 } else {

@@ -42,7 +42,7 @@ if (isset($_POST['submit_password'])) {
             // Send the code to the user's email
             mail($email, "Password Reset Code", "Your password reset code is: $code");
 
-            echo "<script>alert('A password reset code has been sent to your email.'); window.location = '/ZIG-CUSTOMIZE-PROJECT/pages/account.php';</script>";
+            echo "<script>alert('A password reset code has been sent to your email.'); window.location = '/public_html/pages/account.php';</script>";
         } elseif ($method == 'sms') {
             // Send the code via SMS using Twilio
             $twilio_sid = 'your_twilio_sid';
@@ -60,10 +60,10 @@ if (isset($_POST['submit_password'])) {
                 ]
             );
 
-            echo "<script>alert('A password reset code has been sent to your phone.'); window.location = '/ZIG-CUSTOMIZE-PROJECT/pages/account.php';</script>";
+            echo "<script>alert('A password reset code has been sent to your phone.'); window.location = '/public_html/pages/account.php';</script>";
         }
     } else {
-        echo "<script>alert('No user found with this username/email.'); window.location = '/ZIG-CUSTOMIZE-PROJECT/pages/account.php';</script>";
+        echo "<script>alert('No user found with this username/email.'); window.location = '/public_html/pages/account.php';</script>";
     }
 
     $stmt->close();
