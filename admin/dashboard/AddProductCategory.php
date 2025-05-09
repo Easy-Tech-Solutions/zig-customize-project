@@ -11,8 +11,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $tag = $_POST['tag'];
         
         // Insert into database using PDO
+        // Insert into database using PDO
         $query = "INSERT INTO productcategory (categoryname, description, tag) 
-                  VALUES (:categoryname, :description, :tag,)";
+          VALUES (:categoryname, :description, :tag)";
         
         $stmt = $pdo->prepare($query);
         $stmt->execute([
@@ -21,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             ':tag' => $tag
         ]);
         
-        $success = "Product added successfully!";
+        $success = "Product category added successfully!";
     } catch (PDOException $e) {
         $error = "Error adding product: " . $e->getMessage();
     }
@@ -99,7 +100,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 </div>
                 
                 <div class="d-grid gap-2">
-                    <button type="submit" class="btn btn-primary">Add Product</button>
+                    <button type="submit" class="btn btn-info">Add Product Category</button>
                     <a href="dashboard.php" name="addcategory" value="addcategory" class="btn btn-secondary">Back to Dashboard</a>
                 </div>
             </form>

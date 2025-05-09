@@ -2,6 +2,13 @@
 require_once('../../sql_connection/config.php');
 requireRole('Admin'); // Only clients can access this page
 
+try {
+    $stmt = $pdo->query("SELECT * FROM productcategory");
+    $products = $stmt->fetchAll();
+} catch (PDOException $e) {
+    die("Error fetching products: " . $e->getMessage());
+}
+
 // Handle form submission
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     try {
@@ -132,13 +139,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <div class="col-md-6">
                         <label for="category" class="form-label">Category</label>
                         <select class="form-select" id="category" name="category" required>
-                            <option value="">Select Category</option>
-                            <option value="Tops">Tops</option>
-                            <option value="Hardware">Hardware</option>
-                            <option value="Bottoms">Bottoms</option>
-                            <option value="Bags">Bags</option>
-                            <option value="Accessories">Accessories</option>
-
+                            <option value=""><?php echo htmlspecialchars($productcategory['categoryname']); ?></option>
                         </select>
                     </div>
                 </div>
@@ -197,7 +198,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 </div>
                 
                 <div class="d-grid gap-2">
-                    <button type="submit" class="btn btn-primary">Add Product</button>
+                    <button type="submit" class="btn btn-info">Add Product</button>
                     <a href="dashboard.php" name="addproduct" value="addproduct" class="btn btn-secondary">Back to Dashboard</a>
                 </div>
             </form>
