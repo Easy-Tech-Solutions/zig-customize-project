@@ -12,7 +12,7 @@ requireRole('Admin'); // Only clients can access this page
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="shortcut icon" href="assets/images/favicon.svg" type="image/x-icon" />
-    <title>Tables | PlainAdmin Demo</title>
+    <title>Product Category</title>
 
     <!-- ========== All CSS files linkup ========= -->
     <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
@@ -50,7 +50,7 @@ requireRole('Admin'); // Only clients can access this page
             <div class="row">
               <div class="col-lg-12">
                 <div class="card-style mb-30">
-                  <h6 class="mb-10">Add Category</h6>
+                  <button><a href="AddProductCategory.php"><h6 class="mb-10">Add Category</h6></a></button>
                   <p class="text-sm mb-20">
                     
                   </p>
@@ -77,9 +77,6 @@ requireRole('Admin'); // Only clients can access this page
                         <tr>
                           <td class="min-width">
                             <div class="lead">
-                              <div class="lead-image">
-                                <img src="assets/images/lead/lead-1.png" alt="" />
-                              </div>
                               <div class="lead-text">
                                 <p>1.</p>
                               </div>
