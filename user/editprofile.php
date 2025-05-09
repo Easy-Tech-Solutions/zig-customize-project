@@ -3,7 +3,7 @@ session_start();
 include("../sql_connection/config.php");
 if (!isset($_SESSION['login_user'])) {
     $_SESSION['redirect_url'] = $_SERVER['REQUEST_URI']; // Store the current page URL
-    header("Location: /public_html/pages/account.php"); // Redirect to login page
+    header("Location: /pages/account.php"); // Redirect to login page
     exit();
 }
 ?>

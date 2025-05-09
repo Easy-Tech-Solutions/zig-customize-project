@@ -3,7 +3,7 @@ session_start();
 include('../sql_connection/config.php');  
 
 if (isset($_SESSION['admin'])) {
-    header("Location: /public_html/admin/dashboard/dashboard.php");
+    header("Location: /admin/dashboard/dashboard.php");
     exit();
 }
 
@@ -38,15 +38,15 @@ if (isset($_POST['admin'])) {
                 $stmt_update->execute();
             }
 
-            $redirect_url = $_SESSION['redirect_url'] ?? '/public_html/admin/dashboard/dashboard.php';
+            $redirect_url = $_SESSION['redirect_url'] ?? '/admin/dashboard/dashboard.php';
             unset($_SESSION['redirect_url']);
 
             echo "<script> alert('Login successful'); window.location = '$redirect_url'; </script>";
         } else {
-            echo "<script> alert('Invalid password.'); window.location ='/public_html/admin/admin_login.php'; </script>";
+            echo "<script> alert('Invalid password.'); window.location ='/admin/admin_login.php'; </script>";
         }
     } else {
-        echo "<script> alert('Login failed. Invalid username/email or password.'); window.location ='/public_html/admin/admin_login.php'; </script>";
+        echo "<script> alert('Login failed. Invalid username/email or password.'); window.location ='/admin/admin_login.php'; </script>";
     }
 
     $stmt->close();

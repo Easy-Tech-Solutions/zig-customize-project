@@ -26,12 +26,12 @@ if (isset($_POST['submit_username'])) {
 
         // Send the email
         if (mail($to, $subject, $message, $headers)) {
-            echo "<script>alert('Your username has been sent to your email.'); window.location = '/public_html/pages/account.php';</script>";
+            echo "<script>alert('Your username has been sent to your email.'); window.location = '/pages/account.php';</script>";
         } else {
-            echo "<script>alert('Failed to send email. Check your SMTP settings.'); window.location = '/public_html/pages/account.php';</script>";
+            echo "<script>alert('Failed to send email. Check your SMTP settings.'); window.location = '/pages/account.php';</script>";
         }
     } else {
-        echo "<script>alert('No user found with this email.'); window.location = '/public_html/pages/account.php';</script>";
+        echo "<script>alert('No user found with this email.'); window.location = '/pages/account.php';</script>";
     }
 
     $stmt->close();

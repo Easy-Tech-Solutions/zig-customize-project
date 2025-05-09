@@ -25,7 +25,7 @@ try {
 // Authentication check function
 function checkAuth() {
     if (!isset($_SESSION['user_id'])) {
-        header("Location: /public_html/index.php");
+        header("Location: /index.php");
         exit();
     }
 }
@@ -37,7 +37,7 @@ function isLoggedIn() {
 
 function requireLogin() {
     if (!isLoggedIn()) {
-        header("Location: /public_html/pages/login.php");
+        header("Location: /pages/login.php");
         exit();
     }
 }
@@ -45,7 +45,7 @@ function requireLogin() {
 function requireRole($role) {
     requireLogin();
     if ($_SESSION['role'] !== $role) {
-        header("Location: /public_html/user/unauthorized.php"); // Create this page
+        header("Location: /user/unauthorized.php"); // Create this page
         exit();
     }
 }

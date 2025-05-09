@@ -132,9 +132,9 @@
                                     
                                     // Redirect based on role
                                     if ($user['role_name'] === 'Client') {
-                                        header("Location:  /public_html/index.php");
+                                        header("Location:  /index.php");
                                     } else {
-                                        header("Location:  /public_html/admin/dashboard/dashboard.php");
+                                        header("Location:  /admin/dashboard/dashboard.php");
                                     }
                                     exit();
                                 } else {
