@@ -50,7 +50,7 @@ requireRole('Admin'); // Only clients can access this page
             <div class="row">
               <div class="col-lg-12">
                 <div class="card-style mb-30">
-                  <button class="btn-lg btn-primary"><a href="AddProductCategory.php">Add Category</a></button>
+                  <button class="btn-lg bg-primary"><a href="AddProductCategory.php">Add Category</a></button>
                   <p class="text-sm mb-20">
                     
                   </p>
