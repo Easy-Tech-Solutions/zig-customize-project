@@ -11,7 +11,7 @@ requireRole('Admin'); // Only clients can access this page
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="shortcut icon" href="assets/images/favicon.svg" type="image/x-icon" />
+    <link rel="shortcut icon" href="../../assets/images/favicon/favicon.ico" type="image/x-icon" />
     <title>Product Category</title>
 
     <!-- ========== All CSS files linkup ========= -->
@@ -50,7 +50,7 @@ requireRole('Admin'); // Only clients can access this page
             <div class="row">
               <div class="col-lg-12">
                 <div class="card-style mb-30">
-                  <button><a href="AddProductCategory.php"><h6 class="mb-10">Add Category</h6></a></button>
+                  <button class="btn-lg btn-primary"><a href="AddProductCategory.php">Add Category</a></button>
                   <p class="text-sm mb-20">
                     
                   </p>
