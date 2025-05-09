@@ -78,7 +78,7 @@
             </a>
             <ul id="ddmenu_6" class="collapse dropdown-nav">
               <li>
-                <a href="settings.html"> List </a>
+                <a href="../ProductsCategory.php"> List </a>
               </li>
               <li>
                 <a href="settings.html"> Grid </a>

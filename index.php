@@ -7,6 +7,39 @@ include("./sql_connection/config.php");
 // Check if user is logged in and get role
 $isLoggedIn = isset($_SESSION['user_id']);
 $userRole = $isLoggedIn ? $_SESSION['role'] : null;
+
+// Get product ID from URL
+$product_id = isset($_GET['id']) ? intval($_GET['id']) : 0;
+
+try {
+    // Fetch product data
+    $query = "SELECT * FROM products WHERE id = ?";
+    $stmt = $pdo->prepare($query);
+    $stmt->execute([$product_id]);
+    $product = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if (!$product) {
+        die("Product not found");
+    }
+
+    // Fetch product images
+    $img_query = "SELECT * FROM product_images WHERE product_id = ? ORDER BY sort_order";
+    $img_stmt = $pdo->prepare($img_query);
+    $img_stmt->execute([$product_id]);
+    $images = $img_stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    if (empty($images)) {
+        $images = []; // Default empty array if no images
+    }
+
+    // Calculate discount if not set
+    if (is_null($product['discount']) && !is_null($product['original_price'])) {
+        $discount = (($product['original_price'] - $product['price']) / $product['original_price']) * 100;
+        $product['discount'] = round($discount, 2);
+    }
+} catch (PDOException $e) {
+    die("Database error: " . $e->getMessage());
+}
 ?>
 
 <!DOCTYPE html>
