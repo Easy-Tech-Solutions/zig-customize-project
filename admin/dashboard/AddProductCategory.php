@@ -99,7 +99,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 </div>
                 
                 <div class="d-grid gap-2">
-                    <button type="submit" class="btn btn-primary">Add Product</button>
+                    <button type="submit" class="btn btn-info">Add Product Category</button>
                     <a href="dashboard.php" name="addcategory" value="addcategory" class="btn btn-secondary">Back to Dashboard</a>
                 </div>
             </form>
