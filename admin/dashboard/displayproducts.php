@@ -12,7 +12,7 @@ requireRole('Admin'); // Only clients can access this page
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="shortcut icon" href="../../assets/images/favicon/favicon.ico" type="image/x-icon" />
-    <title>Product Category</title>
+    <title>Display Products</title>
 
     <!-- ========== All CSS files linkup ========= -->
     <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
@@ -50,7 +50,7 @@ requireRole('Admin'); // Only clients can access this page
             <div class="row">
               <div class="col-lg-12">
                 <div class="card-style mb-30">
-                  <button type="button" class="btn btn-info text-white"><a href="AddProductCategory.php">Add Category</a></button>
+                  <button type="button" class="btn btn-info text-white"><a href="addproduct.php">Add a New Product</a></button>
                   <p class="text-sm mb-20">
                     
                   </p>
@@ -59,41 +59,109 @@ requireRole('Admin'); // Only clients can access this page
                       <thead>
                         <tr>
                           <th class="lead-info">
-                            <h6>No.</h6>
+                            <h6>ID</h6>
+                          </th>
+                          <th class="lead-email">
+                            <h6>Name</h6>
+                          </th>
+                          <th class="lead-email">
+                            <h6>Description</h6>
+                          </th>
+                          <th class="lead-phone">
+                            <h6>Price</h6>
+                          </th>
+                          <th class="lead-info">
+                            <h6>Original Price</h6>
+                          </th>
+                          <th class="lead-email">
+                            <h6>Discount</h6>
                           </th>
                           <th class="lead-email">
                             <h6>Category</h6>
                           </th>
                           <th class="lead-phone">
-                            <h6>Description</h6>
+                            <h6>Sub-Category</h6>
+                          </th>
+                          <th class="lead-info">
+                            <h6>SKU</h6>
+                          </th>
+                          <th class="lead-email">
+                            <h6>Stock Quantity</h6>
+                          </th>
+                          <th class="lead-email">
+                            <h6>Color</h6>
                           </th>
                           <th class="lead-phone">
-                            <h6>Tag</h6>
+                            <h6>Size</h6>
+                          </th>
+                          <th class="lead-phone">
+                            <h6>Created At</h6>
+                          </th>
+                          <th class="lead-phone">
+                            <h6>Updated</h6>
                           </th>
                         </tr>
                         <!-- end table row-->
                       </thead>
                       
                          <tbody>
+                             
                             <?php
-                            $categories = $pdo->query("SELECT * FROM productcategory")->fetchAll();
-                            foreach ($categories as $category): ?>
+                            
+                            try {
+                                    $productinfo = $pdo->query("SELECT * FROM products")->fetchAll();
+                                } catch (PDOException $e) {
+                                    die("Error fetching subcategories: " . $e->getMessage());
+                                }
+                                
+                            foreach ($productinfo as $productinfo): ?>
+                            
                             <tr>
                                 <td class="min-width">
                                     <div class="lead">
                                         <div class="lead-text">
-                                            <p><?= htmlspecialchars($category['id']) ?></p>
+                                            <p><?= htmlspecialchars($productinfo['id']) ?></p>
                                         </div>
                                     </div>
                                 </td>
                                 <td class="min-width">
-                                    <p><a href="#0"><?= htmlspecialchars($category['categoryname']) ?></a></p>
+                                    <p><a href="#0"><?= htmlspecialchars($productinfo['name']) ?></a></p>
                                 </td>
                                 <td class="min-width">
-                                    <p><?= htmlspecialchars($category['description']) ?></p>
+                                    <p><a href="#0"><?= htmlspecialchars($productinfo['description']) ?></a></p>
                                 </td>
                                 <td class="min-width">
-                                    <p><?= htmlspecialchars($category['tag']) ?></p>
+                                    <p><?= htmlspecialchars($productinfo['price']) ?></p>
+                                </td>
+                                <td class="min-width">
+                                    <p><?= htmlspecialchars($productinfo['original_price']) ?></p>
+                                </td>
+                                <td class="min-width">
+                                    <p><a href="#0"><?= htmlspecialchars($productinfo['discount']) ?></a></p>
+                                </td>
+                                <td class="min-width">
+                                    <p><a href="#0"><?= htmlspecialchars($productinfo['category']) ?></a></p>
+                                </td>
+                                <td class="min-width">
+                                    <p><?= htmlspecialchars($productinfo['sub_category']) ?></p>
+                                </td>
+                                <td class="min-width">
+                                    <p><?= htmlspecialchars($productinfo['sku']) ?></p>
+                                </td>
+                                <td class="min-width">
+                                    <p><a href="#0"><?= htmlspecialchars($productinfo['stock_quantity']) ?></a></p>
+                                </td>
+                                <td class="min-width">
+                                    <p><a href="#0"><?= htmlspecialchars($productinfo['color_options']) ?></a></p>
+                                </td>
+                                <td class="min-width">
+                                    <p><?= htmlspecialchars($productinfo['size_options']) ?></p>
+                                </td>
+                                <td class="min-width">
+                                    <p><a href="#0"><?= htmlspecialchars($productinfo['created_at']) ?></a></p>
+                                </td>
+                                <td class="min-width">
+                                    <p><?= htmlspecialchars($productinfo['updated_at']) ?></p>
                                 </td>
                                 <td>
                                     <div class="action">
@@ -127,16 +195,6 @@ requireRole('Admin'); // Only clients can access this page
       <footer class="footer">
         <div class="container-fluid">
           <div class="row">
-            <div class="col-md-6 order-last order-md-first">
-              <div class="copyright text-center text-md-start">
-                <p class="text-sm">
-                  Designed and Developed by
-                  <a href="https://plainadmin.com" rel="nofollow" target="_blank">
-                    PlainAdmin
-                  </a>
-                </p>
-              </div>
-            </div>
             <!-- end col-->
             <div class="col-md-6">
               <div class="terms d-flex justify-content-center justify-content-md-end">

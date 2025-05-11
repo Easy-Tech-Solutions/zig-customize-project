@@ -12,7 +12,7 @@ requireRole('Admin'); // Only clients can access this page
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="shortcut icon" href="../../assets/images/favicon/favicon.ico" type="image/x-icon" />
-    <title>Product Category</title>
+    <title>Product Sub-Category</title>
 
     <!-- ========== All CSS files linkup ========= -->
     <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
@@ -50,7 +50,7 @@ requireRole('Admin'); // Only clients can access this page
             <div class="row">
               <div class="col-lg-12">
                 <div class="card-style mb-30">
-                  <button type="button" class="btn btn-info text-white"><a href="AddProductCategory.php">Add Category</a></button>
+                  <button type="button" class="btn btn-info text-white"><a href="AddSubCategory.php">Add Sub-Category</a></button>
                   <p class="text-sm mb-20">
                     
                   </p>
@@ -59,41 +59,49 @@ requireRole('Admin'); // Only clients can access this page
                       <thead>
                         <tr>
                           <th class="lead-info">
-                            <h6>No.</h6>
+                            <h6>ID</h6>
                           </th>
                           <th class="lead-email">
-                            <h6>Category</h6>
+                            <h6>Sub-Category Name</h6>
+                          </th>
+                          <th class="lead-email">
+                            <h6>Parent Category</h6>
                           </th>
                           <th class="lead-phone">
                             <h6>Description</h6>
-                          </th>
-                          <th class="lead-phone">
-                            <h6>Tag</h6>
                           </th>
                         </tr>
                         <!-- end table row-->
                       </thead>
                       
                          <tbody>
+                             
                             <?php
-                            $categories = $pdo->query("SELECT * FROM productcategory")->fetchAll();
-                            foreach ($categories as $category): ?>
+                            
+                            try {
+                                    $productsubcategories = $pdo->query("SELECT * FROM productsubcategory")->fetchAll();
+                                } catch (PDOException $e) {
+                                    die("Error fetching subcategories: " . $e->getMessage());
+                                }
+                                
+                            foreach ($productsubcategories as $productsubcategory): ?>
+                            
                             <tr>
                                 <td class="min-width">
                                     <div class="lead">
                                         <div class="lead-text">
-                                            <p><?= htmlspecialchars($category['id']) ?></p>
+                                            <p><?= htmlspecialchars($productsubcategory['id']) ?></p>
                                         </div>
                                     </div>
                                 </td>
                                 <td class="min-width">
-                                    <p><a href="#0"><?= htmlspecialchars($category['categoryname']) ?></a></p>
+                                    <p><a href="#0"><?= htmlspecialchars($productsubcategory['subcategoryname']) ?></a></p>
                                 </td>
                                 <td class="min-width">
-                                    <p><?= htmlspecialchars($category['description']) ?></p>
+                                    <p><a href="#0"><?= htmlspecialchars($productsubcategory['parentcategory']) ?></a></p>
                                 </td>
                                 <td class="min-width">
-                                    <p><?= htmlspecialchars($category['tag']) ?></p>
+                                    <p><?= htmlspecialchars($productsubcategory['description']) ?></p>
                                 </td>
                                 <td>
                                     <div class="action">

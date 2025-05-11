@@ -50,7 +50,7 @@
             </a>
             <ul id="ddmenu_2" class="collapse dropdown-nav">
               <li>
-                <a href="settings.html"> List </a>
+                <a href="displayproducts.php"> List </a>
               </li>
               <li>
                 <a href="settings.html"> Grid </a>
@@ -78,13 +78,16 @@
             </a>
             <ul id="ddmenu_6" class="collapse dropdown-nav">
               <li>
-                <a href="../dashboard/ProductsCategory.php"> List </a>
+                <a href="../dashboard/ProductsCategory.php"> List Product Categories</a>
               </li>
               <li>
-                <a href="settings.html"> Grid </a>
+                <a href="../dashboard/DisplaySubCategory.php"> List Sub-Categories </a>
               </li>
               <li>
-                <a href="addproduct.php"> Create </a>
+                <a href="../dashboard/AddProductCategory.php"> Create Product Category </a>
+              </li>
+              <li>
+                <a href="../dashboard/AddSubCategory.php"> Create Product Sub-Category</a>
               </li>
             </ul>
           </li>

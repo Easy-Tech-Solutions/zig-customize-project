@@ -2,50 +2,53 @@
 require_once('../../sql_connection/config.php');
 requireRole('Admin'); // Only clients can access this page
 
-// Handle form submission
+// In your form processing code:
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     try {
-        // Validate inputs
-        $categoryname = $_POST['categoryname'];
+        $subcategoryname = $_POST['subcategoryname'];
+        $parentcategory = $_POST['parentcategory']; // Get from select
         $description = $_POST['description'];
         
-        // Generate tag from categoryname (lowercase with spaces removed)
-        $tagname = strtolower(str_replace(' ', '', $categoryname));
-        
-        // Remove special characters from tag (optional)
-        $tagname = preg_replace('/[^a-z0-9]/', '', $tagname);
-        
-        // Check for duplicates (both categoryname and tag)
-        $stmt = $pdo->prepare("SELECT id FROM productcategory WHERE categoryname = ? OR tag = ?");
-        $stmt->execute([$categoryname, $tagname]);
+        // Check for duplicates
+        $stmt = $pdo->prepare("SELECT id FROM productsubcategory WHERE subcategoryname = ?");
+        $stmt->execute([$subcategoryname]);
         
         if($stmt->fetch()) {
-            $_SESSION['error'] = "The category '$categoryname' or similar tag already exists. Please choose a different name.";
-            header("Location: AddProductCategory.php");
+            $_SESSION['error'] = "Sub-category already exists!";
+            header("Location: AddSubCategory.php");
             exit();
         }
+        
+        // First get the ID of the parent category
+        $stmt = $pdo->prepare("SELECT id FROM productcategory WHERE categoryname = ?");
+        $stmt->execute([$parentcategory]);
+        $parent = $stmt->fetch();
+        
+        if (!$parent) {
+            $_SESSION['error'] = "Parent category not found!";
+            header("Location: AddSubCategory.php");
+            exit();
+        }
+        
+        // Then insert with the ID
+        $query = "INSERT INTO productsubcategory 
+                 (subcategoryname, parentcategory, parentcategory_id, description) 
+                 VALUES (?, ?, ?, ?)";
 
-        // Insert into database using PDO
-        $query = "INSERT INTO productcategory (categoryname, description, tag) 
-          VALUES (:categoryname, :description, :tag)";
+$stmt = $pdo->prepare($query);
+$stmt->execute([$subcategoryname, $parentcategory, $parent['id'], $description]);
         
-        $stmt = $pdo->prepare($query);
-        $stmt->execute([
-            ':categoryname' => $categoryname,
-            ':description' => $description,
-            ':tag' => $tagname
-        ]);
-        
-        $_SESSION['success'] = "Product category added successfully!";
-        header("Location: AddProductCategory.php");
+        $_SESSION['success'] = "Sub-category added successfully!";
+        header("Location: AddSubCategory.php");
         exit();
+        
     } catch (PDOException $e) {
-        $_SESSION['error'] = "Error adding product category: " . $e->getMessage();
-        header("Location: AddProductCategory.php");
+        error_log("Database Error: " . $e->getMessage());
+        $_SESSION['error'] = "Error saving sub-category. Please try again.";
+        header("Location: AddSubCategory.php");
         exit();
     }
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -90,9 +93,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     <div class="container">
         <div class="form-container">
-            <h2 class="mb-4">Create a Product Category</h2>
+            <h2 class="mb-4">Create a Product Sub-Category</h2>
             
-              <!-- Success Message -->
+            <!-- Success Message -->
                 <?php if (isset($_SESSION['success'])): ?>
                     <div class="alert alert-success">
                         <?php echo htmlspecialchars($_SESSION['success']); ?>
@@ -110,18 +113,34 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             
             <form action="" method="POST" enctype="multipart/form-data">
                 <div class="row mb-3">
-                        <label for="categoryname" class="form-label">Category Name</label>
-                        <input type="text" class="form-control" id="categoryname" name="categoryname" required>
+                    <div class="col-md-6">
+                        <label for="subcategoryname" class="form-label">Sub-Category Name</label>
+                        <input type="text" class="form-control" id="subcategoryname" name="subcategoryname" required>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="parentcategory" class="form-label">Parent Category</label>
+                        <select class="form-select" id="parentcategory" name="parentcategory" required>
+                            <option value="">Select Parent Category</option>
+                            <?php 
+                            $categories = $pdo->query("SELECT categoryname FROM productcategory")->fetchAll();
+                            foreach ($categories as $category): ?>
+                                <option value="<?= htmlspecialchars($category['categoryname']) ?>">
+                                    <?= htmlspecialchars($category['categoryname']) ?>
+                                </option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
                 </div>
                 
                 <div class="mb-3">
                     <label for="description" class="form-label">Description</label>
-                    <textarea class="form-control" id="description" name="description" rows="4" required></textarea>
+                    <textarea class="form-control" id="description" name="description" rows="4"></textarea>
                 </div>
                 
                 <div class="d-grid gap-2">
-                    <button type="submit" class="btn btn-info">Add Product Category</button>
-                    <a href="dashboard.php" name="addcategory" value="addcategory" class="btn btn-secondary">Back to Dashboard</a>
+                    <button type="submit" class="btn btn-info">Add Product Sub-Category</button>
+                    <a href="dashboard.php" name="addsubcategory" value="addsubcategory" class="btn btn-secondary">Back to Dashboard</a>
                 </div>
             </form>
         </div>
