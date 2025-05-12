@@ -312,7 +312,7 @@ $userRole = $isLoggedIn ? $_SESSION['role'] : null;
                                         }
                                         
                                         foreach ($productcategories as $productcategory): ?>
-                                        <li class="js-backdrop">
+                                        <li class="js-backdrop v-none" style="display: none">
                                             <a href="./pages/shop-v1-root-category.php">
                                                 <?= htmlspecialchars(strtoupper($productcategory['categoryname'])) ?>
                                             </a>
