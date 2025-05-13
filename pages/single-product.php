@@ -11,11 +11,9 @@ $product_query = "SELECT p.*, b.name as brand_name, c.name as category_name
                  LEFT JOIN brands b ON p.brand_id = b.id 
                  LEFT JOIN categories c ON p.category_id = c.id 
                  WHERE p.id = ?";
-$product_stmt = $conn->prepare($product_query);
-$product_stmt->bind_param("i", $product_id);
-$product_stmt->execute();
-$product_result = $product_stmt->get_result();
-$product = $product_result->fetch_assoc();
+$product_stmt = $pdo->prepare($product_query);
+$product_stmt->execute([$product_id]);
+$product = $product_stmt->fetch(PDO::FETCH_ASSOC);
 
 if (!$product) {
     die("Product not found");
@@ -23,31 +21,25 @@ if (!$product) {
 
 // Fetch product images
 $images_query = "SELECT * FROM product_thumbnails WHERE product_id = ?";
-$images_stmt = $conn->prepare($images_query);
-$images_stmt->bind_param("i", $product_id);
-$images_stmt->execute();
-$images_result = $images_stmt->get_result();
-$images = $images_result->fetch_all(MYSQLI_ASSOC);
+$images_stmt = $pdo->prepare($images_query);
+$images_stmt->execute([$product_id]);
+$images = $images_stmt->fetchAll(PDO::FETCH_ASSOC);
 
 // Fetch product colors
 $colors_query = "SELECT c.* FROM colors c 
                 JOIN product_colors pc ON c.id = pc.color_id 
                 WHERE pc.product_id = ?";
-$colors_stmt = $conn->prepare($colors_query);
-$colors_stmt->bind_param("i", $product_id);
-$colors_stmt->execute();
-$colors_result = $colors_stmt->get_result();
-$colors = $colors_result->fetch_all(MYSQLI_ASSOC);
+$colors_stmt = $pdo->prepare($colors_query);
+$colors_stmt->execute([$product_id]);
+$colors = $colors_stmt->fetchAll(PDO::FETCH_ASSOC);
 
 // Fetch product sizes
 $sizes_query = "SELECT s.* FROM sizes s 
                JOIN product_sizes ps ON s.id = ps.size_id 
                WHERE ps.product_id = ?";
-$sizes_stmt = $conn->prepare($sizes_query);
-$sizes_stmt->bind_param("i", $product_id);
-$sizes_stmt->execute();
-$sizes_result = $sizes_stmt->get_result();
-$sizes = $sizes_result->fetch_all(MYSQLI_ASSOC);
+$sizes_stmt = $pdo->prepare($sizes_query);
+$sizes_stmt->execute([$product_id]);
+$sizes = $sizes_stmt->fetchAll(PDO::FETCH_ASSOC);
 
 // Calculate discount percentage if sale price exists
 $discount = 0;
@@ -59,16 +51,15 @@ if ($product['sale_price'] > 0 && $product['price'] > $product['sale_price']) {
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit_review'])) {
     $name = $_POST['name'];
     $email = $_POST['email'];
-    $rating = $_POST['rating'];
+    $rating = intval($_POST['rating']);
     $title = $_POST['title'];
     $review = $_POST['review'];
     
-    // Insert review into database (you'll need to create this table)
+    // Insert review into database
     $insert_review = "INSERT INTO reviews (product_id, user_id, rating, title, comment, created_at) 
                      VALUES (?, NULL, ?, ?, ?, NOW())";
-    $review_stmt = $conn->prepare($insert_review);
-    $review_stmt->bind_param("iiss", $product_id, $rating, $title, $review);
-    $review_stmt->execute();
+    $review_stmt = $pdo->prepare($insert_review);
+    $review_stmt->execute([$product_id, $rating, $title, $review]);
     
     // Redirect to avoid form resubmission
     header("Location: product.php?id=$product_id");
@@ -77,11 +68,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit_review'])) {
 
 // Fetch reviews for this product
 $reviews_query = "SELECT * FROM reviews WHERE product_id = ? ORDER BY created_at DESC";
-$reviews_stmt = $conn->prepare($reviews_query);
-$reviews_stmt->bind_param("i", $product_id);
-$reviews_stmt->execute();
-$reviews_result = $reviews_stmt->get_result();
-$reviews = $reviews_result->fetch_all(MYSQLI_ASSOC);
+$reviews_stmt = $pdo->prepare($reviews_query);
+$reviews_stmt->execute([$product_id]);
+$reviews = $reviews_stmt->fetchAll(PDO::FETCH_ASSOC);
 
 // Calculate average rating
 $avg_rating = 0;
