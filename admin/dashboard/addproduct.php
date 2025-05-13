@@ -40,6 +40,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             }
         }
 
+        // Check if at least one image was uploaded
+        if (empty($_FILES['product_images']['name'][0])) {
+            throw new Exception("At least one product image is required");
+        }
+
         // Sanitize and validate inputs
         $productData['name'] = trim($_POST['name']);
         $productData['description'] = trim($_POST['description']);
@@ -57,34 +62,52 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $tag = strtolower(str_replace(' ', '', $productData['category']));
         $tag = preg_replace('/[^a-z0-9]/', '', $tag);
 
-        // Handle file upload
-        $image_path = '';
-        $thumbnail_path = '';
+        // Handle file uploads
+        $image_paths = [];
+        $thumbnail_paths = [];
+        $allowed_types = ['jpg', 'jpeg', 'png', 'gif'];
+        $target_dir = "../../Uploads/Products/";
         
-        if (isset($_FILES['product_image']) && $_FILES['product_image']['error'] == UPLOAD_ERR_OK) {
-            $target_dir = "../../Uploads/Products/";
-            $image_name = uniqid() . '_' . basename($_FILES['product_image']['name']);
+        // Process each uploaded file
+        foreach ($_FILES['product_images']['tmp_name'] as $key => $tmp_name) {
+            if ($_FILES['product_images']['error'][$key] !== UPLOAD_ERR_OK) {
+                continue; // Skip files with upload errors
+            }
+            
+            $original_name = basename($_FILES['product_images']['name'][$key]);
+            $image_name = uniqid() . '_' . $original_name;
             $target_file = $target_dir . $image_name;
             $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
             
-            // Validate image
-            $allowed_types = ['jpg', 'jpeg', 'png', 'gif'];
+            // Validate image type
             if (!in_array($imageFileType, $allowed_types)) {
-                throw new Exception("Only JPG, JPEG, PNG & GIF files are allowed");
+                continue; // Skip invalid file types
             }
             
-            if (move_uploaded_file($_FILES['product_image']['tmp_name'], $target_file)) {
-                $image_path = "../../Uploads/Products/" . $image_name;
+            if (move_uploaded_file($tmp_name, $target_file)) {
+                $image_paths[] = "../../Uploads/Products/" . $image_name;
                 
                 // Create thumbnail (simplified - consider using GD/Imagick in production)
                 $thumbnail_name = 'thumb_' . $image_name;
                 if (copy($target_file, $target_dir . $thumbnail_name)) {
-                    $thumbnail_path = "../../Uploads/Products/" . $thumbnail_name;
+                    $thumbnail_paths[] = "../../Uploads/Products/" . $thumbnail_name;
                 }
             }
-        } else {
-            throw new Exception("Product image is required");
+            
+            // Limit to 7 images
+            if (count($image_paths) >= 7) {
+                break;
+            }
         }
+        
+        // Ensure at least one image was uploaded successfully
+        if (empty($image_paths)) {
+            throw new Exception("At least one valid image is required");
+        }
+
+        // Convert arrays to comma-separated strings for database storage
+        $image_paths_str = implode(',', $image_paths);
+        $thumbnail_paths_str = implode(',', $thumbnail_paths);
 
         // Insert into database
         $query = "INSERT INTO products (
@@ -111,11 +134,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             ':stock_quantity' => $productData['stock_quantity'],
             ':color_options' => $productData['color_options'],
             ':size_options' => $productData['size_options'],
-            ':image_path' => $image_path,
-            ':thumbnail_path' => $thumbnail_path
+            ':image_path' => $image_paths_str,
+            ':thumbnail_path' => $thumbnail_paths_str
         ]);
         
-        $success = "Product added successfully!";
+        $success = "Product added successfully with " . count($image_paths) . " images!";
         // Reset form data after successful submission
         $productData = array_fill_keys(array_keys($productData), '');
         
@@ -152,6 +175,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         .required-field::after {
             content: " *";
             color: red;
+        }
+        .image-preview-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        .image-preview {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border: 1px solid #ddd;
+            border-radius: 4px;
         }
     </style>
 </head>
@@ -251,9 +287,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <input type="number" class="form-control" id="stock_quantity" name="stock_quantity" required 
                                    value="<?php echo htmlspecialchars($productData['stock_quantity']); ?>">
                         </div>
-                        <div class="col-md-6">
-                            <label for="product_image" class="form-label required-field">Product Image</label>
-                            <input type="file" class="form-control" id="product_image" name="product_image" required accept="image/*">
+                        <div class="col-12">
+                            <label for="product_images" class="form-label required-field">Product Images (1-7 images)</label>
+                            <input type="file" class="form-control" id="product_images" name="product_images[]" 
+                                   multiple accept="image/*" onchange="previewImages(this)">
+                            <small class="text-muted">Upload Images</small>
+                            <div class="image-preview-container" id="imagePreviewContainer"></div>
                         </div>
                     </div>
                     
@@ -281,6 +320,32 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </div>
         
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script>
+            function previewImages(input) {
+                const previewContainer = document.getElementById('imagePreviewContainer');
+                previewContainer.innerHTML = '';
+                
+                if (input.files && input.files.length > 0) {
+                    // Limit to 7 images
+                    const files = Array.from(input.files).slice(0, 7);
+                    
+                    files.forEach(file => {
+                        if (file.type.match('image.*')) {
+                            const reader = new FileReader();
+                            
+                            reader.onload = function(e) {
+                                const img = document.createElement('img');
+                                img.src = e.target.result;
+                                img.className = 'image-preview';
+                                previewContainer.appendChild(img);
+                            }
+                            
+                            reader.readAsDataURL(file);
+                        }
+                    });
+                }
+            }
+        </script>
     </main>
 </body>
 </html>
