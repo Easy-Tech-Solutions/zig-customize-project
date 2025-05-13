@@ -1,6 +1,8 @@
 <?php
-// Include database connection
-require_once('../sql_connection/config.php');
+session_start();
+
+// Include your database connection if needed
+include('../sql_connection/config.php');
 
 // Get product ID from URL
 $product_id = isset($_GET['id']) ? intval($_GET['id']) : 0;
