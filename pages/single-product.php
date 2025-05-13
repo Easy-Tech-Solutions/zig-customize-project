@@ -64,7 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit_review'])) {
     $review_stmt->execute([$product_id, $rating, $title, $review]);
     
     // Redirect to avoid form resubmission
-    header("Location: product.php?id=$product_id");
+    header("Location: single-product.php?id=$product_id");
     exit();
 }
 
