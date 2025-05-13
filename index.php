@@ -565,9 +565,13 @@ $userRole = $isLoggedIn ? $_SESSION['role'] : null;
                                                     <div class="item">
                                                         <div class="image-container">
                                                             <a class="item-img-wrapper-link" href="./pages/single-product.php?id=<?= $product['id'] ?>">
-                                                                <img class="img-fluid" 
-                                                                     src="<?= htmlspecialchars($product['thumbnail_path'] ?? './assets/images/product/product@3x.jpg') ?>" 
-                                                                     alt="<?= htmlspecialchars($product['name']) ?>">
+                                                                <img class="img-fluid" src="<?= 
+                                                                
+                                                                // Get the first thumbnail from comma-separated list or fallback image
+                                                                !empty($product['thumbnail_path']) 
+                                                                ? htmlspecialchars(explode(',', $product['thumbnail_path'])[0]) 
+                                                                : './assets/images/product/product@3x.jpg'
+                                                                ?>" alt="<?= htmlspecialchars($product['name']) ?>">
                                                             </a>
                                                             <div class="item-action-behaviors">
                                                                 <a class="item-quick-look" data-toggle="modal" href="#quick-view">Quick Look</a>
@@ -947,7 +951,10 @@ foreach ($categories as $category) {
                                             <div class="item">
                                                 <div class="image-container">
                                                     <a class="item-img-wrapper-link" href="./pages/single-product.php?id=<?= $product['id'] ?>">
-                                                        <img class="img-fluid" src="<?= htmlspecialchars($product['image_path'] ?? './assets/images/product/product@3x.jpg') ?>" alt="<?= htmlspecialchars($product['name']) ?>">
+                                                        <img class="img-fluid" src="<?= 
+                                                        // Get the first image from comma-separated list or fallback image
+                                                            !empty($product['image_path']) 
+                                                            ? htmlspecialchars(explode(',', $product['image_path'])[0]) : './assets/images/product/product@3x.jpg' ?>" alt="<?= htmlspecialchars($product['name']) ?>">
                                                     </a>
                                                     <div class="item-action-behaviors">
                                                         <a class="item-quick-look" data-toggle="modal" href="#quick-view">Quick Look</a>
