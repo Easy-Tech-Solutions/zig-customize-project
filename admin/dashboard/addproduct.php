@@ -287,7 +287,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <input type="number" class="form-control" id="stock_quantity" name="stock_quantity" required 
                                    value="<?php echo htmlspecialchars($productData['stock_quantity']); ?>">
                         </div>
-                        <div class="col-12">
+                        <div class="col-6">
                             <label for="product_images" class="form-label required-field">Product Images (1-7 images)</label>
                             <input type="file" class="form-control" id="product_images" name="product_images[]" 
                                    multiple accept="image/*" onchange="previewImages(this)">
