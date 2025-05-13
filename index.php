@@ -651,14 +651,13 @@ $userRole = $isLoggedIn ? $_SESSION['role'] : null;
     </section>
 
 
-    <!-- Men-Clothing-Timing-Section -->
+    <!-- Men-Clothing-Timing-Section -
     <section class="section-maker">
         <div class="container">
             <div class="sec-maker-header text-center">
                 <span class="sec-maker-span-text"></span>
                 <h3 class="sec-maker-h3 u-s-m-b-22">Hot Deals</h3>
                 <span class="sec-maker-span-text">Ends in</span>
-                <!-- Timing-Box -->
                 <div class="section-timing-wrapper dynamic">
                     <span class="fictitious-seconds" style="display:none;">18000</span>
                     <div class="section-box-wrapper box-days">
@@ -686,9 +685,7 @@ $userRole = $isLoggedIn ? $_SESSION['role'] : null;
                         </div>
                     </div>
                 </div>
-                <!-- Timing-Box /- -->
             </div>
-            <!-- Carousel -->
             <div class="slider-fouc">
                 <div class="products-slider owl-carousel" data-item="4">
                     <div class="item">
@@ -885,10 +882,10 @@ $userRole = $isLoggedIn ? $_SESSION['role'] : null;
                     </div>
                 </div>
             </div>
-            <!-- Carousel /- -->
         </div>
     </section>
-    <!-- Men-Clothing-Timing-Section /- -->
+    Men-Clothing-Timing-Section /- -->
+     
     <!-- Banner-Image & View-more -->
     <div class="banner-image-view-more">
         <div class="container">
