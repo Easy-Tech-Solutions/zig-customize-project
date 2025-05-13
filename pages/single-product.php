@@ -6,7 +6,7 @@ require_once('../sql_connection/config.php');
 $product_id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 
 // Fetch product details
-$product_query = "SELECT p.*, b.name as brand_name, c.name as category_name 
+$product_query = "SELECT p.*, b.name as brand_name, c.categoryname as category_name 
                  FROM products p 
                  LEFT JOIN brands b ON p.brand_id = b.id 
                  LEFT JOIN productcategory c ON p.category_id = c.id 
