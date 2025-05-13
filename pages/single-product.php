@@ -230,11 +230,11 @@ foreach ($reviews as $review) {
                         <h6 class="information-heading u-s-m-b-8">Sku Information:</h6>
                         <div class="availability">
                             <span>Availability:</span>
-                            <span><?php echo $product['quantity'] > 0 ? 'In Stock' : 'Out of Stock'; ?></span>
+                            <span><?php echo $product['stock_quantity'] > 0 ? 'In Stock' : 'Out of Stock'; ?></span>
                         </div>
                         <div class="left">
                             <span>Only:</span>
-                            <span><?php echo $product['quantity']; ?> left</span>
+                            <span><?php echo $product['stock_quantity']; ?> left</span>
                         </div>
                     </div>
                     <div class="section-5-product-variants u-s-p-y-14">
@@ -300,7 +300,7 @@ foreach ($reviews as $review) {
                             <div class="quantity-wrapper u-s-m-b-22">
                                 <span>Quantity:</span>
                                 <div class="quantity">
-                                    <input type="number" name="quantity" class="quantity-text-field" value="1" min="1" max="<?php echo $product['quantity']; ?>">
+                                    <input type="number" name="quantity" class="quantity-text-field" value="1" min="1" max="<?php echo $product['stock_quantity']; ?>">
                                 </div>
                             </div>
                             <div>
@@ -351,7 +351,7 @@ foreach ($reviews as $review) {
                                     <table>
                                         <tr>
                                             <td>Sku</td>
-                                            <td><?php echo htmlspecialchars($product['code']); ?></td>
+                                            <td><?php echo htmlspecialchars($product['sku']); ?></td>
                                         </tr>
                                         <tr>
                                             <td>Brand</td>
