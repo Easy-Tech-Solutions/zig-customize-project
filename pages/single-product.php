@@ -159,13 +159,13 @@ foreach ($reviews as $review) {
                 <!-- Product-zoom-area -->
                 <div class="zoom-area">
                     <?php if (!empty($images)): ?>
-                        <img id="zoom-pro" class="img-fluid" src="<?php echo htmlspecialchars($images[0]['src']); ?>" 
-                             data-zoom-image="<?php echo htmlspecialchars($images[0]['src']); ?>" alt="Zoom Image">
+                        <img id="zoom-pro" class="img-fluid" src="<?php echo htmlspecialchars($images[0]['image_path']); ?>" 
+                             data-zoom-image="<?php echo htmlspecialchars($images[0]['image_path']); ?>" alt="Zoom Image">
                         <div id="gallery" class="u-s-m-t-10">
                             <?php foreach ($images as $image): ?>
-                                <a data-image="<?php echo htmlspecialchars($image['src']); ?>" 
-                                   data-zoom-image="<?php echo htmlspecialchars($image['src']); ?>">
-                                    <img src="<?php echo htmlspecialchars($image['src']); ?>" alt="Product">
+                                <a data-image="<?php echo htmlspecialchars($image['image_path']); ?>" 
+                                   data-zoom-image="<?php echo htmlspecialchars($image['image_path']); ?>">
+                                    <img src="<?php echo htmlspecialchars($image['image_path']); ?>" alt="Product">
                                 </a>
                             <?php endforeach; ?>
                         </div>
@@ -338,7 +338,7 @@ foreach ($reviews as $review) {
                             <div class="description-whole-container">
                                 <p class="desc-p u-s-m-b-26"><?php echo htmlspecialchars($product['description']); ?></p>
                                 <?php if (!empty($images)): ?>
-                                    <img class="desc-img img-fluid u-s-m-b-26" src="<?php echo htmlspecialchars($images[0]['src']); ?>" alt="Product">
+                                    <img class="desc-img img-fluid u-s-m-b-26" src="<?php echo htmlspecialchars($images[0]['image_path']); ?>" alt="Product">
                                 <?php endif; ?>
                             </div>
                         </div>
