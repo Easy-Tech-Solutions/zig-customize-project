@@ -1,5 +1,7 @@
 <header>
 <?php
+ini_set('session.cache_limiter','public');
+session_cache_limiter(false);
 // Check if user is logged in and get role
 $isLoggedIn = isset($_SESSION['user_id']);
 $userRole = $isLoggedIn ? $_SESSION['role'] : null;
