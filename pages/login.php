@@ -132,9 +132,7 @@
                                     
                                     // Redirect based on role
                                     if ($user['role_name'] === 'Client') {
-                                        $redirect_url = $_SESSION['redirect_url'] ?? 'index.php';
-                                        unset($_SESSION['redirect_url']); // Clear it after use
-                                        header("Location: " . $redirect_url);
+                                        header("Location:  ../index.php");
                                     } else {
                                         header("Location:  ../admin/dashboard/dashboard.php");
                                     }
