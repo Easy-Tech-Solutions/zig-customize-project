@@ -271,7 +271,7 @@ foreach ($reviews as $review) {
                     <div class="section-6-social-media-quantity-actions u-s-p-y-14">
 
                         <?php if (isLoggedIn()): ?>
-                        <form action="add_to_cart.php" method="post" class="post-form">
+                        <form action="../user/add_to_cart.php" method="post" class="post-form">
                             <input type="hidden" name="product_id" value="<?php echo $product_id; ?>">
                             <div class="quick-social-media-wrapper u-s-m-b-22">
                                 <span>Share:</span>
