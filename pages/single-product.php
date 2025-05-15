@@ -11,12 +11,6 @@ include('../sql_connection/config.php');
 $isLoggedIn = isset($_SESSION['user_id']);
 $userRole = $isLoggedIn ? $_SESSION['role'] : null;
 
-if (!isLoggedIn()) {
-    $_SESSION['redirect_url'] = $_SERVER['REQUEST_URI'];
-    header('Location: ./login.php');
-    exit();
-}
-
 // Get product ID from URL
 $product_id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 
