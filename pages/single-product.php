@@ -265,7 +265,9 @@ foreach ($reviews as $review) {
                         <?php endif; ?>
                     </div>
                     <div class="section-6-social-media-quantity-actions u-s-p-y-14">
-                        <form action="cart.php" method="post" class="post-form">
+
+                        <?php if (isLoggedIn()): ?>
+                        <form action="add_to_cart.php" method="post" class="post-form">
                             <input type="hidden" name="product_id" value="<?php echo $product_id; ?>">
                             <div class="quick-social-media-wrapper u-s-m-b-22">
                                 <span>Share:</span>
@@ -304,11 +306,15 @@ foreach ($reviews as $review) {
                                 </div>
                             </div>
                             <div>
-                                <button class="button button-outline-secondary" type="submit" name="add_to_cart">Add to cart</button>
+                                <button class="button button-outline-secondary" type="submit">Add to cart</button>
                                 <button class="button button-outline-secondary far fa-heart u-s-m-l-6" type="button"></button>
                                 <button class="button button-outline-secondary far fa-envelope u-s-m-l-6" type="button"></button>
                             </div>
                         </form>
+                        <?php else: ?>
+                        <p>Please <a href="./login.php">login</a> to add items to your cart.</p>
+                        <?php endif; ?>
+
                     </div>
                 </div>
                 <!-- Product-details /- -->
