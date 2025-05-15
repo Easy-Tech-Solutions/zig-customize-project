@@ -1,8 +1,13 @@
 <?php
-session_start();
+ini_set('session.cache_limiter','public');
+session_cache_limiter(false);
 
 // Include your database connection if needed
 include('../sql_connection/config.php');
+
+// Check if user is logged in and get role
+$isLoggedIn = isset($_SESSION['user_id']);
+$userRole = $isLoggedIn ? $_SESSION['role'] : null;
 
 // Get product ID from URL
 $product_id = isset($_GET['id']) ? intval($_GET['id']) : 0;
