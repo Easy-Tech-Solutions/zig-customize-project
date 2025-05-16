@@ -85,7 +85,7 @@ try {
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-12">
-                            <form action="update-cart.php" method="post">
+                            <form action="../user/update_cart.php" method="post">
                                 <!-- Products-List-Wrapper -->
                                 <div class="table-wrapper u-s-m-b-60">
                                     <table>
@@ -132,7 +132,7 @@ try {
                                                 <td>
                                                     <div class="action-wrapper">
                                                         <button type="submit" name="update" class="button button-outline-secondary fas fa-sync"></button>
-                                                        <a href="remove-from-cart.php?id=<?= $item['cart_id'] ?>" class="button button-outline-secondary fas fa-trash"></a>
+                                                        <a href="remove_from_cart.php?id=<?= $item['cart_id'] ?>" class="button button-outline-secondary fas fa-trash"></a>
                                                     </div>
                                                 </td>
                                             </tr>
