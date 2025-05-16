@@ -1,4 +1,5 @@
 <?php
+include('../sql_connection/config.php');
 requireLogin();
 
 try {
