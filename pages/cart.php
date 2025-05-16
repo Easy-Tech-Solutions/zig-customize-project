@@ -151,7 +151,7 @@ try {
                                 <div class="coupon-continue-checkout u-s-m-b-60">
                                     <div class="button-area">
                                         <button type="submit" name="update_all" class="button">Update Cart</button>
-                                        <a href="./shop.php" class="continue">Continue Shopping</a>
+                                        <a href="../index.php" class="continue">Continue Shopping</a>
                                         <a href="./checkout.php" class="checkout">Proceed to Checkout</a>
                                     </div>
                                 </div>
