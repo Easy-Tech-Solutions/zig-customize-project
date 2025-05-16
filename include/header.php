@@ -1,4 +1,7 @@
 <header>
+    <?php
+        include("./sql_connection/config.php");
+    ?>
         
     <!-- Top-Header -->
     <div class="full-layer-outer-header">
