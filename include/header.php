@@ -1,6 +1,6 @@
 <header>
     <?php
-        include("./sql_connection/config.php");
+        include("../sql_connection/config.php");
     ?>
         
     <!-- Top-Header -->
