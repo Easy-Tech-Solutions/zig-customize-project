@@ -1,3 +1,7 @@
+<?php 
+$isLoggedIn = isLoggedIn();
+$userRole = isset($_SESSION['role']) ? $_SESSION['role'] : '';
+?>
 <header>
         
     <!-- Top-Header -->
