@@ -565,7 +565,7 @@ $userRole = $isLoggedIn ? $_SESSION['role'] : null;
             </div>
             <div class="wrapper-content">
                 <div class="outer-area-tab">
-                    <div class="">
+                    <div class="tab-content">
                             <?php
                             try {
                                 // Get all unique tags first to organize products
