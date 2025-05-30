@@ -40,6 +40,7 @@ $userRole = $isLoggedIn ? $_SESSION['role'] : null;
     <!-- Owl-Carousel -->
     <link rel="stylesheet" href="./assets/css/owl.carousel.min.css">
     <!-- Jquery-Ui-Range-Slider -->
+    <link rel="stylesheet" href="./assets/css/jquery-ui-range-slider.min.css">
     <!-- Utility -->
     <link rel="stylesheet" href="./assets/css/utility.css">
     <!-- Main -->
@@ -581,7 +582,7 @@ $userRole = $isLoggedIn ? $_SESSION['role'] : null;
                             ?>
                                     <div class="tab-pane fade <?= $active_class ?>" id="<?= htmlspecialchars($tag) ?>">
                                         <div class="slider-fouc">
-                                            <div class="products-slider owl-carousel d-none d-md-block" data-item="4">
+                                            <div class="products-slider owl-carousel" data-item="4">
                                                 <?php foreach ($products as $product): ?>
                                                     <div class="item">
                                                         <div class="image-container">
