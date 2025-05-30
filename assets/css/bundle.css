@@ -460,22 +460,7 @@ body {
     font-size: 14px !important;
   }
 }
-/* Products-Slider (Equal columns height fix) */
-.products-slider.owl-carousel .owl-stage {
-  display: flex; }
 
-.products-slider.owl-carousel .owl-item {
-  display: flex; }
-
-/**
- * Products-Slider (Equal columns height fix)
- * These styles are only apply on the IE10 & IE11.
- */
-@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
-  .products-slider.owl-carousel .owl-stage {
-    display: block !important; }
-    .products-slider.owl-carousel .owl-stage .owl-item {
-      display: block !important; } }
 
 /* Products-Slider (Previous & Next Buttons) */
 .products-slider:hover .product-slider-previous, .products-slider:hover .product-slider-next {
