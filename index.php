@@ -28,7 +28,22 @@ $userRole = $isLoggedIn ? $_SESSION['role'] : null;
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
     <!-- Google Fonts for Banners only -->
     <link href="https://fonts.googleapis.com/css?family=Raleway:400,800" rel="stylesheet">
-    
+    <!-- Bootstrap 4 -->
+    <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
+    <!-- Font Awesome 5 -->
+    <link rel="stylesheet" href="./assets/css/fontawesome.min.css">
+    <!-- Ion-Icons 4 -->
+    <link rel="stylesheet" href="./assets/css/ionicons.min.css">
+    <!-- Animate CSS -->
+    <
+    <!-- Owl-Carousel -->
+    <link rel="stylesheet" href="./assets/css/owl.carousel.min.css">
+    <!-- Jquery-Ui-Range-Slider -->
+    <link rel="stylesheet" href="./assets/css/jquery-ui-range-slider.min.css">
+    <!-- Utility -->
+    <link rel="stylesheet" href="./assets/css/utility.css">
+    <!-- Main -->
+    <link rel="stylesheet" href="./assets/css/bundle.css">
 </head>
 
 <body>
@@ -139,33 +154,11 @@ $userRole = $isLoggedIn ? $_SESSION['role'] : null;
         <!-- Mid-Header -->
         <div class="full-layer-mid-header">
             <div class="container">
-            <style>
-@media screen and (max-width: 768px) {
-    #mobile-header {
-        flex-direction: row;
-        justify-content: space-between;
-    }
-
-    #mobile-header .brand-logo {
-        text-align: left !important;
-    }
-
-    #mobile-header nav {
-        text-align: right !important;
-        width: 100%;
-    }
-
-    #mobile-header .col-lg-6 {
-        display: none !important; /* Hide search bar on mobile */
-    }
-}
-</style>
-            
-                <div class="row clearfix align-items-center" id="mobile-header" style="display: flex; flex-wrap: wrap; align-items: center;">
-                    <div class="col-lg-3 col-md-9 col-sm-6" style="flex: 1;">
-                        <div class="brand-logo" style="text-align: left;">
+                <div class="row clearfix align-items-center">
+                    <div class="col-lg-3 col-md-9 col-sm-6">
+                        <div class="brand-logo text-lg-center">
                             <a href="index.php">
-                                <img src="./assets/images/main-logo/ZIG.png" alt="ZIG CUSTOMIZED " class="app-brand-logo">
+                                <img src="./assets/images/main-logo/ZIG.png" alt="Groover Brand Logo" class="app-brand-logo">
                             </a>
                         </div>
                     </div>
@@ -204,9 +197,9 @@ $userRole = $isLoggedIn ? $_SESSION['role'] : null;
                             <button id="btn-search" type="submit" class="button button-primary fas fa-search"></button>
                         </form>
                     </div>
-                    <div class="col-lg-3 col-md-3 col-sm-6" style="flex: 1;">
-                        <nav style="text-align: right;">
-                            <ul class="mid-nav g-nav" style="margin: 0;>
+                    <div class="col-lg-3 col-md-3 col-sm-6">
+                        <nav>
+                            <ul class="mid-nav g-nav">
                                 <li class="u-d-none-lg">
                                     <a href="index.html">
                                         <i class="ion ion-md-home u-c-brand"></i>
@@ -220,8 +213,8 @@ $userRole = $isLoggedIn ? $_SESSION['role'] : null;
                                 <li>
                                     <a id="mini-cart-trigger">
                                         <i class="ion ion-md-basket"></i>
-                                        <span class="item-counter">0</span>
-                                        <span class="item-price">$0.00</span>
+                                        <span class="item-counter">4</span>
+                                        <span class="item-price">$220.00</span>
                                     </a>
                                 </li>
                             </ul>
@@ -239,7 +232,7 @@ $userRole = $isLoggedIn ? $_SESSION['role'] : null;
             <div class="fixed-responsive-wrapper">
                 <a href="./pages/wishlist.php">
                     <i class="far fa-heart"></i>
-                    <span class="fixed-item-counter">0</span>
+                    <span class="fixed-item-counter">4</span>
                 </a>
             </div>
         </div>
@@ -485,7 +478,7 @@ $userRole = $isLoggedIn ? $_SESSION['role'] : null;
     </header>
     <!-- Header /- -->
     <!-- Main-Slider -->
-    <div class="default-height ph-item" style="background-size: cover; background-position: center center; height:100vh">
+    <div class="default-height ph-item">
         <div class="slider-main owl-carousel">
             <div class="bg-image one">
                 <div class="slide-content slide-animation">
@@ -566,7 +559,7 @@ $userRole = $isLoggedIn ? $_SESSION['role'] : null;
                             ?>
                                     <div class="tab-pane fade <?= $active_class ?>" id="<?= htmlspecialchars($tag) ?>">
                                         <div class="slider-fouc">
-                                            <div class="products-slider owl-carousel d-none d-md-block" data-item="4">
+                                            <div class="products-slider owl-carousel" data-item="4">
                                                 <?php foreach ($products as $product): ?>
                                                     <div class="item">
                                                         <div class="image-container">
@@ -655,7 +648,8 @@ $userRole = $isLoggedIn ? $_SESSION['role'] : null;
     
         </div>
     </section>
-    
+
+
     <!-- Men-Clothing-Timing-Section -
     <section class="section-maker">
         <div class="container">
@@ -1093,32 +1087,32 @@ foreach ($categories as $category) {
             <div class="brand-slider-content owl-carousel" data-item="5">
                 <div class="brand-pic">
                     <a href="#">
-                        <img src="./assets/images/brand-logos/1.jpg" alt="Brand Logo 1">
+                        <img src="./assets/images/brand-logos/b1.png" alt="Brand Logo 1">
                     </a>
                 </div>
                 <div class="brand-pic">
                     <a href="#">
-                        <img src="./assets/images/brand-logos/2.jpg" alt="Brand Logo 2">
+                        <img src="./assets/images/brand-logos/b1.png" alt="Brand Logo 2">
                     </a>
                 </div>
                 <div class="brand-pic">
                     <a href="#">
-                        <img src="./assets/images/brand-logos/3.jpg" alt="Brand Logo 3">
+                        <img src="./assets/images/brand-logos/b1.png" alt="Brand Logo 3">
                     </a>
                 </div>
                 <div class="brand-pic">
                     <a href="#">
-                        <img src="./assets/images/brand-logos/4.jpg" alt="Brand Logo 5">
+                        <img src="./assets/images/brand-logos/b1.png" alt="Brand Logo 5">
                     </a>
                 </div>
                 <div class="brand-pic">
                     <a href="#">
-                        <img src="./assets/images/brand-logos/5.jpg" alt="Brand Logo 6">
+                        <img src="./assets/images/brand-logos/b1.png" alt="Brand Logo 6">
                     </a>
                 </div>
                 <div class="brand-pic">
                     <a href="#">
-                        <img src="./assets/images/brand-logos/6.png" alt="Brand Logo 7">
+                        <img src="./assets/images/brand-logos/b1.png" alt="Brand Logo 7">
                     </a>
                 </div>
             </div>
