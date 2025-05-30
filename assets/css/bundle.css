@@ -1272,7 +1272,6 @@ body {
   gap: 20px;
   padding: 0 15px;
   width: 100%;
-  overflow: hidden; 
 }
 
 @media (max-width: 767px) {
