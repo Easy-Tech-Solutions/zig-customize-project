@@ -29,13 +29,13 @@ $userRole = $isLoggedIn ? $_SESSION['role'] : null;
     <!-- Google Fonts for Banners only -->
     <link href="https://fonts.googleapis.com/css?family=Raleway:400,800" rel="stylesheet">
     <!-- Bootstrap 4 -->
-    <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
     <!-- Font Awesome 5 -->
     <link rel="stylesheet" href="./assets/css/fontawesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/./assets/css/all.min.css">
     <!-- Ion-Icons 4 -->
     <link rel="stylesheet" href="./assets/css/ionicons.min.css">
     <!-- Animate CSS -->
-    <
+    <link rel="stylesheet" href="./assets/css/animate.min.css">
     <!-- Owl-Carousel -->
     <link rel="stylesheet" href="./assets/css/owl.carousel.min.css">
     <!-- Jquery-Ui-Range-Slider -->
