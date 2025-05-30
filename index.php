@@ -565,7 +565,7 @@ $userRole = $isLoggedIn ? $_SESSION['role'] : null;
             </div>
             <div class="wrapper-content">
                 <div class="outer-area-tab">
-                    <div class="tab-content">
+                    <div class="">
                             <?php
                             try {
                                 // Get all unique tags first to organize products
@@ -582,7 +582,7 @@ $userRole = $isLoggedIn ? $_SESSION['role'] : null;
                             ?>
                                     <div class="tab-pane fade <?= $active_class ?>" id="<?= htmlspecialchars($tag) ?>">
                                         <div class="slider-fouc">
-                                            <div class="products-slider owl-carousel" data-item="4">
+                                            <div class="products-slider owl-carousel d-none d-md-block" data-item="4">
                                                 <?php foreach ($products as $product): ?>
                                                     <div class="item">
                                                         <div class="image-container">
