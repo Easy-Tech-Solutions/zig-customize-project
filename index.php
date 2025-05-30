@@ -562,7 +562,7 @@ $userRole = $isLoggedIn ? $_SESSION['role'] : null;
                                         <div class="slider-fouc">
                                             <div class="products-slider owl-carousel" data-item="4">
                                                 <?php foreach ($products as $product): ?>
-                                                    <div class="item">
+                                                    <div class="">
                                                         <div class="image-container">
                                                             <a class="item-img-wrapper-link" href="./pages/single-product.php?id=<?= $product['id'] ?>">
                                                                 <img class="img-fluid" src="<?= 

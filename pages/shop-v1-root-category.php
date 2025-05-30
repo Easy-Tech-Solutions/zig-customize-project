@@ -1,3 +1,12 @@
+<?php
+ini_set('session.cache_limiter','public');
+session_cache_limiter(false);
+
+include("../sql_connection/config.php");
+
+
+?>
+
 <!DOCTYPE html>
 <html class="no-js" lang="en-US">
 
@@ -74,6 +83,33 @@
                     <div class="fetch-categories">
                         <h3 class="title-name">Browse Categories</h3>
                         <!-- Level-2 -->
+
+                            <?php
+                                try {
+                                    // Get all categories with both tag and categoryname
+                                    $productcategories = $pdo->query("SELECT tag, categoryname FROM productcategory")->fetchAll();
+                                    
+                                    // Get all products just once
+                                    $zigproducts = $pdo->query("SELECT * FROM products")->fetchAll();
+                                } catch (PDOException $e) {
+                                    die("Error fetching data: " . $e->getMessage());
+                                }
+                                
+                                foreach ($productcategories as $productcategory): 
+                                    // Count products for this category
+                                    $productCount = 0;
+                                    $categoryProducts = [];
+                                    
+                                    foreach ($zigproducts as $product) {
+                                        $normalizedProductCategory = strtolower(preg_replace('/[^a-z0-9]/', '', $product['category']));
+                                        $normalizedTag = strtolower(preg_replace('/[^a-z0-9]/', '', $productcategory['tag']));
+                                        
+                                        if ($normalizedProductCategory === $normalizedTag) {
+                                            $productCount++;
+                                            $categoryProducts[] = $product;
+                                        }
+                                    }
+                            ?>
                         <h3 class="fetch-mark-category">
                             <a href="./shop-v2-sub-category.php">Tops
                                 <span class="total-fetch-items">(5)</span>
