@@ -40,8 +40,8 @@ $userRole = $isLoggedIn ? $_SESSION['role'] : null;
     <!-- Owl-Carousel -->
     <link rel="stylesheet" href="./assets/css/owl.carousel.min.css">
     <!-- Jquery-Ui-Range-Slider -->
-    <link rel="stylesheet" href="./assets/css/jquery-ui-range-slider.min.css">
     <!-- Utility -->
+    <link rel="stylesheet" href="./assets/css/utility.css">
     <!-- Main -->
     <link rel="stylesheet" href="./assets/css/bundle.css">
 </head>
