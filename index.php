@@ -45,6 +45,7 @@ $userRole = $isLoggedIn ? $_SESSION['role'] : null;
     <link rel="stylesheet" href="./assets/css/utility.css">
     <!-- Main -->
     <link rel="stylesheet" href="./assets/css/bundle.css">
+    
 </head>
 
 <body>
@@ -513,6 +514,7 @@ $userRole = $isLoggedIn ? $_SESSION['role'] : null;
         </div>
     </div>
     <!-- Banner-Layer /- -->
+    
     <!-- Men-Clothing -->
    <section class="section-maker">
     <div class="container">
@@ -1600,6 +1602,27 @@ foreach ($categories as $category) {
     </style>
 </noscript>
 <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
+<script>
+  $(document).ready(function(){
+    $(".owl-carousel").owlCarousel({
+      items: 4, // default number of items
+      loop: true,
+      margin: 10,
+      nav: true,
+      responsive: {
+        0: {
+          items: 2 // Show 2 items on mobile
+        },
+        600: {
+          items: 3
+        },
+        1000: {
+          items: 4
+        }
+      }
+    });
+  });
+</script>
 <script>
 window.ga = function() {
     ga.q.push(arguments)
