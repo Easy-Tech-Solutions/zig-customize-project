@@ -567,9 +567,9 @@ $userRole = $isLoggedIn ? $_SESSION['role'] : null;
                             ?>
                                     <div class="tab-pane fade <?= $active_class ?>" id="<?= htmlspecialchars($tag) ?>">
                                         <div class="slider-fouc">
-                                            <div class="products-slider owl-carousel row" data-item="4">
+                                            <div class="products-slider owl-carousel" data-item="4">
                                                 <?php foreach ($products as $product): ?>
-                                                    <div class="item col-sm-6">
+                                                    <div class="item">
                                                         <div class="image-container">
                                                             <a class="item-img-wrapper-link" href="./pages/single-product.php?id=<?= $product['id'] ?>">
                                                                 <img class="img-fluid" src="<?= 
