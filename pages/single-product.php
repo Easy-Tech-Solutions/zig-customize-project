@@ -4,6 +4,10 @@ session_cache_limiter(false);
 
 include("../sql_connection/config.php");
 
+// On pages where login is required (e.g., add to cart)
+$current_url = urlencode($_SERVER['REQUEST_URI']);
+header("Location: ./login.php?redirect=$current_url");
+
 // Check if user is logged in and get role
 $isLoggedIn = isset($_SESSION['user_id']);
 $userRole = $isLoggedIn ? $_SESSION['role'] : null;

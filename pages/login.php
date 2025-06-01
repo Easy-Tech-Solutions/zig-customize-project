@@ -132,10 +132,25 @@
                                     
                                     // Redirect based on role
                                     if ($user['role_name'] === 'Client') {
-                                        header("Location:  ../index.php");
+                                        // Check if a redirect URL was provided and is safe
+                                        $redirect_url = isset($_POST['redirect']) ? $_POST['redirect'] : '../index.php';
+                                        
+                                        // Validate the redirect URL to prevent open redirect vulnerabilities
+                                        $allowed_domains = ['test.zigcustomized.com']; // Add your allowed domains
+                                        $parsed_url = parse_url($redirect_url);
+                                        
+                                        if ($parsed_url && 
+                                            (!isset($parsed_url['host']) || in_array($parsed_url['host'], $allowed_domains)) &&
+                                            strpos($redirect_url, 'http') !== 0) { // Only allow relative URLs or your domain
+                                            header("Location: " . $redirect_url);
+                                        } else {
+                                            // Fallback to index.php if URL is not safe
+                                            header("Location: ../index.php");
+                                        }
                                     } else {
-                                        header("Location:  ../admin/dashboard/dashboard.php");
+                                        header("Location: ../admin/dashboard/dashboard.php");
                                     }
+
                                     exit();
                                 } else {
                                     $error = "Invalid username or password";
@@ -188,6 +203,10 @@
                                             <i class="fas fa-circle-o-notch u-s-m-r-9"></i>Signup</a>
                                     </div>
                                 </div>
+
+                                <?php if(isset($_GET['redirect'])): ?>
+                                    <input type="hidden" name="redirect" value="<?php echo htmlspecialchars($_GET['redirect']); ?>">
+                                <?php endif; ?>
                             </div>
                         </form>
                     </div>
