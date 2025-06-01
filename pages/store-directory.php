@@ -4,8 +4,9 @@ session_cache_limiter(false);
 
 include("../sql_connection/config.php");
 
-$isLoggedIn = isLoggedIn();
-$userRole = isset($_SESSION['role']) ? $_SESSION['role'] : '';
+// Check if user is logged in and get role
+$isLoggedIn = isset($_SESSION['user_id']);
+$userRole = $isLoggedIn ? $_SESSION['role'] : null;
 
 ?>
 <!DOCTYPE html>
