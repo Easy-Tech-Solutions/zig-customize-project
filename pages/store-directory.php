@@ -1,9 +1,6 @@
 <?
 include("../sql_connection/config.php");
 
-// Check if user is logged in and get role
-$isLoggedIn = isset($_SESSION['user_id']);
-$userRole = $isLoggedIn ? $_SESSION['role'] : null;
 
 ?>
 <!DOCTYPE html>
