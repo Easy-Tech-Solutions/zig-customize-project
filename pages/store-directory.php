@@ -1,5 +1,11 @@
 <?
+ini_set('session.cache_limiter','public');
+session_cache_limiter(false);
+
 include("../sql_connection/config.php");
+
+$isLoggedIn = isLoggedIn();
+$userRole = isset($_SESSION['role']) ? $_SESSION['role'] : '';
 
 ?>
 <!DOCTYPE html>
