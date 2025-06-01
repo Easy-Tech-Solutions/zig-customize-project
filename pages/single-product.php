@@ -4,10 +4,6 @@ session_cache_limiter(false);
 
 include("../sql_connection/config.php");
 
-// On pages where login is required (e.g., add to cart)
-$current_url = urlencode($_SERVER['REQUEST_URI']);
-header("Location: ./login.php?redirect=$current_url");
-
 // Check if user is logged in and get role
 $isLoggedIn = isset($_SESSION['user_id']);
 $userRole = $isLoggedIn ? $_SESSION['role'] : null;
@@ -320,8 +316,13 @@ foreach ($reviews as $review) {
                             </div>
                         </form>
                         <?php else: ?>
-                        <p>Please <a href="./login.php">login</a> to add items to your cart.</p>
+                        <?php
+                            // Get current URL and encode it for the redirect parameter
+                            $current_url = urlencode($_SERVER['REQUEST_URI']);
+                            ?>
+                            <p>Please <a href="./login.php?redirect=<?php echo $current_url; ?>">login</a> to add items to your cart.</p>
                         <?php endif; ?>
+
 
                     </div>
                 </div>
