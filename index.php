@@ -514,13 +514,8 @@ $userRole = $isLoggedIn ? $_SESSION['role'] : null;
         </div>
     </div>
     <!-- Banner-Layer /- -->
-<<<<<<< HEAD
 
     <!-- Initial Products Listing Under Each Category -->
-=======
-    
-    <!-- Men-Clothing -->
->>>>>>> 71183e72083d4a78d9938d5ec9a2c8df54df9092
    <section class="section-maker">
     <div class="container">
         <div class="sec-maker-header text-center">
