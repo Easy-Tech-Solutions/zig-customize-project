@@ -1,7 +1,4 @@
 <?
-ini_set('session.cache_limiter','public');
-session_cache_limiter(false);
-
 include("../sql_connection/config.php");
 
 // Check if user is logged in and get role
