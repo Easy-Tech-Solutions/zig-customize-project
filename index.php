@@ -1,4 +1,6 @@
 <?php
+$isMobile = preg_match("/(android|iphone|ipod|blackberry|windows phone)/i", $_SERVER['HTTP_USER_AGENT']);
+
 ini_set('session.cache_limiter','public');
 session_cache_limiter(false);
 
@@ -18,7 +20,7 @@ $userRole = $isLoggedIn ? $_SESSION['role'] : null;
     <!--[if IE]>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <![endif]-->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, maximum-scale=1, user-scalable=no">
     <meta name="description" content="">
     <meta name="author" content="">
     <title>ZIG CUSTOMIZED</title>
@@ -28,6 +30,8 @@ $userRole = $isLoggedIn ? $_SESSION['role'] : null;
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
     <!-- Google Fonts for Banners only -->
     <link href="https://fonts.googleapis.com/css?family=Raleway:400,800" rel="stylesheet">
+    <!-- Add custom CSS -->
+    <link rel="stylesheet" href="./assets/css/custom.css">
     <!-- Bootstrap 4 -->
     <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
     <!-- Font Awesome 5 -->
@@ -45,12 +49,7 @@ $userRole = $isLoggedIn ? $_SESSION['role'] : null;
     <link rel="stylesheet" href="./assets/css/utility.css">
     <!-- Main -->
     <link rel="stylesheet" href="./assets/css/bundle.css">
-    <!-- Add custom CSS -->
-    <link rel="stylesheet" href="./assets/css/custom.css">
-    
-    <style>
-      
-    </style>
+
 </head>
 
 <body>
@@ -552,22 +551,34 @@ $userRole = $isLoggedIn ? $_SESSION['role'] : null;
                 <div class="outer-area-tab">
                     <div class="tab-content">
                             <?php
+                           // Optimized database queries
                             try {
-                                // Get all unique tags first to organize products
-                                $tagsStmt = $pdo->query("SELECT DISTINCT tag FROM products WHERE tag IS NOT NULL AND tag != ''");
-                                $uniqueTags = $tagsStmt->fetchAll(PDO::FETCH_COLUMN);
+                                // Get all categories with product counts
+                                $productCategories = $pdo->query("
+                                    SELECT pc.*, COUNT(p.id) as product_count 
+                                    FROM productcategory pc
+                                    LEFT JOIN products p ON pc.tag = p.tag
+                                    GROUP BY pc.id
+                                    ORDER BY pc.categoryname
+                                ")->fetchAll();
+
+                                // Get all products in one query (more efficient)
+                                $allProducts = $pdo->query("
+                                    SELECT * FROM products 
+                                    WHERE tag IS NOT NULL AND tag != ''
+                                    ORDER BY tag, created_at DESC
+                                ")->fetchAll();
+
+                                // Organize products by tag
+                                $productsByTag = [];
+                                foreach ($allProducts as $product) {
+                                    $productsByTag[$product['tag']][] = $product;
+                                }
                                 
-                                foreach ($uniqueTags as $index => $tag):
-                                    $active_class = ($index === 0) ? 'active show fade' : 'fade';
-                                    
-                                    // Get products for this specific tag
-                                    $productsStmt = $pdo->prepare("SELECT * FROM products WHERE tag = :tag");
-                                    $productsStmt->execute([':tag' => $tag]);
-                                    $products = $productsStmt->fetchAll();
-                            ?>
+                                ?>
                                     <div class="tab-pane fade <?= $active_class ?>" id="<?= htmlspecialchars($tag) ?>">
                                         <div class="slider-fouc">
-                                                    <div class="products-grid">
+                                                    <div class="products-slider owl-carousel" data-item="<?= $isMobile ? 1 : 4 ?>">
                                                     <?php foreach ($products as $product): ?>
                                                     <div class="item">
                                                         <div class="image-container">
@@ -652,9 +663,12 @@ $userRole = $isLoggedIn ? $_SESSION['role'] : null;
                                         </div>
                                     </div>
                             <?php
-                                endforeach;
+
                             } catch (PDOException $e) {
-                                die("Error fetching products: " . $e->getMessage());
+                            // Log error but don't break the page
+                            error_log("Database error: " . $e->getMessage());
+                            $productCategories = [];
+                            $productsByTag = [];
                             }
                             ?>
                     </div>
@@ -1409,33 +1423,45 @@ ga.l = +new Date;
 ga('create', 'UA-XXXXX-Y', 'auto');
 ga('send', 'pageview')
 </script>
+
+<!-- Add this script at the bottom of your page -->
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize all carousels with mobile-friendly settings
+    $('.products-slider').each(function() {
+        $(this).owlCarousel({
+            loop: true,
+            nav: true,
+            dots: false,
+            responsive: {
+                0: { items: 1 },    // 1 item on mobile
+                576: { items: 2 },  // 2 items on small tablets
+                768: { items: 3 },  // 3 items on larger tablets
+                992: { items: 4 }   // 4 items on desktop
+            },
+            touchDrag: true,
+            mouseDrag: true,
+            pullDrag: true
+        });
+    });
+
+    // Mobile-specific tab activation
+    if (window.innerWidth <= 768) {
+        $('.nav-link').first().addClass('active');
+        $('.tab-pane').first().addClass('active show');
+    }
+});
+</script>
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<!-- Then Owl Carousel -->
+<script src="path/to/owl.carousel.min.js"></script>
 <script src="https://www.google-analytics.com/analytics.js" async defer></script>
 <!-- Modernizr-JS -->
 <script type="text/javascript" src="./assets/js/vendor/modernizr-custom.min.js"></script>
-<!-- NProgress -->
-<script type="text/javascript" src="./assets/js/nprogress.min.js"></script>
-<!-- jQuery -->
-<script type="text/javascript" src="./assets/js/jquery.min.js"></script>
-<!-- Bootstrap JS -->
-<script type="text/javascript" src="./assets/js/bootstrap.min.js"></script>
-<!-- Popper -->
-<script type="text/javascript" src="./assets/js/popper.min.js"></script>
-<!-- ScrollUp -->
-<script type="text/javascript" src="./assets/js/jquery.scrollUp.min.js"></script>
-<!-- Elevate Zoom -->
-<script type="text/javascript" src="./assets/js/jquery.elevatezoom.min.js"></script>
-<!-- jquery-ui-range-slider -->
-<script type="text/javascript" src="./assets/js/jquery-ui.range-slider.min.js"></script>
-<!-- jQuery Slim-Scroll -->
-<script type="text/javascript" src="./assets/js/jquery.slimscroll.min.js"></script>
-<!-- jQuery Resize-Select -->
-<script type="text/javascript" src="./assets/js/jquery.resize-select.min.js"></script>
-<!-- jQuery Custom Mega Menu -->
-<script type="text/javascript" src="./assets/js/jquery.custom-megamenu.min.js"></script>
-<!-- jQuery Countdown -->
-<script type="text/javascript" src="./assets/js/jquery.custom-countdown.min.js"></script>
-<!-- Owl Carousel -->
-<!-- <script type="text/javascript" src="./assets/js/owl.carousel.min.js"></script> -->
 <!-- Main -->
 <script type="text/javascript" src="./assets/js/app.js"></script>
 </body>
