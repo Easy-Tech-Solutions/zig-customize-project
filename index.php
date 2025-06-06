@@ -569,7 +569,7 @@ $userRole = $isLoggedIn ? $_SESSION['role'] : null;
                                     ORDER BY tag, created_at DESC
                                 ")->fetchAll();
 
-                                // Organize products by tag
+                                // Organize products by tags
                                 $productsByTag = [];
                                 foreach ($allProducts as $product) {
                                     $productsByTag[$product['tag']][] = $product;
