@@ -18,7 +18,7 @@ $userRole = $isLoggedIn ? $_SESSION['role'] : null;
     <!--[if IE]>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <![endif]-->
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
     <title>ZIG CUSTOMIZED</title>
@@ -38,14 +38,19 @@ $userRole = $isLoggedIn ? $_SESSION['role'] : null;
     <!-- Animate CSS -->
     <link rel="stylesheet" href="./assets/css/animate.min.css">
     <!-- Owl-Carousel -->
-    <link rel="stylesheet" href="./assets/css/owl.carousel.min.css">
+    <!-- <link rel="stylesheet" href="./assets/css/owl.carousel.min.css"> -->
     <!-- Jquery-Ui-Range-Slider -->
     <link rel="stylesheet" href="./assets/css/jquery-ui-range-slider.min.css">
     <!-- Utility -->
     <link rel="stylesheet" href="./assets/css/utility.css">
     <!-- Main -->
     <link rel="stylesheet" href="./assets/css/bundle.css">
+    <!-- Add custom CSS -->
+    <link rel="stylesheet" href="./assets/css/custom.css">
     
+    <style>
+      
+    </style>
 </head>
 
 <body>
@@ -553,7 +558,7 @@ $userRole = $isLoggedIn ? $_SESSION['role'] : null;
                                 $uniqueTags = $tagsStmt->fetchAll(PDO::FETCH_COLUMN);
                                 
                                 foreach ($uniqueTags as $index => $tag):
-                                    $active_class = ($index === 0) ? 'active show' : '';
+                                    $active_class = ($index === 0) ? 'active show fade' : 'fade';
                                     
                                     // Get products for this specific tag
                                     $productsStmt = $pdo->prepare("SELECT * FROM products WHERE tag = :tag");
@@ -562,18 +567,16 @@ $userRole = $isLoggedIn ? $_SESSION['role'] : null;
                             ?>
                                     <div class="tab-pane fade <?= $active_class ?>" id="<?= htmlspecialchars($tag) ?>">
                                         <div class="slider-fouc">
-                                            <div class="products-slider owl-carousel" data-item="4">
-                                                <?php foreach ($products as $product): ?>
+                                                    <div class="products-grid">
+                                                    <?php foreach ($products as $product): ?>
                                                     <div class="item">
                                                         <div class="image-container">
                                                             <a class="item-img-wrapper-link" href="./pages/single-product.php?id=<?= $product['id'] ?>">
-                                                                <img class="img-fluid" src="<?= 
-                                                                
-                                                                // Get the first thumbnail from comma-separated list or fallback image
-                                                                !empty($product['thumbnail_path']) 
-                                                                ? htmlspecialchars(explode(',', $product['thumbnail_path'])[0]) 
-                                                                : './assets/images/product/product@3x.jpg'
-                                                                ?>" alt="<?= htmlspecialchars($product['name']) ?>">
+                                                                <img class="img-fluid" src="<?=
+                                                                    !empty($product['image_path'])
+                                                                        ? htmlspecialchars(explode(',', $product['image_path'])[0])
+                                                                        : './assets/images/product/product@3x.jpg'
+                                                                ?>" alt="<?= htmlspecialchars($product['name']) ?>" loading="lazy">
                                                             </a>
                                                             <div class="item-action-behaviors">
                                                                 <a class="item-quick-look" data-toggle="modal" href="#quick-view">Quick Look</a>
@@ -591,17 +594,9 @@ $userRole = $isLoggedIn ? $_SESSION['role'] : null;
                                                                         </a>
                                                                     </li>
                                                                     <?php if (!empty($product['sub_category'])): ?>
-                                                                    <li class="has-separator">
+                                                                    <li>
                                                                         <a href="./pages/shop-v2-sub-category.php?subcategory=<?= urlencode($product['sub_category']) ?>">
                                                                             <?= htmlspecialchars($product['sub_category']) ?>
-                                                                        </a>
-                                                                    </li>
-                                                                    <?php endif; ?>
-                                                                    <?php if (!empty($product['color_options'])): ?>
-                                                                    <?php $colors = explode(',', $product['color_options']); ?>
-                                                                    <li class="has-separator">
-                                                                        <a href="./pages/shop-v2-sub-category.php?color=<?= urlencode(trim($colors[0])) ?>">
-                                                                            <?= htmlspecialchars(trim($colors[0])) ?>
                                                                         </a>
                                                                     </li>
                                                                     <?php endif; ?>
@@ -611,32 +606,49 @@ $userRole = $isLoggedIn ? $_SESSION['role'] : null;
                                                                         <?= htmlspecialchars($product['name']) ?>
                                                                     </a>
                                                                 </h6>
+                                                                <div class="item-description">
+                                                                    <?= htmlspecialchars(substr($product['description'], 0, 100)) ?>...
+                                                                </div>
                                                                 <div class="item-stars">
-                                                                    <div class='star' title="4.5 out of 5 - based on 23 Reviews">
-                                                                        <span style='width:67px'></span>
+                                                                    <div class='star' title="0 out of 5 - based on 0 Reviews">
+                                                                        <span style='width:0'></span>
                                                                     </div>
-                                                                    <span>(23)</span>
+                                                                    <span>(0)</span>
                                                                 </div>
                                                             </div>
                                                             <div class="price-template">
                                                                 <div class="item-new-price">
                                                                     $<?= number_format($product['price'], 2) ?>
                                                                 </div>
-                                                                <?php if (!empty($product['original_price']) && $product['original_price'] > $product['price']): ?>
+                                                                <?php if (!empty($product['original_price']) && $product['original_price'] != $product['price']): ?>
                                                                 <div class="item-old-price">
                                                                     $<?= number_format($product['original_price'], 2) ?>
                                                                 </div>
                                                                 <?php endif; ?>
                                                             </div>
+                                                            <?php if (!empty($product['color_options']) || !empty($product['size_options'])): ?>
+                                                            <div class="product-options">
+                                                                <?php if (!empty($product['color_options'])): ?>
+                                                                <span class="color-option"><?= htmlspecialchars($product['color_options']) ?></span>
+                                                                <?php endif; ?>
+                                                                <?php if (!empty($product['size_options'])): ?>
+                                                                <span class="size-option"><?= htmlspecialchars($product['size_options']) ?></span>
+                                                                <?php endif; ?>
+                                                            </div>
+                                                            <?php endif; ?>
+                                                            <?php if (!empty($product['discount']) && $product['discount'] > 0): ?>
+                                                            <div class="tag discount">
+                                                                <span>-<?= $product['discount'] ?>%</span>
+                                                            </div>
+                                                            <?php elseif (strtotime($product['created_at']) > strtotime('-30 days')): ?>
+                                                            <div class="tag new">
+                                                                <span>NEW</span>
+                                                            </div>
+                                                            <?php endif; ?>
                                                         </div>
-                                                        <?php if (!empty($product['discount']) && $product['discount'] > 0): ?>
-                                                        <div class="tag <?= ($product['original_price'] > $product['price']) ? 'sale' : 'discount' ?>">
-                                                            <span><?= ($product['original_price'] > $product['price']) ? 'SALE' : '-'.htmlspecialchars($product['discount']).'%' ?></span>
-                                                        </div>
-                                                        <?php endif; ?>
                                                     </div>
-                                                <?php endforeach; ?>
-                                            </div>
+                                                    <?php endforeach; ?>
+                                                </div>
                                         </div>
                                     </div>
                             <?php
@@ -1378,14 +1390,15 @@ foreach ($categories as $category) {
           items: 2 // Show 2 items on mobile
         },
         600: {
-          items: 3
+          items: 3 // Show 3 items on tablets
         },
         1000: {
-          items: 4
+          items: 4 // Show 4 items on larger screens
         }
       }
     });
   });
+
 </script>
 <script>
 window.ga = function() {
@@ -1422,7 +1435,7 @@ ga('send', 'pageview')
 <!-- jQuery Countdown -->
 <script type="text/javascript" src="./assets/js/jquery.custom-countdown.min.js"></script>
 <!-- Owl Carousel -->
-<script type="text/javascript" src="./assets/js/owl.carousel.min.js"></script>
+<!-- <script type="text/javascript" src="./assets/js/owl.carousel.min.js"></script> -->
 <!-- Main -->
 <script type="text/javascript" src="./assets/js/app.js"></script>
 </body>

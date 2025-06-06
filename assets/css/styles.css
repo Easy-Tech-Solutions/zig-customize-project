@@ -139,6 +139,87 @@ section {
   display: block;
 }
 
+/* Ensure product slider is visible on all devices */
+.products-slider.owl-carousel {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    width: 100%;
+    padding: 0 10px;
+}
+
+/* Ensure product items are visible and properly sized */
+.products-slider .item {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+/* Style product images to be responsive */
+.products-slider .item .image-container img {
+    width: 100%;
+    height: auto;
+    max-height: 200px; /* Adjust as needed */
+    object-fit: cover; /* Ensure images scale nicely */
+}
+
+/* Ensure action buttons (Quick Look, Add to Cart, etc.) are visible */
+.products-slider .item .item-action-behaviors {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+/* Mobile-specific styles */
+@media (max-width: 767px) {
+    .products-slider .item {
+        padding: 5px;
+    }
+    .products-slider .item .image-container img {
+        max-height: 150px; /* Smaller images for mobile */
+    }
+    .products-slider .owl-nav {
+        display: block !important; /* Ensure navigation arrows are visible */
+    }
+}
+
+/* Tablet-specific styles */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .products-slider .item {
+        padding: 8px;
+    }
+    .products-slider .item .image-container img {
+        max-height: 180px;
+    }
+}
+
+/* Ensure carousel container is responsive */
+.section-maker .container {
+    max-width: 100%;
+    padding: 0 15px;
+}
+
+/* Fix potential Owl Carousel overflow issues */
+.owl-carousel .owl-stage {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: stretch;
+}
+
+/* Ensure items have consistent height */
+.products-slider .item .image-container {
+    height: auto;
+    min-height: 200px; /* Adjust based on your design */
+}
+
+/* Fix potential hidden items */
+.products-slider .owl-item {
+    display: block !important;
+    visibility: visible !important;
+}
 /* Elements
 -------------------------------------------------------------- */
 html {
