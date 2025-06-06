@@ -671,32 +671,32 @@ $userRole = $isLoggedIn ? $_SESSION['role'] : null;
     <!-- View Products in Each Category -->
   
     <?php
-// Set charset for the connection
-$pdo->exec("SET NAMES utf8mb4 COLLATE utf8mb4_unicode_ci");
+        // Set charset for the connection
+        $pdo->exec("SET NAMES utf8mb4 COLLATE utf8mb4_unicode_ci");
 
-// Get all unique categories from products table
-$categoriesQuery = "SELECT DISTINCT category FROM products";
-$categories = $pdo->query($categoriesQuery)->fetchAll(PDO::FETCH_COLUMN);
+        // Get all unique categories from products table
+        $categoriesQuery = "SELECT DISTINCT category FROM products";
+        $categories = $pdo->query($categoriesQuery)->fetchAll(PDO::FETCH_COLUMN);
 
-foreach ($categories as $category) {
-    // Fetch products for this category
-    $productsQuery = "SELECT 
-                        id, name, description, price, original_price, 
-                        discount, category, sub_category, sku, stock_quantity,
-                        color_options, size_options, image_path, thumbnail_path,
-                        created_at
-                      FROM products
-                      WHERE category = :categoryName
-                      ORDER BY created_at DESC
-                      LIMIT 8";
-    
-    $stmt = $pdo->prepare($productsQuery);
-    $stmt->execute([':categoryName' => $category]);
-    $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        foreach ($categories as $category) {
+            // Fetch products for this category
+            $productsQuery = "SELECT 
+                                id, name, description, price, original_price, 
+                                discount, category, sub_category, sku, stock_quantity,
+                                color_options, size_options, image_path, thumbnail_path,
+                                created_at
+                            FROM products
+                            WHERE category = :categoryName
+                            ORDER BY created_at DESC
+                            LIMIT 8";
+            
+            $stmt = $pdo->prepare($productsQuery);
+            $stmt->execute([':categoryName' => $category]);
+            $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    if (count($products) > 0) {
-        // Create a URL-friendly tag for the section ID
-        $categoryTag = strtolower(str_replace([' ', "'"], ['-', ''], $category));
+            if (count($products) > 0) {
+                // Create a URL-friendly tag for the section ID
+            $categoryTag = strtolower(str_replace([' ', "'"], ['-', ''], $category));
         ?>
         <section class="section-maker" id="<?= htmlspecialchars($categoryTag) ?>-shop">
             <div class="container">
