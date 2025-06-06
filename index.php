@@ -574,6 +574,13 @@ $userRole = $isLoggedIn ? $_SESSION['role'] : null;
                                 foreach ($allProducts as $product) {
                                     $productsByTag[$product['tag']][] = $product;
                                 }
+
+                                } catch (PDOException $e) {
+                            // Log error but don't break the page
+                            error_log("Database error: " . $e->getMessage());
+                            $productCategories = [];
+                            $productsByTag = [];
+                            }
                                 
                                 ?>
                                     <div class="tab-pane fade <?= $active_class ?>" id="<?= htmlspecialchars($tag) ?>">
@@ -664,12 +671,6 @@ $userRole = $isLoggedIn ? $_SESSION['role'] : null;
                                     </div>
                             <?php
 
-                            } catch (PDOException $e) {
-                            // Log error but don't break the page
-                            error_log("Database error: " . $e->getMessage());
-                            $productCategories = [];
-                            $productsByTag = [];
-                            }
                             ?>
                     </div>
                 </div>
