@@ -492,14 +492,27 @@ $(function () {
     };
 
 
+$(function () {
+    sliderMain();
 
-    $(function () {
-        sliderMain();
+    if (window.innerWidth > 768) {
         productSlider();
-        SpecificCategorySlider();
-        onTabChangeRefreshPositionOfCarousel();
-        brandSlider();
-    });
+    } else {
+        // Destroy any existing Owl Carousel (failsafe)
+if (window.innerWidth <= 768) {
+  const $slider = $('.products-slider');
+
+  // Remove all owl-* classes and inline styles
+  $slider.removeClass('owl-carousel owl-loaded');
+  $slider.find('.owl-stage-outer').children().unwrap(); // unwrap .owl-stage-outer
+  $slider.find('.owl-stage').children().unwrap(); // unwrap .owl-stage
+  $slider.find('.owl-item').children().unwrap(); // unwrap each .owl-item
+
+  // Remove nav if it exists
+  $slider.find('.owl-nav').remove();
+  }
+}
+});
 
     /**
      * Check everything including DOM elements and images loaded
