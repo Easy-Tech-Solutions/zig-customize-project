@@ -168,7 +168,7 @@ requireRole('Admin'); // Only clients can access this page
                                 </td>
                                 <td>
                                     <div class="action">
-                                      <button class="text-danger delete-product" data-product-id="<?php echo $product['id']; ?>">
+                                      <button class="text-danger delete-product" data-product-id="<?php echo $productinfo['id']; ?>">
                                           <i class="lni lni-trash-can"></i>
                                       </button>
                                     </div>
