@@ -61,7 +61,7 @@ $(document).ready(function() {
         
         if (confirm(`Are you sure you want to delete "${productName}"? This action cannot be undone.`)) {
             $.ajax({
-                url: 'delete_product.php', // Create this file (see below)
+                url: '../../deleteproduct.php', // Create this file (see below)
                 type: 'POST',
                 data: { product_id: productId },
                 dataType: 'json',
