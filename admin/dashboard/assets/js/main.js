@@ -53,32 +53,30 @@
 })();
 
 $(document).ready(function() {
-    // Product deletion handler
-    $('.delete-product').click(function(e) {
+    console.log("Document ready - script loaded"); // This should appear in console
+    
+    $(document).on('click', '.delete-product', function(e) {
+        console.log("Delete button clicked"); // Check if this appears when clicking
         e.preventDefault();
-        const productId = $(this).data('product-id');
-        const productName = $(this).closest('tr').find('td:eq(1)').text(); // Adjust selector based on your table structure
         
-        if (confirm(`Are you sure you want to delete "${productName}"? This action cannot be undone.`)) {
+        const productId = $(this).data('product-id');
+        console.log("Product ID:", productId); // Verify the ID is correct
+        
+        if (confirm("Are you sure you want to delete this product?")) {
+            console.log("Making AJAX request...");
             $.ajax({
-                url: '../../deleteproduct.php', // Create this file (see below)
+                url: 'delete_product.php',
                 type: 'POST',
                 data: { product_id: productId },
                 dataType: 'json',
                 success: function(response) {
+                    console.log("Server response:", response);
                     if (response.success) {
-                        // Remove the row from the table
-                        $(this).closest('tr').fadeOut(300, function() {
-                            $(this).remove();
-                        });
-                        // Show success message
-                        alert('Product deleted successfully!');
-                    } else {
-                        alert('Error: ' + response.message);
+                        $(this).closest('tr').fadeOut();
                     }
                 },
                 error: function(xhr, status, error) {
-                    alert('Error: ' + error);
+                    console.error("AJAX error:", error);
                 }
             });
         }

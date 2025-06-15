@@ -20,6 +20,9 @@ requireRole('Admin'); // Only clients can access this page
     <link rel="stylesheet" href="assets/css/materialdesignicons.min.css" />
     <link rel="stylesheet" href="assets/css/fullcalendar.css" />
     <link rel="stylesheet" href="assets/css/main.css" />
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
   </head>
   <body>
     <!-- ======== Preloader =========== -->
@@ -221,6 +224,6 @@ requireRole('Admin'); // Only clients can access this page
     <script src="assets/js/world-merc.js"></script>
     <script src="assets/js/polyfill.js"></script>
     <script src="assets/js/main.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
   </body>
 </html>
