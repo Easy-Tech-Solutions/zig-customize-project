@@ -5,7 +5,7 @@ $(document).ready(function() {
         const productId = button.data('product-id');
         const productName = button.data('product-name');
         
-        if (confirm(`Are you sure you want to delete "${productName}"?`)) {
+        if (confirm(`Are you sure you want to delete this product?`)) {
             button.prop('disabled', true).html('<i class="lni lni-spinner-arrow"></i> Deleting...');
             
             $.ajax({
