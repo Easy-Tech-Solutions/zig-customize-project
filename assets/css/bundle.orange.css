@@ -1,17 +1,4 @@
-/*
-Theme Name: Groover
-Author: Ahmad Hussnain
-Description: Groover is modern, clean and polish multipurpose Ecommerce HTML
-Template built with modern workflow tool like Webpack. When developing this
-template we highly focused on some goals i.e. responsiveness, well tested on all
-compatible browsers, designed to be reusable and could be easy to customizable
-into any stores like clothing, toys, mobiles & tablets, electronics, books,
-furniture etc. Features multiple sections on the front page as well as
-navigation, widgets, banners slideshow, a logo, and more.
-Version: 1.0.0
-Tags: one-column, two-columns, three-columns, four-columns, right-sidebar,
-custom-colors, custom-header, custom-menu, custom-logo, featured-images
-Text Domain: Groover
+
 */
 /*--------------------------------------------------------------
 >>> TABLE OF CONTENTS:
@@ -2132,13 +2119,13 @@ body {
       color: #222021; }
       .bottom-footer-wrapper .copyright-text a:hover {
         color: #222021; }
-  .bottom-footer-wrapper:before {
+/*  .bottom-footer-wrapper:before {
     content: '';
     display: block;
     width: 100%;
     height: 23px;
     margin-bottom: 14px;
-    background: url(../images/payment/pay-3.png) center center no-repeat; }
+    background: url(../images/payment/pay-3.png) center center no-repeat; }*/
 
 .social-media-wrapper {
   margin-bottom: 6px; }

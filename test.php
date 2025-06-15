@@ -30,9 +30,6 @@ $userRole = $isLoggedIn ? $_SESSION['role'] : null;
     <link href="https://fonts.googleapis.com/css?family=Raleway:400,800" rel="stylesheet">
     <!-- Bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-
     <!-- Font Awesome 5 -->
     <link rel="stylesheet" href="./assets/css/fontawesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/./assets/css/all.min.css">
@@ -48,7 +45,6 @@ $userRole = $isLoggedIn ? $_SESSION['role'] : null;
     <link rel="stylesheet" href="./assets/css/utility.css">
     <!-- Main -->
     <link rel="stylesheet" href="./assets/css/bundle.css">
-    
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
 </head>
@@ -548,6 +544,7 @@ $userRole = $isLoggedIn ? $_SESSION['role'] : null;
     <span class="visually-hidden">Next</span>
   </button>
 </div>
+
     <!-- Main-Slider /- -->
     <!-- Banner-Layer -->
     <div class="banner-layer">
@@ -888,110 +885,103 @@ $userRole = $isLoggedIn ? $_SESSION['role'] : null;
 
     <!--End of View Products in Each Category-->
 
-<!--    <div class="continue-link-wrapper u-s-p-b-80">
+    <div class="continue-link-wrapper u-s-p-b-80">
         <a class="continue-link" ref="./pages/store-directory.php" title="View all products on site">
             <i class="ion ion-ios-more"></i>
         </a>
-    </div>-->
-    <!-- Continue-Link /- -->
-<style>
-.brand-slider {
-    overflow: hidden;
-    position: relative;
-    width: 100%;
-    background: #fff;
-    padding: 20px 0;
-}
-
-.brand-track {
-    display: flex;
-    width: calc(250px * 14); /* width = logo width * total logos (2x for loop) */
-    animation: scroll-left 30s linear infinite;
-}
-
-.brand-pic {
-    flex: 0 0 auto;
-    width: 250px;
-    padding: 0 15px;
-    text-align: center;
-}
-
-.brand-pic img {
-    max-height: 60px;
-    width: auto;
-    object-fit: contain;
-}
-
-@keyframes scroll-left {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); } /* scroll halfway (since logos are duplicated) */
-}
-</style>
-
-<!-- Continuous Brand Logo Slider -->
-<div class="brand-slider u-s-p-b-80">
-    <div class="brand-track">
-        <!-- Repeat logos twice for infinite effect -->
-        <div class="brand-pic"><img src="./assets/images/brand-logos/1.jpg" alt="Brand 1"></div>
-        <div class="brand-pic"><img src="./assets/images/brand-logos/2.jpg" alt="Brand 2"></div>
-        <div class="brand-pic"><img src="./assets/images/brand-logos/3.jpg" alt="Brand 3"></div>
-        <div class="brand-pic"><img src="./assets/images/brand-logos/4.jpg" alt="Brand 4"></div>
-        <div class="brand-pic"><img src="./assets/images/brand-logos/5.jpg" alt="Brand 5"></div>
-        <div class="brand-pic"><img src="./assets/images/brand-logos/6.png" alt="Brand 6"></div>
-
-        <!-- Duplicate for seamless infinite scroll -->
-        <div class="brand-pic"><img src="./assets/images/brand-logos/1.jpg" alt="Brand 1"></div>
-        <div class="brand-pic"><img src="./assets/images/brand-logos/2.jpg" alt="Brand 2"></div>
-        <div class="brand-pic"><img src="./assets/images/brand-logos/3.jpg" alt="Brand 3"></div>
-        <div class="brand-pic"><img src="./assets/images/brand-logos/4.jpg" alt="Brand 4"></div>
-        <div class="brand-pic"><img src="./assets/images/brand-logos/5.jpg" alt="Brand 5"></div>
-        <div class="brand-pic"><img src="./assets/images/brand-logos/6.png" alt="Brand 6"></div>
     </div>
-</div>
+    <!-- Continue-Link /- -->
+    <!-- Brand-Slider -->
+    <div class="brand-slider u-s-p-b-80">
+        <div class="container">
+            <div class="brand-slider-content owl-carousel" data-item="5">
+                <div class="brand-pic">
+                    <a href="#">
+                        <img src="./assets/images/brand-logos/1.jpg" alt="Brand Logo 1">
+                    </a>
+                </div>
+                <div class="brand-pic">
+                    <a href="#">
+                        <img src="./assets/images/brand-logos/2.jpg" alt="Brand Logo 2">
+                    </a>
+                </div>
+                <div class="brand-pic">
+                    <a href="#">
+                        <img src="./assets/images/brand-logos/3.jpg" alt="Brand Logo 3">
+                    </a>
+                </div>
+                <div class="brand-pic">
+                    <a href="#">
+                        <img src="./assets/images/brand-logos/4.jpg" alt="Brand Logo 5">
+                    </a>
+                </div>
+                <div class="brand-pic">
+                    <a href="#">
+                        <img src="./assets/images/brand-logos/5.jpg" alt="Brand Logo 6">
+                    </a>
+                </div>
+                <div class="brand-pic">
+                    <a href="#">
+                        <img src="./assets/images/brand-logos/6.png" alt="Brand Logo 7">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- Brand-Slider /- -->
     <!-- Site-Priorities -->
-<section class="app-priority py-5 ">
-  <div class="container">
-    <div class="row text-center">
-      <div class="col-6 mb-4">
-        <div class="single-item-wrapper">
-          <div class="single-item-icon mb-2">
-            <i class="ion ion-md-star fs-1"></i>
-          </div>
-          <h5>Great Value</h5>
-          <p class="mb-0">We offer competitive prices on our 100 million plus product range</p>
+    <section class="app-priority">
+        <div class="container">
+            <div class="priority-wrapper u-s-p-b-80">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-3">
+                        <div class="single-item-wrapper">
+                            <div class="single-item-icon">
+                                <i class="ion ion-md-star"></i>
+                            </div>
+                            <h2>
+                                Great Value
+                            </h2>
+                            <p>We offer competitive prices on our 100 million plus product range</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3">
+                        <div class="single-item-wrapper">
+                            <div class="single-item-icon">
+                                <i class="ion ion-md-cash"></i>
+                            </div>
+                            <h2>
+                                Shop with Confidence
+                            </h2>
+                            <p>Our Protection covers your purchase from click to delivery</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3">
+                        <div class="single-item-wrapper">
+                            <div class="single-item-icon">
+                                <i class="ion ion-ios-card"></i>
+                            </div>
+                            <h2>
+                                Safe Payment
+                            </h2>
+                            <p>Pay with the world’s most popular and secure payment methods</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3">
+                        <div class="single-item-wrapper">
+                            <div class="single-item-icon">
+                                <i class="ion ion-md-contacts"></i>
+                            </div>
+                            <h2>
+                                24/7 Help Center
+                            </h2>
+                            <p>Round-the-clock assistance for a smooth shopping experience</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="col-6 mb-4">
-        <div class="single-item-wrapper">
-          <div class="single-item-icon mb-2">
-            <i class="ion ion-md-cash fs-1"></i>
-          </div>
-          <h5>Shop with Confidence</h5>
-          <p class="mb-0">Our Protection covers your purchase from click to delivery</p>
-        </div>
-      </div>
-      <div class="col-6 mb-4">
-        <div class="single-item-wrapper">
-          <div class="single-item-icon mb-2">
-            <i class="ion ion-ios-card fs-1"></i>
-          </div>
-          <h5>Safe Payment</h5>
-          <p class="mb-0">Pay with the world’s most popular and secure payment methods</p>
-        </div>
-      </div>
-      <div class="col-6 mb-4">
-        <div class="single-item-wrapper">
-          <div class="single-item-icon mb-2">
-            <i class="ion ion-md-contacts fs-1"></i>
-          </div>
-          <h5>24/7 Help Center</h5>
-          <p class="mb-0">Round-the-clock assistance for a smooth shopping experience</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+    </section>
     <!-- Site-Priorities /- -->
     <!-- Footer -->
     <footer class="footer">
@@ -1014,60 +1004,86 @@ $userRole = $isLoggedIn ? $_SESSION['role'] : null;
                 </form>
             </div>
             <!-- Outer-Footer /- -->
-<!-- Mid-Footer -->
-<div class="mid-footer-wrapper u-s-p-b-80">
-    <div class="row justify-content-center">
-        <div class="col-lg-3 col-md-3 col-6 text-center">
-            <div class="footer-list">
-                <h6>CUSTOMER SERVICE</h6>
-                <ul>
-                    <li><a href="./pages/faq.php">FAQs</a></li>
-                    <li><a href="./pages/track-order.php">Track Order</a></li>
-                    <li><a href="./pages/terms-and-conditions.php">Terms & Conditions</a></li>
-                </ul>
+            <!-- Mid-Footer -->
+            <div class="mid-footer-wrapper u-s-p-b-80">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-12">
+                        <div class="footer-list">
+                            <h6>CUSTOMER SERVICE</h6>
+                            <ul>
+                                <li>
+                                    <a href="./pages/faq.php">FAQs</a>
+                                </li>
+                                <li>
+                                    <a href="./pages/track-order.php">Track Order</a>
+                                </li>
+                                <li>
+                                    <a href="./pages/terms-and-conditions.php">Terms & Conditions</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-12">
+                        <div class="footer-list">
+                            <h6>COMPANY</h6>
+                            <ul>
+                                <li>
+                                    <a href="index.html">Home</a>
+                                </li>
+                                <li>
+                                    <a href="./pages/about.php">About</a>
+                                </li>
+                                <li>
+                                    <a ref="./pages/contact.php">Contact</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-12">
+                        <div class="footer-list">
+                            <h6>INFORMATION</h6>
+                            <ul>
+                                <li>
+                                    <a ref="./pages/store-directory.php">Categories Directory</a>
+                                </li>
+                                <li>
+                                    <a href="./pages/wishlist.php">My Wishlist</a>
+                                </li>
+                                <li>
+                                    <a href="./pages/cart.php">My Cart</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-12">
+                        <div class="footer-list">
+                            <h6>Address</h6>
+                            <ul>
+                                <li>
+                                    <i class="fas fa-location-arrow u-s-m-r-9"></i>
+                                    <span>Gurley Street, Monrovia, Liberia</span>
+                                </li>
+                                <li>
+                                    <a href="tel:+231555711018">
+                                        <i class="fas fa-phone u-s-m-r-9"></i>
+                                        <span>+231555711018 / +231772878894</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="mailto:ziggroupofcompanies231@gmail.com">
+                                        <i class="fas fa-envelope u-s-m-r-9"></i>
+                                        <span>
+                                            Ziggroupofcompanies231@gmail.com</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="col-lg-3 col-md-3 col-6 text-center">
-            <div class="footer-list">
-                <h6>COMPANY</h6>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="./pages/about.php">About</a></li>
-                    <li><a href="./pages/contact.php">Contact</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="col-lg-3 col-md-3 col-6 text-center">
-            <div class="footer-list">
-                <h6>INFORMATION</h6>
-                <ul>
-                    <li><a href="./pages/store-directory.php">Categories Directory</a></li>
-                    <li><a href="./pages/wishlist.php">My Wishlist</a></li>
-                    <li><a href="./pages/cart.php">My Cart</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="col-lg-3 col-md-3 col-6 text-center">
-            <div class="footer-list">
-                <h6>Address</h6>
-                <ul>
-                    <li><i class=""></i><span>Gurley Street, Monrovia, Liberia</span></li>
-                    <li><a href="tel:+231555711018"><i class=""></i><span>+231555711018 / +231772878894</span></a></li>
-                    <li><a href="mailto:ziggroupofcompanies231@gmail.com"><i class=""></i><span>zig_customized@gmail.com</span></a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Mid-Footer /- -->
-<style>
-  .bottom-footer-wrapper::before {
-    all: unset !important;
-  }
-</style>
+            <!-- Mid-Footer /- -->
             <!-- Bottom-Footer -->
             <div class="bottom-footer-wrapper">
-            <img src="./assets/images/payment/payment.jpg" alt="Payment Options" style="display: block; margin: 0 auto 14px; height: 23px; width: auto; max-width: 100%;">
                 <div class="social-media-wrapper">
                     <ul class="social-media-list">
                         <li>
@@ -1135,112 +1151,7 @@ $userRole = $isLoggedIn ? $_SESSION['role'] : null;
             </div>
         </div>
     </div>
-     <!-- Responsive-Search -->
-     <style>
-     @media (max-width: 576px) {
-  #newsletter-modal .modal-dialog {
-    max-width: 90% !important;
-    margin: 1.75rem auto;
-  }
-
-  #newsletter-modal .newsletter-wrapper h1 {
-    font-size: 20px;
-    line-height: 1.3;
-  }
-
-  #newsletter-modal .newsletter-wrapper h5,
-  #newsletter-modal .newsletter-wrapper h6 {
-    font-size: 14px;
-  }
-
-  #newsletter-modal .newsletter-image img {
-  width: 100%;
-  max-width: none;
-  max-height: 100px;
-  object-fit: cover;
-  display: block;
-  margin: 0 auto;
-  transform: scale(1.0);
-  }
-
-  #newsletter-modal .newsletter-textfield {
-  font-size: 14px;
-  padding: 10px;
-  border-radius: 8px;       /* Rounded corners */
-  width: 100%;              /* Full width */
-  max-width: 250px;         /* Optional: limit width */
-  margin: 0 auto;           /* Center horizontally */
-  display: block;           /* Make it block for centering */
-  box-sizing: border-box;   /* Ensure padding doesn’t overflow */
-    
-  }
-
-  #newsletter-modal .button-primary {
-  padding: 10px;
-  font-size: 14px;
-  border-radius: 8px;        /* Rounded corners */
-  width: 100%;               /* Full width */
-  max-width: 250px;          /* Optional: limit width */
-  margin: 0 auto;            /* Center horizontally */
-  display: block;            /* Ensure it's treated as a block for centering */
-  text-align: center;        /* Center text inside */
-  }
-  
-  #newsletter-modal .dismiss-button {
-  font-size: 40px;      /* Increase icon size */
-  width: 40px;          /* Bigger click area */
-  height: 40px;
-  top: 5px;            /* Adjust positioning if needed */
-  right: 5px;
-  position: absolute;
-  z-index: 10;
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: #333;
-  line-height: 1;
-  background-color: White;
-}
-}
-
-     </style>
-    <!-- Newsletter-Modal -->
-    <div id="newsletter-modal" class="modal fade">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <button type="button" class="button dismiss-button ion ion-ios-close" data-dismiss="modal"></button>
-                <div class="modal-body u-s-p-x-0">
-                    <div class="row align-items-center u-s-m-x-0">
-                        <div class="col-lg-6 col-md-6 col-sm-12 u-s-p-x-0">
-                            <div class="newsletter-image">
-                                <a href="./pages/shop-v1-root-category.php" class="banner-hover effect-dark-opacity">
-                                    <img class="img-fluid" src="./assets/images/banners/bag_banner.jpg" alt="Newsletter Image">
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-sm-12">
-                            <div class="newsletter-wrapper">
-                                <h1>New to
-                                    <span>ZIG CUSTOMIZED</span> ?
-                                    <br>Subscribe Newsletter</h1>
-                                <h5>Get latest product update...</h5>
-                                <form>
-                                    <div class="u-s-m-b-35">
-                                        <input type="text" class="newsletter-textfield" placeholder="Enter Your Email">
-                                    </div>
-                                    <div class="u-s-m-b-35">
-                                        <button class="button button-primary d-block w-100">Subscribe</button>
-                                    </div>
-                                </form>
-                                <h6>Be the first for getting special deals and offers, Send directly to your inbox.</h6>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Newsletter-Modal /- -->
+   
     <!-- Quick-view-Modal -->
     <div id="quick-view" class="modal fade">
         <div class="modal-dialog modal-dialog-centered">
@@ -1471,8 +1382,6 @@ ga.l = +new Date;
 ga('create', 'UA-XXXXX-Y', 'auto');
 ga('send', 'pageview')
 </script>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
 <script src="https://www.google-analytics.com/analytics.js" async defer></script>
 <!-- Modernizr-JS -->
 <script type="text/javascript" src="./assets/js/vendor/modernizr-custom.min.js"></script>
@@ -1522,5 +1431,4 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 </script>
-
 </html>

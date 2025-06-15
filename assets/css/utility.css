@@ -1,12 +1,5 @@
 @charset "UTF-8";
-/**
- * Utility classes for spacing:
- * A wide range of shorthand margin and padding utility classes to modify an
- * an element’s appearance.
- * Prefix understanding: u means utility which is a prefix for root namespace,
- * s means spacing which is a prefix for sub namespace, m means margin,
- * p means padding. e.g. `u-s-m-t-22` means apply top margin 22 pixels.
- */
+
 /* Margin with value `auto`. */
 .u-s-m-t-auto {
   margin-top: auto; }
