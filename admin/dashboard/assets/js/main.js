@@ -53,30 +53,34 @@
 })();
 
 $(document).ready(function() {
-    console.log("Document ready - script loaded"); // This should appear in console
-    
-    $(document).on('click', '.delete-product', function(e) {
-        console.log("Delete button clicked"); // Check if this appears when clicking
-        e.preventDefault();
+    // Delete product handler
+    $(document).on('click', '.delete-product', function() {
+        const button = $(this);
+        const productId = button.data('product-id');
+        const productName = button.data('product-name');
         
-        const productId = $(this).data('product-id');
-        console.log("Product ID:", productId); // Verify the ID is correct
-        
-        if (confirm("Are you sure you want to delete this product?")) {
-            console.log("Making AJAX request...");
+        if (confirm(`Are you sure you want to delete "${productName}"?`)) {
+            button.prop('disabled', true).html('<i class="lni lni-spinner-arrow"></i> Deleting...');
+            
             $.ajax({
-                url: 'delete_product.php',
+                url: '../../deleteproduct.php',
                 type: 'POST',
-                data: { product_id: productId },
+                data: { id: productId },
                 dataType: 'json',
                 success: function(response) {
-                    console.log("Server response:", response);
                     if (response.success) {
-                        $(this).closest('tr').fadeOut();
+                        $('#product-' + productId).fadeOut(300, function() {
+                            $(this).remove();
+                        });
+                        alert('Product deleted successfully!');
+                    } else {
+                        alert('Error: ' + response.message);
+                        button.prop('disabled', false).html('<i class="lni lni-trash-can"></i> Delete');
                     }
                 },
-                error: function(xhr, status, error) {
-                    console.error("AJAX error:", error);
+                error: function() {
+                    alert('Error deleting product. Please try again.');
+                    button.prop('disabled', false).html('<i class="lni lni-trash-can"></i> Delete');
                 }
             });
         }
