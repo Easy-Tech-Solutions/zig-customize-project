@@ -165,9 +165,9 @@ requireRole('Admin'); // Only clients can access this page
                                 </td>
                                 <td>
                                     <div class="action">
-                                        <button class="text-danger">
-                                            <i class="lni lni-trash-can"></i>
-                                        </button>
+                                      <button class="text-danger delete-product" data-product-id="<?php echo $product['product_id']; ?>">
+                                          <i class="lni lni-trash-can"></i>
+                                      </button>
                                     </div>
                                 </td>
                             </tr>
@@ -221,5 +221,6 @@ requireRole('Admin'); // Only clients can access this page
     <script src="assets/js/world-merc.js"></script>
     <script src="assets/js/polyfill.js"></script>
     <script src="assets/js/main.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   </body>
 </html>

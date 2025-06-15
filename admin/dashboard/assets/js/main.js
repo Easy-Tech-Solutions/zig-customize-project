@@ -51,3 +51,36 @@
     mainWrapper.classList.remove("active");
   });
 })();
+
+$(document).ready(function() {
+    // Product deletion handler
+    $('.delete-product').click(function(e) {
+        e.preventDefault();
+        const productId = $(this).data('product-id');
+        const productName = $(this).closest('tr').find('td:eq(1)').text(); // Adjust selector based on your table structure
+        
+        if (confirm(`Are you sure you want to delete "${productName}"? This action cannot be undone.`)) {
+            $.ajax({
+                url: 'delete_product.php', // Create this file (see below)
+                type: 'POST',
+                data: { product_id: productId },
+                dataType: 'json',
+                success: function(response) {
+                    if (response.success) {
+                        // Remove the row from the table
+                        $(this).closest('tr').fadeOut(300, function() {
+                            $(this).remove();
+                        });
+                        // Show success message
+                        alert('Product deleted successfully!');
+                    } else {
+                        alert('Error: ' + response.message);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    alert('Error: ' + error);
+                }
+            });
+        }
+    });
+});
