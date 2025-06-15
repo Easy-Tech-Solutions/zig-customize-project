@@ -9,7 +9,7 @@ $(document).ready(function() {
             button.prop('disabled', true).html('<i class="lni lni-spinner-arrow"></i> Deleting...');
             
             $.ajax({
-                url: '../dashboard/deleteproduct.php',
+                url: '/admin/dashboard/deleteproduct.php',
                 type: 'POST',
                 data: { id: productId },
                 dataType: 'json',
