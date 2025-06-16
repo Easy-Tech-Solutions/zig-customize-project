@@ -1208,7 +1208,7 @@ $userRole = $isLoggedIn ? $_SESSION['role'] : null;
     <div id="newsletter-modal" class="modal fade">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
-                <button type="button" class="button dismiss-button ion ion-ios-close" data-dismiss="modal"></button>
+                <button type="button" class="button dismiss-button ion ion-ios-close" data-bs-dismiss="modal"></button>
                 <div class="modal-body u-s-p-x-0">
                     <div class="row align-items-center u-s-m-x-0">
                         <div class="col-lg-6 col-md-6 col-sm-12 u-s-p-x-0">
@@ -1229,7 +1229,7 @@ $userRole = $isLoggedIn ? $_SESSION['role'] : null;
                                         <input type="text" class="newsletter-textfield" placeholder="Enter Your Email">
                                     </div>
                                     <div class="u-s-m-b-35">
-                                        <button class="button button-primary d-block w-100">Subscribe</button>
+                                        <button type="button" id="subscribe-btn" class="button button-primary d-block w-100">Subscribe</button>
                                     </div>
                                 </form>
                                 <h6>Be the first for getting special deals and offers, Send directly to your inbox.</h6>
@@ -1522,5 +1522,27 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 </script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // Delay modal check to avoid race condition
+    setTimeout(function () {
+      if (!localStorage.getItem("newsletterSubscribed")) {
+        $('#newsletter-modal').modal('show');
+      }
+    }, 300); // Slight delay for stability
+  });
+
+  // Handle Subscribe button
+  document.getElementById("subscribe-btn").addEventListener("click", function () {
+    localStorage.setItem("newsletterSubscribed", "true");
+    $('#newsletter-modal').modal('hide');
+  });
+
+  // Handle Close (X) button
+  document.querySelector(".dismiss-button").addEventListener("click", function () {
+    localStorage.setItem("newsletterSubscribed", "true");
+  });
+</script>
+
 
 </html>
