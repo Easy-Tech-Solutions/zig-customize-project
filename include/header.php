@@ -293,17 +293,17 @@
                     <div class="col-lg-9">
                         <ul class="bottom-nav g-nav u-d-none-lg">
                             <li>
-                                <a href="../pages/custom-deal-page.php">New Arrivals
+                                <a href="../pages/new-arrivals.php">New Arrivals
                                     <span class="superscript-label-new">NEW</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="../pages/custom-deal-page.php">Exclusive Deals
+                                <a href="../pages/exclusive-deals.php">Exclusive Deals
                                     <span class="superscript-label-hot">HOT</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="../pages/custom-deal-page.php">Flash Deals
+                                <a href="../pages/flash-sales.php">Flash Deals
                                 </a>
                             </li>
                             <li class="mega-position">

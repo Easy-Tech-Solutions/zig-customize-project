@@ -1,3 +1,7 @@
+<?php
+require_once('../sql_connection/config.php');
+
+?>
 <!DOCTYPE html>
 <html class="no-js" lang="en-US">
 
