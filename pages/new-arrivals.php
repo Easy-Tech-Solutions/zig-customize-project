@@ -59,13 +59,102 @@
         </div>
     </div>
     <!-- Page Introduction Wrapper /- -->
+
     <!-- Custom-Deal-Page -->
+
+    <?php
+    require_once('../sql_connection/config.php');
+
+    // Get sorting parameters from URL
+    $sortBy = $_GET['sort'] ?? 'created_at';
+    $sortOrder = $_GET['order'] ?? 'DESC';
+    $itemsPerPage = $_GET['show'] ?? 8;
+    $currentPage = $_GET['page'] ?? 1;
+
+    // Validate sorting parameters
+    $allowedSortColumns = ['created_at', 'price', 'name', 'discount'];
+    $sortBy = in_array($sortBy, $allowedSortColumns) ? $sortBy : 'created_at';
+    $sortOrder = strtoupper($sortOrder) === 'ASC' ? 'ASC' : 'DESC';
+    $itemsPerPage = in_array($itemsPerPage, [8, 16, 28]) ? $itemsPerPage : 8;
+    $currentPage = max(1, (int)$currentPage);
+
+    // Function to get newest products with sorting and pagination
+    function getNewProducts($pdo, $sortBy, $sortOrder, $limit, $offset) {
+        $twoWeeksAgo = date('Y-m-d H:i:s', strtotime('-2 weeks'));
+        
+        // Special case for discount sorting
+        if ($sortBy === 'discount') {
+            $query = "SELECT *, 
+                    CASE WHEN original_price > 0 
+                        THEN ROUND(((original_price - price) / original_price) * 100, 2) 
+                        ELSE 0 
+                    END AS discount_percent
+                    FROM products 
+                    WHERE created_at >= :twoWeeksAgo
+                    ORDER BY discount_percent $sortOrder
+                    LIMIT :limit OFFSET :offset";
+        } else {
+            $query = "SELECT * FROM products 
+                    WHERE created_at >= :twoWeeksAgo
+                    ORDER BY $sortBy $sortOrder
+                    LIMIT :limit OFFSET :offset";
+        }
+        
+        $stmt = $pdo->prepare($query);
+        $stmt->bindParam(':twoWeeksAgo', $twoWeeksAgo);
+        $stmt->bindValue(':limit', (int)$limit, PDO::PARAM_INT);
+        $stmt->bindValue(':offset', (int)$offset, PDO::PARAM_INT);
+        $stmt->execute();
+        
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    // Function to count total new products
+    function countNewProducts($pdo) {
+        $twoWeeksAgo = date('Y-m-d H:i:s', strtotime('-2 weeks'));
+        
+        $query = "SELECT COUNT(*) FROM products WHERE created_at >= :twoWeeksAgo";
+        $stmt = $pdo->prepare($query);
+        $stmt->bindParam(':twoWeeksAgo', $twoWeeksAgo);
+        $stmt->execute();
+        
+        return $stmt->fetchColumn();
+    }
+
+    // Calculate pagination values
+    $totalProducts = countNewProducts($pdo);
+    $totalPages = ceil($totalProducts / $itemsPerPage);
+    $offset = ($currentPage - 1) * $itemsPerPage;
+
+    // Get products for current page
+    $newProducts = getNewProducts($pdo, $sortBy, $sortOrder, $itemsPerPage, $offset);
+
+    // Function to generate sorting URL
+        function getSortUrl($sortField, $order = null) {
+        global $sortBy, $sortOrder, $itemsPerPage;
+        
+        // Fix the ternary operator with proper parentheses
+        $order = $order ? $order : 
+                (($sortBy === $sortField && $sortOrder === 'DESC') ? 'ASC' : 'DESC');
+        
+        $params = [
+            'sort' => $sortField,
+            'order' => $order,
+            'show' => $itemsPerPage,
+            'page' => 1 // Reset to first page when changing sort
+        ];
+        
+        return '?' . http_build_query($params);
+    }
+    ?>
+
     <div class="page-deal u-s-p-t-80">
         <div class="container">
             <div class="deal-page-wrapper">
                 <h1 class="deal-heading">New Arrivals</h1>
-                <h6 class="deal-has-total-items">27 Items</h6>
+                <h6 class="deal-has-total-items"><?= $totalProducts ?> Items</h6>
             </div>
+            
             <!-- Page-Bar -->
             <div class="page-bar clearfix">
                 <div class="shop-settings">
@@ -76,480 +165,182 @@
                         <i class="fas fa-th"></i>
                     </a>
                 </div>
-                <!-- Toolbar Sorter 1  -->
+                
+                <!-- Toolbar Sorter 1 -->
                 <div class="toolbar-sorter">
                     <div class="select-box-wrapper">
                         <label class="sr-only" for="sort-by">Sort By</label>
-                        <select class="select-box" id="sort-by">
-                            <option selected="selected" value="">Sort By: Best Selling</option>
-                            <option value="">Sort By: Latest</option>
-                            <option value="">Sort By: Lowest Price</option>
-                            <option value="">Sort By: Highest Price</option>
-                            <option value="">Sort By: Best Rating</option>
+                        <select class="select-box" id="sort-by" onchange="window.location.href=this.value">
+                            <option value="<?= getSortUrl('created_at') ?>" 
+                                <?= $sortBy === 'created_at' ? 'selected' : '' ?>>
+                                Sort By: <?= $sortBy === 'created_at' ? ($sortOrder === 'DESC' ? 'Newest' : 'Oldest') : 'Newest' ?>
+                            </option>
+                            <option value="<?= getSortUrl('price', 'ASC') ?>" 
+                                <?= $sortBy === 'price' && $sortOrder === 'ASC' ? 'selected' : '' ?>>
+                                Sort By: Lowest Price
+                            </option>
+                            <option value="<?= getSortUrl('price', 'DESC') ?>" 
+                                <?= $sortBy === 'price' && $sortOrder === 'DESC' ? 'selected' : '' ?>>
+                                Sort By: Highest Price
+                            </option>
+                            <option value="<?= getSortUrl('discount', 'DESC') ?>" 
+                                <?= $sortBy === 'discount' ? 'selected' : '' ?>>
+                                Sort By: Best Discount
+                            </option>
+                            <option value="<?= getSortUrl('name', 'ASC') ?>" 
+                                <?= $sortBy === 'name' ? 'selected' : '' ?>>
+                                Sort By: Name (A-Z)
+                            </option>
                         </select>
                     </div>
                 </div>
-                <!-- //end Toolbar Sorter 1  -->
-                <!-- Toolbar Sorter 2  -->
+                
+                <!-- Toolbar Sorter 2 -->
                 <div class="toolbar-sorter-2">
                     <div class="select-box-wrapper">
                         <label class="sr-only" for="show-records">Show Records Per Page</label>
-                        <select class="select-box" id="show-records">
-                            <option selected="selected" value="">Show: 8</option>
-                            <option value="">Show: 16</option>
-                            <option value="">Show: 28</option>
+                        <select class="select-box" id="show-records" onchange="updateItemsPerPage(this.value)">
+                            <option value="8" <?= $itemsPerPage == 8 ? 'selected' : '' ?>>Show: 8</option>
+                            <option value="16" <?= $itemsPerPage == 16 ? 'selected' : '' ?>>Show: 16</option>
+                            <option value="28" <?= $itemsPerPage == 28 ? 'selected' : '' ?>>Show: 28</option>
                         </select>
                     </div>
                 </div>
-                <!-- //end Toolbar Sorter 2  -->
             </div>
             <!-- Page-Bar /- -->
+            
             <!-- Row-of-Product-Container -->
             <div class="row product-container grid-style">
-                <div class="product-item col-lg-3 col-md-6 col-sm-6">
-                    <div class="item">
-                        <div class="image-container">
-                            <a class="item-img-wrapper-link" href="./single-product.php">
-                                <img class="img-fluid" src="../assets/images/product/product@3x.jpg" alt="Product">
-                            </a>
-                            <div class="item-action-behaviors">
-                                <a class="item-quick-look" data-toggle="modal" href="#quick-view">Quick Look</a>
-                                <a class="item-mail" href="javascript:void(0)">Mail</a>
-                                <a class="item-addwishlist" href="javascript:void(0)">Add to Wishlist</a>
-                                <a class="item-addCart" href="javascript:void(0)">Add to Cart</a>
-                            </div>
-                        </div>
-                        <div class="item-content">
-                            <div class="what-product-is">
-                                <ul class="bread-crumb">
-                                    <li class="has-separator">
-                                        <a href="./shop-v1-root-category.php">Men's</a>
-                                    </li>
-                                    <li class="has-separator">
-                                        <a href="./shop-v2-sub-category.php">Tops</a>
-                                    </li>
-                                    <li>
-                                        <a href="./shop-v3-sub-sub-category.php">Hoodies</a>
-                                    </li>
-                                </ul>
-                                <h6 class="item-title">
-                                    <a href="./single-product.php">Casual Hoodie Full Cotton</a>
-                                </h6>
-                                <div class="item-description">
-                                    <p>This hoodie is full cotton. It includes a muff sewn onto the lower front, and (usually) a drawstring to adjust the hood opening. Throughout the U.S., it is common for middle-school, high-school, and college students to wear this sweatshirts—with or without hoods—that display their respective school names or mascots across the chest, either as part of a uniform or personal preference.
-                                    </p>
+                <?php foreach ($newProducts as $product): 
+                    // Get the first image if there are multiple
+                    $images = explode(',', $product['image_path']);
+                    $mainImage = $images[0];
+                    $thumbnail = $product['thumbnail_path'];
+                    
+                    // Format price display
+                    $price = number_format($product['price'], 2);
+                    $originalPrice = $product['original_price'] ? number_format($product['original_price'], 2) : null;
+
+                    // Calculate discount percentage
+                    $discountPercent = 0;
+                    if ($product['original_price'] > 0 && $product['price'] < $product['original_price']) {
+                        $discountPercent = round((($product['original_price'] - $product['price']) / $product['original_price']) * 100);
+                    }
+                ?>
+                    <div class="product-item col-lg-3 col-md-6 col-sm-6">
+                        <div class="item">
+                            <div class="image-container">
+                                <a class="item-img-wrapper-link" href="./single-product.php?id=<?= $product['id'] ?>">
+                                    <img class="img-fluid" src="<?= $mainImage ?>" alt="<?= htmlspecialchars($product['name']) ?>">
+                                </a>
+                                <div class="item-action-behaviors">
+                                    <a class="item-quick-look" data-toggle="modal" href="#quick-view">Quick Look</a>
+                                    <a class="item-mail" href="javascript:void(0)">Mail</a>
+                                    <a class="item-addwishlist" href="javascript:void(0)">Add to Wishlist</a>
+                                    <a class="item-addCart" href="javascript:void(0)">Add to Cart</a>
                                 </div>
-                                <div class="item-stars">
-                                    <div class='star' title="4.5 out of 5 - based on 23 Reviews">
-                                        <span style='width:67px'></span>
+                            </div>
+                            <div class="item-content">
+                                <div class="what-product-is">
+                                    <ul class="bread-crumb">
+                                        <li class="has-separator">
+                                            <a href="?category=<?= urlencode($product['category']) ?>">
+                                                <?= htmlspecialchars($product['category']) ?>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="?subcategory=<?= urlencode($product['sub_category']) ?>">
+                                                <?= htmlspecialchars($product['sub_category']) ?>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                    <h6 class="item-title">
+                                        <a href="./single-product.php?id=<?= $product['id'] ?>">
+                                            <?= htmlspecialchars($product['name']) ?>
+                                        </a>
+                                    </h6>
+                                    <div class="item-description">
+                                        <p><?= htmlspecialchars(substr($product['description'], 0, 150)) ?>...</p>
                                     </div>
-                                    <span>(23)</span>
-                                </div>
-                            </div>
-                            <div class="price-template">
-                                <div class="item-new-price">
-                                    $55.00
-                                </div>
-                                <div class="item-old-price">
-                                    $60.00
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tag new">
-                            <span>NEW</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-item col-lg-3 col-md-6 col-sm-6">
-                    <div class="item">
-                        <div class="image-container">
-                            <a class="item-img-wrapper-link" href="./single-product.php">
-                                <img class="img-fluid" src="../assets/images/product/product@3x.jpg" alt="Product">
-                            </a>
-                            <div class="item-action-behaviors">
-                                <a class="item-quick-look" data-toggle="modal" href="#quick-view">Quick Look</a>
-                                <a class="item-mail" href="javascript:void(0)">Mail</a>
-                                <a class="item-addwishlist" href="javascript:void(0)">Add to Wishlist</a>
-                                <a class="item-addCart" href="javascript:void(0)">Add to Cart</a>
-                            </div>
-                        </div>
-                        <div class="item-content">
-                            <div class="what-product-is">
-                                <ul class="bread-crumb">
-                                    <li class="has-separator">
-                                        <a href="./shop-v1-root-category.php">Men's</a>
-                                    </li>
-                                    <li class="has-separator">
-                                        <a href="./shop-v2-sub-category.php">Tops</a>
-                                    </li>
-                                    <li>
-                                        <a href="./shop-v3-sub-sub-category.php">T-Shirts</a>
-                                    </li>
-                                </ul>
-                                <h6 class="item-title">
-                                    <a href="./single-product.php">Mischka Plain Men T-Shirt</a>
-                                </h6>
-                                <div class="item-description">
-                                    <p>T-shirts with bold slogans were popular in the UK in the 1980s. T-shirts were originally worn as undershirts, but are now worn frequently as the only piece of clothing on the top half of the body, other than possibly a brassiere or, rarely, a waistcoat (vest). T-shirts have also become a medium for self-expression and advertising, with any imaginable combination of words, art and photographs on display.</p>
-                                </div>
-                                <div class="item-stars">
-                                    <div class='star' title="4.5 out of 5 - based on 23 Reviews">
-                                        <span style='width:67px'></span>
+                                    <div class="item-stars">
+                                        <div class='star' title="4.5 out of 5 - based on 23 Reviews">
+                                            <span style='width:67px'></span>
+                                        </div>
+                                        <span>(23)</span>
                                     </div>
-                                    <span>(23)</span>
+                                </div>
+                                <div class="price-template">
+                                    <div class="item-new-price">
+                                        $<?= $price ?>
+                                    </div>
+                                    <?php if ($originalPrice): ?>
+                                        <div class="item-old-price">
+                                            $<?= $originalPrice ?>
+                                        </div>
+                                    <?php endif; ?>
                                 </div>
                             </div>
-                            <div class="price-template">
-                                <div class="item-new-price">
-                                    $55.00
+                            <?php if ($discountPercent > 0): ?>
+                                <div class="tag discount">
+                                    <span>-<?= $discountPercent ?>%</span>
                                 </div>
-                                <div class="item-old-price">
-                                    $60.00
-                                </div>
+                            <?php endif; ?>
+                            <div class="tag new">
+                                <span>NEW</span>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="product-item col-lg-3 col-md-6 col-sm-6">
-                    <div class="item">
-                        <div class="image-container">
-                            <a class="item-img-wrapper-link" href="./single-product.php">
-                                <img class="img-fluid" src="../assets/images/product/product@3x.jpg" alt="Product">
-                            </a>
-                            <div class="item-action-behaviors">
-                                <a class="item-quick-look" data-toggle="modal" href="#quick-view">Quick Look</a>
-                                <a class="item-mail" href="javascript:void(0)">Mail</a>
-                                <a class="item-addwishlist" href="javascript:void(0)">Add to Wishlist</a>
-                                <a class="item-addCart" href="javascript:void(0)">Add to Cart</a>
-                            </div>
-                        </div>
-                        <div class="item-content">
-                            <div class="what-product-is">
-                                <ul class="bread-crumb">
-                                    <li class="has-separator">
-                                        <a href="./shop-v1-root-category.php">Men's</a>
-                                    </li>
-                                    <li class="has-separator">
-                                        <a href="./shop-v2-sub-category.php">Tops</a>
-                                    </li>
-                                    <li>
-                                        <a href="./shop-v4-filter-as-category.php">T-Shirts</a>
-                                    </li>
-                                </ul>
-                                <h6 class="item-title">
-                                    <a href="./single-product.php">Black Bean Plain Men T-Shirt</a>
-                                </h6>
-                                <div class="item-description">
-                                    <p>T-shirts with bold slogans were popular in the UK in the 1980s. T-shirts were originally worn as undershirts, but are now worn frequently as the only piece of clothing on the top half of the body, other than possibly a brassiere or, rarely, a waistcoat (vest). T-shirts have also become a medium for self-expression and advertising, with any imaginable combination of words, art and photographs on display.</p>
-                                </div>
-                                <div class="item-stars">
-                                    <div class='star' title="4.5 out of 5 - based on 23 Reviews">
-                                        <span style='width:67px'></span>
-                                    </div>
-                                    <span>(23)</span>
-                                </div>
-                            </div>
-                            <div class="price-template">
-                                <div class="item-new-price">
-                                    $55.00
-                                </div>
-                                <div class="item-old-price">
-                                    $60.00
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-item col-lg-3 col-md-6 col-sm-6">
-                    <div class="item">
-                        <div class="image-container">
-                            <a class="item-img-wrapper-link" href="./single-product.php">
-                                <img class="img-fluid" src="../assets/images/product/product@3x.jpg" alt="Product">
-                            </a>
-                            <div class="item-action-behaviors">
-                                <a class="item-quick-look" data-toggle="modal" href="#quick-view">Quick Look</a>
-                                <a class="item-mail" href="javascript:void(0)">Mail</a>
-                                <a class="item-addwishlist" href="javascript:void(0)">Add to Wishlist</a>
-                                <a class="item-addCart" href="javascript:void(0)">Add to Cart</a>
-                            </div>
-                        </div>
-                        <div class="item-content">
-                            <div class="what-product-is">
-                                <ul class="bread-crumb">
-                                    <li class="has-separator">
-                                        <a href="./shop-v1-root-category.php">Men's</a>
-                                    </li>
-                                    <li class="has-separator">
-                                        <a href="./shop-v2-sub-category.php">Bottoms</a>
-                                    </li>
-                                    <li>
-                                        <a href="./shop-v3-sub-sub-category.php">Jeans</a>
-                                    </li>
-                                </ul>
-                                <h6 class="item-title">
-                                    <a href="./single-product.php">Regular Rock Blue Men Jean</a>
-                                </h6>
-                                <div class="item-description">
-                                    <p>Traditionally, jeans were dyed to a blue color using natural indigo dye. Most denim is now dyed using synthetic indigo. Approximately 20 thousand tons of indigo are produced annually for this purpose, though only a few grams of the dye are required for each pair. For other colors of denim other dyes must be used. Currently, jeans are produced in any color that can be achieved with cotton.
-                                    </p>
-                                </div>
-                                <div class="item-stars">
-                                    <div class='star' title="4.5 out of 5 - based on 23 Reviews">
-                                        <span style='width:67px'></span>
-                                    </div>
-                                    <span>(23)</span>
-                                </div>
-                            </div>
-                            <div class="price-template">
-                                <div class="item-new-price">
-                                    $55.00
-                                </div>
-                                <div class="item-old-price">
-                                    $60.00
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tag new">
-                            <span>NEW</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-item col-lg-3 col-md-6 col-sm-6">
-                    <div class="item">
-                        <div class="image-container">
-                            <a class="item-img-wrapper-link" href="./single-product.php">
-                                <img class="img-fluid" src="../assets/images/product/product@3x.jpg" alt="Product">
-                            </a>
-                            <div class="item-action-behaviors">
-                                <a class="item-quick-look" data-toggle="modal" href="#quick-view">Quick Look</a>
-                                <a class="item-mail" href="javascript:void(0)">Mail</a>
-                                <a class="item-addwishlist" href="javascript:void(0)">Add to Wishlist</a>
-                                <a class="item-addCart" href="javascript:void(0)">Add to Cart</a>
-                            </div>
-                        </div>
-                        <div class="item-content">
-                            <div class="what-product-is">
-                                <ul class="bread-crumb">
-                                    <li class="has-separator">
-                                        <a href="./shop-v1-root-category.php">Men's</a>
-                                    </li>
-                                    <li class="has-separator">
-                                        <a href="./shop-v2-sub-category.php">Tops</a>
-                                    </li>
-                                    <li>
-                                        <a href="./shop-v3-sub-sub-category.php">Suits</a>
-                                    </li>
-                                </ul>
-                                <h6 class="item-title">
-                                    <a href="./single-product.php">Black Maire Full Men Suit</a>
-                                </h6>
-                                <div class="item-description">
-                                    <p>British dandy Beau Brummell redefined and adapted this style, then popularised it, leading European men to wearing well-cut, tailored clothes, adorned with carefully knotted neckties. The simplicity of the new clothes and their sombre colours contrasted strongly with the extravagant, foppish styles just before. Brummell's influence introduced the modern era of men's clothing which now includes the modern suit and necktie.</p>
-                                </div>
-                                <div class="item-stars">
-                                    <div class='star' title="4.5 out of 5 - based on 23 Reviews">
-                                        <span style='width:67px'></span>
-                                    </div>
-                                    <span>(23)</span>
-                                </div>
-                            </div>
-                            <div class="price-template">
-                                <div class="item-new-price">
-                                    $55.00
-                                </div>
-                                <div class="item-old-price">
-                                    $60.00
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tag sale">
-                            <span>SALE</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-item col-lg-3 col-md-6 col-sm-6">
-                    <div class="item">
-                        <div class="image-container">
-                            <a class="item-img-wrapper-link" href="./single-product.php">
-                                <img class="img-fluid" src="../assets/images/product/product@3x.jpg" alt="Product">
-                            </a>
-                            <div class="item-action-behaviors">
-                                <a class="item-quick-look" data-toggle="modal" href="#quick-view">Quick Look</a>
-                                <a class="item-mail" href="javascript:void(0)">Mail</a>
-                                <a class="item-addwishlist" href="javascript:void(0)">Add to Wishlist</a>
-                                <a class="item-addCart" href="javascript:void(0)">Add to Cart</a>
-                            </div>
-                        </div>
-                        <div class="item-content">
-                            <div class="what-product-is">
-                                <ul class="bread-crumb">
-                                    <li class="has-separator">
-                                        <a href="./shop-v1-root-category.php">Men's</a>
-                                    </li>
-                                    <li class="has-separator">
-                                        <a href="./shop-v2-sub-category.php">Outwear</a>
-                                    </li>
-                                    <li>
-                                        <a href="./shop-v3-sub-sub-category.php">Jackets</a>
-                                    </li>
-                                </ul>
-                                <h6 class="item-title">
-                                    <a href="./single-product.php">Woodsmoke Rookie Parka Jacket</a>
-                                </h6>
-                                <div class="item-description">
-                                    <p>A parka or anorak is a type of coat with a hood, often lined with fur or faux fur. The Caribou Inuit invented this kind of garment, originally made from caribou or seal skin, for hunting and kayaking in the frigid Arctic. Some Inuit anoraks require regular coating with fish oil to retain their water resistance.</p>
-                                </div>
-                                <div class="item-stars">
-                                    <div class='star' title="4.5 out of 5 - based on 23 Reviews">
-                                        <span style='width:67px'></span>
-                                    </div>
-                                    <span>(23)</span>
-                                </div>
-                            </div>
-                            <div class="price-template">
-                                <div class="item-new-price">
-                                    $55.00
-                                </div>
-                                <div class="item-old-price">
-                                    $60.00
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-item col-lg-3 col-md-6 col-sm-6">
-                    <div class="item">
-                        <div class="image-container">
-                            <a class="item-img-wrapper-link" href="./single-product.php">
-                                <img class="img-fluid" src="../assets/images/product/product@3x.jpg" alt="Product">
-                            </a>
-                            <div class="item-action-behaviors">
-                                <a class="item-quick-look" data-toggle="modal" href="#quick-view">Quick Look</a>
-                                <a class="item-mail" href="javascript:void(0)">Mail</a>
-                                <a class="item-addwishlist" href="javascript:void(0)">Add to Wishlist</a>
-                                <a class="item-addCart" href="javascript:void(0)">Add to Cart</a>
-                            </div>
-                        </div>
-                        <div class="item-content">
-                            <div class="what-product-is">
-                                <ul class="bread-crumb">
-                                    <li class="has-separator">
-                                        <a href="./shop-v1-root-category.php">Men's</a>
-                                    </li>
-                                    <li class="has-separator">
-                                        <a href="./shop-v2-sub-category.php">Accessories</a>
-                                    </li>
-                                    <li>
-                                        <a href="./shop-v3-sub-sub-category.php">Ties</a>
-                                    </li>
-                                </ul>
-                                <h6 class="item-title">
-                                    <a href="./single-product.php">Blue Zodiac Boxes Reg Tie
-                                    </a>
-                                </h6>
-                                <div class="item-description">
-                                    <p>A necktie, or simply a tie, is a long piece of cloth, worn usually by men, for decorative purposes around the neck, resting under the shirt collar and knotted at the throat.</p>
-                                </div>
-                                <div class="item-stars">
-                                    <div class='star' title="4.5 out of 5 - based on 23 Reviews">
-                                        <span style='width:67px'></span>
-                                    </div>
-                                    <span>(23)</span>
-                                </div>
-                            </div>
-                            <div class="price-template">
-                                <div class="item-new-price">
-                                    $55.00
-                                </div>
-                                <div class="item-old-price">
-                                    $60.00
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-item col-lg-3 col-md-6 col-sm-6">
-                    <div class="item">
-                        <div class="image-container">
-                            <a class="item-img-wrapper-link" href="./single-product.php">
-                                <img class="img-fluid" src="../assets/images/product/product@3x.jpg" alt="Product">
-                            </a>
-                            <div class="item-action-behaviors">
-                                <a class="item-quick-look" data-toggle="modal" href="#quick-view">Quick Look</a>
-                                <a class="item-mail" href="javascript:void(0)">Mail</a>
-                                <a class="item-addwishlist" href="javascript:void(0)">Add to Wishlist</a>
-                                <a class="item-addCart" href="javascript:void(0)">Add to Cart</a>
-                            </div>
-                        </div>
-                        <div class="item-content">
-                            <div class="what-product-is">
-                                <ul class="bread-crumb">
-                                    <li class="has-separator">
-                                        <a href="./shop-v1-root-category.php">Men's</a>
-                                    </li>
-                                    <li class="has-separator">
-                                        <a href="./shop-v2-sub-category.php">Bottoms</a>
-                                    </li>
-                                    <li>
-                                        <a href="./shop-v3-sub-sub-category.php">Shoes</a>
-                                    </li>
-                                </ul>
-                                <h6 class="item-title">
-                                    <a href="./single-product.php">Zambezi Carved Leather Business Casual Shoes
-                                    </a>
-                                </h6>
-                                <div class="item-description">
-                                    <p>Dress shoes are characterized by smooth and supple leather uppers, leather soles, and narrow sleek figure. Casual shoes are characterized by sturdy leather uppers, non-leather outsoles, and wide profile. Some designs of dress shoes can be worn by either gender. The majority of dress shoes have an upper covering, commonly made of leather, enclosing most of the lower foot, but not covering the ankles.</p>
-                                </div>
-                                <div class="item-stars">
-                                    <div class='star' title="4.5 out of 5 - based on 23 Reviews">
-                                        <span style='width:67px'></span>
-                                    </div>
-                                    <span>(23)</span>
-                                </div>
-                            </div>
-                            <div class="price-template">
-                                <div class="item-new-price">
-                                    $55.00
-                                </div>
-                                <div class="item-old-price">
-                                    $60.00
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tag discount">
-                            <span>-15%</span>
-                        </div>
-                    </div>
-                </div>
+                <?php endforeach; ?>
             </div>
             <!-- Row-of-Product-Container /- -->
+            
             <!-- Shop-Pagination -->
             <div class="pagination-area">
                 <div class="pagination-number">
                     <ul>
-                        <li style="display: none">
-                            <a href="./shop-v1-root-category.php" title="Previous">
+                        <!-- Previous Page Link -->
+                        <li <?= $currentPage == 1 ? 'style="display:none"' : '' ?>>
+                            <a href="<?= getSortUrl($sortBy, $sortOrder, $currentPage - 1) ?>" title="Previous">
                                 <i class="fa fa-angle-left"></i>
                             </a>
                         </li>
-                        <li class="active">
-                            <a href="./shop-v1-root-category.php">1</a>
-                        </li>
-                        <li>
-                            <a href="./shop-v1-root-category.php">2</a>
-                        </li>
-                        <li>
-                            <a href="./shop-v1-root-category.php">3</a>
-                        </li>
-                        <li>
-                            <a href="./shop-v1-root-category.php">...</a>
-                        </li>
-                        <li>
-                            <a href="./shop-v1-root-category.php">10</a>
-                        </li>
-                        <li>
-                            <a href="./shop-v1-root-category.php" title="Next">
+                        
+                        <!-- Page Numbers -->
+                        <?php 
+                        $startPage = max(1, $currentPage - 2);
+                        $endPage = min($totalPages, $currentPage + 2);
+                        
+                        if ($startPage > 1): ?>
+                            <li>
+                                <a href="<?= getSortUrl($sortBy, $sortOrder, 1) ?>">1</a>
+                            </li>
+                            <?php if ($startPage > 2): ?>
+                                <li>
+                                    <a href="javascript:void(0)">...</a>
+                                </li>
+                            <?php endif;
+                        endif;
+                        
+                        for ($i = $startPage; $i <= $endPage; $i++): ?>
+                            <li class="<?= $i == $currentPage ? 'active' : '' ?>">
+                                <a href="<?= getSortUrl($sortBy, $sortOrder, $i) ?>"><?= $i ?></a>
+                            </li>
+                        <?php endfor;
+                        
+                        if ($endPage < $totalPages): ?>
+                            <?php if ($endPage < $totalPages - 1): ?>
+                                <li>
+                                    <a href="javascript:void(0)">...</a>
+                                </li>
+                            <?php endif; ?>
+                            <li>
+                                <a href="<?= getSortUrl($sortBy, $sortOrder, $totalPages) ?>"><?= $totalPages ?></a>
+                            </li>
+                        <?php endif; ?>
+                        
+                        <!-- Next Page Link -->
+                        <li <?= $currentPage == $totalPages ? 'style="display:none"' : '' ?>>
+                            <a href="<?= getSortUrl($sortBy, $sortOrder, $currentPage + 1) ?>" title="Next">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         </li>
@@ -559,7 +350,18 @@
             <!-- Shop-Pagination /- -->
         </div>
     </div>
+
+    <script>
+    function updateItemsPerPage(value) {
+        const url = new URL(window.location.href);
+        url.searchParams.set('show', value);
+        url.searchParams.set('page', 1); // Reset to first page
+        window.location.href = url.toString();
+    }
+    </script>
+    
     <!-- Custom-Deal-Page -->
+
     <!-- Footer -->
     <?php include("../include/footer.php"); ?>
     <!-- Footer /- -->
