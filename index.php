@@ -720,7 +720,7 @@ $userRole = $isLoggedIn ? $_SESSION['role'] : null;
                 </a>
             </div>
             <div class="redirect-link-wrapper text-center u-s-p-t-25 u-s-p-b-80">
-                <a class="redirect-link" ref="./pages/store-directory.php">
+                <a class="redirect-link" href="./pages/shop-v1-root-category.php">
                     <span>View more on this category</span>
                 </a>
             </div>
@@ -874,7 +874,7 @@ $userRole = $isLoggedIn ? $_SESSION['role'] : null;
                         </div>
         
                         <div class="redirect-link-wrapper text-center u-s-p-t-25 u-s-p-b-80">
-                            <a class="redirect-link" href="./pages/store-directory.php?category=<?= urlencode($category) ?>">
+                            <a class="redirect-link" href="./pages/shop-v1-root-category.php?category=<?= urlencode($category) ?>">
                                 <span>View more <?= htmlspecialchars($category) ?> products</span>
                             </a>
                         </div>
@@ -889,7 +889,7 @@ $userRole = $isLoggedIn ? $_SESSION['role'] : null;
     <!--End of View Products in Each Category-->
 
 <!--    <div class="continue-link-wrapper u-s-p-b-80">
-        <a class="continue-link" ref="./pages/store-directory.php" title="View all products on site">
+        <a class="continue-link" href="./pages/shop-v1-root-category.php" title="View all products on site">
             <i class="ion ion-ios-more"></i>
         </a>
     </div>-->
