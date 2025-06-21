@@ -67,7 +67,6 @@ require_once('../sql_connection/config.php');
     <!-- Custom-Deal-Page -->
 
     <?php
-    require_once('../sql_connection/config.php');
 
     // Get sorting parameters from URL
     $sortBy = $_GET['sort'] ?? 'created_at';
