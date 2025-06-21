@@ -396,7 +396,7 @@ $userRole = $isLoggedIn ? $_SESSION['role'] : null;
                                     <ul>
                                         <li class="menu-title">Home</li>
                                         <li>
-                                            <a href="index.html" class="u-c-brand">Home</a>
+                                            <a href="index.php" class="u-c-brand">Home</a>
                                         </li>
                                         <li>
                                             <a href="./pages/about.php">About</a>
