@@ -375,7 +375,7 @@ $userRole = $isLoggedIn ? $_SESSION['role'] : null;
                     <div class="col-lg-9">
                         <ul class="bottom-nav g-nav u-d-none-lg">
                             <li>
-                                <a href="./pages/custom-deal-page.php">New Arrivals
+                                <a href="./pages/new-arrivals.php">New Arrivals
                                     <span class="superscript-label-new">NEW</span>
                                 </a>
                             </li>
