@@ -232,7 +232,7 @@ require_once('../sql_connection/config.php');
                             $price = number_format($product['price'], 2);
                             $originalPrice = $product['original_price'] ? number_format($product['original_price'], 2) : null;
                         ?>
-                            <div class="product-item col-lg-4 col-md-6 col-sm-6">
+                            <div class="product-item col-6 col-lg-3 mb-3">
                                 <div class="item">
                                     <div class="image-container">
                                         <a class="item-img-wrapper-link" href="./single-product.php?id=<?= $product['id'] ?>">
