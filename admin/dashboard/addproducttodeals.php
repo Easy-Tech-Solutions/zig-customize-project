@@ -3,8 +3,6 @@
 require_once '../../sql_connection/config.php'; // Database connection
 requireRole('Admin'); // Only admins can access this page
 
-// Add at the top of your PHP code (after database connection)
-$productId = isset($_GET['product_id']) ? ['product_id' => $_GET['product_id']] : null;
 
 // Fetch categories and subcategories
 try {
@@ -86,8 +84,7 @@ try {
                         <select class="form-select" id="product" name="product" required>
                             <option value="">Select Product</option>
                              <?php foreach ($products as $productstoadd): ?>
-                                <option value="<?php echo htmlspecialchars($productstoadd['name']); ?>"
-                                    <?php echo ($productId['product_id'] == $productstoadd['id']) ? 'selected' : ''; ?>>
+                                <option value="<?php echo htmlspecialchars($productstoadd['id']); ?>">
                                     <?php echo htmlspecialchars($productstoadd['name']); ?>
                                 </option>
                             <?php endforeach; ?>
@@ -119,8 +116,7 @@ try {
                         <select class="form-select" id="product" name="product" required>
                             <option value="">Select Product</option>
                              <?php foreach ($products as $productstoadd): ?>
-                                <option value="<?php echo htmlspecialchars($productstoadd['name']); ?>"
-                                    <?php echo ($productId['product_id'] == $productstoadd['id']) ? 'selected' : ''; ?>>
+                                <option value="<?php echo htmlspecialchars($productstoadd['id']); ?>">
                                     <?php echo htmlspecialchars($productstoadd['name']); ?>
                                 </option>
                             <?php endforeach; ?>
