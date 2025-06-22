@@ -60,54 +60,54 @@ requireRole('Admin'); // Only admins can access this page
         <!-- ========== header end ========== -->
 
         <!-- admin/add-to-special-groups.php -->
-        <div class="admin-container">
+        <div class="admin-container row">
             <h2>Add Products to Special Groups</h2>
             
-            <div class="special-group-form">
+            <div class="special-group-form col-lg-6 col-md-6 col-sm-12 mb-2">
                 <h3>Add to Exclusive Deals</h3>
-                <form action="process-special-group.php" method="post">
+                <form action="handle_addproducttodeals.php" method="post">
                     <input type="hidden" name="group_type" value="exclusive_deals">
                     
-                    <div class="form-group">
+                    <div class="form-group mt-1">
                         <label>Product ID:</label>
                         <input type="number" name="product_id" required>
                     </div>
                     
-                    <div class="form-group">
+                    <div class="form-group mt-1">
                         <label>Start Date:</label>
                         <input type="datetime-local" name="start_date" required>
                     </div>
                     
-                    <div class="form-group">
+                    <div class="form-group mt-1">
                         <label>End Date:</label>
                         <input type="datetime-local" name="end_date" required>
                     </div>
                     
-                    <button type="submit">Add to Exclusive Deals</button>
+                    <button type="submit btn btn-info">Add to Exclusive Deals</button>
                 </form>
             </div>
             
-            <div class="special-group-form">
+            <div class="special-group-form col-lg-6 col-md-6 col-sm-12">
                 <h3>Add to Flash Sales</h3>
-                <form action="process-special-group.php" method="post">
+                <form action="handle_addproducttodeals.php" method="post">
                     <input type="hidden" name="group_type" value="flash_sales">
                     
-                    <div class="form-group">
+                    <div class="form-group mt-1">
                         <label>Product ID:</label>
                         <input type="number" name="product_id" required>
                     </div>
                     
-                    <div class="form-group">
+                    <div class="form-group mt-1">
                         <label>Start Date:</label>
                         <input type="datetime-local" name="start_date" required>
                     </div>
                     
-                    <div class="form-group">
+                    <div class="form-group mt-1">
                         <label>End Date:</label>
                         <input type="datetime-local" name="end_date" required>
                     </div>
                     
-                    <button type="submit">Add to Flash Sales</button>
+                    <button type="submit btn btn-info">Add to Flash Sales</button>
                 </form>
             </div>
         </div>
