@@ -72,6 +72,14 @@ try {
 
         <!-- admin/add-to-special-groups.php -->
         <div class="admin-container row text-center mx-1">
+            <?php if (!empty($success)): ?>
+                    <div class="alert alert-success"><?php echo htmlspecialchars($success); ?></div>
+                <?php endif; ?>
+                
+                <?php if (!empty($error)): ?>
+                    <div class="alert alert-danger"><?php echo htmlspecialchars($error); ?></div>
+            <?php endif; ?>
+            
             <h2>Add Products to Special Groups</h2>
             
             <div class="special-group-form col-lg-6 col-md-6 col-sm-12 mb-2">
