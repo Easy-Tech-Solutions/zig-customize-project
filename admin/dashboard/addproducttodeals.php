@@ -1,5 +1,6 @@
 <?php
-require_once('../../sql_connection/config.php');
+// admin/process-special-products.php
+require_once '../../include/config.php'; // Database connection
 requireRole('Admin'); // Only admins can access this page
 
 // Fetch categories and subcategories
@@ -83,7 +84,7 @@ try {
                             <option value="">Select Product</option>
                              <?php foreach ($products as $productstoadd): ?>
                                 <option value="<?php echo htmlspecialchars($productstoadd['name']); ?>"
-                                    <?php echo ($productData['name'] == $productstoadd['name']) ? 'selected' : ''; ?>>
+                                    <?php echo ($productId['product_id'] == $productstoadd['id']) ? 'selected' : ''; ?>>
                                     <?php echo htmlspecialchars($productstoadd['name']); ?>
                                 </option>
                             <?php endforeach; ?>
@@ -112,7 +113,15 @@ try {
                     
                     <div class="form-group mt-1">
                         <label>Product ID:</label>
-                        <input type="number" name="product_id" class="form-control" required>
+                        <select class="form-select" id="product" name="product" required>
+                            <option value="">Select Product</option>
+                             <?php foreach ($products as $productstoadd): ?>
+                                <option value="<?php echo htmlspecialchars($productstoadd['name']); ?>"
+                                    <?php echo ($productId['product_id'] == $productstoadd['id']) ? 'selected' : ''; ?>>
+                                    <?php echo htmlspecialchars($productstoadd['name']); ?>
+                                </option>
+                            <?php endforeach; ?>
+                        </select>
                     </div>
                     
                     <div class="form-group mt-1">
