@@ -1,6 +1,6 @@
 <?php
 // admin/process-special-products.php
-require_once '../../include/config.php'; // Database connection
+require_once '../../sql_connection/config.php'; // Database connection
 requireRole('Admin'); // Only admins can access this page
 
 // Fetch categories and subcategories
