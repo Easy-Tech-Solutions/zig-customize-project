@@ -298,12 +298,12 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="../pages/exclusive-deals.php">Exclusive Deals
+                                <a href="../pages/exclusivedeals.php">Exclusive Deals
                                     <span class="superscript-label-hot">HOT</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="../pages/flash-sales.php">Flash Deals
+                                <a href="../pages/flashsales.php">Flash Deals
                                 </a>
                             </li>
                             <li class="mega-position">
