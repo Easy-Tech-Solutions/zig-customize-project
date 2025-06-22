@@ -103,6 +103,29 @@
                 </div>
             </div>
     <!-- Top-Header /- -->
+    
+<style>
+@media screen and (max-width: 768px) {
+    #mobile-header {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    #mobile-header .brand-logo {
+        text-align: left !important;
+    }
+
+    #mobile-header nav {
+        text-align: right !important;
+        width: 100%;
+    }
+
+    #mobile-header .col-lg-6 {
+        display: none !important; /* Hide search bar on mobile */
+    }
+}
+</style>
+    
     <!-- Mid-Header -->
     <div class="full-layer-mid-header">
             <div class="container">
