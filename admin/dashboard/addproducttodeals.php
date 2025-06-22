@@ -3,6 +3,9 @@
 require_once '../../sql_connection/config.php'; // Database connection
 requireRole('Admin'); // Only admins can access this page
 
+// Add at the top of your PHP code (after database connection)
+$productId = isset($_GET['product_id']) ? ['product_id' => $_GET['product_id']] : null;
+
 // Fetch categories and subcategories
 try {
     $stmt = $pdo->query("SELECT * FROM products");
