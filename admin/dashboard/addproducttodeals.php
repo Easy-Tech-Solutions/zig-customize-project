@@ -98,12 +98,6 @@ try {
 
         <!-- admin/add-to-special-groups.php -->
         <div class="admin-container row text-center mx-1">
-            <?php if (isset($_SESSION['flash_message'])): ?>
-                <div class="alert <?= isset($_SESSION['flash_status']) ? 'alert-' . $_SESSION['flash_status'] : 'alert-info' ?>">
-                <?= $_SESSION['flash_message'] ?>
-                </div>
-                <?php unset($_SESSION['flash_message']); unset($_SESSION['flash_status']); ?>
-            <?php endif; ?>
             
             <h2>Add Products to Special Groups</h2>
             

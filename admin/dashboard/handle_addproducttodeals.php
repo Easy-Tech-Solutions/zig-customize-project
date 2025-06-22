@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once '../../sql_connection/config.php';
 require_once '../include/function_addtodeals.php';
 
