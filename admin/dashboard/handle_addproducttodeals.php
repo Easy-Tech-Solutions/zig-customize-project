@@ -20,11 +20,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             throw new Exception('Invalid group type');
         }
         
-        $message = 'Product added successfully!';
-        $status = 'success';
+        $_SESSION['flash_message'] = $message;
+        header('Location: addproducttodeals.php');
+        exit();
     } catch (Exception $e) {
-        $message = $e->getMessage();
-        $status = 'danger';
+        $_SESSION['flash_message'] = 'Error: ' . $e->getMessage();
+        header('Location: addproducttodeals.php');
+        exit();
     }
 }
 ?>
