@@ -2,6 +2,15 @@
 require_once('../../sql_connection/config.php');
 requireRole('Admin'); // Only admins can access this page
 
+// Fetch categories and subcategories
+try {
+    $stmt = $pdo->query("SELECT * FROM products");
+    $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
+} catch (PDOException $e) {
+    die("Error fetching categories: " . $e->getMessage());
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -69,8 +78,17 @@ requireRole('Admin'); // Only admins can access this page
                     <input type="hidden" name="group_type" value="exclusive_deals">
                     
                     <div class="form-group mt-1">
-                        <label>Product ID:</label>
-                        <input type="number" name="product_id" class="form-control" required>
+                        <label>Product Name</label>
+                        <select class="form-select" id="product" name="product" required>
+                            <option value="">Select Product</option>
+                             <?php foreach ($products as $productstoadd): ?>
+                                <option value="<?php echo htmlspecialchars($productstoadd['name']); ?>"
+                                    <?php echo ($productData['name'] == $productstoadd['name']) ? 'selected' : ''; ?>>
+                                    <?php echo htmlspecialchars($productstoadd['name']); ?>
+                                </option>
+                            <?php endforeach; ?>
+                        </select>
+
                     </div>
                     
                     <div class="form-group mt-1">
