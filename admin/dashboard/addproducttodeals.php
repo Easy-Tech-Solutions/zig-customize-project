@@ -63,7 +63,7 @@ requireRole('Admin'); // Only admins can access this page
         <div class="admin-container row text-center">
             <h2>Add Products to Special Groups</h2>
             
-            <div class="special-group-form col-lg-6 col-md-6 col-sm-12 mb-2 mx-3">
+            <div class="special-group-form col-lg-6 col-md-6 col-sm-12 mb-2 mx-1">
                 <h3>Add to Exclusive Deals</h3>
                 <form action="handle_addproducttodeals.php" method="post">
                     <input type="hidden" name="group_type" value="exclusive_deals">
