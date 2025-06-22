@@ -21,13 +21,15 @@ $totalPages = ceil($totalExclusiveDeals / $itemsPerPage);
 function getActiveExclusiveDeals($pdo, $sortBy, $sortOrder, $limit, $offset) {
     $now = date('Y-m-d H:i:s');
     
-    $query = "SELECT * FROM exclusive_deals 
-              WHERE start_date <= ? AND end_date >= ? 
-              ORDER BY $sortBy $sortOrder 
-              LIMIT ? OFFSET ?";
-    
+        $query = "SELECT * FROM exclusive_deals 
+            WHERE start_date <= :now AND end_date >= :now 
+            ORDER BY $sortBy $sortOrder 
+            LIMIT $limit OFFSET $offset";
+
     $stmt = $pdo->prepare($query);
-    $stmt->execute([$now, $now, $limit, $offset]);
+    $stmt->bindValue(':now', $now);
+    $stmt->execute();
+
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
