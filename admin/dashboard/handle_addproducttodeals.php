@@ -4,7 +4,7 @@ require_once '../../sql_connection/config.php';
 require_once '../include/function_addtodeals.php'; // Our new functions
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $productId = (int)$_POST['product_id'];
+    $productId = (int)$_POST['id'];
     $startDate = $_POST['start_date'];
     $endDate = $_POST['end_date'];
     $groupType = $_POST['group_type'];

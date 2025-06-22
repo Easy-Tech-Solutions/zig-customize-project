@@ -9,7 +9,7 @@ function addToExclusiveDeals($pdo, $productId, $startDate, $endDate) {
     }
     
     // Check if product already exists in exclusive deals
-    $stmt = $pdo->prepare("SELECT id FROM exclusive_deals WHERE product_id = ?");
+    $stmt = $pdo->prepare("SELECT id FROM exclusive_deals WHERE id = ?");
     $stmt->execute([$productId]);
     
     if ($stmt->rowCount() > 0) {
@@ -50,7 +50,7 @@ function addToFlashSales($pdo, $productId, $startDate, $endDate) {
     }
     
     // Check if product already exists in flash sales
-    $stmt = $pdo->prepare("SELECT id FROM flash_sales WHERE product_id = ?");
+    $stmt = $pdo->prepare("SELECT id FROM flash_sales WHERE id = ?");
     $stmt->execute([$productId]);
     
     if ($stmt->rowCount() > 0) {
