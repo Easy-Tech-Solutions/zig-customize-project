@@ -56,6 +56,32 @@ try {
             border: 1px solid #ddd;
             border-radius: 4px;
         }
+
+        /* admin/css/admin.css */
+        .alert {
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 1px solid transparent;
+            border-radius: 4px;
+        }
+
+        .alert-success {
+            color: #3c763d;
+            background-color: #dff0d8;
+            border-color: #d6e9c6;
+        }
+
+        .alert-danger {
+            color: #a94442;
+            background-color: #f2dede;
+            border-color: #ebccd1;
+        }
+
+        .alert-info {
+            color: #31708f;
+            background-color: #d9edf7;
+            border-color: #bce8f1;
+        }
     </style>
 </head>
 <body>
@@ -72,12 +98,11 @@ try {
 
         <!-- admin/add-to-special-groups.php -->
         <div class="admin-container row text-center mx-1">
-            <?php if (!empty($success)): ?>
-                    <div class="alert alert-success"><?php echo htmlspecialchars($success); ?></div>
-                <?php endif; ?>
-                
-                <?php if (!empty($error)): ?>
-                    <div class="alert alert-danger"><?php echo htmlspecialchars($error); ?></div>
+            <?php if (isset($_SESSION['flash_message'])): ?>
+                <div class="alert <?= isset($_SESSION['flash_status']) ? 'alert-' . $_SESSION['flash_status'] : 'alert-info' ?>">
+                <?= $_SESSION['flash_message'] ?>
+                </div>
+                <?php unset($_SESSION['flash_message']); unset($_SESSION['flash_status']); ?>
             <?php endif; ?>
             
             <h2>Add Products to Special Groups</h2>
