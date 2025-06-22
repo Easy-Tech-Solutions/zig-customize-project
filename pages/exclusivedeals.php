@@ -1,6 +1,6 @@
 <?php
 require_once('../sql_connection/config.php');
-require_once '../admin/dashboard/function_addtodeals.php';
+require_once '../admin/include/function_addtodeals.php';
 
 // Get sorting parameters
 $sortBy = $_GET['sort'] ?? 'created_at';
