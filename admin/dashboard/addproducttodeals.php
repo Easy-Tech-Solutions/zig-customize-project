@@ -81,7 +81,7 @@ try {
                     
                     <div class="form-group mt-1">
                         <label>Product Name</label>
-                        <select class="form-select" id="product" name="product" required>
+                        <select class="form-select" id="product" name="product_id" required>
                             <option value="">Select Product</option>
                              <?php foreach ($products as $productstoadd): ?>
                                 <option value="<?php echo htmlspecialchars($productstoadd['id']); ?>">
@@ -113,7 +113,7 @@ try {
                     
                     <div class="form-group mt-1">
                         <label>Product ID:</label>
-                        <select class="form-select" id="product" name="product" required>
+                        <select class="form-select" id="product" name="product_id" required>
                             <option value="">Select Product</option>
                              <?php foreach ($products as $productstoadd): ?>
                                 <option value="<?php echo htmlspecialchars($productstoadd['id']); ?>">
