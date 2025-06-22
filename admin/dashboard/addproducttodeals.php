@@ -98,6 +98,12 @@ try {
 
         <!-- admin/add-to-special-groups.php -->
         <div class="admin-container row text-center mx-1">
+
+            <?php if (!empty($message)): ?>
+                <div class="alert alert-<?= htmlspecialchars($status) ?>">
+                    <?= htmlspecialchars($message) ?>
+                </div>
+            <?php endif; ?>
             
             <h2>Add Products to Special Groups</h2>
             
