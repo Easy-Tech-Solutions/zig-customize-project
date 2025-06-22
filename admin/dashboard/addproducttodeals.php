@@ -63,7 +63,7 @@ requireRole('Admin'); // Only admins can access this page
         <div class="admin-container row text-center">
             <h2>Add Products to Special Groups</h2>
             
-            <div class="special-group-form col-lg-6 col-md-6 col-sm-12 mb-2">
+            <div class="special-group-form col-lg-6 col-md-6 col-sm-12 mb-2 px-2">
                 <h3>Add to Exclusive Deals</h3>
                 <form action="handle_addproducttodeals.php" method="post">
                     <input type="hidden" name="group_type" value="exclusive_deals">
@@ -83,7 +83,7 @@ requireRole('Admin'); // Only admins can access this page
                         <input type="datetime-local" name="end_date" class="form-control" required>
                     </div>
                     
-                    <button type="submit" class="btn btn-info">Add to Exclusive Deals</button>
+                    <button type="submit" class="btn btn-info mt-2">Add to Exclusive Deals</button>
                 </form>
             </div>
             
@@ -107,7 +107,7 @@ requireRole('Admin'); // Only admins can access this page
                         <input type="datetime-local" name="end_date" class="form-control" required>
                     </div>
                     
-                    <button type="submit" class="btn btn-info">Add to Flash Sales</button>
+                    <button type="submit" class="btn btn-info mt-2">Add to Flash Sales</button>
                 </form>
             </div>
         </div>
