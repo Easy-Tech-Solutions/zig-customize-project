@@ -83,7 +83,7 @@ requireRole('Admin'); // Only admins can access this page
                         <input type="datetime-local" name="end_date" required>
                     </div>
                     
-                    <button type="submit btn btn-info">Add to Exclusive Deals</button>
+                    <button type="submit" class="btn btn-info">Add to Exclusive Deals</button>
                 </form>
             </div>
             
@@ -107,7 +107,7 @@ requireRole('Admin'); // Only admins can access this page
                         <input type="datetime-local" name="end_date" required>
                     </div>
                     
-                    <button type="submit btn btn-info">Add to Flash Sales</button>
+                    <button type="submit" class="btn btn-info">Add to Flash Sales</button>
                 </form>
             </div>
         </div>
