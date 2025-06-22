@@ -58,7 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['flash_status'] = 'danger';
     }
     
-    header('Location: add-special-product.php');
+    header('Location: addproducttodeals.php');
     exit();
 }
 ?>
