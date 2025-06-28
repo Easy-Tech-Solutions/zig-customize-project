@@ -104,7 +104,10 @@
             </div>
     <!-- Top-Header /- -->
     
-<style>
+<!-- Mid-Header -->
+<div class="full-layer-mid-header">
+    <div class="container">
+        <style>
 @media screen and (max-width: 768px) {
     #mobile-header {
         flex-direction: row;
@@ -124,81 +127,78 @@
         display: none !important; /* Hide search bar on mobile */
     }
 }
-</style>
-    
-    <!-- Mid-Header -->
-    <div class="full-layer-mid-header">
-            <div class="container">
-                <div class="row clearfix align-items-center">
-                    <div class="col-lg-3 col-md-9 col-sm-6">
-                        <div class="brand-logo text-lg-center">
-                            <a href="../index.php">
-                                <img src="../assets/images/main-logo/ZIG.png" alt="Groover Brand Logo" class="app-brand-logo">
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 u-d-none-lg">
-                        <form class="form-searchbox">
-                            <label class="sr-only" for="search-landscape">Search</label>
-                            <input id="search-landscape" type="text" class="text-field" placeholder="Search everything">
-                            <div class="select-box-position">
-                                <div class="select-box-wrapper select-hide">
-                                    <label class="sr-only" for="select-category">Choose category for search</label>
-                                    <select class="select-box" id="select-category">
-                                        
-                                        <option selected="selected" value="">
-                                            All
-                                        </option>
-                                        
-                                        <?php
-                                        try {
-                                            $productcategories = $pdo->query("SELECT * FROM productcategory")->fetchAll();
-                                        } catch (PDOException $e) {
-                                            die("Error fetching categories: " . $e->getMessage());
-                                        }
-                                        
-                                        foreach ($productcategories as $productcategory): ?>
-                                        
-                                        <option value=""><?= htmlspecialchars(strtoupper($productcategory['categoryname'])) ?></option>
-                    
-                                        <?php endforeach; ?>
-                                        
-                                       <option value="">Services
-                                        </option>
-                                        
-                                    </select>
-                                </div>
-                            </div>
-                            <button id="btn-search" type="submit" class="button button-primary fas fa-search"></button>
-                        </form>
-                    </div>
-                    <div class="col-lg-3 col-md-3 col-sm-6">
-                        <nav>
-                            <ul class="mid-nav g-nav">
-                                <li class="u-d-none-lg">
-                                    <a href="index.html">
-                                        <i class="ion ion-md-home u-c-brand"></i>
-                                    </a>
-                                </li>
-                                <li class="u-d-none-lg">
-                                    <a href="../pages/wishlist.php">
-                                        <i class="far fa-heart"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a id="mini-cart-trigger">
-                                        <i class="ion ion-md-basket"></i>
-                                        <span class="item-counter">4</span>
-                                        <span class="item-price">$220.00</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </nav>
-                    </div>
+        </style>
+
+        <div class="row clearfix align-items-center" id="mobile-header" style="display: flex; flex-wrap: wrap; align-items: center;">
+            <div class="col-lg-3 col-md-9 col-sm-6" style="flex: 1;">
+                <div class="brand-logo" style="text-align: left;">
+                    <a href="index.php">
+                        <img src="../assets/images/main-logo/ZIG.png" alt="ZIG CUSTOMIZED " class="app-brand-logo">
+                    </a>
                 </div>
             </div>
+            <div class="col-lg-6 u-d-none-lg">
+                <form class="form-searchbox">
+                    <label class="sr-only" for="search-landscape">Search</label>
+                    <input id="search-landscape" type="text" class="text-field" placeholder="Search everything">
+                    <div class="select-box-position">
+                        <div class="select-box-wrapper select-hide">
+                            <label class="sr-only" for="select-category">Choose category for search</label>
+                            <select class="select-box" id="select-category">
+                                
+                                <option selected="selected" value="">
+                                    All
+                                </option>
+                                
+                                <?php
+                                try {
+                                    $productcategories = $pdo->query("SELECT * FROM productcategory")->fetchAll();
+                                } catch (PDOException $e) {
+                                    die("Error fetching categories: " . $e->getMessage());
+                                }
+                                
+                                foreach ($productcategories as $productcategory): ?>
+                                
+                                <option value=""><?= htmlspecialchars(strtoupper($productcategory['categoryname'])) ?></option>
+            
+                                <?php endforeach; ?>
+                                
+                               <option value="">Services
+                                </option>
+                                
+                            </select>
+                        </div>
+                    </div>
+                    <button id="btn-search" type="submit" class="button button-primary fas fa-search"></button>
+                </form>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6" style="flex: 1;">
+                <nav style="text-align: right;">
+                    <ul class="mid-nav g-nav" style="margin: 0;">
+                        <li class="u-d-none-lg">
+                            <a href="index.html">
+                                <i class="ion ion-md-home u-c-brand"></i>
+                            </a>
+                        </li>
+                        <li class="u-d-none-lg">
+                            <a href="./pages/wishlist.php">
+                                <i class="far fa-heart"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a id="mini-cart-trigger">
+                                <i class="ion ion-md-basket"></i>
+                                <span class="item-counter">0</span>
+                                <span class="item-price">$0.00</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
         </div>
-    <!-- Mid-Header /- -->
+    </div>
+</div>
+<!-- Mid-Header /- -->
     <!-- Responsive-Buttons -->
     <div class="fixed-responsive-container">
             <div class="fixed-responsive-wrapper">
@@ -321,12 +321,12 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="../pages/exclusivedeals.php">Exclusive Deals
+                                <a href="../pages/exclusive-deals.php">Exclusive Deals
                                     <span class="superscript-label-hot">HOT</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="../pages/flashsales.php">Flash Deals
+                                <a href="../pages/flash-sales.php">Flash Deals
                                 </a>
                             </li>
                             <li class="mega-position">

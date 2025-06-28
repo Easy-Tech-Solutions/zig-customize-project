@@ -228,7 +228,7 @@ $userRole = $isLoggedIn ? $_SESSION['role'] : null;
                     </div>
                     <div class="col-lg-3 col-md-3 col-sm-6" style="flex: 1;">
                         <nav style="text-align: right;">
-                            <ul class="mid-nav g-nav" style="margin: 0;>
+                            <ul class="mid-nav g-nav" style="margin: 0;">
                                 <li class="u-d-none-lg">
                                     <a href="index.html">
                                         <i class="ion ion-md-home u-c-brand"></i>
@@ -380,15 +380,15 @@ $userRole = $isLoggedIn ? $_SESSION['role'] : null;
                                 </a>
                             </li>
                             <li>
-                                <a href="./pages/exclusivedeals.php">Exclusive Deals
+                                <a href="./pages/custom-deal-page.php">Exclusive Deals
                                     <span class="superscript-label-hot">HOT</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="./pages/flashsales.php">Flash Deals
+                                <a href="./pages/custom-deal-page.php">Flash Deals
                                 </a>
                             </li>
-                            <li class="mega-position">
+<li class="mega-position">
                                 <a>Pages
                                     <i class="fas fa-chevron-down u-s-m-l-9"></i>
                                 </a>
@@ -396,104 +396,104 @@ $userRole = $isLoggedIn ? $_SESSION['role'] : null;
                                     <ul>
                                         <li class="menu-title">Home</li>
                                         <li>
-                                            <a href="index.php" class="u-c-brand">Home</a>
+                                            <a href="index.html" class="u-c-brand">Home</a>
                                         </li>
                                         <li>
-                                            <a href="./pages/about.php">About</a>
+                                            <a href="../pages/about.php">About</a>
                                         </li>
                                         <li>
                                             <a ref="./pages/contact.php">Contact</a>
                                         </li>
                                         <li>
-                                            <a href="./pages/faq.php">FAQ</a>
+                                            <a href="../pages/faq.php">FAQ</a>
                                         </li>
                                         <!-- <li>
                                             <a ref="./pages/store-directory.php">Store Directory</a>
                                         </li> -->
                                         <li>
-                                            <a href="./pages/terms-and-conditions.php">Terms & Conditions</a>
+                                            <a href="../pages/terms-and-conditions.php">Terms & Conditions</a>
                                         </li>
                                         <!-- <li>
-                                            <a href="./pages/404.php">404</a>
+                                            <a href="../pages/404.php">404</a>
                                         </li> -->
                                         <!-- <li class="menu-title">Single Product Page</li> -->
                                         <!-- <li>
-                                            <a href="./pages/single-product.php">Single Product Fullwidth</a>
+                                            <a href="../pages/single-product.php">Single Product Fullwidth</a>
                                         </li> -->
                                         <li class="menu-title">Blog</li>
                                         <li>
                                             <a href="blog.php">Zig Updates </a>
                                         </li>
                                         <!-- <li>
-                                            <a href="./pages/blog-detail.php">Blog Details</a>
+                                            <a href="../pages/blog-detail.php">Blog Details</a>
                                         </li> -->
                                     </ul>
                                     <ul>
                                         <li class="menu-title">Shop</li>
                                         <li>
-                                            <a href="./pages/shop-v2-sub-category.php">Shop</a>
+                                            <a href="../pages/shop-v2-sub-category.php">Shop</a>
                                         </li>
                                         <li>
-                                            <a href="./pages/cart.php">Cart</a>
+                                            <a href="../pages/cart.php">Cart</a>
                                         </li>
                                         <li>
-                                            <a href="./pages/checkout.php">Checkout</a>
+                                            <a href="../pages/checkout.php">Checkout</a>
                                         </li>
                                         <li>
-                                            <a href="./pages/account.php">My Account</a>
+                                            <a href="../pages/account.php">My Account</a>
                                         </li>
                                         <li>
-                                            <a href="./pages/wishlist.php">Wishlist</a>
+                                            <a href="../pages/wishlist.php">Wishlist</a>
                                         </li>
                                         <li>
-                                            <a href="./pages/track-order.php">Track your Order</a>
+                                            <a href="../pages/track-order.php">Track your Order</a>
                                         </li>
                                         <!-- <li class="menu-title">Cart Variations</li> -->
                                         <!-- <li>
-                                            <a href="./pages/cart-empty.php">Cart Ver 1 Empty</a>
+                                            <a href="../pages/cart-empty.php">Cart Ver 1 Empty</a>
                                         </li> -->
                                         <!-- <li>
-                                            <a href="./pages/cart.php">Cart</a>
+                                            <a href="../pages/cart.php">Cart</a>
                                         </li> -->
                                         <li class="menu-title">Wishlist</li>
                                         <!-- <li>
-                                            <a href="./pages/wishlist-empty.php">Wishlist Ver 1 Empty</a>
+                                            <a href="../pages/wishlist-empty.php">Wishlist Ver 1 Empty</a>
                                         </li> -->
                                         <li>
-                                            <a href="./pages/wishlist.php">Wishlist</a>
+                                            <a href="../pages/wishlist.php">Wishlist</a>
                                         </li>
                                     </ul>
                                     <ul>
                                         <!-- <li class="menu-title">Shop Variations</li>
                                         <li> -->
-                                            <!-- <a href="./pages/shop-v1-root-category.php">Shop Ver 1 Root Category</a>
+                                            <!-- <a href="../pages/shop-v1-root-category.php">Shop Ver 1 Root Category</a>
                                         </li>
                                         <li>
-                                            <a href="./pages/shop-v2-sub-category.php">Shop Ver 2 Sub Category</a>
+                                            <a href="../pages/shop-v2-sub-category.php">Shop Ver 2 Sub Category</a>
                                         </li>
                                         <li>
-                                            <a href="./pages/shop-v3-sub-sub-category.php">Shop Ver 3 Sub Sub Category</a>
+                                            <a href="../pages/shop-v3-sub-sub-category.php">Shop Ver 3 Sub Sub Category</a>
                                         </li>
                                         <li>
-                                            <a href="./pages/shop-v4-filter-as-category.php">Shop Ver 4 Filter as Category</a>
+                                            <a href="../pages/shop-v4-filter-as-category.php">Shop Ver 4 Filter as Category</a>
                                         </li>
                                         <li>
-                                            <a href="./pages/shop-v5-product-not-found.php">Shop Ver 5 Product Not Found</a>
+                                            <a href="../pages/shop-v5-product-not-found.php">Shop Ver 5 Product Not Found</a>
                                         </li>
                                         <li>
-                                            <a href="./pages/shop-v6-search-results.php">Shop Ver 6 Search Results</a>
+                                            <a href="../pages/shop-v6-search-results.php">Shop Ver 6 Search Results</a>
                                         </li> -->
                                         <li class="menu-title">Account</li>
                                         <li>
-                                            <a href="./pages/lost-password.php">Lost Your Password ?</a>
+                                            <a href="../pages/lost-password.php">Lost Your Password ?</a>
                                         </li>
                                         <!-- <li class="menu-title">Checkout Variation</li>
                                         <li>
-                                            <a href="./pages/confirmation.php">Checkout Confirmation</a>
+                                            <a href="../pages/confirmation.php">Checkout Confirmation</a>
                                         </li> -->
                                         <li class="menu-title">Custom Deals</li>
                                         <li>
-                                            <a href="./pages/custom-deal-page.php">Custom Deal Page</a>
+                                            <a href="../pages/custom-deal-page.php">Custom Deal Page</a>
                                         </li>
                                     </ul>
                                 </div>
