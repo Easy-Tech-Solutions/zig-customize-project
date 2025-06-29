@@ -193,28 +193,31 @@ $userRole = $isLoggedIn ? $_SESSION['role'] : null;
                     </div>
 
                     <?php
-                        // Process search if form submitted
+                        // Initialize variables
                         $searchResults = [];
                         $searchTerm = '';
-                        $searchCategory = '';
+                        $searchCategory = 'all';
+                        $showResults = false;
 
-                        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search'])) {
-                            $searchTerm = trim($_POST['search']);
-                            $searchCategory = $_POST['category'] ?? '';
+                        // Process search if form submitted
+                        if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['search'])) {
+                            $searchTerm = trim($_GET['search']);
+                            $searchCategory = $_GET['category'] ?? 'all';
+                            $showResults = true;
                             
                             if (!empty($searchTerm)) {
                                 try {
                                     // Base query
-                                    $query = "SELECT p.* FROM products p WHERE p.name LIKE :search OR p.description LIKE :search";
+                                    $query = "SELECT p.* FROM products p WHERE (p.name LIKE :search OR p.description LIKE :search)";
                                     $params = [':search' => "%$searchTerm%"];
                                     
-                                    // Add category filter if selected
-                                    if (!empty($searchCategory) && $searchCategory !== 'all') {
+                                    // Add category filter if selected (not "all")
+                                    if ($searchCategory !== 'all' && $searchCategory !== 'services') {
                                         $query .= " AND (p.category = :category OR p.sub_category = :category)";
                                         $params[':category'] = $searchCategory;
                                     }
                                     
-                                    // Add services search if selected
+                                    // Special case for services
                                     if ($searchCategory === 'services') {
                                         $query = "SELECT * FROM services WHERE name LIKE :search OR description LIKE :search";
                                     }
@@ -232,7 +235,8 @@ $userRole = $isLoggedIn ? $_SESSION['role'] : null;
 
                     <!-- Your existing search form with enhancements -->
                     <div class="col-lg-6 u-d-none-lg">
-                        <form class="form-searchbox" method="post" action="search-results.php">
+                        <!-- Modified search form - now uses GET method -->
+                        <form class="form-searchbox" method="get" action="">
                             <label class="sr-only" for="search-landscape">Search</label>
                             <input id="search-landscape" name="search" type="text" class="text-field" 
                                 placeholder="Search everything" value="<?= htmlspecialchars($searchTerm) ?>">
@@ -241,21 +245,21 @@ $userRole = $isLoggedIn ? $_SESSION['role'] : null;
                                 <div class="select-box-wrapper select-hide">
                                     <label class="sr-only" for="select-category">Choose category for search</label>
                                     <select class="select-box" id="select-category" name="category">
-                                        <option value="all" <?= empty($searchCategory) || $searchCategory === 'all' ? 'selected' : '' ?>>All</option>
+                                        <option value="all" <?= $searchCategory === 'all' ? 'selected' : '' ?>>All</option>
                                         
                                         <?php
                                         try {
                                             $productcategories = $pdo->query("SELECT * FROM productcategory")->fetchAll();
+                                            foreach ($productcategories as $productcategory): ?>
+                                            <option value="<?= htmlspecialchars($productcategory['categoryname']) ?>"
+                                                <?= $searchCategory === $productcategory['categoryname'] ? 'selected' : '' ?>>
+                                                <?= htmlspecialchars(strtoupper($productcategory['categoryname'])) ?>
+                                            </option>
+                                            <?php endforeach;
                                         } catch (PDOException $e) {
-                                            die("Error fetching categories: " . $e->getMessage());
+                                            // Silently fail - categories won't show but search will still work
                                         }
-                                        
-                                        foreach ($productcategories as $productcategory): ?>
-                                        <option value="<?= htmlspecialchars($productcategory['categoryname']) ?>"
-                                            <?= $searchCategory === $productcategory['categoryname'] ? 'selected' : '' ?>>
-                                            <?= htmlspecialchars(strtoupper($productcategory['categoryname'])) ?>
-                                        </option>
-                                        <?php endforeach; ?>
+                                        ?>
                                         
                                         <option value="services" <?= $searchCategory === 'services' ? 'selected' : '' ?>>Services</option>
                                     </select>
@@ -264,6 +268,7 @@ $userRole = $isLoggedIn ? $_SESSION['role'] : null;
                             <button id="btn-search" type="submit" class="button button-primary fas fa-search"></button>
                         </form>
                     </div>
+
 
                     <div class="col-lg-3 col-md-3 col-sm-6" style="flex: 1;">
                         <nav style="text-align: right;">
@@ -552,32 +557,41 @@ $userRole = $isLoggedIn ? $_SESSION['role'] : null;
     <!-- Header /- -->
     
         <!--Search Results-->
-        <!-- Search results display (can be on same page or separate page) -->
-        <?php if (!empty($searchResults)): ?>
-        <div class="search-results-container">
-            <h3>Search Results for "<?= htmlspecialchars($searchTerm) ?>"</h3>
+        <?php if ($showResults): ?>
+        <div class="search-results-section" style="margin-top: 30px;">
+            <h2>Search Results for "<?= htmlspecialchars($searchTerm) ?>"</h2>
+            
+            <?php if (!empty($searchResults)): ?>
             <div class="row product-container grid-style">
-                <?php foreach ($searchResults as $product): ?>
+                <?php foreach ($searchResults as $product): 
+                    $images = explode(',', $product['image_path'] ?? '');
+                    $mainImage = $images[0] ?? '../assets/images/product/default-product.jpg';
+                ?>
                 <div class="product-item col-lg-3 col-md-6 col-sm-6">
                     <div class="item">
                         <div class="image-container">
                             <a class="item-img-wrapper-link" href="./single-product.php?id=<?= $product['id'] ?>">
-                                <?php 
-                                $images = explode(',', $product['image_path']);
-                                $mainImage = $images[0];
-                                ?>
-                                <img class="img-fluid" src="<?= $mainImage ?>" alt="<?= htmlspecialchars($product['name']) ?>">
+                                <img class="img-fluid" src="<?= $mainImage ?>" alt="<?= htmlspecialchars($product['name'] ?? 'Product') ?>">
                             </a>
+                            <div class="item-action-behaviors">
+                                <a class="item-quick-look" data-toggle="modal" href="#quick-view">Quick Look</a>
+                                <a class="item-addCart" href="javascript:void(0)">Add to Cart</a>
+                            </div>
                         </div>
                         <div class="item-content">
-                            <h6 class="item-title">
-                                <a href="./single-product.php?id=<?= $product['id'] ?>">
-                                    <?= htmlspecialchars($product['name']) ?>
-                                </a>
-                            </h6>
+                            <div class="what-product-is">
+                                <h6 class="item-title">
+                                    <a href="./single-product.php?id=<?= $product['id'] ?>">
+                                        <?= htmlspecialchars($product['name'] ?? '') ?>
+                                    </a>
+                                </h6>
+                                <div class="item-description">
+                                    <p><?= htmlspecialchars(substr($product['description'] ?? '', 0, 100)) ?>...</p>
+                                </div>
+                            </div>
                             <div class="price-template">
                                 <div class="item-new-price">
-                                    $<?= number_format($product['price'], 2) ?>
+                                    $<?= number_format($product['price'] ?? 0, 2) ?>
                                 </div>
                                 <?php if (!empty($product['original_price'])): ?>
                                 <div class="item-old-price">
@@ -586,14 +600,20 @@ $userRole = $isLoggedIn ? $_SESSION['role'] : null;
                                 <?php endif; ?>
                             </div>
                         </div>
+                        <?php if (isset($product['discount']) && $product['discount'] > 0): ?>
+                        <div class="tag discount">
+                            <span>-<?= round($product['discount']) ?>%</span>
+                        </div>
+                        <?php endif; ?>
                     </div>
                 </div>
                 <?php endforeach; ?>
             </div>
-        </div>
-        <?php elseif ($_SERVER['REQUEST_METHOD'] === 'POST'): ?>
-        <div class="search-results-container">
-            <p>No results found for "<?= htmlspecialchars($searchTerm) ?>"</p>
+            <?php else: ?>
+            <div class="no-results" style="padding: 20px; background: #f8f9fa; border-radius: 5px;">
+                <p>No results found for "<?= htmlspecialchars($searchTerm) ?>". Please try different keywords.</p>
+            </div>
+            <?php endif; ?>
         </div>
         <?php endif; ?>
         <!--End of Search Results-->
