@@ -193,9 +193,6 @@ $userRole = $isLoggedIn ? $_SESSION['role'] : null;
                     </div>
 
                     <?php
-                        // At the top of your file (before any HTML output)
-                        require_once '../includes/config.php'; // Your database connection file
-
                         // Process search if form submitted
                         $searchResults = [];
                         $searchTerm = '';
