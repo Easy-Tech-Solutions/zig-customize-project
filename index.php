@@ -191,18 +191,60 @@ $userRole = $isLoggedIn ? $_SESSION['role'] : null;
                             </a>
                         </div>
                     </div>
+
+                    <?php
+                        // At the top of your file (before any HTML output)
+                        require_once '../includes/config.php'; // Your database connection file
+
+                        // Process search if form submitted
+                        $searchResults = [];
+                        $searchTerm = '';
+                        $searchCategory = '';
+
+                        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search'])) {
+                            $searchTerm = trim($_POST['search']);
+                            $searchCategory = $_POST['category'] ?? '';
+                            
+                            if (!empty($searchTerm)) {
+                                try {
+                                    // Base query
+                                    $query = "SELECT p.* FROM products p WHERE p.name LIKE :search OR p.description LIKE :search";
+                                    $params = [':search' => "%$searchTerm%"];
+                                    
+                                    // Add category filter if selected
+                                    if (!empty($searchCategory) && $searchCategory !== 'all') {
+                                        $query .= " AND (p.category = :category OR p.sub_category = :category)";
+                                        $params[':category'] = $searchCategory;
+                                    }
+                                    
+                                    // Add services search if selected
+                                    if ($searchCategory === 'services') {
+                                        $query = "SELECT * FROM services WHERE name LIKE :search OR description LIKE :search";
+                                    }
+                                    
+                                    $stmt = $pdo->prepare($query);
+                                    $stmt->execute($params);
+                                    $searchResults = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                                    
+                                } catch (PDOException $e) {
+                                    die("Search error: " . $e->getMessage());
+                                }
+                            }
+                        }
+                    ?>
+
+                    <!-- Your existing search form with enhancements -->
                     <div class="col-lg-6 u-d-none-lg">
-                        <form class="form-searchbox">
+                        <form class="form-searchbox" method="post" action="search-results.php">
                             <label class="sr-only" for="search-landscape">Search</label>
-                            <input id="search-landscape" type="text" class="text-field" placeholder="Search everything">
+                            <input id="search-landscape" name="search" type="text" class="text-field" 
+                                placeholder="Search everything" value="<?= htmlspecialchars($searchTerm) ?>">
+                            
                             <div class="select-box-position">
                                 <div class="select-box-wrapper select-hide">
                                     <label class="sr-only" for="select-category">Choose category for search</label>
-                                    <select class="select-box" id="select-category">
-                                        
-                                        <option selected="selected" value="">
-                                            All
-                                        </option>
+                                    <select class="select-box" id="select-category" name="category">
+                                        <option value="all" <?= empty($searchCategory) || $searchCategory === 'all' ? 'selected' : '' ?>>All</option>
                                         
                                         <?php
                                         try {
@@ -212,20 +254,20 @@ $userRole = $isLoggedIn ? $_SESSION['role'] : null;
                                         }
                                         
                                         foreach ($productcategories as $productcategory): ?>
-                                        
-                                        <option value=""><?= htmlspecialchars(strtoupper($productcategory['categoryname'])) ?></option>
-                    
+                                        <option value="<?= htmlspecialchars($productcategory['categoryname']) ?>"
+                                            <?= $searchCategory === $productcategory['categoryname'] ? 'selected' : '' ?>>
+                                            <?= htmlspecialchars(strtoupper($productcategory['categoryname'])) ?>
+                                        </option>
                                         <?php endforeach; ?>
                                         
-                                       <option value="">Services
-                                        </option>
-                                        
+                                        <option value="services" <?= $searchCategory === 'services' ? 'selected' : '' ?>>Services</option>
                                     </select>
                                 </div>
                             </div>
                             <button id="btn-search" type="submit" class="button button-primary fas fa-search"></button>
                         </form>
                     </div>
+
                     <div class="col-lg-3 col-md-3 col-sm-6" style="flex: 1;">
                         <nav style="text-align: right;">
                             <ul class="mid-nav g-nav" style="margin: 0;">
@@ -511,6 +553,54 @@ $userRole = $isLoggedIn ? $_SESSION['role'] : null;
         <!-- Bottom-Header /- -->
     </header>
     <!-- Header /- -->
+    
+        <!--Search Results-->
+        <!-- Search results display (can be on same page or separate page) -->
+        <?php if (!empty($searchResults)): ?>
+        <div class="search-results-container">
+            <h3>Search Results for "<?= htmlspecialchars($searchTerm) ?>"</h3>
+            <div class="row product-container grid-style">
+                <?php foreach ($searchResults as $product): ?>
+                <div class="product-item col-lg-3 col-md-6 col-sm-6">
+                    <div class="item">
+                        <div class="image-container">
+                            <a class="item-img-wrapper-link" href="./single-product.php?id=<?= $product['id'] ?>">
+                                <?php 
+                                $images = explode(',', $product['image_path']);
+                                $mainImage = $images[0];
+                                ?>
+                                <img class="img-fluid" src="<?= $mainImage ?>" alt="<?= htmlspecialchars($product['name']) ?>">
+                            </a>
+                        </div>
+                        <div class="item-content">
+                            <h6 class="item-title">
+                                <a href="./single-product.php?id=<?= $product['id'] ?>">
+                                    <?= htmlspecialchars($product['name']) ?>
+                                </a>
+                            </h6>
+                            <div class="price-template">
+                                <div class="item-new-price">
+                                    $<?= number_format($product['price'], 2) ?>
+                                </div>
+                                <?php if (!empty($product['original_price'])): ?>
+                                <div class="item-old-price">
+                                    $<?= number_format($product['original_price'], 2) ?>
+                                </div>
+                                <?php endif; ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
+        <?php elseif ($_SERVER['REQUEST_METHOD'] === 'POST'): ?>
+        <div class="search-results-container">
+            <p>No results found for "<?= htmlspecialchars($searchTerm) ?>"</p>
+        </div>
+        <?php endif; ?>
+        <!--End of Search Results-->
+
     <!-- Main-Slider -->
 <div id="carousel" class="carousel slide" data-bs-ride="carousel">
   <div class="carousel-inner">
@@ -1286,7 +1376,7 @@ $userRole = $isLoggedIn ? $_SESSION['role'] : null;
                                     </div>
                                     <ul class="bread-crumb">
                                         <li class="has-separator">
-                                            <a href="index.html">Home</a>
+                                            <a href="index.php">Home</a>
                                         </li>
                                         <li class="has-separator">
                                             <a href="./pages/shop-v1-root-category.php">Men's Clothing</a>
