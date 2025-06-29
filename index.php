@@ -161,7 +161,7 @@ $userRole = $isLoggedIn ? $_SESSION['role'] : null;
         <!-- Mid-Header -->
         <div class="full-layer-mid-header">
             <div class="container">
-            <style>
+<style>
 @media screen and (max-width: 768px) {
     #mobile-header {
         flex-direction: row;
@@ -181,6 +181,7 @@ $userRole = $isLoggedIn ? $_SESSION['role'] : null;
         display: none !important; /* Hide search bar on mobile */
     }
 }
+
 </style>
             
                 <div class="row clearfix align-items-center" id="mobile-header" style="display: flex; flex-wrap: wrap; align-items: center;">
@@ -191,85 +192,43 @@ $userRole = $isLoggedIn ? $_SESSION['role'] : null;
                             </a>
                         </div>
                     </div>
-
-                    <?php
-                        // Initialize variables
-                        $searchResults = [];
-                        $searchTerm = '';
-                        $searchCategory = 'all';
-                        $showResults = false;
-
-                        // Process search if form submitted
-                        if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['search'])) {
-                            $searchTerm = trim($_GET['search']);
-                            $searchCategory = $_GET['category'] ?? 'all';
-                            $showResults = true;
-                            
-                            if (!empty($searchTerm)) {
-                                try {
-                                    // Base query
-                                    $query = "SELECT p.* FROM products p WHERE (p.name LIKE :search OR p.description LIKE :search)";
-                                    $params = [':search' => "%$searchTerm%"];
-                                    
-                                    // Add category filter if selected (not "all")
-                                    if ($searchCategory !== 'all' && $searchCategory !== 'services') {
-                                        $query .= " AND (p.category = :category OR p.sub_category = :category)";
-                                        $params[':category'] = $searchCategory;
-                                    }
-                                    
-                                    // Special case for services
-                                    if ($searchCategory === 'services') {
-                                        $query = "SELECT * FROM services WHERE name LIKE :search OR description LIKE :search";
-                                    }
-                                    
-                                    $stmt = $pdo->prepare($query);
-                                    $stmt->execute($params);
-                                    $searchResults = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                                    
-                                } catch (PDOException $e) {
-                                    die("Search error: " . $e->getMessage());
-                                }
-                            }
-                        }
-                    ?>
-
-                    <!-- Your existing search form with enhancements -->
+                    
                     <div class="col-lg-6 u-d-none-lg">
-                        <!-- Modified search form - now uses GET method -->
-                        <form class="form-searchbox" method="get" action="">
+                        <form class="form-searchbox">
                             <label class="sr-only" for="search-landscape">Search</label>
-                            <input id="search-landscape" name="search" type="text" class="text-field" 
-                                placeholder="Search everything" value="<?= htmlspecialchars($searchTerm) ?>">
-                            
+                            <input id="search-landscape" type="text" class="text-field" placeholder="Search everything">
                             <div class="select-box-position">
                                 <div class="select-box-wrapper select-hide">
                                     <label class="sr-only" for="select-category">Choose category for search</label>
-                                    <select class="select-box" id="select-category" name="category">
-                                        <option value="all" <?= $searchCategory === 'all' ? 'selected' : '' ?>>All</option>
+                                    <select class="select-box" id="select-category">
+                                        
+                                        <option selected="selected" value="">
+                                            All
+                                        </option>
                                         
                                         <?php
                                         try {
                                             $productcategories = $pdo->query("SELECT * FROM productcategory")->fetchAll();
-                                            foreach ($productcategories as $productcategory): ?>
-                                            <option value="<?= htmlspecialchars($productcategory['categoryname']) ?>"
-                                                <?= $searchCategory === $productcategory['categoryname'] ? 'selected' : '' ?>>
-                                                <?= htmlspecialchars(strtoupper($productcategory['categoryname'])) ?>
-                                            </option>
-                                            <?php endforeach;
                                         } catch (PDOException $e) {
-                                            // Silently fail - categories won't show but search will still work
+                                            die("Error fetching categories: " . $e->getMessage());
                                         }
-                                        ?>
                                         
-                                        <option value="services" <?= $searchCategory === 'services' ? 'selected' : '' ?>>Services</option>
+                                        foreach ($productcategories as $productcategory): ?>
+                                        
+                                        <option value=""><?= htmlspecialchars(strtoupper($productcategory['categoryname'])) ?></option>
+                    
+                                        <?php endforeach; ?>
+                                        
+                                       <option value="">Services
+                                        </option>
+                                        
                                     </select>
                                 </div>
                             </div>
                             <button id="btn-search" type="submit" class="button button-primary fas fa-search"></button>
                         </form>
+                        <div class="search-results-container" id="search-results"></div>
                     </div>
-
-
                     <div class="col-lg-3 col-md-3 col-sm-6" style="flex: 1;">
                         <nav style="text-align: right;">
                             <ul class="mid-nav g-nav" style="margin: 0;">
@@ -553,71 +512,58 @@ $userRole = $isLoggedIn ? $_SESSION['role'] : null;
             </div>
         </div>
         <!-- Bottom-Header /- -->
+         <style>
+            /* Search results styling */
+            .search-results-container {
+                position: absolute;
+                width: 100%;
+                max-height: 400px;
+                overflow-y: auto;
+                background: white;
+                z-index: 1000;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+                display: none;
+            }
+            
+            .search-result-item {
+                padding: 10px;
+                border-bottom: 1px solid #eee;
+                cursor: pointer;
+            }
+            
+            .search-result-item:hover {
+                background-color: #f8f9fa;
+            }
+            
+            .search-result-item h5 {
+                margin-bottom: 5px;
+                color: #333;
+            }
+            
+            .search-result-item p {
+                margin: 0;
+                color: #666;
+                font-size: 14px;
+            }
+            
+            .search-result-price {
+                color: #e53935;
+                font-weight: bold;
+            }
+            
+            .highlight {
+                background-color: yellow;
+                font-weight: bold;
+            }
+            
+            .no-results {
+                padding: 15px;
+                text-align: center;
+                color: #666;
+            }
+        </style>
     </header>
     <!-- Header /- -->
-    
-        <!--Search Results-->
-        <?php if ($showResults): ?>
-        <div class="search-results-section" style="margin-top: 30px;">
-            <h2>Search Results for "<?= htmlspecialchars($searchTerm) ?>"</h2>
-            
-            <?php if (!empty($searchResults)): ?>
-            <div class="row product-container grid-style">
-                <?php foreach ($searchResults as $product): 
-                    $images = explode(',', $product['image_path'] ?? '');
-                    $mainImage = $images[0] ?? '../assets/images/product/default-product.jpg';
-                ?>
-                <div class="product-item col-lg-3 col-md-6 col-sm-6">
-                    <div class="item">
-                        <div class="image-container">
-                            <a class="item-img-wrapper-link" href="./single-product.php?id=<?= $product['id'] ?>">
-                                <img class="img-fluid" src="<?= $mainImage ?>" alt="<?= htmlspecialchars($product['name'] ?? 'Product') ?>">
-                            </a>
-                            <div class="item-action-behaviors">
-                                <a class="item-quick-look" data-toggle="modal" href="#quick-view">Quick Look</a>
-                                <a class="item-addCart" href="javascript:void(0)">Add to Cart</a>
-                            </div>
-                        </div>
-                        <div class="item-content">
-                            <div class="what-product-is">
-                                <h6 class="item-title">
-                                    <a href="./single-product.php?id=<?= $product['id'] ?>">
-                                        <?= htmlspecialchars($product['name'] ?? '') ?>
-                                    </a>
-                                </h6>
-                                <div class="item-description">
-                                    <p><?= htmlspecialchars(substr($product['description'] ?? '', 0, 100)) ?>...</p>
-                                </div>
-                            </div>
-                            <div class="price-template">
-                                <div class="item-new-price">
-                                    $<?= number_format($product['price'] ?? 0, 2) ?>
-                                </div>
-                                <?php if (!empty($product['original_price'])): ?>
-                                <div class="item-old-price">
-                                    $<?= number_format($product['original_price'], 2) ?>
-                                </div>
-                                <?php endif; ?>
-                            </div>
-                        </div>
-                        <?php if (isset($product['discount']) && $product['discount'] > 0): ?>
-                        <div class="tag discount">
-                            <span>-<?= round($product['discount']) ?>%</span>
-                        </div>
-                        <?php endif; ?>
-                    </div>
-                </div>
-                <?php endforeach; ?>
-            </div>
-            <?php else: ?>
-            <div class="no-results" style="padding: 20px; background: #f8f9fa; border-radius: 5px;">
-                <p>No results found for "<?= htmlspecialchars($searchTerm) ?>". Please try different keywords.</p>
-            </div>
-            <?php endif; ?>
-        </div>
-        <?php endif; ?>
-        <!--End of Search Results-->
-
     <!-- Main-Slider -->
 <div id="carousel" class="carousel slide" data-bs-ride="carousel">
   <div class="carousel-inner">
@@ -1537,79 +1483,161 @@ $userRole = $isLoggedIn ? $_SESSION['role'] : null;
     </div>
     <!-- Quick-view-Modal /- -->
 </div>
-<!-- app /- -->
-<!--[if lte IE 9]>
-<div class="app-issue">
-    <div class="vertical-center">
-        <div class="text-center">
-            <h1>You are using an outdated browser.</h1>
-            <span>This web app is not compatible with following browser. Please upgrade your browser to improve your security and experience.</span>
-        </div>
-    </div>
-</div>
 
-<style> #app {
-    display: none;
-} </style>
-<![endif]-->
-<!-- NoScript -->
-<noscript>
-    <div class="app-issue">
-        <div class="vertical-center">
-            <div class="text-center">
-                <h1>JavaScript is disabled in your browser.</h1>
-                <span>Please enable JavaScript in your browser or upgrade to a JavaScript-capable browser to register for Groover.</span>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('search-landscape');
+            const searchButton = document.getElementById('btn-search');
+            const searchResultsContainer = document.getElementById('search-results');
+            
+            // Get all product elements on the page
+            const products = document.querySelectorAll('.item-title, .item-description, .bread-crumb a');
+            
+            // Function to perform search
+            function performSearch() {
+                const searchTerm = searchInput.value.trim().toLowerCase();
+                searchResultsContainer.innerHTML = '';
+                
+                if (searchTerm === '') {
+                    searchResultsContainer.style.display = 'none';
+                    return;
+                }
+                
+                let hasResults = false;
+                
+                // Search through all products
+                products.forEach(product => {
+                    const productCard = product.closest('.col-6, .col-lg-3, .mb-3');
+                    if (!productCard) return;
+                    
+                    const productText = product.textContent.toLowerCase();
+                    const productTitle = productCard.querySelector('.item-title')?.textContent || '';
+                    const productDesc = productCard.querySelector('.item-description')?.textContent || '';
+                    const productPrice = productCard.querySelector('.item-new-price')?.textContent || '';
+                    const productLink = productCard.querySelector('a[href*="single-product"]')?.href || '';
+                    const productImage = productCard.querySelector('img')?.src || '';
+                    
+                    // Check if search term matches any product text
+                    if (productText.includes(searchTerm)) {
+                        hasResults = true;
+                        
+                        // Highlight matching text in the title
+                        const highlightedTitle = highlightMatches(productTitle, searchTerm);
+                        const highlightedDesc = highlightMatches(productDesc, searchTerm);
+                        
+                        // Create result item
+                        const resultItem = document.createElement('div');
+                        resultItem.className = 'search-result-item';
+                        resultItem.innerHTML = `
+                            <div class="row">
+                                <div class="col-3">
+                                    <img src="${productImage}" alt="${productTitle}" style="width:100%; max-height:80px; object-fit:contain;">
+                                </div>
+                                <div class="col-9">
+                                    <h5>${highlightedTitle}</h5>
+                                    <p>${highlightedDesc}</p>
+                                    <div class="search-result-price">${productPrice}</div>
+                                </div>
+                            </div>
+                        `;
+                        
+                        // Add click handler to navigate to product
+                        resultItem.addEventListener('click', function() {
+                            window.location.href = productLink;
+                        });
+                        
+                        searchResultsContainer.appendChild(resultItem);
+                    }
+                });
+                
+                if (hasResults) {
+                    searchResultsContainer.style.display = 'block';
+                } else {
+                    searchResultsContainer.innerHTML = '<div class="no-results">No products found matching your search.</div>';
+                    searchResultsContainer.style.display = 'block';
+                }
+            }
+            
+            // Helper function to highlight matching text
+            function highlightMatches(text, searchTerm) {
+                if (!text) return '';
+                const regex = new RegExp(searchTerm, 'gi');
+                return text.replace(regex, match => `<span class="highlight">${match}</span>`);
+            }
+            
+            // Event listeners
+            searchInput.addEventListener('input', performSearch);
+            searchButton.addEventListener('click', function(e) {
+                e.preventDefault();
+                performSearch();
+            });
+            
+            // Hide results when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!searchInput.contains(e.target) && !searchResultsContainer.contains(e.target)) {
+                searchResultsContainer.style.display = 'none';
+            }
+        });
+    </script>
+
+    <noscript>
+        <div class="app-issue">
+            <div class="vertical-center">
+                <div class="text-center">
+                    <h1>JavaScript is disabled in your browser.</h1>
+                    <span>Please enable JavaScript in your browser or upgrade to a JavaScript-capable browser to register for Groover.</span>
+                </div>
             </div>
         </div>
-    </div>
-    <style>
-    #app {
-        display: none;
-    }
-    </style>
-</noscript>
-<!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
-<script>
-window.ga = function() {
-    ga.q.push(arguments)
-};
-ga.q = [];
-ga.l = +new Date;
-ga('create', 'UA-XXXXX-Y', 'auto');
-ga('send', 'pageview')
-</script>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
-<script src="https://www.google-analytics.com/analytics.js" async defer></script>
-<!-- Modernizr-JS -->
-<script type="text/javascript" src="./assets/js/vendor/modernizr-custom.min.js"></script>
-<!-- NProgress -->
-<script type="text/javascript" src="./assets/js/nprogress.min.js"></script>
-<!-- jQuery -->
-<script type="text/javascript" src="./assets/js/jquery.min.js"></script>
-<!-- Bootstrap JS -->
-<script type="text/javascript" src="./assets/js/bootstrap.min.js"></script>
-<!-- Popper -->
-<script type="text/javascript" src="./assets/js/popper.min.js"></script>
-<!-- ScrollUp -->
-<script type="text/javascript" src="./assets/js/jquery.scrollUp.min.js"></script>
-<!-- Elevate Zoom -->
-<script type="text/javascript" src="./assets/js/jquery.elevatezoom.min.js"></script>
-<!-- jquery-ui-range-slider -->
-<script type="text/javascript" src="./assets/js/jquery-ui.range-slider.min.js"></script>
-<!-- jQuery Slim-Scroll -->
-<script type="text/javascript" src="./assets/js/jquery.slimscroll.min.js"></script>
-<!-- jQuery Resize-Select -->
-<script type="text/javascript" src="./assets/js/jquery.resize-select.min.js"></script>
-<!-- jQuery Custom Mega Menu -->
-<script type="text/javascript" src="./assets/js/jquery.custom-megamenu.min.js"></script>
-<!-- jQuery Countdown -->
-<script type="text/javascript" src="./assets/js/jquery.custom-countdown.min.js"></script>
-<!-- Owl Carousel -->
-<script type="text/javascript" src="./assets/js/owl.carousel.min.js"></script>
-<!-- Main -->
-<script type="text/javascript" src="./assets/js/app.js"></script>
+        <style>
+        #app {
+            display: none;
+        }
+        </style>
+    </noscript>
+    <script>
+    window.ga = function() {
+        ga.q.push(arguments)
+    };
+    ga.q = [];
+    ga.l = +new Date;
+    ga('create', 'UA-XXXXX-Y', 'auto');
+    ga('send', 'pageview')
+    </script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    <script src="https://www.google-analytics.com/analytics.js" async defer></script>
+    <!-- Modernizr-JS -->
+    <script type="text/javascript" src="./assets/js/vendor/modernizr-custom.min.js"></script>
+    <!-- NProgress -->
+    <script type="text/javascript" src="./assets/js/nprogress.min.js"></script>
+    <!-- jQuery -->
+    <script type="text/javascript" src="./assets/js/jquery.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script type="text/javascript" src="./assets/js/bootstrap.min.js"></script>
+    <!-- Popper -->
+    <script type="text/javascript" src="./assets/js/popper.min.js"></script>
+    <!-- ScrollUp -->
+    <script type="text/javascript" src="./assets/js/jquery.scrollUp.min.js"></script>
+    <!-- Elevate Zoom -->
+    <script type="text/javascript" src="./assets/js/jquery.elevatezoom.min.js"></script>
+    <!-- jquery-ui-range-slider -->
+    <script type="text/javascript" src="./assets/js/jquery-ui.range-slider.min.js"></script>
+    <!-- jQuery Slim-Scroll -->
+    <script type="text/javascript" src="./assets/js/jquery.slimscroll.min.js"></script>
+    <!-- jQuery Resize-Select -->
+    <script type="text/javascript" src="./assets/js/jquery.resize-select.min.js"></script>
+    <!-- jQuery Custom Mega Menu -->
+    <script type="text/javascript" src="./assets/js/jquery.custom-megamenu.min.js"></script>
+    <!-- jQuery Countdown -->
+    <script type="text/javascript" src="./assets/js/jquery.custom-countdown.min.js"></script>
+    <!-- Owl Carousel -->
+    <script type="text/javascript" src="./assets/js/owl.carousel.min.js"></script>
+    <!-- Main -->
+    <script type="text/javascript" src="./assets/js/app.js"></script>
+
 </body>
+
 <script>
 document.addEventListener("DOMContentLoaded", function () {
     const vTitle = document.querySelector('.v-title');
