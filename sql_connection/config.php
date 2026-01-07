@@ -11,9 +11,9 @@ session_start();
 
 // Database connection
 $host = 'localhost';
-$dbname = 'u898945223_zigdatabase';
-$username = 'u898945223_zigdbadmin';
-$password = 'Z@cust2025!@#';
+$dbname = 'zigdb';
+$username = 'root';
+$password = '';
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
