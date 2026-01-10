@@ -28,13 +28,15 @@ if(isset($_POST['userreg'])){
         exit();
     }
 
-    // Password requirements
-    if (!preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/', $password)) {
-        header("Location: ../pages/registration.php?error=password");
+        // No password complexity requirements enforced here; only ensure confirmation matches
+
+    // Check if passwords match
+    // Require non-empty password and matching confirmation; allow any format
+    if (empty($password)) {
+        header("Location: ../pages/registration.php?error=password_empty");
         exit();
     }
 
-    // Check if passwords match
     if ($password !== $confirmPassword) {
         header("Location: ../pages/registration.php?error=password_match");
         exit();
@@ -60,11 +62,18 @@ if(isset($_POST['userreg'])){
         $stmt = $pdo->prepare($sql);
         $stmt->execute([$firstname, $lastname, $username, $mail, $phone, $address, $city, $region, $hashed_password, $role_id, $default_avatar]);
 
-        // Start session and log user in automatically if desired
-        session_start();
-        $_SESSION['registration_success'] = true;
-        header("Location: ../pages/login.php");
-        exit();
+            // Auto-login the newly registered user
+            $newUserId = $pdo->lastInsertId();
+            $_SESSION['user_id'] = $newUserId;
+            $_SESSION['username'] = $username;
+            // Legacy compatibility for older pages
+            $_SESSION['login_user'] = $username;
+            $_SESSION['email'] = $mail;
+            $_SESSION['role'] = 'Client';
+
+            // Redirect to homepage or account page
+            header("Location: ../index.php");
+            exit();
 
     } catch (PDOException $e) {
         // Log the error (in a real application, you would log to a file)

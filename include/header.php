@@ -1,5 +1,11 @@
 <?php 
-    $isLoggedIn = isLoggedIn();
+    // Ensure config (session, DB, auth helpers) is loaded
+    $configPath = __DIR__ . '/../sql_connection/config.php';
+    if (file_exists($configPath)) {
+        require_once $configPath;
+    }
+
+    $isLoggedIn = function_exists('isLoggedIn') ? isLoggedIn() : false;
     $userRole = isset($_SESSION['role']) ? $_SESSION['role'] : '';
 ?>
 <header>
@@ -132,7 +138,7 @@
         <div class="row clearfix align-items-center" id="mobile-header" style="display: flex; flex-wrap: wrap; align-items: center;">
             <div class="col-lg-3 col-md-9 col-sm-6" style="flex: 1;">
                 <div class="brand-logo" style="text-align: left;">
-                    <a href="index.php">
+                    <a href="../index.php">
                         <img src="../assets/images/main-logo/ZIG.png" alt="ZIG CUSTOMIZED " class="app-brand-logo">
                     </a>
                 </div>
@@ -176,7 +182,7 @@
                 <nav style="text-align: right;">
                     <ul class="mid-nav g-nav" style="margin: 0;">
                         <li class="u-d-none-lg">
-                            <a href="index.html">
+                            <a href="../index.php">
                                 <i class="ion ion-md-home u-c-brand"></i>
                             </a>
                         </li>
@@ -337,7 +343,7 @@
                                     <ul>
                                         <li class="menu-title">Home</li>
                                         <li>
-                                            <a href="index.html" class="u-c-brand">Home</a>
+                                            <a href="../index.php" class="u-c-brand">Home</a>
                                         </li>
                                         <li>
                                             <a href="../pages/about.php">About</a>

@@ -1,10 +1,44 @@
 <?php
-session_start();
 include("../sql_connection/config.php");
-if (!isset($_SESSION['login_user'])) {
-    $_SESSION['redirect_url'] = $_SERVER['REQUEST_URI']; // Store the current page URL
-    header("Location: /pages/account.php"); // Redirect to login page
-    exit();
+// Ensure user is authenticated
+requireLogin();
+// Handle change password submission
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['change_password'])) {
+    $old = $_POST['old_password'] ?? '';
+    $new = $_POST['new_password'] ?? '';
+    $confirm = $_POST['confirm_password'] ?? '';
+
+    if (empty($old) || empty($new) || empty($confirm)) {
+        $change_error = 'Please fill all password fields.';
+    } elseif ($new !== $confirm) {
+        $change_error = 'New passwords do not match.';
+    } elseif (!preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/', $new)) {
+        $change_error = 'Password must be at least 8 characters long and include an uppercase letter, lowercase letter, number, and special character.';
+    } else {
+        } elseif (empty($new)) {
+            $change_error = 'Please enter a new password.';
+        } elseif ($new !== $confirm) {
+            $change_error = 'New passwords do not match.';
+        } else {
+        try {
+            $sql = 'SELECT password FROM users WHERE username = ? OR user_id = ? LIMIT 1';
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute([$_SESSION['username'], $_SESSION['user_id']]);
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+            if ($row && password_verify($old, $row['password'])) {
+                $newHash = password_hash($new, PASSWORD_DEFAULT);
+                $update = 'UPDATE users SET password = ? WHERE user_id = ?';
+                $ustmt = $pdo->prepare($update);
+                $ustmt->execute([$newHash, $_SESSION['user_id']]);
+                $change_success = 'Password updated successfully.';
+            } else {
+                $change_error = 'Old password is incorrect.';
+            }
+        } catch (PDOException $e) {
+            error_log('Change password error: ' . $e->getMessage());
+            $change_error = 'An error occurred. Please try again.';
+        }
+    }
 }
 ?>
 
@@ -200,11 +234,15 @@ if (!isset($_SESSION['login_user'])) {
                                 <a href="#" class="tf-btn primary">Save & Update</a>
                             </div>
                             <h5 class="title">Change password</h5>
+                            <?php if (!empty($change_error)) { echo '<div style="color:#dc3545;margin-bottom:12px;">'.htmlspecialchars($change_error).'</div>'; } ?>
+                            <?php if (!empty($change_success)) { echo '<div style="color:#28a745;margin-bottom:12px;">'.htmlspecialchars($change_success).'</div>'; } ?>
+                            <form method="post">
+                            <input type="hidden" name="change_password" value="1">
                             <div class="box grid-3 gap-30">
                                 <div class="box-fieldset">
                                     <label>Old Password:<span>*</span></label>
                                     <div class="box-password">
-                                        <input type="password" class="form-contact style-1 password-field" placeholder="Password">
+                                        <input type="password" name="old_password" class="form-contact style-1 password-field" placeholder="Old Password" required>
                                         <span class="show-pass">
                                             <i class="icon-pass icon-eye"></i>
                                             <i class="icon-pass icon-eye-off"></i>
@@ -214,7 +252,7 @@ if (!isset($_SESSION['login_user'])) {
                                 <div class="box-fieldset">
                                     <label>New Password:<span>*</span></label>
                                     <div class="box-password">
-                                        <input type="password" class="form-contact style-1 password-field2" placeholder="Password">
+                                        <input type="password" name="new_password" class="form-contact style-1 password-field2" placeholder="New Password" required>
                                         <span class="show-pass2">
                                             <i class="icon-pass icon-eye"></i>
                                             <i class="icon-pass icon-eye-off"></i>
@@ -224,7 +262,7 @@ if (!isset($_SESSION['login_user'])) {
                                 <div class="box-fieldset">
                                     <label>Confirm Password:<span>*</span></label>
                                     <div class="box-password">
-                                        <input type="password" class="form-contact style-1 password-field3" placeholder="Password">
+                                        <input type="password" name="confirm_password" class="form-contact style-1 password-field3" placeholder="Confirm Password" required>
                                         <span class="show-pass3">
                                             <i class="icon-pass icon-eye"></i>
                                             <i class="icon-pass icon-eye-off"></i>
@@ -233,8 +271,9 @@ if (!isset($_SESSION['login_user'])) {
                                 </div>
                             </div>
                             <div class="box">
-                                <a href="#" class="tf-btn primary">Update Password</a>
+                                <button type="submit" class="tf-btn primary">Update Password</button>
                             </div>
+                            </form>
                         </div>
                     </div>
                     <div class="footer-dashboard">

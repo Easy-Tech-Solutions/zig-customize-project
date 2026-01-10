@@ -213,7 +213,12 @@ requireRole('Admin'); // Only clients can access this page
 
     <!-- ========= All Javascript files linkup ======== -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="assets/js/deleteproduct.js">
+    <!--
+      NOTE (2026-01-09): Fixed a missing closing </script> previously present
+      on this page which caused a JS syntax error: "Unexpected end of input".
+      That error prevented subsequent JS from running properly.
+    -->
+    <script src="assets/js/deleteproduct.js"></script>
     <script src="assets/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/Chart.min.js"></script>
     <script src="assets/js/dynamic-pie-chart.js"></script>

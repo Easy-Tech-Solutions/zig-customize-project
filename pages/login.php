@@ -119,6 +119,8 @@
                                     // Set session variables
                                     $_SESSION['user_id'] = $user['user_id'];
                                     $_SESSION['username'] = $user['username'];
+                                    // Legacy compatibility: some pages check 'login_user'
+                                    $_SESSION['login_user'] = $user['username'];
                                     $_SESSION['email'] = $user['email'];
                                     $_SESSION['role'] = $user['role_name'];
                                     $_SESSION['first_name'] = $user['first_name'];

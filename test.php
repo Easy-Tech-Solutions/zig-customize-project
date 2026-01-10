@@ -1279,7 +1279,7 @@ $userRole = $isLoggedIn ? $_SESSION['role'] : null;
                                                 <option value="">Female Large</option>
                                                 <option value="">Male Large</option>
                                                 <option value="">Female XL</option>
-                                                <option value="">Male XL</option>
+                                                <option value="">Male Xl</option>
                                             </select>
                                         </div>
                                     </div>

@@ -1,12 +1,8 @@
 <?php
-// If there's an active session, destroy it
-if (session_status() == PHP_SESSION_ACTIVE) {
-    session_unset();  // Clear all session variables
-    session_destroy();  // Destroy the session
+// Start session if not already started
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
 }
-
-// Start a new session
-session_start();
 
 
 // Database connection
@@ -22,9 +18,18 @@ try {
     die("Could not connect to the database: " . $e->getMessage());
 }
 
+// Provide a legacy mysqli connection for older scripts that still use $conn / mysqli
+$conn = new mysqli($host, $username, $password, $dbname);
+if ($conn->connect_error) {
+    // If PDO succeeded but mysqli failed, prefer PDO but log error
+    error_log('MySQLi connection failed: ' . $conn->connect_error);
+} else {
+    $conn->set_charset('utf8mb4');
+}
+
 // Authentication check function
 function checkAuth() {
-    if (!isset($_SESSION['user_id'])) {
+    if (!isset($_SESSION['user_id']) && !isset($_SESSION['login_user'])) {
         header("Location: /index.php");
         exit();
     }
@@ -32,7 +37,7 @@ function checkAuth() {
 
 // Authentication functions
 function isLoggedIn() {
-    return isset($_SESSION['user_id']);
+    return isset($_SESSION['user_id']) || isset($_SESSION['login_user']) || isset($_SESSION['username']);
 }
 
 function requireLogin() {

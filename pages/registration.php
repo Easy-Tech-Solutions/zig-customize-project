@@ -68,6 +68,25 @@
                     <div class="reg-wrapper">
                         <h2 class="account-h2 u-s-m-b-20">Register</h2>
                         <h6 class="account-h6 u-s-m-b-30">Registering for this site allows you to access your order status and history.</h6>
+                        <?php
+                        // Show friendly error messages if redirected with ?error=
+                        if (isset($_GET['error'])) {
+                            $err = $_GET['error'];
+                            $msg = '';
+                            switch ($err) {
+                                case 'terms': $msg = 'You must accept the terms & conditions.'; break;
+                                case 'email': $msg = 'Please provide a valid email address.'; break;
+                                case 'password_match': $msg = 'Passwords do not match.'; break;
+                                case 'password_empty': $msg = 'Please enter a password.'; break;
+                                case 'password_short': $msg = 'Password is too short.'; break;
+                                case 'password_requirements': $msg = 'Password does not meet requirements.'; break;
+                                case 'exists': $msg = 'Username or email already exists.'; break;
+                                case 'database': $msg = 'A server error occurred. Try again later.'; break;
+                                default: $msg = 'Registration error: ' . htmlspecialchars($err); break;
+                            }
+                            echo '<div class="alert alert-danger" role="alert">' . htmlspecialchars($msg) . '</div>';
+                        }
+                        ?>
                         <form action = "../user/signup.php" class="form" method="post">
 
                             <div class="row">

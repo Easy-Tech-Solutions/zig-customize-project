@@ -1,44 +1,39 @@
 <?php
-session_start();
 include("../sql_connection/config.php");
+// Ensure user is authenticated
+requireLogin();
 
-// Debugging: Check if session contains user ID
-if (!isset($_SESSION['login_user']) || empty($_SESSION['login_user'])) {
-    die("Error: Unauthorized to view this resource.");
+// Determine identifier (prefer user_id)
+$userId = $_SESSION['user_id'] ?? null;
+if (!$userId) {
+    // Fallback to username if user_id isn't set
+    $usernameKey = $_SESSION['username'] ?? $_SESSION['login_user'] ?? null;
 }
 
-$user_id = $_SESSION['login_user'];
+try {
+    if ($userId) {
+        $stmt = $pdo->prepare('SELECT first_name, last_name, username, email, phone, profile_image FROM users WHERE user_id = ? LIMIT 1');
+        $stmt->execute([$userId]);
+    } elseif (!empty($usernameKey)) {
+        $stmt = $pdo->prepare('SELECT first_name, last_name, username, email, phone, profile_image FROM users WHERE username = ? LIMIT 1');
+        $stmt->execute([$usernameKey]);
+    } else {
+        throw new Exception('No user identifier available.');
+    }
 
-// Debugging: Print session user ID
-var_dump($user_id);
-
-// Verify database connection
-if (!$conn) {
-    die("Database connection failed: " . mysqli_connect_error());
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+    if ($user) {
+        $customer_name = htmlspecialchars(trim($user['first_name'] . ' ' . $user['last_name']));
+        $username = htmlspecialchars($user['username']);
+        $customer_email = htmlspecialchars($user['email']);
+        $customer_phone = htmlspecialchars($user['phone']);
+        $profile_image = !empty($user['profile_image']) ? "../assets/images/uploads/userprofiles/" . $user['profile_image'] : "../assets/images/other/account.jpg";
+    } else {
+        throw new Exception('User not found in database.');
+    }
+} catch (Exception $e) {
+    die('Error: ' . $e->getMessage());
 }
-
-// Fetch user details from the database
-$stmt = $conn->prepare("SELECT customer_name, username, customer_mail, customer_phone, profile_image FROM user WHERE username = ?");
-$stmt->bind_param("s", $user_id);
-
-if (!$stmt->execute()) {
-    die("SQL Error: " . $stmt->error);
-}
-
-$result = $stmt->get_result();
-if ($result->num_rows > 0) {
-    $user = $result->fetch_assoc();
-    $customer_name = htmlspecialchars($user['customer_name']);
-    $username = htmlspecialchars($user['username']);
-    $customer_email = htmlspecialchars($user['customer_mail']);
-    $customer_phone = htmlspecialchars($user['customer_phone']);
-    $profile_image = !empty($user['profile_image']) ? "../assets/images/uploads/userprofiles/" . $user['profile_image'] : "../assets/images/other/account.jpg";
-} else {
-    die("Error: User not found in database. User ID: " . $user_id);
-}
-
-$stmt->close();
-$conn->close();
 
 ?>
 

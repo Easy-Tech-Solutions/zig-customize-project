@@ -1,30 +1,33 @@
-document.getElementById("registerbtn").addEventListener("click", function(event) {
-    var password = document.getElementById("password").value;
-    var confirmPassword = document.getElementById("confirm_password").value;
-    var errorSpan = document.getElementById("password_error");
+document.addEventListener('DOMContentLoaded', function () {
+    var registerBtn = document.getElementById('registerbtn');
+    var passwordField = document.getElementById('password');
+    var confirmField = document.getElementById('confirm_password');
+    var errorSpan = document.getElementById('password_error');
 
-    // Password requirements: At least 8 characters, 1 uppercase, 1 lowercase, 1 number, and 1 special character
-    var passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    if (registerBtn && passwordField && confirmField && errorSpan) {
+        registerBtn.addEventListener('click', function (event) {
+            var password = passwordField.value || '';
+            var confirmPassword = confirmField.value || '';
 
-    if (!password.match(passwordRegex)) {
-        errorSpan.textContent = "Password must be at least 8 characters long and include an uppercase letter, lowercase letter, number, and special character.";
-        event.preventDefault(); // Prevent form submission
-    } else if (password !== confirmPassword) {
-        errorSpan.textContent = "Passwords do not match!";
-        event.preventDefault();
-    } else {
-        errorSpan.textContent = ""; // Clear error if valid
+            // Allow any password format. Require non-empty and confirmation match.
+            if (!password || password.length === 0) {
+                errorSpan.textContent = 'Please enter a password.';
+                event.preventDefault();
+            } else if (password !== confirmPassword) {
+                errorSpan.textContent = 'Passwords do not match!';
+                event.preventDefault();
+            } else {
+                errorSpan.textContent = '';
+            }
+        });
+    }
+
+    // Toggle password visibility on pages that have these elements
+    var showPasswordCheckbox = document.getElementById('showPassword');
+    var loginPasswordField = document.getElementById('login-password');
+    if (showPasswordCheckbox && loginPasswordField) {
+        showPasswordCheckbox.addEventListener('change', function () {
+            loginPasswordField.type = this.checked ? 'text' : 'password';
+        });
     }
 });
-
- // JavaScript to toggle password visibility
- const showPasswordCheckbox = document.getElementById('showPassword');
- const passwordField = document.getElementById('login-password');
-
- showPasswordCheckbox.addEventListener('change', function() {
-     if (this.checked) {
-         passwordField.type = 'text';  // Show password
-     } else {
-         passwordField.type = 'password';  // Hide password
-     }
- });

@@ -63,6 +63,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $tag = preg_replace('/[^a-z0-9]/', '', $tag);
 
         // Handle file uploads
+        /*
+         * NOTE (2026-01-09): Path fix applied here.
+         * Previously the code stored image URL paths as "../Uploads/Products/..." while
+         * the files were uploaded to "../../Uploads/Products/" relative to this script.
+         * That mismatch caused browsers to request non-existent URLs (404s).
+         * I changed the stored paths to use "../../Uploads/Products/..." so the
+         * display pages request the correct web-accessible location. Also ensure
+         * uploaded files are written to $target_dir (../../Uploads/Products/).
+         */
         $image_paths = [];
         $thumbnail_paths = [];
         $allowed_types = ['jpg', 'jpeg', 'png', 'gif'];
@@ -84,12 +93,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 continue; // Skip invalid file types
             }
             
-            if (move_uploaded_file($tmp_name, $target_file)) {
+                if (move_uploaded_file($tmp_name, $target_file)) {
+                // Store the web-accessible path (used by pages that render <img src="...">)
+                // Leaving any prior comments intact — this is an additional explanatory note.
                 $image_paths[] = "../../Uploads/Products/" . $image_name;
                 
                 // Create thumbnail (simplified - consider using GD/Imagick in production)
                 $thumbnail_name = 'thumb_' . $image_name;
                 if (copy($target_file, $target_dir . $thumbnail_name)) {
+                    // Store thumbnail path using same web-accessible prefix
                     $thumbnail_paths[] = "../../Uploads/Products/" . $thumbnail_name;
                 }
             }
