@@ -109,10 +109,10 @@
             </a>
             <ul id="ddmenu_7" class="collapse dropdown-nav">
               <li>
-                <a href="settings.html"> Warehouse </a>
+                <a href="manage_warehouse.php"> Warehouse </a>
               </li>
               <li>
-                <a href="settings.html"> Received Orders </a>
+                <a href="manage_orders.php?status=processing"> Received Orders </a>
               </li>
             </ul>
           </li>
@@ -134,13 +134,13 @@
             </a>
             <ul id="ddmenu_8" class="collapse dropdown-nav">
               <li>
-                <a href="settings.html"> List </a>
+                <a href="manage_orders.php"> List Orders </a>
               </li>
               <li>
-                <a href="settings.html"> Cart </a>
+                <a href="manage_orders.php?status=pending"> Pending Orders </a>
               </li>
               <li>
-                <a href="settings.html"> Checkout </a>
+                <a href="manage_orders.php?status=shipped"> Shipped Orders </a>
               </li>
             </ul>
           </li>
@@ -162,13 +162,13 @@
             </a>
             <ul id="ddmenu_9" class="collapse dropdown-nav">
               <li>
-                <a href="settings.html"> List </a>
+                <a href="manage_purchases.php"> List </a>
               </li>
               <li>
-                <a href="settings.html"> Order </a>
+                <a href="manage_purchases.php?status=pending"> Pending </a>
               </li>
               <li>
-                <a href="settings.html"> Return </a>
+                <a href="manage_purchases.php?status=shipped"> Shipped </a>
               </li>
             </ul>
           </li>
@@ -193,11 +193,47 @@
             </a>
             <ul id="ddmenu_10" class="collapse dropdown-nav">
               <li>
-                <a href="settings.html"> List </a>
+                <a href="manage_invoices.php"> List Invoices </a>
               </li>
               <li>
-                <a href="settings.html"> Create </a>
+                <a href="manage_invoices.php?status=draft"> Draft Invoices </a>
               </li>
+              <li>
+                <a href="manage_invoices.php?status=paid"> Paid Invoices </a>
+              </li>
+            </ul>
+          </li>
+          
+          <li class="nav-item nav-item-has-children">
+            <a
+              href="#0"
+              class="collapsed"
+              data-bs-toggle="collapse"
+              data-bs-target="#ddmenu_promo"
+              aria-controls="ddmenu_promo"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="icon">
+                <i class="lni lni-tag"></i>
+              </span>
+              <span class="text">Promotions</span>
+            </a>
+            <ul id="ddmenu_promo" class="collapse dropdown-nav">
+              <li>
+                <a href="manage_coupons.php"> Manage Coupons </a>
+              </li>
+              <li>
+                <a href="addproducttodeals.php"> Add Products to Deals </a>
+              </li>
+              <li>
+                <a href="exclusiveDeals.php"> Exclusive Deals </a>
+              </li>
+              <li>
+                <a href="flashsales.php"> Flash Sales </a>
+              </li>
+            </ul>
+          </li>
             </ul>
           </li>
           
@@ -220,13 +256,13 @@
             </a>
             <ul id="ddmenu_11" class="collapse dropdown-nav">
               <li>
-                <a href="settings.html"> All Users </a>
+                <a href="manage_users.php"> All Users </a>
               </li>
               <li>
-                <a href="settings.html"> Customers </a>
+                <a href="manage_users.php?role=2"> Customers </a>
               </li>
               <li>
-                <a href="settings.html"> System Users </a>
+                <a href="manage_users.php?role=1"> System Users </a>
               </li>
             </ul>
           </li>
@@ -248,10 +284,10 @@
             </a>
             <ul id="ddmenu_12" class="collapse dropdown-nav">
               <li>
-                <a href="settings.html"> List </a>
+                <a href="manage_roles.php"> List </a>
               </li>
               <li>
-                <a href="settings.html"> Create </a>
+                <a href="manage_roles.php?action=create"> Create </a>
               </li>
             </ul>
           </li>
@@ -273,13 +309,45 @@
             </a>
             <ul id="ddmenu_13" class="collapse dropdown-nav">
               <li>
-                <a href="../dashboard/exclusiveDeals.php"> List Exclusive Deals</a>
+                <a href="manage_deals.php"> View All Deals </a>
               </li>
               <li>
-                <a href="../dashboard/flashsales.php"> List Flash Sales </a>
+                <a href="manage_coupons.php"> Create Deal </a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="nav-item nav-item-has-children">
+            <a
+              href="#0"
+              class="collapsed"
+              data-bs-toggle="collapse"
+              data-bs-target="#ddmenu_security"
+              aria-controls="ddmenu_security"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="icon">
+                <i class="lni lni-shield"></i>
+              </span>
+              <span class="text">Security & Privacy</span>
+            </a>
+            <ul id="ddmenu_security" class="collapse dropdown-nav">
+              <li>
+                <a href="manage_security.php"> Settings </a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+            <ul id="ddmenu_13" class="collapse dropdown-nav">
+              <li>
+                <a href="exclusiveDeals.php"> List Exclusive Deals</a>
               </li>
               <li>
-                <a href="../dashboard/addproducttodeals.php"> Add Product to Deals or Promos </a>
+                <a href="flashsales.php"> List Flash Sales </a>
+              </li>
+              <li>
+                <a href="addproducttodeals.php"> Add Product to Deals or Promos </a>
               </li>
             </ul>
           </li>
@@ -303,11 +371,11 @@
             </a>
             <ul id="ddmenu_3" class="collapse dropdown-nav">
               <li>
-                <a href="blank-page.html"> View Profile </a>
+                <a href="admin_profile.php"> View Profile </a>
               </li>
 
               <li>
-                <a href="settings.html"> Edit Account Seetings </a>
+                <a href="admin_editprofile.php"> Edit Account Settings </a>
               </li>
               <li>
                 <a href="../logout.php"> Logout </a>

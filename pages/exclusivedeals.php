@@ -1,44 +1,14 @@
 <?php
 require_once('../sql_connection/config.php');
-require_once '../admin/include/function_addtodeals.php';
+include("../include/header.php");
 
 // Get sorting parameters
 $sortBy = $_GET['sort'] ?? 'created_at';
 $sortOrder = $_GET['order'] ?? 'DESC';
-$itemsPerPage = (int)($_GET['show'] ?? 8);
-$currentPage = (int)($_GET['page'] ?? 1);
 
-// Validate sorting parameters
-$allowedSortColumns = ['created_at', 'price', 'discount', 'name'];
-$sortBy = in_array($sortBy, $allowedSortColumns) ? $sortBy : 'created_at';
-$sortOrder = strtoupper($sortOrder) === 'ASC' ? 'ASC' : 'DESC';
-
-// Get active exclusive deals
-$exclusiveDeals = getActiveExclusiveDeals($pdo, $sortBy, $sortOrder, $itemsPerPage, ($currentPage - 1) * $itemsPerPage);
-$totalExclusiveDeals = countActiveExclusiveDeals($pdo);
-$totalPages = ceil($totalExclusiveDeals / $itemsPerPage);
-
-function getActiveExclusiveDeals($pdo, $sortBy, $sortOrder, $limit, $offset) {
-    $now = date('Y-m-d H:i:s');
-    
-        $query = "SELECT * FROM exclusive_deals 
-            WHERE start_date <= :now AND end_date >= :now 
-            ORDER BY $sortBy $sortOrder 
-            LIMIT $limit OFFSET $offset";
-
-    $stmt = $pdo->prepare($query);
-    $stmt->bindValue(':now', $now);
-    $stmt->execute();
-
-    return $stmt->fetchAll(PDO::FETCH_ASSOC);
-}
-
-function countActiveExclusiveDeals($pdo) {
-    $now = date('Y-m-d H:i:s');
-    $stmt = $pdo->prepare("SELECT COUNT(*) FROM exclusive_deals WHERE start_date <= ? AND end_date >= ?");
-    $stmt->execute([$now, $now]);
-    return $stmt->fetchColumn();
-}
+// For now, show a placeholder - exclusive deals table needs to be created
+$exclusiveDeals = [];
+$totalExclusiveDeals = 0;
 
 ?>
 <!DOCTYPE html>

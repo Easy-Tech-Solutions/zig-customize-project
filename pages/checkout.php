@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html class="no-js" lang="en-US">
 
@@ -64,6 +66,16 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 col-md-12">
+                    <?php
+                    if (session_status() === PHP_SESSION_NONE) {
+                        session_start();
+                    }
+                    if (isset($_SESSION['error_message'])): ?>
+                        <div class="alert alert-danger">
+                            <?php echo htmlspecialchars($_SESSION['error_message']); ?>
+                        </div>
+                        <?php unset($_SESSION['error_message']); ?>
+                    <?php endif; ?>
                     <!-- First-Accordion -->
                     <div>
                         <div class="message-open u-s-m-b-24">
@@ -117,13 +129,12 @@
                             </h6>
                             <div class="coupon-field">
                                 <label class="sr-only" for="coupon-code">Apply Coupon</label>
-                                <input id="coupon-code" type="text" class="text-field" placeholder="Coupon Code">
-                                <button type="submit" class="button">Apply Coupon</button>
+                                <input id="coupon-code" name="coupon_code" type="text" class="text-field" placeholder="Coupon Code">
                             </div>
                         </div>
                     </div>
                     <!-- Second Accordion /- -->
-                    <form>
+                    <form method="POST" action="../user/process_checkout.php">
                         <div class="row">
                             <!-- Billing-&-Shipping-Details -->
                             <div class="col-lg-6">
@@ -134,13 +145,13 @@
                                         <label for="first-name">First Name
                                             <span class="astk">*</span>
                                         </label>
-                                        <input type="text" id="first-name" class="text-field">
+                                        <input type="text" id="first-name" name="first_name" class="text-field" required>
                                     </div>
                                     <div class="group-2">
                                         <label for="last-name">Last Name
                                             <span class="astk">*</span>
                                         </label>
-                                        <input type="text" id="last-name" class="text-field">
+                                        <input type="text" id="last-name" name="last_name" class="text-field" required>
                                     </div>
                                 </div>
                                 <div class="u-s-m-b-13">
@@ -148,7 +159,7 @@
                                         <span class="astk">*</span>
                                     </label>
                                     <div class="select-box-wrapper">
-                                        <select class="select-box" id="select-country">
+                                        <select class="select-box" id="select-country" name="country" required>
                                             <option selected="selected" value="">Choose your country...</option>
                                             <option value="AF">Afghanistan</option>
                                             <option value="AL">Albania</option>
@@ -300,22 +311,22 @@
                                     <label for="req-st-address">Street Address
                                         <span class="astk">*</span>
                                     </label>
-                                    <input type="text" id="req-st-address" class="text-field" placeholder="House name and street name">
+                                    <input type="text" id="req-st-address" name="billing_street" class="text-field" placeholder="House name and street name" required>
                                     <label class="sr-only" for="opt-st-address"></label>
-                                    <input type="text" id="opt-st-address" class="text-field" placeholder="Apartment, suite unit etc. (optional)">
+                                    <input type="text" id="opt-st-address" name="billing_street2" class="text-field" placeholder="Apartment, suite unit etc. (optional)">
                                 </div>
                                 <div class="u-s-m-b-13">
                                     <label for="town-city">Town / City
                                         <span class="astk">*</span>
                                     </label>
-                                    <input type="text" id="town-city" class="text-field">
+                                    <input type="text" id="town-city" name="billing_city" class="text-field" required>
                                 </div>
                                 <div class="u-s-m-b-13">
                                     <label for="select-state">State / Country
                                         <span class="astk"> *</span>
                                     </label>
                                     <div class="select-box-wrapper">
-                                        <select class="select-box" id="select-state">
+                                        <select class="select-box" id="select-state" name="billing_state" required>
                                             <option selected="selected" value="">Choose your state...</option>
                                             <option value="AF">Afghanistan</option>
                                             <option value="AL">Albania</option>
@@ -467,20 +478,20 @@
                                     <label for="postcode">Postcode / Zip
                                         <span class="astk">*</span>
                                     </label>
-                                    <input type="text" id="postcode" class="text-field">
+                                    <input type="text" id="postcode" name="billing_zipcode" class="text-field" required>
                                 </div>
                                 <div class="group-inline u-s-m-b-13">
                                     <div class="group-1 u-s-p-r-16">
                                         <label for="email">Email address
                                             <span class="astk">*</span>
                                         </label>
-                                        <input type="text" id="email" class="text-field">
+                                        <input type="email" id="email" name="email" class="text-field" required>
                                     </div>
                                     <div class="group-2">
                                         <label for="phone">Phone
                                             <span class="astk">*</span>
                                         </label>
-                                        <input type="text" id="phone" class="text-field">
+                                        <input type="text" id="phone" name="phone" class="text-field" required>
                                     </div>
                                 </div>
                                 <div class="u-s-m-b-30">
@@ -490,23 +501,23 @@
                                 <!-- Form-Fields /- -->
                                 <h4 class="section-h4">Shipping Details</h4>
                                 <div class="u-s-m-b-24">
-                                    <input type="checkbox" class="check-box" id="ship-to-different-address" data-toggle="collapse" data-target="#showdifferent">
+                                    <input type="checkbox" class="check-box" id="ship-to-different-address" name="ship_different" value="1">
                                     <label class="label-text" for="ship-to-different-address">Ship to a different address?</label>
                                 </div>
-                                <div class="collapse" id="showdifferent">
+                                <div id="showdifferent">
                                     <!-- Form-Fields -->
                                     <div class="group-inline u-s-m-b-13">
                                         <div class="group-1 u-s-p-r-16">
                                             <label for="first-name-extra">First Name
                                                 <span class="astk">*</span>
                                             </label>
-                                            <input type="text" id="first-name-extra" class="text-field">
+                                            <input type="text" id="first-name-extra" name="shipping_first_name" class="text-field">
                                         </div>
                                         <div class="group-2">
                                             <label for="last-name-extra">Last Name
                                                 <span class="astk">*</span>
                                             </label>
-                                            <input type="text" id="last-name-extra" class="text-field">
+                                            <input type="text" id="last-name-extra" name="shipping_last_name" class="text-field">
                                         </div>
                                     </div>
                                     <div class="u-s-m-b-13">
@@ -666,22 +677,22 @@
                                         <label for="req-st-address-extra">Street Address
                                             <span class="astk">*</span>
                                         </label>
-                                        <input type="text" id="req-st-address-extra" class="text-field" placeholder="House name and street name">
+                                        <input type="text" id="req-st-address-extra" name="shipping_street" class="text-field" placeholder="House name and street name">
                                         <label class="sr-only" for="opt-st-address-extra"></label>
-                                        <input type="text" id="opt-st-address-extra" class="text-field" placeholder="Apartment, suite unit etc. (optional)">
+                                        <input type="text" id="opt-st-address-extra" name="shipping_street2" class="text-field" placeholder="Apartment, suite unit etc. (optional)">
                                     </div>
                                     <div class="u-s-m-b-13">
                                         <label for="town-city-extra">Town / City
                                             <span class="astk">*</span>
                                         </label>
-                                        <input type="text" id="town-city-extra" class="text-field">
+                                        <input type="text" id="town-city-extra" name="shipping_city" class="text-field">
                                     </div>
                                     <div class="u-s-m-b-13">
                                         <label for="select-state-extra">State / Country
                                             <span class="astk"> *</span>
                                         </label>
                                         <div class="select-box-wrapper">
-                                            <select class="select-box" id="select-state-extra">
+                                            <select class="select-box" id="select-state-extra" name="shipping_state">
                                                 <option selected="selected" value="">Choose your state...</option>
                                                 <option value="AF">Afghanistan</option>
                                                 <option value="AL">Albania</option>
@@ -833,27 +844,17 @@
                                         <label for="postcode-extra">Postcode / Zip
                                             <span class="astk">*</span>
                                         </label>
-                                        <input type="text" id="postcode-extra" class="text-field">
-                                    </div>
-                                    <div class="group-inline u-s-m-b-13">
-                                        <div class="group-1 u-s-p-r-16">
-                                            <label for="email-extra">Email address
-                                                <span class="astk">*</span>
-                                            </label>
-                                            <input type="text" id="email-extra" class="text-field">
-                                        </div>
-                                        <div class="group-2">
-                                            <label for="phone-extra">Phone
-                                                <span class="astk">*</span>
-                                            </label>
-                                            <input type="text" id="phone-extra" class="text-field">
-                                        </div>
+                                        <input type="text" id="postcode-extra" name="shipping_zipcode" class="text-field">
                                     </div>
                                     <!-- Form-Fields /- -->
                                 </div>
                                 <div>
                                     <label for="order-notes">Order Notes</label>
-                                    <textarea class="text-area" id="order-notes" placeholder="Notes about your order, e.g. special notes for delivery."></textarea>
+                                    <textarea class="text-area" id="order-notes" name="order_notes" placeholder="Notes about your order, e.g. special notes for delivery."></textarea>
+                                </div>
+                                <div class="u-s-m-b-13">
+                                    <label>Payment Method</label>
+                                    <p class="text-muted">Choose your final payment option in the order summary on the right.</p>
                                 </div>
                             </div>
                             <!-- Billing-&-Shipping-Details /- -->
@@ -940,16 +941,20 @@
                                         </tbody>
                                     </table>
                                     <div class="u-s-m-b-13">
-                                        <input type="radio" class="radio-box" name="payment-method" id="cash-on-delivery">
+                                        <input type="radio" class="radio-box" name="payment_method" id="cash-on-delivery" value="cash_on_delivery" checked>
                                         <label class="label-text" for="cash-on-delivery">Cash on Delivery</label>
                                     </div>
                                     <div class="u-s-m-b-13">
-                                        <input type="radio" class="radio-box" name="payment-method" id="credit-card-stripe">
+                                        <input type="radio" class="radio-box" name="payment_method" id="credit-card-stripe" value="stripe">
                                         <label class="label-text" for="credit-card-stripe">Credit Card (Stripe)</label>
                                     </div>
                                     <div class="u-s-m-b-13">
-                                        <input type="radio" class="radio-box" name="payment-method" id="paypal">
-                                        <label class="label-text" for="paypal">Paypal</label>
+                                        <input type="radio" class="radio-box" name="payment_method" id="paypal" value="paypal">
+                                        <label class="label-text" for="paypal">PayPal</label>
+                                    </div>
+                                    <div class="u-s-m-b-13">
+                                        <input type="radio" class="radio-box" name="payment_method" id="tipme-wallet" value="tipme">
+                                        <label class="label-text" for="tipme-wallet">TipMe Wallet</label>
                                     </div>
                                     <div class="u-s-m-b-13">
                                         <input type="checkbox" class="check-box" id="accept">

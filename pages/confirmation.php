@@ -36,6 +36,13 @@
 
 <body>
 
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+$orderId = isset($_GET['order_id']) ? htmlspecialchars($_GET['order_id']) : null;
+?>
+
 <!-- app -->
 <div id="app">
     <!-- Checkout-Confirmation-Page -->
@@ -43,7 +50,12 @@
         <div class="vertical-center">
             <div class="text-center">
                 <h1>Thank you!</h1>
-                <h5>If you haven't received it yet. click to
+                <?php if ($orderId): ?>
+                    <p>Your order has been placed successfully. Order ID: <strong><?php echo $orderId; ?></strong></p>
+                <?php else: ?>
+                    <p>Your order has been placed successfully.</p>
+                <?php endif; ?>
+                <h5>If you haven't received it yet, click to
                     <button>resend confirmation email</button>.</h5>
                 <a href="../index.html" class="thank-you-back">Back to homepage</a>
             </div>

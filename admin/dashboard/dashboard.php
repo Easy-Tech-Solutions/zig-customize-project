@@ -1,6 +1,42 @@
 <?php
 require_once('../../sql_connection/config.php');
-requireRole('Admin'); // Only clients can access this page
+requireRole('Admin');
+
+// Get dashboard statistics
+try {
+    // Total Users
+    $stmt = $pdo->prepare("SELECT COUNT(*) as total FROM users");
+    $stmt->execute();
+    $total_users = $stmt->fetch(PDO::FETCH_ASSOC)['total'];
+    
+    // Total Customers
+    $stmt = $pdo->prepare("SELECT COUNT(*) as total FROM users WHERE role_id = 2");
+    $stmt->execute();
+    $total_customers = $stmt->fetch(PDO::FETCH_ASSOC)['total'];
+    
+    // Total Orders
+    $stmt = $pdo->prepare("SELECT COUNT(*) as total FROM orders");
+    $stmt->execute();
+    $total_orders = $stmt->fetch(PDO::FETCH_ASSOC)['total'];
+    
+    // Total Revenue
+    $stmt = $pdo->prepare("SELECT SUM(final_amount) as total FROM orders WHERE order_status != 'cancelled'");
+    $stmt->execute();
+    $total_revenue = $stmt->fetch(PDO::FETCH_ASSOC)['total'] ?? 0;
+    
+    // Pending Orders
+    $stmt = $pdo->prepare("SELECT COUNT(*) as total FROM orders WHERE order_status = 'pending'");
+    $stmt->execute();
+    $pending_orders = $stmt->fetch(PDO::FETCH_ASSOC)['total'];
+    
+    // Total Products
+    $stmt = $pdo->prepare("SELECT COUNT(*) as total FROM products");
+    $stmt->execute();
+    $total_products = $stmt->fetch(PDO::FETCH_ASSOC)['total'];
+    
+} catch (Exception $e) {
+    $error = "Error loading dashboard data";
+}
 ?>
 
 <!DOCTYPE html>
@@ -43,29 +79,16 @@ requireRole('Admin'); // Only clients can access this page
           <!-- ========== title-wrapper start ========== -->
           <div class="title-wrapper pt-30">
             <div class="row align-items-center">
-              <div class="col-md-6">
+              <div class="col-md-8">
                 <div class="title">
-                  <h2>Main Dashboard</h2>
+                  <h2>Admin Dashboard</h2>
+                  <p>Welcome back, <?php echo htmlspecialchars($_SESSION['first_name'] ?? 'Admin'); ?>!</p>
                 </div>
               </div>
-              <!-- end col -->
-              <div class="col-md-6">
-                <div class="breadcrumb-wrapper">
-                  <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb">
-                      <li class="breadcrumb-item">
-                        <a href="#0">Dashboard</a>
-                      </li>
-                      <li class="breadcrumb-item active" aria-current="page">
-                        Main Dashboard
-                      </li>
-                    </ol>
-                  </nav>
-                </div>
+              <div class="col-md-4 text-end">
+                <p class="text-muted">Last updated: <?php echo date('M d, Y H:i:s'); ?></p>
               </div>
-              <!-- end col -->
             </div>
-            <!-- end row -->
           </div>
           <!-- ========== title-wrapper end ========== -->
           <div class="row">
@@ -88,28 +111,24 @@ requireRole('Admin'); // Only clients can access this page
             <!-- End Col -->
             <div class="col-xl-3 col-lg-4 col-sm-6">
               <div class="icon-card mb-30">
+                <div class="icon sucTotal Orders</h6>
+                  <h3 class="text-bold mb-10"><?php echo $total_orders ?? 0; ?></h3>
+                  <p class="text-sm text-warning">
+                    <i class="lni lni-alert-circle"></i> <?php echo $pending_orders ?? 0; ?> Pending
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-sm-6">
+              <div class="icon-card mb-30">
                 <div class="icon success">
                   <i class="lni lni-dollar"></i>
                 </div>
                 <div class="content">
-                  <h6 class="mb-10">Total Income</h6>
-                  <h3 class="text-bold mb-10">$74,567</h3>
+                  <h6 class="mb-10">Total Revenue</h6>
+                  <h3 class="text-bold mb-10">$<?php echo number_format($total_revenue, 2); ?></h3>
                   <p class="text-sm text-success">
-                    <i class="lni lni-arrow-up"></i> +5.45%
-                    <span class="text-gray">Increased</span>
-                  </p>
-                </div>
-              </div>
-              <!-- End Icon Cart -->
-            </div>
-            <!-- End Col -->
-            <div class="col-xl-3 col-lg-4 col-sm-6">
-              <div class="icon-card mb-30">
-                <div class="icon primary">
-                  <i class="lni lni-package"></i>
-                </div>
-                <div class="content">
-                  <h6 class="mb-10">Total Products</h6>
+                    <i class="lni lni-arrow-up"></i> From completed orders
                   <h3 class="text-bold mb-10">350</h3>
                   <p class="text-sm text-danger">
                     <i class="lni lni-arrow-up"></i> 2.00%

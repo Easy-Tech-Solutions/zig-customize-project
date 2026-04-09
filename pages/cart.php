@@ -1,4 +1,5 @@
 <?php
+session_start();
 include('../sql_connection/config.php');
 requireLogin();
 
@@ -6,13 +7,19 @@ try {
     // Get cart items for the current user
     $user_id = $_SESSION['user_id'];
     $stmt = $pdo->prepare("
-        SELECT c.id as cart_id, p.id as product_id, p.name, p.price, p.image_path, c.quantity 
-        FROM cart c 
-        JOIN products p ON c.product_id = p.id 
-        WHERE c.user_id = ?
-    ");
-    $stmt->execute([$user_id]);
-    $cart_items = $stmt->fetchAll();
+    SELECT 
+        c.id,
+        c.product_id,
+        c.quantity,
+        p.name,
+        p.price,
+        p.image_path
+    FROM cart c
+    JOIN products p ON c.product_id = p.id
+    WHERE c.user_id = ?
+");
+$stmt->execute([$user_id]);
+$cartItems = $stmt->fetchAll(PDO::FETCH_ASSOC);
     
     $total = 0;
 } catch (PDOException $e) {
@@ -99,7 +106,7 @@ try {
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <?php foreach ($cart_items as $item): 
+                                            <?php foreach ($cartItems as $item): 
                                                 $subtotal = $item['price'] * $item['quantity'];
                                                 $total += $subtotal;
                                             ?>
@@ -120,7 +127,7 @@ try {
                                                 <td>
                                                     <div class="cart-quantity">
                                                         <div class="quantity">
-                                                            <input type="number" name="quantity[<?= $item['cart_id'] ?>]" class="quantity-text-field" value="<?= $item['quantity'] ?>" min="1">
+                                                            <input type="number" name="quantity[<?= $item['id'] ?>]" class="quantity-text-field" value="<?= $item['quantity'] ?>" min="1">
                                                         </div>
                                                     </div>
                                                 </td>
@@ -132,13 +139,13 @@ try {
                                                 <td>
                                                     <div class="action-wrapper">
                                                         <button type="submit" name="update" class="button button-outline-secondary fas fa-sync"></button>
-                                                        <a href="remove_from_cart.php?id=<?= $item['cart_id'] ?>" class="button button-outline-secondary fas fa-trash"></a>
+                                                        <a href="remove_from_cart.php?id=<?= $item['id'] ?>" class="button button-outline-secondary fas fa-trash"></a>
                                                     </div>
                                                 </td>
                                             </tr>
                                             <?php endforeach; ?>
                                             
-                                            <?php if (empty($cart_items)): ?>
+                                            <?php if (empty($cartItems)): ?>
                                             <tr>
                                                 <td colspan="5" class="text-center">Your cart is empty</td>
                                             </tr>
@@ -147,7 +154,7 @@ try {
                                     </table>
                                 </div>
                                 
-                                <?php if (!empty($cart_items)): ?>
+                                <?php if (!empty($cartItems)): ?>
                                 <div class="coupon-continue-checkout u-s-m-b-60">
                                     <div class="button-area">
                                         <button type="submit" name="update_all" class="button">Update Cart</button>
@@ -159,7 +166,7 @@ try {
                             </form>
                             
                             <!-- Billing -->
-                            <?php if (!empty($cart_items)): ?>
+                            <?php if (!empty($cartItems)): ?>
                             <div class="calculation u-s-m-b-60">
                                 <div class="table-wrapper-2">
                                     <table>

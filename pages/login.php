@@ -96,59 +96,60 @@
                             unset($_SESSION['registration_success']);
                         }
                         
+                        $error = '';
+                        
                         // Handle login form submission
                         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['userlog'])) {
                             $username = trim($_POST['Username']);
                             $password = trim($_POST['Password']);
                             
-                            try {
-                                // Prepare SQL to get user with role information
-                                $sql = "SELECT u.*, r.role_name 
-                                        FROM users u 
-                                        JOIN roles r ON u.role_id = r.role_id 
-                                        WHERE username = ? OR email = ?";
-                                $stmt = $pdo->prepare($sql);
-                                $stmt->execute([$username, $username]);
-                                $user = $stmt->fetch(PDO::FETCH_ASSOC);
+                            if (empty($username) || empty($password)) {
+                                $error = "Username and password are required";
+                            } else {
+                                try {
+                                    // Query the users table directly
+                                    $sql = "SELECT * FROM users WHERE (username = ? OR email = ?) LIMIT 1";
+                                    $stmt = $pdo->prepare($sql);
+                                    $stmt->execute([$username, $username]);
+                                    $user = $stmt->fetch(PDO::FETCH_ASSOC);
                         
-                                // Verify user exists and password is correct
-                                if ($user && password_verify($password, $user['password'])) {
-                                    // Regenerate session ID to prevent session fixation
-                                    session_regenerate_id(true);
-                                    
-                                    // Set session variables
-                                    $_SESSION['user_id'] = $user['user_id'];
-                                    $_SESSION['username'] = $user['username'];
-                                    $_SESSION['email'] = $user['email'];
-                                    $_SESSION['role'] = $user['role_name'];
-                                    $_SESSION['first_name'] = $user['first_name'];
-                                    $_SESSION['last_name'] = $user['last_name'];
-                                    $_SESSION['profile_image'] = $user['profile_image'];
-                                    
-                                    // Update last login time
-                                    $updateSql = "UPDATE users SET last_login = NOW() WHERE user_id = ?";
-                                    $updateStmt = $pdo->prepare($updateSql);
-                                    $updateStmt->execute([$user['user_id']]);
-                                    
-                                    // Redirect based on role
-                                    if ($user['role_name'] === 'Client') {
-                                        header("Location:  ../index.php");
+                                    // Verify user exists and password is correct
+                                    if ($user && ($password === $user['password'] || password_verify($password, $user['password']))) {
+                                        // Regenerate session ID to prevent session fixation
+                                        session_regenerate_id(true);
+                                        
+                                        // Set session variables
+                                        $_SESSION['user_id'] = $user['user_id'];
+                                        $_SESSION['username'] = $user['username'];
+                                        $_SESSION['email'] = $user['email'];
+                                        $_SESSION['role_id'] = $user['role_id'];
+                                        $_SESSION['first_name'] = $user['first_name'];
+                                        $_SESSION['logged_in'] = true;
+                                        
+                                        // Redirect based on role_id (1 = admin, 2 = customer, etc)
+                                        if ($user['role_id'] == 1) {  // Admin role
+                                            header("Location: ../admin/dashboard/dashboard.php");
+                                        } else {
+                                            header("Location: ../index.php");
+                                        }
+                                        exit();
                                     } else {
-                                        header("Location:  ../admin/dashboard/dashboard.php");
+                                        $error = "Invalid username or password";
                                     }
-                                    exit();
-                                } else {
-                                    $error = "Invalid username or password";
+                                } catch (PDOException $e) {
+                                    error_log("Login error: " . $e->getMessage());
+                                    $error = "A database error occurred. Please try again.";
                                 }
-                            } catch (PDOException $e) {
-                                error_log("Login error: " . $e->getMessage());
-                                $error = "A database error occurred. Please try again.";
                             }
                         }
                         ?>
                         
-                        <form method="POST" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>">
-                            <div class="u-s-m-b-30">
+                        <?php if ($error): ?>
+                            <div class="error-message"><?php echo htmlspecialchars($error); ?></div>
+                        <?php endif; ?>
+                        
+                        <form method="POST" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>"
+                             class="u-s-m-b-30">
                                 <label for="user-name-email">Username or Email
                                     <span class="astk">*</span>
                                 </label>
@@ -192,6 +193,7 @@
                         </form>
                     </div>
                 </div>
+                        
 
                 <div class="col-lg-4"></div>
                 <!-- Login /- -->

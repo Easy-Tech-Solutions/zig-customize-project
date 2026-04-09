@@ -21,10 +21,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
         
         $_SESSION['flash_message'] = $message;
+        $_SESSION['flash_status'] = $success ? 'success' : 'danger';
         header('Location: addproducttodeals.php');
         exit();
     } catch (Exception $e) {
         $_SESSION['flash_message'] = 'Error: ' . $e->getMessage();
+        $_SESSION['flash_status'] = 'danger';
         header('Location: addproducttodeals.php');
         exit();
     }

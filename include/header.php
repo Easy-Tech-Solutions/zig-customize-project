@@ -1,4 +1,5 @@
 <?php 
+    require_once __DIR__ . '/../sql_connection/config.php';
     $isLoggedIn = isLoggedIn();
     $userRole = isset($_SESSION['role']) ? $_SESSION['role'] : '';
 ?>
