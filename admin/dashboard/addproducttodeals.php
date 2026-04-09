@@ -4,14 +4,18 @@ require_once '../../sql_connection/config.php'; // Database connection
 requireRole('Admin'); // Only admins can access this page
 
 
-// Fetch categories and subcategories
+// Fetch products for deal selection
 try {
-    $stmt = $pdo->query("SELECT * FROM products");
+    $stmt = $pdo->query("SELECT id, name FROM products ORDER BY name ASC");
     $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
     
 } catch (PDOException $e) {
-    die("Error fetching categories: " . $e->getMessage());
+    die("Error fetching products: " . $e->getMessage());
 }
+
+$message = $_SESSION['flash_message'] ?? null;
+$status = $_SESSION['flash_status'] ?? 'info';
+unset($_SESSION['flash_message'], $_SESSION['flash_status']);
 
 ?>
 

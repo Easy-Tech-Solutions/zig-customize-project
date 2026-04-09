@@ -26,15 +26,15 @@ function addToExclusiveDeals($pdo, $productId, $startDate, $endDate) {
     
     return $stmt->execute([
         $productId,
-        $product['name'],
-        $product['description'],
-        $product['price'],
-        $product['original_price'],
-        $product['discount'],
-        $product['category'],
-        $product['sub_category'],
-        $product['image_path'],
-        $product['thumbnail_path'],
+        $product['product_name'] ?? '',
+        $product['product_description'] ?? '',
+        $product['product_price'] ?? 0,
+        $product['product_price'] ?? 0,
+        0,
+        $product['product_category'] ?? '',
+        '',
+        $product['product_image'] ?? '',
+        $product['product_image'] ?? '',
         $startDate,
         $endDate
     ]);
@@ -67,15 +67,15 @@ function addToFlashSales($pdo, $productId, $startDate, $endDate) {
     
     return $stmt->execute([
         $productId,
-        $product['name'],
-        $product['description'],
-        $product['price'],
-        $product['original_price'],
-        $product['discount'],
-        $product['category'],
-        $product['sub_category'],
-        $product['image_path'],
-        $product['thumbnail_path'],
+        $product['product_name'] ?? '',
+        $product['product_description'] ?? '',
+        $product['product_price'] ?? 0,
+        $product['product_price'] ?? 0,
+        0,
+        $product['product_category'] ?? '',
+        '',
+        $product['product_image'] ?? '',
+        $product['product_image'] ?? '',
         $startDate,
         $endDate
     ]);

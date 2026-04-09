@@ -1,11 +1,6 @@
 <?php 
-    // Ensure config (session, DB, auth helpers) is loaded
-    $configPath = __DIR__ . '/../sql_connection/config.php';
-    if (file_exists($configPath)) {
-        require_once $configPath;
-    }
-
-    $isLoggedIn = function_exists('isLoggedIn') ? isLoggedIn() : false;
+    require_once __DIR__ . '/../sql_connection/config.php';
+    $isLoggedIn = isLoggedIn();
     $userRole = isset($_SESSION['role']) ? $_SESSION['role'] : '';
 ?>
 <header>
