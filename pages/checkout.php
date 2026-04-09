@@ -104,6 +104,7 @@
                     </div>
                     <!-- First-Accordion /- -->
                     <!-- Second Accordion -->
+                     <!-- THus is the second accordion, which is for coupons. It is separate from the login accordion above. --> 
                     <div>
                         <div class="message-open u-s-m-b-24">
                             Have a coupon?
