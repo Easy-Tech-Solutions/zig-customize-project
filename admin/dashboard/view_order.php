@@ -26,9 +26,9 @@ if (!$order) {
 
 // Get order items
 $stmt = $pdo->prepare("
-    SELECT oi.*, p.product_id, p.product_image
+    SELECT oi.*, p.id AS product_id, p.name AS product_name, p.image_path
     FROM order_items oi
-    LEFT JOIN products p ON oi.product_id = p.product_id
+    LEFT JOIN products p ON oi.product_id = p.id
     WHERE oi.order_id = ?
 ");
 $stmt->execute([$order_id]);
@@ -40,7 +40,7 @@ $stmt->execute([$order_id]);
 $invoice = $stmt->fetch(PDO::FETCH_ASSOC);
 
 // Get shipment
-$stmt = $pdo->prepare("SELECT * FROM shipments WHERE order_id = ?");
+$stmt = $pdo->prepare("SELECT *, status AS shipment_status, shipping_date AS shipped_date, expected_delivery AS estimated_delivery FROM shipments WHERE order_id = ?");
 $stmt->execute([$order_id]);
 $shipment = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -51,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     // If updating to shipped, update shipment status too
     if ($order_status === 'shipped') {
-        $pdo->prepare("UPDATE shipments SET shipment_status = 'in_transit', shipped_date = NOW() WHERE order_id = ?")->execute([$order_id]);
+        $pdo->prepare("UPDATE shipments SET status = 'in_transit', shipping_date = NOW() WHERE order_id = ?")->execute([$order_id]);
     }
     
     $_SESSION['success_message'] = "Order updated successfully";

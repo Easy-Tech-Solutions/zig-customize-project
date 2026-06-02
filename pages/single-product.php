@@ -31,6 +31,11 @@ $images_stmt = $pdo->prepare($images_query);
 $images_stmt->execute([$product_id]);
 $images = $images_stmt->fetchAll(PDO::FETCH_ASSOC);
 
+foreach ($images as &$image) {
+    $image['image_path'] = normalizeProductImagePath($image['image_path'] ?? '');
+}
+unset($image);
+
 // Fetch product colors
 $colors_query = "SELECT c.* FROM colors c 
                 JOIN product_colors pc ON c.id = pc.color_id 

@@ -88,6 +88,7 @@ try {
       `product_id` INT NOT NULL,
       `movement_type` ENUM('in', 'out', 'adjustment'),
       `quantity` INT NOT NULL,
+      `reference_id` INT,
       `notes` TEXT,
       `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -163,6 +164,7 @@ try {
       `product_id` INT NOT NULL,
       `movement_type` ENUM('in', 'out', 'adjustment'),
       `quantity` INT NOT NULL,
+      `reference_id` INT,
       `notes` TEXT,
       `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;

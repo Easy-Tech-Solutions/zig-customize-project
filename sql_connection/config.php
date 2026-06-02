@@ -32,6 +32,46 @@ if ($conn->connect_error) {
     $conn->set_charset('utf8mb4');
 }
 
+function getProjectRootUrl(): string {
+    $scriptName = $_SERVER['SCRIPT_NAME'] ?? '';
+    $segments = explode('/', trim($scriptName, '/'));
+    $projectSegments = [];
+
+    foreach ($segments as $segment) {
+        if ($segment === '') {
+            continue;
+        }
+
+        if (in_array($segment, ['pages', 'admin', 'user', 'include', 'sql_connection', 'scripts', 'assets', 'Uploads', 'Backup'], true)) {
+            break;
+        }
+
+        $projectSegments[] = $segment;
+    }
+
+    return '/' . implode('/', $projectSegments);
+}
+
+function normalizeProductImagePath(string $imagePath): string {
+    $path = trim(str_replace('\\', '/', $imagePath));
+
+    if ($path === '') {
+        return '';
+    }
+
+    if (preg_match('#^(https?:)?//#', $path) || strpos($path, '/') === 0) {
+        return $path;
+    }
+
+    $path = preg_replace('#^(\./|\.\./)+#', '', $path);
+
+    if (strpos($path, 'Uploads/') === 0 || strpos($path, 'assets/') === 0) {
+        return rtrim(getProjectRootUrl(), '/') . '/' . ltrim($path, '/');
+    }
+
+    return $path;
+}
+
 // Authentication check function
 function tipmeApiRequest(string $endpoint, array $postData = []): array {
     $url = rtrim(TIPME_BASE_URL, '/') . '/' . ltrim($endpoint, '/');

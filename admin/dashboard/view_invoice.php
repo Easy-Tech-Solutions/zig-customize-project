@@ -28,7 +28,9 @@ if (!$invoice) {
 
 // Get order items
 $stmt = $pdo->prepare("
-    SELECT oi.* FROM order_items oi
+    SELECT oi.*, p.name AS product_name
+    FROM order_items oi
+    LEFT JOIN products p ON oi.product_id = p.id
     WHERE oi.order_id = ?
     ORDER BY oi.order_item_id
 ");

@@ -224,9 +224,9 @@ require_once('../sql_connection/config.php');
                     <div class="row product-container list-style">
                         <?php foreach ($products as $product): 
                             // Get the first image if there are multiple
-                            $images = explode(',', $product['image_path']);
-                            $mainImage = $images[0];
-                            $thumbnail = $product['thumbnail_path'];
+                            $images = array_filter(array_map('trim', explode(',', $product['image_path'])));
+                            $mainImage = !empty($images) ? normalizeProductImagePath($images[0]) : '';
+                            $thumbnail = normalizeProductImagePath($product['thumbnail_path'] ?? '');
                             
                             // Format price display
                             $price = number_format($product['price'], 2);
@@ -236,7 +236,7 @@ require_once('../sql_connection/config.php');
                                 <div class="item">
                                     <div class="image-container">
                                         <a class="item-img-wrapper-link" href="./single-product.php?id=<?= $product['id'] ?>">
-                                            <img class="img-fluid" src="<?= $mainImage ?>" alt="<?= htmlspecialchars($product['name']) ?>">
+                                            <img class="img-fluid" src="<?= htmlspecialchars($mainImage) ?>" alt="<?= htmlspecialchars($product['name']) ?>">
                                         </a>
                                         <div class="item-action-behaviors">
                                             <a class="item-quick-look" data-toggle="modal" href="#quick-view">Quick Look</a>

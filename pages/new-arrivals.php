@@ -216,9 +216,9 @@ require_once('../sql_connection/config.php');
             <div class="row product-container grid-style">
                 <?php foreach ($newProducts as $product): 
                     // Get the first image if there are multiple
-                    $images = explode(',', $product['image_path']);
-                    $mainImage = $images[0];
-                    $thumbnail = $product['thumbnail_path'];
+                    $images = array_filter(array_map('trim', explode(',', $product['image_path'])));
+                    $mainImage = !empty($images) ? normalizeProductImagePath($images[0]) : '';
+                    $thumbnail = normalizeProductImagePath($product['thumbnail_path'] ?? '');
                     
                     // Format price display
                     $price = number_format($product['price'], 2);

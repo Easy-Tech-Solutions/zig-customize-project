@@ -62,27 +62,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         // Get cart items
-       $stmt = $pdo->prepare("
+        $stmt = $pdo->prepare("
     SELECT 
         c.id,
         c.product_id,
         c.quantity,
-        p.name,
-        p.price
+        p.name AS product_name,
+        p.price AS product_price
     FROM cart c
     JOIN products p ON c.product_id = p.id
     WHERE c.user_id = ?
 ");
-$stmt->execute([$user_id]);
-$cartItems = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $stmt->execute([$user_id]);
+        $cartItems = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        if (empty($cart_items)) {
+        if (empty($cartItems)) {
             throw new Exception("Your cart is empty");
         }
 
         // Calculate totals
         $subtotal = 0;
-        foreach ($cart_items as $item) {
+        foreach ($cartItems as $item) {
             $subtotal += $item['product_price'] * $item['quantity'];
         }
 
@@ -153,16 +153,15 @@ $cartItems = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $order_id = $pdo->lastInsertId();
 
         // Add order items
-        foreach ($cart_items as $item) {
+        foreach ($cartItems as $item) {
             $stmt = $pdo->prepare("
                 INSERT INTO order_items (
-                    order_id, product_id, product_name, quantity, unit_price, total_price
-                ) VALUES (?, ?, ?, ?, ?, ?)
+                    order_id, product_id, quantity, unit_price, total_price
+                ) VALUES (?, ?, ?, ?, ?)
             ");
             $stmt->execute([
                 $order_id,
                 $item['product_id'],
-                $item['product_name'],
                 $item['quantity'],
                 $item['product_price'],
                 $item['product_price'] * $item['quantity']
@@ -171,19 +170,18 @@ $cartItems = $stmt->fetchAll(PDO::FETCH_ASSOC);
             // Update stock
             $stmt = $pdo->prepare("
                 UPDATE products SET stock_quantity = stock_quantity - ?
-                WHERE product_id = ?
+                WHERE id = ?
             ");
             $stmt->execute([$item['quantity'], $item['product_id']]);
 
             // Record stock movement
             $stmt = $pdo->prepare("
-                INSERT INTO stock_movements (product_id, movement_type, quantity, reference_id, notes)
-                VALUES (?, 'sale', ?, ?, ?)
+                INSERT INTO stock_movements (product_id, movement_type, quantity, notes)
+                VALUES (?, 'sale', ?, ?)
             ");
             $stmt->execute([
                 $item['product_id'],
                 $item['quantity'],
-                $order_id,
                 'Sold via Order #' . $order_number
             ]);
         }
@@ -198,10 +196,10 @@ $cartItems = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         // Create shipment record
         $stmt = $pdo->prepare("
-            INSERT INTO shipments (order_id, shipment_status, shipping_address)
-            VALUES (?, 'pending', ?)
+            INSERT INTO shipments (order_id, status, shipping_date)
+            VALUES (?, 'pending', NOW())
         ");
-        $stmt->execute([$order_id, $shipping_address]);
+        $stmt->execute([$order_id]);
 
         // Clear cart
         $stmt = $pdo->prepare("DELETE FROM cart WHERE user_id = ?");

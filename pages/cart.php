@@ -114,7 +114,7 @@ $cartItems = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                                 <td>
                                                     <div class="cart-anchor-image">
                                                         <a href="./single-product.php?id=<?= $item['product_id'] ?>">
-                                                            <img src="<?= $item['image_path'] ? $item['image_path'] : '../assets/images/product/product@1x.jpg' ?>" alt="<?= htmlspecialchars($item['name']) ?>">
+                                                            <img src="<?= $item['image_path'] ? htmlspecialchars(normalizeProductImagePath($item['image_path'])) : '../assets/images/product/product@1x.jpg' ?>" alt="<?= htmlspecialchars($item['name']) ?>">
                                                             <h6><?= htmlspecialchars($item['name']) ?></h6>
                                                         </a>
                                                     </div>

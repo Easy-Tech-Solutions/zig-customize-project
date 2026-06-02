@@ -153,7 +153,7 @@ function countActiveFlashSales($pdo) {
                 <div class="item">
                     <div class="image-container">
                         <a class="item-img-wrapper-link" href="./single-product.php?id=<?= $product['product_id'] ?>">
-                            <img class="img-fluid" src="<?= $product['image_path'] ?>" alt="<?= htmlspecialchars($product['name']) ?>">
+                            <img class="img-fluid" src="<?= htmlspecialchars(normalizeProductImagePath($product['image_path'])) ?>" alt="<?= htmlspecialchars($product['name']) ?>">
                         </a>
                         <div class="item-action-behaviors">
                             <a class="item-quick-look" data-toggle="modal" href="#quick-view">Quick Look</a>

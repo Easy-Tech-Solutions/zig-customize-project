@@ -1,15 +1,42 @@
 <?php
 require_once('../sql_connection/config.php');
-include("../include/header.php");
 
-// Get sorting parameters
 $sortBy = $_GET['sort'] ?? 'created_at';
-$sortOrder = $_GET['order'] ?? 'DESC';
+$sortOrder = strtoupper($_GET['order'] ?? 'DESC') === 'ASC' ? 'ASC' : 'DESC';
+$itemsPerPage = (int)($_GET['show'] ?? 8);
+$currentPage = max(1, (int)($_GET['page'] ?? 1));
 
-// For now, show a placeholder - exclusive deals table needs to be created
-$exclusiveDeals = [];
-$totalExclusiveDeals = 0;
+$allowedSortColumns = ['created_at', 'price', 'discount', 'name'];
+$sortBy = in_array($sortBy, $allowedSortColumns, true) ? $sortBy : 'created_at';
+$itemsPerPage = in_array($itemsPerPage, [8, 16, 28], true) ? $itemsPerPage : 8;
 
+function getActiveExclusiveDeals($pdo, $sortBy, $sortOrder, $limit, $offset) {
+    $now = date('Y-m-d H:i:s');
+    $query = "SELECT * FROM exclusive_deals WHERE start_date <= :now AND end_date >= :now ORDER BY $sortBy $sortOrder LIMIT :limit OFFSET :offset";
+    $stmt = $pdo->prepare($query);
+    $stmt->bindValue(':now', $now);
+    $stmt->bindValue(':limit', (int)$limit, PDO::PARAM_INT);
+    $stmt->bindValue(':offset', (int)$offset, PDO::PARAM_INT);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+function countActiveExclusiveDeals($pdo) {
+    $now = date('Y-m-d H:i:s');
+    $stmt = $pdo->prepare("SELECT COUNT(*) FROM exclusive_deals WHERE start_date <= ? AND end_date >= ?");
+    $stmt->execute([$now, $now]);
+    return (int)$stmt->fetchColumn();
+}
+
+function buildPageUrl($page) {
+    $params = $_GET;
+    $params['page'] = $page;
+    return '?' . http_build_query($params);
+}
+
+$totalExclusiveDeals = countActiveExclusiveDeals($pdo);
+$totalPages = max(1, (int)ceil($totalExclusiveDeals / $itemsPerPage));
+$exclusiveDeals = getActiveExclusiveDeals($pdo, $sortBy, $sortOrder, $itemsPerPage, ($currentPage - 1) * $itemsPerPage);
 ?>
 <!DOCTYPE html>
 <html class="no-js" lang="en-US">
@@ -24,7 +51,7 @@ $totalExclusiveDeals = 0;
     <meta name="author" content="">
     <title>Exclusive Deals</title>
     <!-- Standard Favicon -->
-    <link src="../assets/images/favicon/favicon.ico" rel="shortcut icon">
+    <link href="../assets/images/favicon/favicon.ico" rel="shortcut icon">
     <!-- Base Google Font for Web-app -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
     <!-- Google Fonts for Banners only -->
@@ -66,7 +93,7 @@ $totalExclusiveDeals = 0;
                     <a href="../index.html">Home</a>
                 </li>
                 <li class="is-marked">
-                    <a href="./exclusive-deals.php">Exclusive Deals</a>
+                    <a href="./exclusivedeals.php">Exclusive Deals</a>
                 </li>
             </ul>
         </div>
@@ -123,7 +150,7 @@ $totalExclusiveDeals = 0;
                 <div class="item">
                     <div class="image-container">
                         <a class="item-img-wrapper-link" href="./single-product.php?id=<?= $product['product_id'] ?>">
-                            <img class="img-fluid" src="<?= $product['image_path'] ?>" alt="<?= htmlspecialchars($product['name']) ?>">
+                            <img class="img-fluid" src="<?= htmlspecialchars(normalizeProductImagePath($product['image_path'])) ?>" alt="<?= htmlspecialchars($product['name']) ?>">
                         </a>
                         <div class="item-action-behaviors">
                             <a class="item-quick-look" data-toggle="modal" href="#quick-view">Quick Look</a>

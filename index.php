@@ -31,6 +31,7 @@ $userRole = $isLoggedIn ? $_SESSION['role_id'] : null;
     <!-- Bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css">
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 
     <!-- Font Awesome 5 -->
@@ -592,11 +593,11 @@ $userRole = $isLoggedIn ? $_SESSION['role_id'] : null;
                 </div>
     </div>
   </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+  <button class="carousel-control-prev" type="button" data-bs-target="#carousel" data-bs-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
     <span class="visually-hidden">Previous</span>
   </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+  <button class="carousel-control-next" type="button" data-bs-target="#carousel" data-bs-slide="next">
     <span class="carousel-control-next-icon" aria-hidden="true"></span>
     <span class="visually-hidden">Next</span>
   </button>
@@ -654,104 +655,110 @@ $userRole = $isLoggedIn ? $_SESSION['role_id'] : null;
                         // Get products for this specific tag
                         $productsStmt = $pdo->prepare("SELECT * FROM products WHERE tag = :tag");
                         $productsStmt->execute([':tag' => $tag]);
-                        $products = $productsStmt->fetchAll();
+                        $products = $productsStmt->fetchAll(PDO::FETCH_ASSOC);
+                        
+                        // Ensure $products is an array
+                        if (!is_array($products)) {
+                            $products = [];
+                        }
                 ?>
                     <div class="tab-pane fade row <?= $active_class ?>" id="<?= htmlspecialchars($tag) ?>">
                 
-                        <div id="carouselExample_<?= $index ?>" class="carousel slide" data-bs-ride="carousel">
-                            <div class="carousel-inner">
-                                <?php
-                                // Split products into chunks of 4
-                                $chunks = array_chunk($products, 4);
-                                foreach ($chunks as $i => $chunk):
-                                ?>
-                                    <div class="carousel-item <?= ($i === 0) ? 'active' : '' ?>">
-                                        <div class="row">
-                                            <?php foreach ($chunk as $product): ?>
-                                                <div class="col-6 col-lg-3 mb-3">
-                                                    <div class="image-container">
-                                                        <a class="item-img-wrapper-link" href="./pages/single-product.php?id=<?= $product['id'] ?>">
-                                                            <img class="img-fluid" src="<?= 
-                                                                !empty($product['thumbnail_path']) 
-                                                                ? htmlspecialchars(explode(',', $product['thumbnail_path'])[0]) 
-                                                                : './assets/images/product/product@3x.jpg' 
-                                                            ?>" alt="<?= htmlspecialchars($product['name']) ?>">
-                                                        </a>
-                                                        <div class="item-action-behaviors">
-                                                            <a class="item-quick-look" data-toggle="modal" href="#quick-view">Quick Look</a>
-                                                            <a class="item-mail" href="javascript:void(0)">Mail</a>
-                                                            <a class="item-addwishlist" href="javascript:void(0)">Add to Wishlist</a>
-                                                            <a class="item-addCart" href="javascript:void(0)">Add to Cart</a>
+                        ?>
+                        <div class="swiper outer-product-swiper swiper-container-<?= $index ?>">
+                            <div class="swiper-wrapper">
+                                <?php foreach ($products as $product): ?>
+                                    <?php
+                                    $productImages = array_filter(array_map('trim', explode(',', (string)$product['thumbnail_path'])));
+                                    $productImageCount = count($productImages);
+                                    $productPrimaryImage = $productImages[0] ?? '';
+                                    ?>
+                                    <div class="swiper-slide col-12 col-md-6 col-lg-3 mb-3" data-product-image-count="<?= $productImageCount ?>">
+                                        <div class="image-container">
+                                            <!-- Debug: product <?= $product['id'] ?> thumbnail_path count <?= $productImageCount ?> -->
+                                            <?php if ($productImageCount > 1): ?>
+                                            <div class="swiper product-image-swiper swiper-product-<?= $product['id'] ?>">
+                                                <div class="swiper-wrapper">
+                                                    <?php foreach ($productImages as $image): ?>
+                                                        <div class="swiper-slide">
+                                                            <a class="item-img-wrapper-link" href="./pages/single-product.php?id=<?= $product['id'] ?>">
+                                                                <img class="img-fluid" src="/dashboard/zig-customize-project/Uploads/Products/<?= htmlspecialchars(basename($image)) ?>" alt="<?= htmlspecialchars($product['name']) ?>">
+                                                            </a>
                                                         </div>
-                                                    </div>
-                                                    <div class="item-content">
-                                                        <div class="what-product-is">
-                                                            <ul class="bread-crumb">
-                                                                <li class="has-separator">
-                                                                    <a href="./pages/shop-v1-root-category.php?category=<?= urlencode($product['category']) ?>">
-                                                                        <?= htmlspecialchars($product['category']) ?>
-                                                                    </a>
-                                                                </li>
-                                                                <?php if (!empty($product['sub_category'])): ?>
-                                                                <li class="has-separator">
-                                                                    <a href="./pages/shop-v2-sub-category.php?subcategory=<?= urlencode($product['sub_category']) ?>">
-                                                                        <?= htmlspecialchars($product['sub_category']) ?>
-                                                                    </a>
-                                                                </li>
-                                                                <?php endif; ?>
-                                                                <?php if (!empty($product['color_options'])): ?>
-                                                                    <?php $colors = explode(',', $product['color_options']); ?>
-                                                                    <li class="has-separator">
-                                                                        <a href="./pages/shop-v2-sub-category.php?color=<?= urlencode(trim($colors[0])) ?>">
-                                                                            <?= htmlspecialchars(trim($colors[0])) ?>
-                                                                        </a>
-                                                                    </li>
-                                                                <?php endif; ?>
-                                                            </ul>
-                                                            <h6 class="item-title">
-                                                                <a href="./pages/single-product.php?id=<?= $product['id'] ?>">
-                                                                    <?= htmlspecialchars($product['name']) ?>
-                                                                </a>
-                                                            </h6>
-                                                            <div class="item-stars">
-                                                                <div class='star' title="4.5 out of 5 - based on 23 Reviews">
-                                                                    <span style='width:67px'></span>
-                                                                </div>
-                                                                <span>(23)</span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="price-template">
-                                                            <div class="item-new-price">
-                                                                $<?= number_format($product['price'], 2) ?>
-                                                            </div>
-                                                            <?php if (!empty($product['original_price']) && $product['original_price'] > $product['price']): ?>
-                                                            <div class="item-old-price">
-                                                                $<?= number_format($product['original_price'], 2) ?>
-                                                            </div>
-                                                            <?php endif; ?>
-                                                        </div>
-                                                    </div>
-                                                    <?php if (!empty($product['discount']) && $product['discount'] > 0): ?>
-                                                    <div class="tag <?= ($product['original_price'] > $product['price']) ? 'sale' : 'discount' ?>">
-                                                        <span><?= ($product['original_price'] > $product['price']) ? 'SALE' : '-'.htmlspecialchars($product['discount']).'%' ?></span>
-                                                    </div>
-                                                    <?php endif; ?>
+                                                    <?php endforeach; ?>
                                                 </div>
-                                            <?php endforeach; ?>
+                                            </div>
+                                            <?php else: ?>
+                                            <div class="product-single-image">
+                                                <a class="item-img-wrapper-link" href="./pages/single-product.php?id=<?= $product['id'] ?>">
+                                                    <img class="img-fluid" src="/dashboard/zig-customize-project/Uploads/Products/<?= htmlspecialchars(basename($productPrimaryImage)) ?>" alt="<?= htmlspecialchars($product['name']) ?>">
+                                                </a>
+                                            </div>
+                                            <?php endif; ?>
+                                            <div class="item-action-behaviors">
+                                                <a class="item-quick-look" data-toggle="modal" href="#quick-view">Quick Look</a>
+                                                <a class="item-mail" href="javascript:void(0)">Mail</a>
+                                                <a class="item-addwishlist" href="javascript:void(0)">Add to Wishlist</a>
+                                                <a class="item-addCart" href="javascript:void(0)">Add to Cart</a>
+                                            </div>
                                         </div>
+                                        <div class="item-content">
+                                            <div class="what-product-is">
+                                                <ul class="bread-crumb">
+                                                    <li class="has-separator">
+                                                        <a href="./pages/shop-v1-root-category.php?category=<?= urlencode($product['category']) ?>">
+                                                            <?= htmlspecialchars($product['category']) ?>
+                                                        </a>
+                                                    </li>
+                                                    <?php if (!empty($product['sub_category'])): ?>
+                                                    <li class="has-separator">
+                                                        <a href="./pages/shop-v2-sub-category.php?subcategory=<?= urlencode($product['sub_category']) ?>">
+                                                            <?= htmlspecialchars($product['sub_category']) ?>
+                                                        </a>
+                                                    </li>
+                                                    <?php endif; ?>
+                                                    <?php if (!empty($product['color_options'])): ?>
+                                                        <?php $colors = explode(',', $product['color_options']); ?>
+                                                        <li class="has-separator">
+                                                            <a href="./pages/shop-v2-sub-category.php?color=<?= urlencode(trim($colors[0])) ?>">
+                                                                <?= htmlspecialchars(trim($colors[0])) ?>
+                                                            </a>
+                                                        </li>
+                                                    <?php endif; ?>
+                                                </ul>
+                                                <h6 class="item-title">
+                                                    <a href="./pages/single-product.php?id=<?= $product['id'] ?>">
+                                                        <?= htmlspecialchars($product['name']) ?>
+                                                    </a>
+                                                </h6>
+                                                <div class="item-stars">
+                                                    <div class='star' title="4.5 out of 5 - based on 23 Reviews">
+                                                        <span style='width:67px'></span>
+                                                    </div>
+                                                    <span>(23)</span>
+                                                </div>
+                                            </div>
+                                            <div class="price-template">
+                                                <div class="item-new-price">
+                                                    $<?= number_format($product['price'], 2) ?>
+                                                </div>
+                                                <?php if (!empty($product['original_price']) && $product['original_price'] > $product['price']): ?>
+                                                <div class="item-old-price">
+                                                    $<?= number_format($product['original_price'], 2) ?>
+                                                </div>
+                                                <?php endif; ?>
+                                            </div>
+                                        </div>
+                                        <?php if (!empty($product['discount']) && $product['discount'] > 0): ?>
+                                        <div class="tag <?= ($product['original_price'] > $product['price']) ? 'sale' : 'discount' ?>">
+                                            <span><?= ($product['original_price'] > $product['price']) ? 'SALE' : '-'.htmlspecialchars($product['discount']).'%' ?></span>
+                                        </div>
+                                        <?php endif; ?>
                                     </div>
                                 <?php endforeach; ?>
                             </div>
-                
-                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample_<?= $index ?>" data-bs-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Previous</span>
-                            </button>
-                
-                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExample_<?= $index ?>" data-bs-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Next</span>
-                            </button>
+                            <div class="swiper-button-prev swiper-button-prev-tag-<?= $index ?>"></div>
+                            <div class="swiper-button-next swiper-button-next-tag-<?= $index ?>"></div>
                         </div>
                     </div>
                 <?php endforeach;
@@ -805,6 +812,12 @@ $userRole = $isLoggedIn ? $_SESSION['role_id'] : null;
             $stmt = $pdo->prepare($productsQuery);
             $stmt->execute([':categoryName' => $category]);
             $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            
+            // Ensure $products is an array
+            if (!is_array($products)) {
+                $products = [];
+            }
+            
             if (empty($products)) {
             echo "<!-- No products found for category: $category -->";
         }
@@ -820,109 +833,113 @@ $userRole = $isLoggedIn ? $_SESSION['role_id'] : null;
                         </div>
         
                         <div class="row" id="<?= htmlspecialchars($categoryTag) ?>-latest-products">
-                            <div id="carouselExample_<?= $index ?>" class="carousel slide" data-bs-ride="carousel">
-                                <div class="carousel-inner">
-                                    <?php
-                                    $chunks = array_chunk($products, 4);
-                                    foreach ($chunks as $i => $chunk):
-                                    ?>
-                                        <div class="carousel-item <?= ($i === 0) ? 'active' : '' ?>">
-                                            <div class="row">
-                                                <?php foreach ($chunk as $product): ?>
-                                                    <div class="col-6 col-lg-3 mb-3">
-                                                        <div class="image-container">
-                                                            <a class="item-img-wrapper-link" href="./pages/single-product.php?id=<?= $product['id'] ?>">
-                                                                <img class="img-fluid" src="<?= 
-                                                                    !empty($product['image_path']) 
-                                                                    ? htmlspecialchars(explode(',', $product['image_path'])[0]) 
-                                                                    : './assets/images/product/product@3x.jpg' ?>" 
-                                                                    alt="<?= htmlspecialchars($product['name']) ?>">
+                            ?>
+                            <div class="swiper outer-product-swiper swiper-container-category-<?= $index ?>">
+                                <div class="swiper-wrapper">
+                                    <?php foreach ($products as $product): ?>
+                                        <?php
+                                        $productImages = array_filter(array_map('trim', explode(',', (string)$product['image_path'])));
+                                        $productImageCount = count($productImages);
+                                        $productPrimaryImage = $productImages[0] ?? '';
+                                        ?>
+                                        <div class="swiper-slide col-12 col-md-6 col-lg-3 mb-3" data-product-image-count="<?= $productImageCount ?>">
+                                            <div class="image-container">
+                                                <!-- Debug: product <?= $product['id'] ?> image_path count <?= $productImageCount ?> -->
+                                                <?php if ($productImageCount > 1): ?>
+                                                <div class="swiper product-image-swiper swiper-product-<?= $product['id'] ?>">
+                                                    <div class="swiper-wrapper">
+                                                        <?php foreach ($productImages as $image): ?>
+                                                            <div class="swiper-slide">
+                                                                <a class="item-img-wrapper-link" href="./pages/single-product.php?id=<?= $product['id'] ?>">
+                                                                    <img class="img-fluid" src="/dashboard/zig-customize-project/Uploads/Products/<?= htmlspecialchars(basename($image)) ?>" 
+                                                                        alt="<?= htmlspecialchars($product['name']) ?>">
+                                                                </a>
+                                                            </div>
+                                                        <?php endforeach; ?>
+                                                    </div>
+                                                </div>
+                                                <?php else: ?>
+                                                <div class="product-single-image">
+                                                    <a class="item-img-wrapper-link" href="./pages/single-product.php?id=<?= $product['id'] ?>">
+                                                        <img class="img-fluid" src="/dashboard/zig-customize-project/Uploads/Products/<?= htmlspecialchars(basename($productPrimaryImage)) ?>" 
+                                                            alt="<?= htmlspecialchars($product['name']) ?>">
+                                                    </a>
+                                                </div>
+                                                <?php endif; ?>
+                                                <div class="item-action-behaviors">
+                                                    <a class="item-quick-look" data-toggle="modal" href="#quick-view">Quick Look</a>
+                                                    <a class="item-mail" href="javascript:void(0)">Mail</a>
+                                                    <a class="item-addwishlist" href="javascript:void(0)">Add to Wishlist</a>
+                                                    <a class="item-addCart" href="javascript:void(0)">Add to Cart</a>
+                                                </div>
+                                            </div>
+                                            <div class="item-content">
+                                                <div class="what-product-is">
+                                                    <ul class="bread-crumb">
+                                                        <li class="has-separator">
+                                                            <a href="./pages/shop-v1-root-category.php?category=<?= urlencode($product['category']) ?>">
+                                                                <?= htmlspecialchars($product['category']) ?>
                                                             </a>
-                                                            <div class="item-action-behaviors">
-                                                                <a class="item-quick-look" data-toggle="modal" href="#quick-view">Quick Look</a>
-                                                                <a class="item-mail" href="javascript:void(0)">Mail</a>
-                                                                <a class="item-addwishlist" href="javascript:void(0)">Add to Wishlist</a>
-                                                                <a class="item-addCart" href="javascript:void(0)">Add to Cart</a>
-                                                            </div>
+                                                        </li>
+                                                        <?php if (!empty($product['sub_category'])): ?>
+                                                            <li>
+                                                                <a href="./pages/shop-v2-sub-category.php?subcategory=<?= urlencode($product['sub_category']) ?>">
+                                                                    <?= htmlspecialchars($product['sub_category']) ?>
+                                                                </a>
+                                                            </li>
+                                                        <?php endif; ?>
+                                                    </ul>
+                                                    <h6 class="item-title">
+                                                        <a href="./pages/single-product.php?id=<?= $product['id'] ?>">
+                                                            <?= htmlspecialchars($product['name']) ?>
+                                                        </a>
+                                                    </h6>
+                                                    <div class="item-description">
+                                                        <?= htmlspecialchars(substr($product['description'], 0, 100)) ?>...
+                                                    </div>
+                                                    <div class="item-stars">
+                                                        <div class='star' title="0 out of 5 - based on 0 Reviews">
+                                                            <span style='width:0'></span>
                                                         </div>
-                                                        <div class="item-content">
-                                                            <div class="what-product-is">
-                                                                <ul class="bread-crumb">
-                                                                    <li class="has-separator">
-                                                                        <a href="./pages/shop-v1-root-category.php?category=<?= urlencode($product['category']) ?>">
-                                                                            <?= htmlspecialchars($product['category']) ?>
-                                                                        </a>
-                                                                    </li>
-                                                                    <?php if (!empty($product['sub_category'])): ?>
-                                                                        <li>
-                                                                            <a href="./pages/shop-v2-sub-category.php?subcategory=<?= urlencode($product['sub_category']) ?>">
-                                                                                <?= htmlspecialchars($product['sub_category']) ?>
-                                                                            </a>
-                                                                        </li>
-                                                                    <?php endif; ?>
-                                                                </ul>
-                                                                <h6 class="item-title">
-                                                                    <a href="./pages/single-product.php?id=<?= $product['id'] ?>">
-                                                                        <?= htmlspecialchars($product['name']) ?>
-                                                                    </a>
-                                                                </h6>
-                                                                <div class="item-description">
-                                                                    <?= htmlspecialchars(substr($product['description'], 0, 100)) ?>...
-                                                                </div>
-                                                                <div class="item-stars">
-                                                                    <div class='star' title="0 out of 5 - based on 0 Reviews">
-                                                                        <span style='width:0'></span>
-                                                                    </div>
-                                                                    <span>(0)</span>
-                                                                </div>
-                                                            </div>
-                                                            <div class="price-template">
-                                                                <div class="item-new-price">
-                                                                    $<?= number_format($product['price'], 2) ?>
-                                                                </div>
-                                                                <?php if (!empty($product['original_price']) && $product['original_price'] != $product['price']): ?>
-                                                                    <div class="item-old-price">
-                                                                        $<?= number_format($product['original_price'], 2) ?>
-                                                                    </div>
-                                                                <?php endif; ?>
-                                                            </div>
-                                                            <?php if (!empty($product['color_options']) || !empty($product['size_options'])): ?>
-                                                                <div class="product-options">
-                                                                    <?php if (!empty($product['color_options'])): ?>
-                                                                        <span class="color-option"><?= htmlspecialchars($product['color_options']) ?></span>
-                                                                    <?php endif; ?>
-                                                                    <?php if (!empty($product['size_options'])): ?>
-                                                                        <span class="size-option"><?= htmlspecialchars($product['size_options']) ?></span>
-                                                                    <?php endif; ?>
-                                                                </div>
-                                                            <?php endif; ?>
+                                                        <span>(0)</span>
+                                                    </div>
+                                                </div>
+                                                <div class="price-template">
+                                                    <div class="item-new-price">
+                                                        $<?= number_format($product['price'], 2) ?>
+                                                    </div>
+                                                    <?php if (!empty($product['original_price']) && $product['original_price'] != $product['price']): ?>
+                                                        <div class="item-old-price">
+                                                            $<?= number_format($product['original_price'], 2) ?>
                                                         </div>
-                                                        <?php 
-                                                        if (!empty($product['discount']) && $product['discount'] > 0): ?>
-                                                            <div class="tag discount">
-                                                                <span>-<?= $product['discount'] ?>%</span>
-                                                            </div>
-                                                        <?php elseif (strtotime($product['created_at']) > strtotime('-30 days')): ?>
-                                                            <div class="tag new">
-                                                                <span>NEW</span>
-                                                            </div>
+                                                    <?php endif; ?>
+                                                </div>
+                                                <?php if (!empty($product['color_options']) || !empty($product['size_options'])): ?>
+                                                    <div class="product-options">
+                                                        <?php if (!empty($product['color_options'])): ?>
+                                                            <span class="color-option"><?= htmlspecialchars($product['color_options']) ?></span>
+                                                        <?php endif; ?>
+                                                        <?php if (!empty($product['size_options'])): ?>
+                                                            <span class="size-option"><?= htmlspecialchars($product['size_options']) ?></span>
                                                         <?php endif; ?>
                                                     </div>
-                                                <?php endforeach; ?>
+                                                <?php endif; ?>
                                             </div>
+                                            <?php 
+                                            if (!empty($product['discount']) && $product['discount'] > 0): ?>
+                                                <div class="tag discount">
+                                                    <span>-<?= $product['discount'] ?>%</span>
+                                                </div>
+                                            <?php elseif (strtotime($product['created_at']) > strtotime('-30 days')): ?>
+                                                <div class="tag new">
+                                                    <span>NEW</span>
+                                                </div>
+                                            <?php endif; ?>
                                         </div>
                                     <?php endforeach; ?>
                                 </div>
-        
-                                <!-- Controls -->
-                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample_<?= $index ?>" data-bs-slide="prev">
-                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                    <span class="visually-hidden">Previous</span>
-                                </button>
-                                <button class="carousel-control-next" type="button" data-bs-target="#carouselExample_<?= $index ?>" data-bs-slide="next">
-                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                    <span class="visually-hidden">Next</span>
-                                </button>
+                                <div class="swiper-button-prev swiper-button-prev-category-<?= $index ?>"></div>
+                                <div class="swiper-button-next swiper-button-next-category-<?= $index ?>"></div>
                             </div>
                         </div>
         
@@ -1604,8 +1621,6 @@ $userRole = $isLoggedIn ? $_SESSION['role_id'] : null;
     ga('create', 'UA-XXXXX-Y', 'auto');
     ga('send', 'pageview')
     </script>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
     <script src="https://www.google-analytics.com/analytics.js" async defer></script>
     <!-- Modernizr-JS -->
     <script type="text/javascript" src="./assets/js/vendor/modernizr-custom.min.js"></script>
@@ -1613,10 +1628,6 @@ $userRole = $isLoggedIn ? $_SESSION['role_id'] : null;
     <script type="text/javascript" src="./assets/js/nprogress.min.js"></script>
     <!-- jQuery -->
     <script type="text/javascript" src="./assets/js/jquery.min.js"></script>
-    <!-- Bootstrap JS -->
-    <script type="text/javascript" src="./assets/js/bootstrap.min.js"></script>
-    <!-- Popper -->
-    <script type="text/javascript" src="./assets/js/popper.min.js"></script>
     <!-- ScrollUp -->
     <script type="text/javascript" src="./assets/js/jquery.scrollUp.min.js"></script>
     <!-- Elevate Zoom -->
@@ -1635,49 +1646,114 @@ $userRole = $isLoggedIn ? $_SESSION['role_id'] : null;
     <script type="text/javascript" src="./assets/js/owl.carousel.min.js"></script>
     <!-- Main -->
     <script type="text/javascript" src="./assets/js/app.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('.swiper.product-image-swiper').forEach(function(swiperEl) {
+            const slideCount = swiperEl.querySelectorAll('.swiper-slide').length;
+            console.log('Inner product swiper count:', swiperEl.className, slideCount);
+            if (slideCount < 2) {
+                console.log('Skipping inner swiper for single-image product:', swiperEl.className);
+                return;
+            }
+            new Swiper(swiperEl, {
+                loop: true,
+                slidesPerView: 1,
+                autoplay: { delay: 2500, disableOnInteraction: false },
+                observer: true,
+                observeParents: true
+            });
+        });
 
-</body>
+        <?php if (!empty($categories)): ?>
+            <?php foreach ($categories as $index => $category): ?>
+                (function() {
+                    var outerSelector = document.querySelector('.swiper-container-category-<?= $index ?>');
+                    if (!outerSelector) return;
+                    new Swiper(outerSelector, {
+                        loop: true,
+                        watchOverflow: true,
+                        slidesPerView: 1,
+                        spaceBetween: 24,
+                        autoplay: { delay: 3000, disableOnInteraction: false },
+                        observer: true,
+                        observeParents: true,
+                        navigation: {
+                            nextEl: '.swiper-button-next-category-<?= $index ?>',
+                            prevEl: '.swiper-button-prev-category-<?= $index ?>'
+                        },
+                        breakpoints: {
+                            768: { slidesPerView: 2 },
+                            992: { slidesPerView: 4 }
+                        }
+                    });
+                })();
+            <?php endforeach; ?>
+        <?php endif; ?>
 
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-    const vTitle = document.querySelector('.v-title');
-    const vWrapper = document.querySelector('.v-wrapper');
-    const arrowIcon = vTitle.querySelector('.fas');
-
-    vTitle.addEventListener('click', function () {
-        if (vWrapper.style.display === "none" || vWrapper.style.display === "") {
-            vWrapper.style.display = "block";
-            arrowIcon.classList.remove('fa-angle-down');
-            arrowIcon.classList.add('fa-angle-up');
-        } else {
-            vWrapper.style.display = "none";
-            arrowIcon.classList.remove('fa-angle-up');
-            arrowIcon.classList.add('fa-angle-down');
-        }
+        <?php if (!empty($uniqueTags)): ?>
+            <?php foreach ($uniqueTags as $index => $tag): ?>
+                (function() {
+                    var outerSelector = document.querySelector('.swiper-container-<?= $index ?>');
+                    if (!outerSelector) return;
+                    new Swiper(outerSelector, {
+                        loop: true,
+                        watchOverflow: true,
+                        slidesPerView: 1,
+                        spaceBetween: 24,
+                        autoplay: { delay: 3000, disableOnInteraction: false },
+                        observer: true,
+                        observeParents: true,
+                        navigation: {
+                            nextEl: '.swiper-button-next-tag-<?= $index ?>',
+                            prevEl: '.swiper-button-prev-tag-<?= $index ?>'
+                        },
+                        breakpoints: {
+                            768: { slidesPerView: 2 },
+                            992: { slidesPerView: 4 }
+                        }
+                    });
+                })();
+            <?php endforeach; ?>
+        <?php endif; ?>
     });
-});
-</script>
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    // Delay modal check to avoid race condition
-    setTimeout(function () {
-      if (!localStorage.getItem("newsletterSubscribed")) {
-        $('#newsletter-modal').modal('show');
-      }
-    }, 300); // Slight delay for stability
-  });
+    </script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const vTitle = document.querySelector('.v-title');
+        const vWrapper = document.querySelector('.v-wrapper');
+        const arrowIcon = vTitle.querySelector('.fas');
 
-  // Handle Subscribe button
-  document.getElementById("subscribe-btn").addEventListener("click", function () {
-    localStorage.setItem("newsletterSubscribed", "true");
-    $('#newsletter-modal').modal('hide');
-  });
+        vTitle.addEventListener('click', function () {
+            if (vWrapper.style.display === "none" || vWrapper.style.display === "") {
+                vWrapper.style.display = "block";
+                arrowIcon.classList.remove('fa-angle-down');
+                arrowIcon.classList.add('fa-angle-up');
+            } else {
+                vWrapper.style.display = "none";
+                arrowIcon.classList.remove('fa-angle-up');
+                arrowIcon.classList.add('fa-angle-down');
+            }
+        });
+    });
+    </script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        setTimeout(function () {
+          if (!localStorage.getItem("newsletterSubscribed")) {
+            $('#newsletter-modal').modal('show');
+          }
+        }, 300);
+      });
 
-  // Handle Close (X) button
-  document.querySelector(".dismiss-button").addEventListener("click", function () {
-    localStorage.setItem("newsletterSubscribed", "true");
-  });
-</script>
+      document.getElementById("subscribe-btn").addEventListener("click", function () {
+        localStorage.setItem("newsletterSubscribed", "true");
+        $('#newsletter-modal').modal('hide');
+      });
 
-
+      document.querySelector(".dismiss-button").addEventListener("click", function () {
+        localStorage.setItem("newsletterSubscribed", "true");
+      });
+    </script>
+</body>
 </html>

@@ -2,7 +2,7 @@
 require_once(__DIR__ . '/../sql_connection/config.php');
 
 // If already logged in, redirect to dashboard
-if (isLoggedIn() && $_SESSION['role'] === 'admin') {
+if (isLoggedIn() && $_SESSION['role_id'] == 1) {
     header("Location: /admin/dashboard/dashboard.php");
     exit();
 }
@@ -26,15 +26,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login'])) {
             
             if ($user && ($password === $user['password'] || password_verify($password, $user['password']))) {
                 // Check if user is admin
-                if ($user['role'] !== 'admin') {
+                if ($user['role_id'] != 1) {
                     $error = "You do not have admin access";
                 } else {
                     // Set session variables
                     session_regenerate_id(true);
-                    $_SESSION['user_id'] = $user['ID'];
+                    $_SESSION['user_id'] = $user['user_id'];
                     $_SESSION['username'] = $user['username'];
                     $_SESSION['email'] = $user['email'];
-                    $_SESSION['role'] = $user['role'];
+                    $_SESSION['role_id'] = $user['role_id'];
                     $_SESSION['logged_in'] = true;
                     
                     header("Location: /admin/dashboard/dashboard.php");
